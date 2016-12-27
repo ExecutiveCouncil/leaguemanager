@@ -77,6 +77,7 @@
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\npm.js" />
+    <Content Include="Pages\Factions.aspx" />
     <Content Include="Pages\Home.aspx" />
     <Content Include="Pages\League.aspx" />
     <Content Include="Pages\Login.aspx" />
@@ -85,6 +86,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\BasicPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -101,6 +105,13 @@
     </Compile>
     <Compile Include="master\main.master.designer.cs">
       <DependentUpon>main.master</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Factions.aspx.cs">
+      <DependentUpon>Factions.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Factions.aspx.designer.cs">
+      <DependentUpon>Factions.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>

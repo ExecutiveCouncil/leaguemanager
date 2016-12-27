@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -17,10 +18,9 @@ namespace ManagerDB
 
         protected void Session_Start(object sender, EventArgs e)
         {
-            if (this.Session["id_usuario"] == null)
-            {
-                Response.Redirect("/Pages/Login.aspx", true);
-            }
+            //Iniciamos el contexto
+            this.Session["Manager"] = new MANAGERDBEntities();
+            Response.Redirect("/Pages/Login.aspx", true);
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace ManagerDB
 
         protected void Session_End(object sender, EventArgs e)
         {
-
+            this.Session.RemoveAll();
         }
 
         protected void Application_End(object sender, EventArgs e)

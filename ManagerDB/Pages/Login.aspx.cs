@@ -14,24 +14,48 @@ using System.Data.Linq;
 
 namespace ManagerDB.Pages
 {
-    public partial class Login : System.Web.UI.Page
+    public partial class Login : BasicPage
     {
-        MANAGERDBEntities ctx = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            ctx = new MANAGERDBEntities();
         }
 
         protected void ValidateUser(object sender, EventArgs e)
         {
-            var usuarioRegistrado = ctx.t_users.Where(a => a.login == Login1.UserName && a.pass == Login1.Password && a.active == "Y").FirstOrDefault();
 
+            var usuarioRegistrado = this.manager.t_users
+                .Where(a => a.login == Login1.UserName && 
+                       a.pass == Login1.Password && 
+                       a.active == "Y").FirstOrDefault();
             if (usuarioRegistrado != null)
             {
-                Session["idUsuario"] = usuarioRegistrado.id;
+                usuarioRegistrado.login_errors = 0;
+                this.manager.SaveChanges();
+
+                base.usuario = usuarioRegistrado;
                 FormsAuthentication.RedirectFromLoginPage(Login1.UserName, Login1.RememberMeSet);
-            }                
+            }      
+            else
+            {
+                base.usuario = null;
+                var _usuarioError = this.manager.t_users
+                    .Where(a => a.login == Login1.UserName &&
+                           a.active == "Y").FirstOrDefault();
+                if (_usuarioError != null)
+                {
+                    _usuarioError.login_errors++;
+                    if (_usuarioError.login_errors >= 5)
+                    {
+                        _usuarioError.active = "N";
+                    }
+                    this.manager.SaveChanges();
+                }
+
+            }
+
+
+
         }
     }
 }

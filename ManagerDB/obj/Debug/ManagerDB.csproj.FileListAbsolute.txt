@@ -19,6 +19,7 @@ D:\ManagerDB\ManagerDB\bin\EntityFramework.xml
 D:\ManagerDB\ManagerDB\obj\Debug\ManagerDB.csprojResolveAssemblyReference.cache
 D:\ManagerDB\ManagerDB\obj\Debug\ManagerDB.dll
 D:\ManagerDB\ManagerDB\obj\Debug\ManagerDB.pdb
+C:\MZ\github\leaguemanager\ManagerDB\obj\Debug\ManagerDB.csprojResolveAssemblyReference.cache
 C:\MZ\github\leaguemanager\ManagerDB\bin\ManagerDB.dll.config
 C:\MZ\github\leaguemanager\ManagerDB\bin\ManagerDB.dll
 C:\MZ\github\leaguemanager\ManagerDB\bin\ManagerDB.pdb
@@ -27,6 +28,5 @@ C:\MZ\github\leaguemanager\ManagerDB\bin\EntityFramework.dll
 C:\MZ\github\leaguemanager\ManagerDB\bin\System.Data.Entity.dll
 C:\MZ\github\leaguemanager\ManagerDB\bin\Entidades.pdb
 C:\MZ\github\leaguemanager\ManagerDB\bin\EntityFramework.xml
-C:\MZ\github\leaguemanager\ManagerDB\obj\Debug\ManagerDB.csprojResolveAssemblyReference.cache
 C:\MZ\github\leaguemanager\ManagerDB\obj\Debug\ManagerDB.dll
 C:\MZ\github\leaguemanager\ManagerDB\obj\Debug\ManagerDB.pdb
