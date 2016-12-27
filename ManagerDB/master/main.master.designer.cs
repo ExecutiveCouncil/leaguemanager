@@ -7,45 +7,63 @@
 // </generado automáticamente>
 //------------------------------------------------------------------------------
 
-namespace ManagerDB.Pages {
+namespace ManagerDB.master {
     
     
-    public partial class Home {
+    public partial class main {
         
         /// <summary>
-        /// Control GrLigas.
+        /// Control StyleBootstrap.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataGrid GrLigas;
+        protected global::System.Web.UI.HtmlControls.HtmlLink StyleBootstrap;
         
         /// <summary>
-        /// Control GrMensajes.
+        /// Control StyleCustom.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataGrid GrMensajes;
+        protected global::System.Web.UI.HtmlControls.HtmlLink StyleCustom;
         
         /// <summary>
-        /// Control Ligas.
+        /// Control home_form.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder Ligas;
+        protected global::System.Web.UI.HtmlControls.HtmlForm home_form;
         
         /// <summary>
-        /// Control UltimosMensajes.
+        /// Control MainScriptManager.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder UltimosMensajes;
+        protected global::System.Web.UI.ScriptManager MainScriptManager;
+        
+        /// <summary>
+        /// Control LoginName1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LoginName LoginName1;
+        
+        /// <summary>
+        /// Control ContentProgram.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder ContentProgram;
     }
 }
