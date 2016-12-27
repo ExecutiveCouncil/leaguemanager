@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+Este archivo es utilizado por el proceso de paquete/publicación de nuestro proyecto Web. Puede personalizar el comportamiento de este proceso
+editando este archivo MSBuild. Para conocer más acerca de esto, visite http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <LastUsedBuildConfiguration>Debug</LastUsedBuildConfiguration>
+    <LastUsedPlatform>Any CPU</LastUsedPlatform>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword />
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Entidades.dll">
+      <publishTime>12/23/2016 20:35:20</publishTime>
+    </File>
+    <File Include="bin/Entidades.pdb">
+      <publishTime>12/23/2016 20:35:20</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>12/22/2016 23:23:02</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>12/23/2016 19:59:56</publishTime>
+    </File>
+    <File Include="bin/ManagerDB.dll">
+      <publishTime>12/23/2016 20:35:21</publishTime>
+    </File>
+    <File Include="bin/ManagerDB.pdb">
+      <publishTime>12/23/2016 20:35:21</publishTime>
+    </File>
+    <File Include="bin/System.Data.Entity.dll">
+      <publishTime>03/18/2010 18:31:26</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Pages/Home.aspx">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Pages/Login.aspx">
+      <publishTime>12/23/2016 00:00:58</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>12/23/2016 20:35:25</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

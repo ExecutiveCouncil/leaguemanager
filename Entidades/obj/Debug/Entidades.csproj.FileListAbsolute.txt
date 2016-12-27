@@ -1,0 +1,15 @@
+d:\Projects\ManagerDB\Entidades\bin\Debug\Entidades.dll.config
+d:\Projects\ManagerDB\Entidades\bin\Debug\Entidades.dll
+d:\Projects\ManagerDB\Entidades\bin\Debug\Entidades.pdb
+d:\Projects\ManagerDB\Entidades\bin\Debug\EntityFramework.dll
+d:\Projects\ManagerDB\Entidades\bin\Debug\EntityFramework.xml
+d:\Projects\ManagerDB\Entidades\obj\Debug\Entidades.dll
+d:\Projects\ManagerDB\Entidades\obj\Debug\Entidades.pdb
+D:\ManagerDB\Entidades\bin\Debug\Entidades.dll.config
+D:\ManagerDB\Entidades\bin\Debug\Entidades.dll
+D:\ManagerDB\Entidades\bin\Debug\Entidades.pdb
+D:\ManagerDB\Entidades\bin\Debug\EntityFramework.dll
+D:\ManagerDB\Entidades\bin\Debug\EntityFramework.xml
+D:\ManagerDB\Entidades\obj\Debug\Entidades.csprojResolveAssemblyReference.cache
+D:\ManagerDB\Entidades\obj\Debug\Entidades.dll
+D:\ManagerDB\Entidades\obj\Debug\Entidades.pdb

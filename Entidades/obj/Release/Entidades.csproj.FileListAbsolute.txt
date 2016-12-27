@@ -1,0 +1,7 @@
+d:\Projects\ManagerDB\Entidades\bin\Release\Entidades.dll.config
+d:\Projects\ManagerDB\Entidades\bin\Release\Entidades.dll
+d:\Projects\ManagerDB\Entidades\bin\Release\Entidades.pdb
+d:\Projects\ManagerDB\Entidades\bin\Release\EntityFramework.dll
+d:\Projects\ManagerDB\Entidades\bin\Release\EntityFramework.xml
+d:\Projects\ManagerDB\Entidades\obj\Release\Entidades.dll
+d:\Projects\ManagerDB\Entidades\obj\Release\Entidades.pdb

@@ -1,0 +1,241 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MANAGERDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityType Name="mercs_die_faces">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id_die_type" Type="int" />
+    <Property Name="die_face" Type="int" />
+    <Property Name="action" Type="varchar" MaxLength="100" />
+    <Property Name="info" Type="varchar(max)" />
+    <Property Name="cost_credits" Type="int" />
+    <Property Name="sell_materials" Type="int" />
+    <Property Name="sell_credits" Type="int" />
+    <Property Name="open_url" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="mercs_die_types">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" />
+    <Property Name="total_faces" Type="int" />
+    <Property Name="info" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="mercs_faction_dice">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id_game_faction" Type="int" />
+    <Property Name="id_die_type" Type="int" />
+  </EntityType>
+  <EntityType Name="mercs_troops">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id_game_faction" Type="int" />
+    <Property Name="name" Type="varchar" MaxLength="100" />
+    <Property Name="conflict_rule" Type="varchar(max)" />
+    <Property Name="cost" Type="varchar" MaxLength="200" />
+    <Property Name="upkeep" Type="varchar" MaxLength="200" />
+    <Property Name="notes" Type="varchar(max)" />
+    <Property Name="starting" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="mercs_upgrades">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id_game_faction" Type="int" />
+    <Property Name="name" Type="varchar" MaxLength="200" />
+    <Property Name="function_rule" Type="varchar(max)" />
+    <Property Name="conflict_rule" Type="varchar(max)" />
+    <Property Name="cost" Type="varchar" MaxLength="200" />
+    <Property Name="upkeep" Type="varchar" MaxLength="200" />
+    <Property Name="notes" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="mercs_user_dice">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id_user_league" Type="int" />
+    <Property Name="round" Type="nchar" MaxLength="10" />
+    <Property Name="id_die_type" Type="int" />
+    <Property Name="spent_date" Type="datetime" />
+    <Property Name="resources_gained" Type="int" />
+    <Property Name="rolled_date" Type="datetime" />
+    <Property Name="id_die_face" Type="int" />
+    <Property Name="id_message" Type="int" />
+  </EntityType>
+  <EntityType Name="mercs_user_troops">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id_user_league" Type="int" />
+    <Property Name="id_troop" Type="int" />
+    <Property Name="gained_date" Type="datetime" />
+    <Property Name="status" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="mercs_user_upgrades">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id_user_league" Type="int" />
+    <Property Name="id_upgrade" Type="int" />
+    <Property Name="gained_date" Type="datetime" />
+    <Property Name="active" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="t_badges">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="200" />
+    <Property Name="info" Type="varchar(max)" />
+    <Property Name="avatar_url" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="t_game_factions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id_game" Type="int" />
+    <Property Name="name" Type="varchar" MaxLength="200" />
+    <Property Name="info" Type="varchar(max)" />
+    <Property Name="avatar_url" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="t_games">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="200" />
+    <Property Name="info" Type="varchar(max)" />
+    <Property Name="avatar_url" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="t_league_titles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id_league" Type="int" />
+    <Property Name="name" Type="varchar" MaxLength="200" />
+    <Property Name="info" Type="varchar(max)" />
+    <Property Name="id_badge" Type="int" />
+  </EntityType>
+  <EntityType Name="t_leagues">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id_game" Type="int" />
+    <Property Name="name" Type="varchar" MaxLength="100" />
+    <Property Name="info" Type="varchar(max)" />
+    <Property Name="avatar_url" Type="varchar" MaxLength="500" />
+    <Property Name="current_round" Type="int" />
+    <Property Name="start_date" Type="datetime" />
+    <Property Name="end_date" Type="datetime" />
+    <Property Name="active" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="t_messages">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id_user_from" Type="int" />
+    <Property Name="id_user_to" Type="int" />
+    <Property Name="subject" Type="varchar" MaxLength="500" />
+    <Property Name="message" Type="varchar(max)" />
+    <Property Name="sent_date" Type="datetime" />
+    <Property Name="read_date" Type="datetime" />
+    <Property Name="id_league" Type="int" />
+    <Property Name="round" Type="int" />
+    <Property Name="status" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="t_syslog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="message" Type="varchar(max)" />
+    <Property Name="creation_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="t_systables">
+    <Key>
+      <PropertyRef Name="table_name" />
+    </Key>
+    <Property Name="table_name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="next_id" Type="int" />
+    <Property Name="step" Type="int" />
+  </EntityType>
+  <EntityType Name="t_user_leagues">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id_user" Type="int" />
+    <Property Name="id_league" Type="int" />
+    <Property Name="id_faction" Type="int" />
+    <Property Name="team_name" Type="varchar" MaxLength="200" />
+    <Property Name="team_avatar_url" Type="varchar" MaxLength="500" />
+    <Property Name="wins" Type="int" />
+    <Property Name="losses" Type="int" />
+    <Property Name="draws" Type="int" />
+    <Property Name="total_score" Type="int" />
+    <Property Name="security_level" Type="int" />
+    <Property Name="active" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="t_user_titles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id_user_league" Type="int" />
+    <Property Name="id_league_title" Type="int" />
+    <Property Name="unlock_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="t_users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="numero_socio" Type="int" />
+    <Property Name="login" Type="varchar" MaxLength="50" />
+    <Property Name="pass" Type="varchar" MaxLength="50" />
+    <Property Name="name" Type="varchar" MaxLength="100" />
+    <Property Name="surname" Type="varchar" MaxLength="100" />
+    <Property Name="email" Type="varchar" MaxLength="100" />
+    <Property Name="avatar_url" Type="varchar" MaxLength="500" />
+    <Property Name="info" Type="varchar(max)" />
+    <Property Name="login_errors" Type="int" />
+    <Property Name="security_level" Type="int" />
+    <Property Name="active" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityContainer Name="MANAGERDBModelStoreContainer">
+    <EntitySet Name="mercs_die_faces" EntityType="Self.mercs_die_faces" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mercs_die_types" EntityType="Self.mercs_die_types" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mercs_faction_dice" EntityType="Self.mercs_faction_dice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mercs_troops" EntityType="Self.mercs_troops" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mercs_upgrades" EntityType="Self.mercs_upgrades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mercs_user_dice" EntityType="Self.mercs_user_dice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mercs_user_troops" EntityType="Self.mercs_user_troops" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="mercs_user_upgrades" EntityType="Self.mercs_user_upgrades" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_badges" EntityType="Self.t_badges" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_game_factions" EntityType="Self.t_game_factions" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_games" EntityType="Self.t_games" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_league_titles" EntityType="Self.t_league_titles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_leagues" EntityType="Self.t_leagues" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_messages" EntityType="Self.t_messages" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_syslog" EntityType="Self.t_syslog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_systables" EntityType="Self.t_systables" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_user_leagues" EntityType="Self.t_user_leagues" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_user_titles" EntityType="Self.t_user_titles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="t_users" EntityType="Self.t_users" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

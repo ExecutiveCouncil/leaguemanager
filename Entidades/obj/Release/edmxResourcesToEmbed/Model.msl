@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MANAGERDBModelStoreContainer" CdmEntityContainer="MANAGERDBEntities">
+    <EntitySetMapping Name="mercs_die_types">
+      <EntityTypeMapping TypeName="MANAGERDBModel.mercs_die_types">
+        <MappingFragment StoreEntitySet="mercs_die_types">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="total_faces" ColumnName="total_faces" />
+          <ScalarProperty Name="info" ColumnName="info" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mercs_faction_dice">
+      <EntityTypeMapping TypeName="MANAGERDBModel.mercs_faction_dice">
+        <MappingFragment StoreEntitySet="mercs_faction_dice">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_game_faction" ColumnName="id_game_faction" />
+          <ScalarProperty Name="id_die_type" ColumnName="id_die_type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mercs_troops">
+      <EntityTypeMapping TypeName="MANAGERDBModel.mercs_troops">
+        <MappingFragment StoreEntitySet="mercs_troops">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_game_faction" ColumnName="id_game_faction" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="conflict_rule" ColumnName="conflict_rule" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="upkeep" ColumnName="upkeep" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+          <ScalarProperty Name="starting" ColumnName="starting" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mercs_upgrades">
+      <EntityTypeMapping TypeName="MANAGERDBModel.mercs_upgrades">
+        <MappingFragment StoreEntitySet="mercs_upgrades">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_game_faction" ColumnName="id_game_faction" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="function_rule" ColumnName="function_rule" />
+          <ScalarProperty Name="conflict_rule" ColumnName="conflict_rule" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="upkeep" ColumnName="upkeep" />
+          <ScalarProperty Name="notes" ColumnName="notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mercs_user_dice">
+      <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_dice">
+        <MappingFragment StoreEntitySet="mercs_user_dice">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
+          <ScalarProperty Name="round" ColumnName="round" />
+          <ScalarProperty Name="id_die_type" ColumnName="id_die_type" />
+          <ScalarProperty Name="spent_date" ColumnName="spent_date" />
+          <ScalarProperty Name="resources_gained" ColumnName="resources_gained" />
+          <ScalarProperty Name="rolled_date" ColumnName="rolled_date" />
+          <ScalarProperty Name="id_die_face" ColumnName="id_die_face" />
+          <ScalarProperty Name="id_message" ColumnName="id_message" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mercs_user_troops">
+      <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_troops">
+        <MappingFragment StoreEntitySet="mercs_user_troops">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
+          <ScalarProperty Name="id_troop" ColumnName="id_troop" />
+          <ScalarProperty Name="gained_date" ColumnName="gained_date" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_badges">
+      <EntityTypeMapping TypeName="MANAGERDBModel.t_badges">
+        <MappingFragment StoreEntitySet="t_badges">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="info" ColumnName="info" />
+          <ScalarProperty Name="avatar_url" ColumnName="avatar_url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_game_factions">
+      <EntityTypeMapping TypeName="MANAGERDBModel.t_game_factions">
+        <MappingFragment StoreEntitySet="t_game_factions">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_game" ColumnName="id_game" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="info" ColumnName="info" />
+          <ScalarProperty Name="avatar_url" ColumnName="avatar_url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_games">
+      <EntityTypeMapping TypeName="MANAGERDBModel.t_games">
+        <MappingFragment StoreEntitySet="t_games">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="info" ColumnName="info" />
+          <ScalarProperty Name="avatar_url" ColumnName="avatar_url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_league_titles">
+      <EntityTypeMapping TypeName="MANAGERDBModel.t_league_titles">
+        <MappingFragment StoreEntitySet="t_league_titles">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_league" ColumnName="id_league" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="info" ColumnName="info" />
+          <ScalarProperty Name="id_badge" ColumnName="id_badge" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_leagues">
+      <EntityTypeMapping TypeName="MANAGERDBModel.t_leagues">
+        <MappingFragment StoreEntitySet="t_leagues">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_game" ColumnName="id_game" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="info" ColumnName="info" />
+          <ScalarProperty Name="avatar_url" ColumnName="avatar_url" />
+          <ScalarProperty Name="current_round" ColumnName="current_round" />
+          <ScalarProperty Name="start_date" ColumnName="start_date" />
+          <ScalarProperty Name="end_date" ColumnName="end_date" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_messages">
+      <EntityTypeMapping TypeName="MANAGERDBModel.t_messages">
+        <MappingFragment StoreEntitySet="t_messages">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_user_from" ColumnName="id_user_from" />
+          <ScalarProperty Name="id_user_to" ColumnName="id_user_to" />
+          <ScalarProperty Name="subject" ColumnName="subject" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="sent_date" ColumnName="sent_date" />
+          <ScalarProperty Name="read_date" ColumnName="read_date" />
+          <ScalarProperty Name="id_league" ColumnName="id_league" />
+          <ScalarProperty Name="round" ColumnName="round" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_syslog">
+      <EntityTypeMapping TypeName="MANAGERDBModel.t_syslog">
+        <MappingFragment StoreEntitySet="t_syslog">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="creation_date" ColumnName="creation_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_systables">
+      <EntityTypeMapping TypeName="MANAGERDBModel.t_systables">
+        <MappingFragment StoreEntitySet="t_systables">
+          <ScalarProperty Name="table_name" ColumnName="table_name" />
+          <ScalarProperty Name="next_id" ColumnName="next_id" />
+          <ScalarProperty Name="step" ColumnName="step" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_user_leagues">
+      <EntityTypeMapping TypeName="MANAGERDBModel.t_user_leagues">
+        <MappingFragment StoreEntitySet="t_user_leagues">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
+          <ScalarProperty Name="id_league" ColumnName="id_league" />
+          <ScalarProperty Name="id_faction" ColumnName="id_faction" />
+          <ScalarProperty Name="team_name" ColumnName="team_name" />
+          <ScalarProperty Name="team_avatar_url" ColumnName="team_avatar_url" />
+          <ScalarProperty Name="wins" ColumnName="wins" />
+          <ScalarProperty Name="losses" ColumnName="losses" />
+          <ScalarProperty Name="draws" ColumnName="draws" />
+          <ScalarProperty Name="total_score" ColumnName="total_score" />
+          <ScalarProperty Name="security_level" ColumnName="security_level" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_user_titles">
+      <EntityTypeMapping TypeName="MANAGERDBModel.t_user_titles">
+        <MappingFragment StoreEntitySet="t_user_titles">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
+          <ScalarProperty Name="id_league_title" ColumnName="id_league_title" />
+          <ScalarProperty Name="unlock_date" ColumnName="unlock_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_users">
+      <EntityTypeMapping TypeName="MANAGERDBModel.t_users">
+        <MappingFragment StoreEntitySet="t_users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="numero_socio" ColumnName="numero_socio" />
+          <ScalarProperty Name="login" ColumnName="login" />
+          <ScalarProperty Name="pass" ColumnName="pass" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="avatar_url" ColumnName="avatar_url" />
+          <ScalarProperty Name="info" ColumnName="info" />
+          <ScalarProperty Name="login_errors" ColumnName="login_errors" />
+          <ScalarProperty Name="security_level" ColumnName="security_level" />
+          <ScalarProperty Name="active" ColumnName="active" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mercs_user_upgrades">
+      <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_upgrades">
+        <MappingFragment StoreEntitySet="mercs_user_upgrades">
+          <ScalarProperty Name="active" ColumnName="active" />
+          <ScalarProperty Name="gained_date" ColumnName="gained_date" />
+          <ScalarProperty Name="id_upgrade" ColumnName="id_upgrade" />
+          <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

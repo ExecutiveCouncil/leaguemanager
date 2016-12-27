@@ -1,0 +1,11 @@
+d:\Projects\ManagerDB\ManagerDB\bin\ManagerDB.dll
+d:\Projects\ManagerDB\ManagerDB\bin\ManagerDB.pdb
+d:\Projects\ManagerDB\ManagerDB\bin\Entidades.dll
+d:\Projects\ManagerDB\ManagerDB\bin\EntityFramework.dll
+d:\Projects\ManagerDB\ManagerDB\bin\EntityFramework.SqlServer.dll
+d:\Projects\ManagerDB\ManagerDB\bin\Entidades.pdb
+d:\Projects\ManagerDB\ManagerDB\bin\EntityFramework.xml
+d:\Projects\ManagerDB\ManagerDB\bin\EntityFramework.SqlServer.xml
+d:\Projects\ManagerDB\ManagerDB\obj\Release\ManagerDB.csprojResolveAssemblyReference.cache
+d:\Projects\ManagerDB\ManagerDB\obj\Release\ManagerDB.dll
+d:\Projects\ManagerDB\ManagerDB\obj\Release\ManagerDB.pdb
