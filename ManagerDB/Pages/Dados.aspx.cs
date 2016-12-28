@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using ManagerDB.Clases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,40 +32,106 @@ namespace ManagerDB.Pages
         {
             var idUsuario = Convert.ToInt32(Session["idUsuario"]);
 
-            var dadosUsuario = (from m in ctx.t_messages
-                                   join l in ctx.t_leagues on m.id_league equals l.id
-                                   join u in ctx.t_users on m.id_user_from equals u.id
-                                   where m.id_user_to == idUsuario
-                                   select new
-                                   {
-                                       league_avatar_url = l.avatar_url,
-                                       league_name = l.name,
-                                       user_name_from = u.name,
-                                       user_avatar_url = u.avatar_url,
-                                       subject = m.subject,
-                                       message = m.message,
-                                       sent_date = m.sent_date
-                                   }).OrderByDescending(a => a.sent_date).Take(5).ToList();
+            List<UserDice> dadosUsuario = (from ul in ctx.t_user_leagues
+                                    join l in ctx.t_leagues on ul.id_league equals l.id
+                                    join ud in ctx.mercs_user_dice on ul.id equals ud.id_user_league
+                                    join dt in ctx.mercs_die_types on ud.id_die_type equals dt.id
+                                    join df in ctx.mercs_die_faces on ud.id_die_face equals df.id
+                                    where ul.id_user == idUsuario //hay q identificar liga y ronda
+                                        //&& l.current_round == ud.round
+                                    select new UserDice
+                                    {
+                                        id_die_type = ud.id_die_type,
+                                        spent_date = ud.spent_date,
+                                        resources_gained = ud.resources_gained,
+                                        rolled_date = ud.rolled_date,
+                                        die_type_name = dt.name,
+                                        total_faces = dt.total_faces,
+                                        info_die = dt.info,
+                                        die_face = df.die_face,
+                                        action = df.action,
+                                        info_face = df.info,
+                                        cost_credits = df.cost_credits,
+                                        sell_materials = df.sell_materials,
+                                        sell_credits = df.sell_credits,
+                                        img_Dice = ""
+                                    }).ToList();
 
             if (dadosUsuario.Count > 0)
             {
                 var divHtml = new System.Text.StringBuilder();
                 var contador = 1;
                 foreach (var dado in dadosUsuario)
+                {
                     using(HtmlGenericControl div = new System.Web.UI.HtmlControls.HtmlGenericControl("div"))
                     {
-                        div.ID = "Dado"+ contador ;
-                        Image img = new Image();
-                        img.ImageUrl = "~/images/" + dado.imagen;
-                        img.AlternateText = dado.texto;
-                        div.Controls.Add(img);
-                        Dados.Controls.Add(div);
+                        var imagen = CalcularImagenDado(dado.die_type_name, dado.die_face, dado.rolled_date, dado.spent_date, dado.resources_gained);
+                        dado.img_Dice = imagen;
                     }
                     contador++;
                 }
-                Dados.InnerHtml = divHtml.ToString();
+
+                this.RptDices.DataSource = dadosUsuario;
+                this.RptDices.DataBind();
+            }
+        }
+        
+        private string CalcularImagenDado(string nombreDado, int? cara, DateTime? fechaTirada, DateTime? fechaUso, int? recursosGanados)
+        {
+            var imagen = string.Empty;
+            //miramos que tipo de imagen corresponde (a,c,g,v)
+            switch(nombreDado)
+            {
+                case "Recurso":
+                    imagen = "a";
+                    break;
+                case "Economía":
+                    imagen = "c";
+                    break;
+                case "Política":
+                    imagen = "g";
+                    break;
+                case "Espionaje":
+                    imagen = "v";
+                    break;
             }
 
+            if (fechaTirada != null)
+            {
+                //añadimos al nombre la cara de la tirada
+                imagen += cara;
+
+                if (fechaUso != null)
+                {
+                    if (recursosGanados != null)
+                    {
+                        imagen += "s";
+                    }
+                    else
+                    {
+                        imagen += "u";
+                    }
+                }
+            }
+
+            return imagen + ".png";
+        }
+
+        protected void RptDices_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            switch (e.CommandName)
+            {
+                case "RollDice":
+                    {
+                        int _idDice = Convert.ToInt32(e.CommandArgument);
+
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
+            }
         }
     }
 }

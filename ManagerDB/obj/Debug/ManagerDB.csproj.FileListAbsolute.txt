@@ -30,3 +30,13 @@ C:\MZ\github\leaguemanager\ManagerDB\bin\Entidades.pdb
 C:\MZ\github\leaguemanager\ManagerDB\bin\EntityFramework.xml
 C:\MZ\github\leaguemanager\ManagerDB\obj\Debug\ManagerDB.dll
 C:\MZ\github\leaguemanager\ManagerDB\obj\Debug\ManagerDB.pdb
+D:\MegaconZero\leaguemanager\ManagerDB\obj\Debug\ManagerDB.csprojResolveAssemblyReference.cache
+D:\MegaconZero\leaguemanager\ManagerDB\obj\Debug\ManagerDB.dll
+D:\MegaconZero\leaguemanager\ManagerDB\obj\Debug\ManagerDB.pdb
+D:\MegaconZero\leaguemanager\ManagerDB\bin\ManagerDB.dll
+D:\MegaconZero\leaguemanager\ManagerDB\bin\ManagerDB.pdb
+D:\MegaconZero\leaguemanager\ManagerDB\bin\Entidades.dll
+D:\MegaconZero\leaguemanager\ManagerDB\bin\EntityFramework.dll
+D:\MegaconZero\leaguemanager\ManagerDB\bin\System.Data.Entity.dll
+D:\MegaconZero\leaguemanager\ManagerDB\bin\Entidades.pdb
+D:\MegaconZero\leaguemanager\ManagerDB\bin\EntityFramework.xml

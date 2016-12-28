@@ -1,21 +1,24 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Dados.aspx.cs" Inherits="ManagerDB.Pages.Dados" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Dados.aspx.cs" Inherits="ManagerDB.Pages.Dados"  MasterPageFile="~/master/main.master" %>
 
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentProgram" runat="server">
+    <div class="Container">
         <div class="row">
             <div class="col-md-12">
-                <asp:PlaceHolder ID = "Dados" runat="server" />
+                <asp:Repeater runat="server" ID="RptDices" OnItemCommand="RptDices_ItemCommand">
+                    <ItemTemplate>
+                        <div style="float:left; margin:5px">
+                            <asp:ImageButton runat="server" ID="ImgDice"
+                                Width="240px"
+                                ToolTip='<%# Eval("name") %>'
+                                AlternateText='<%# Eval("name") %>'
+                                ImageUrl= '<%# "../images/t_dices/mercs/" + Eval("img_Dice").ToString().Trim() %>'
+                                CommandName="RollDice"
+                                CommandArgument='<%# Eval("id") %>' >
+                            </asp:ImageButton>
+                        </div>
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
         </div>
     </div>
-    </form>
-</body>
-</html>
+</asp:Content>
