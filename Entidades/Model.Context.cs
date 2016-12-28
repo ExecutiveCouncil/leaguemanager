@@ -29,7 +29,6 @@ namespace Entidades
         public DbSet<mercs_faction_dice> mercs_faction_dice { get; set; }
         public DbSet<mercs_troops> mercs_troops { get; set; }
         public DbSet<mercs_upgrades> mercs_upgrades { get; set; }
-        public DbSet<mercs_user_dice> mercs_user_dice { get; set; }
         public DbSet<mercs_user_troops> mercs_user_troops { get; set; }
         public DbSet<t_badges> t_badges { get; set; }
         public DbSet<t_game_factions> t_game_factions { get; set; }

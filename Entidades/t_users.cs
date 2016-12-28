@@ -24,7 +24,7 @@ namespace Entidades
         public string avatar_url { get; set; }
         public string info { get; set; }
         public Nullable<int> login_errors { get; set; }
-        public Nullable<int> security_level { get; set; }
+        public int security_level { get; set; }
         public string active { get; set; }
     }
 }

@@ -5,7 +5,6 @@
     <EntitySet Name="mercs_faction_dice" EntityType="MANAGERDBModel.mercs_faction_dice" />
     <EntitySet Name="mercs_troops" EntityType="MANAGERDBModel.mercs_troops" />
     <EntitySet Name="mercs_upgrades" EntityType="MANAGERDBModel.mercs_upgrades" />
-    <EntitySet Name="mercs_user_dice" EntityType="MANAGERDBModel.mercs_user_dice" />
     <EntitySet Name="mercs_user_troops" EntityType="MANAGERDBModel.mercs_user_troops" />
     <EntitySet Name="t_badges" EntityType="MANAGERDBModel.t_badges" />
     <EntitySet Name="t_game_factions" EntityType="MANAGERDBModel.t_game_factions" />
@@ -63,20 +62,6 @@
     <Property Name="cost" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
     <Property Name="upkeep" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
     <Property Name="notes" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-  </EntityType>
-  <EntityType Name="mercs_user_dice">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="id_user_league" Type="Int32" />
-    <Property Name="round" Type="String" MaxLength="10" Unicode="true" FixedLength="true" />
-    <Property Name="id_die_type" Type="Int32" />
-    <Property Name="spent_date" Type="DateTime" Precision="3" />
-    <Property Name="resources_gained" Type="Int32" />
-    <Property Name="rolled_date" Type="DateTime" Precision="3" />
-    <Property Name="id_die_face" Type="Int32" />
-    <Property Name="id_message" Type="Int32" />
   </EntityType>
   <EntityType Name="mercs_user_troops">
     <Key>
@@ -188,15 +173,15 @@
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" />
     <Property Name="numero_socio" Type="Int32" />
-    <Property Name="login" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="pass" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="login" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
+    <Property Name="pass" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
     <Property Name="name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="surname" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
     <Property Name="avatar_url" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
     <Property Name="info" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
     <Property Name="login_errors" Type="Int32" />
-    <Property Name="security_level" Type="Int32" />
+    <Property Name="security_level" Type="Int32" Nullable="false" />
     <Property Name="active" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
   </EntityType>
   <EntityType Name="mercs_user_upgrades">

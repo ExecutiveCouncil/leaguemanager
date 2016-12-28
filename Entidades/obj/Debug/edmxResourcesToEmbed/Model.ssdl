@@ -63,7 +63,7 @@
     </Key>
     <Property Name="id" Type="int" Nullable="false" />
     <Property Name="id_user_league" Type="int" />
-    <Property Name="round" Type="nchar" MaxLength="10" />
+    <Property Name="round" Type="int" />
     <Property Name="id_die_type" Type="int" />
     <Property Name="spent_date" Type="datetime" />
     <Property Name="resources_gained" Type="int" />
@@ -206,15 +206,15 @@
     </Key>
     <Property Name="id" Type="int" Nullable="false" />
     <Property Name="numero_socio" Type="int" />
-    <Property Name="login" Type="varchar" MaxLength="50" />
-    <Property Name="pass" Type="varchar" MaxLength="50" />
+    <Property Name="login" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="pass" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="name" Type="varchar" MaxLength="100" />
     <Property Name="surname" Type="varchar" MaxLength="100" />
     <Property Name="email" Type="varchar" MaxLength="100" />
     <Property Name="avatar_url" Type="varchar" MaxLength="500" />
     <Property Name="info" Type="varchar(max)" />
     <Property Name="login_errors" Type="int" />
-    <Property Name="security_level" Type="int" />
+    <Property Name="security_level" Type="int" Nullable="false" />
     <Property Name="active" Type="varchar" MaxLength="1" />
   </EntityType>
   <EntityContainer Name="MANAGERDBModelStoreContainer">

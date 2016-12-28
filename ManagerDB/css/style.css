@@ -4,21 +4,98 @@
     margin: 0;
 }
 
-body 
-{
-  background-color: #d8da3d 
+body{
+  background:#161616;
+  color:#888;
+  font-family: 'Ubuntu Mono', sans-serif;
+  text-transform:uppercase;
 }
-
-.content_menu {
-    padding: 3px;
+ 
+.box{
+  width:90%;
+  max-width:450px;
+  height:auto;
+  margin:0 auto;
+  margin-top:100px;
+  background:#222;
+  border-radius:7px;
+  box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.9);
 }
-
-.content_separator
-{
-    background-color:brown;
-    height: 3px;
+ 
+.content{
+  width:85%;
+  height:auto;
+  margin:0 auto;
+  padding:30px 0px;
+  text-align:center;
+/*
+  background:;
+  position:;
+    */
 }
-
-.content_program {
-    padding-top: 10px;
+ 
+.content h1{
+  font-size: 24px;
+  font-weight:400;
+  color:#FFBF00;
+  letter-spacing:0.125em;
+  text-align:center;
+}
+ 
+.field{
+  width:100%;
+  margin:10px auto;
+  padding:10px;
+  background:#2c2c2c;
+  border:none;
+  box-shadow: 0px 1px 0px 0px #111;
+  border-radius:3px;
+  outline:none;
+  /*color:#FFBF00;*/
+  color:#ffffff;
+  font-weight:700;
+  letter-spacing:0.125em;
+  text-align:center;
+  text-transform:uppercase;
+}
+ 
+ 
+::-webkit-input-placeholder{ /* WebKit browsers */
+  color:#5A5A5A;
+}
+:-moz-placeholder{ /* Mozilla Firefox 4 to 18 */
+  color:#5A5A5A;
+}
+::-moz-placeholder{ /* Mozilla Firefox 19+ */
+  color:#5A5A5A;
+}
+:-ms-input-placeholder{ /* Internet Explorer 10+ */
+  color:#5A5A5A;
+}
+ 
+.btn{
+  width:100%;
+  margin:10px auto;
+  padding:10px;
+  background:#161616;
+  border:none;
+  box-shadow: 0px 1px 0px 0px #111;
+  border-radius:3px;
+  outline:none;
+  color:#FFBF00;
+  font-weight:700;
+  letter-spacing:0.125em;
+  text-align:center;
+  text-transform:uppercase;
+}
+ 
+.btn:hover{
+  /*background:#FFBF00;*/
+  background:#503F25;
+  color:#333;
+}
+ 
+.btn:active{
+  background:#FACC2E;
+  color:#333;
 }

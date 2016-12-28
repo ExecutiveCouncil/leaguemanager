@@ -18,7 +18,20 @@ namespace ManagerDB.Pages
         {
             get
             {
-                return (MANAGERDBEntities)this.Session["Manager"];
+                MANAGERDBEntities _mng = null;
+                try
+                {
+                    _mng = (MANAGERDBEntities)this.Session["Manager"];
+                    if (_mng.Database.Connection.State != System.Data.ConnectionState.Open)
+                    {
+                        _mng.Database.Connection.Open();
+                    }
+                }
+                catch 
+                {
+                    _mng = new MANAGERDBEntities();
+                }
+                return _mng;
             }
             set
             {
