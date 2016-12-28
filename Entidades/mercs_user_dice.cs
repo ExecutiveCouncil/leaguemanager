@@ -16,7 +16,7 @@ namespace Entidades
     {
         public int id { get; set; }
         public Nullable<int> id_user_league { get; set; }
-        public string round { get; set; }
+        public Nullable<int> round { get; set; }
         public Nullable<int> id_die_type { get; set; }
         public Nullable<System.DateTime> spent_date { get; set; }
         public Nullable<int> resources_gained { get; set; }

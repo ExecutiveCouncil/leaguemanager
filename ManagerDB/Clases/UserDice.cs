@@ -20,6 +20,7 @@ namespace ManagerDB.Clases
         public int? cost_credits { get; set; }
         public int? sell_materials { get; set; }
         public int? sell_credits { get; set; }        
-        public string img_Dice { get; set; }        
+        public string img_Dice { get; set; }
+        public string info { get; set; }  
     }
 }

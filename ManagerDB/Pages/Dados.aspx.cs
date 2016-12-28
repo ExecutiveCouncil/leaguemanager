@@ -11,34 +11,33 @@ using System.Web.UI.WebControls;
 
 namespace ManagerDB.Pages
 {
-    public partial class Dados : System.Web.UI.Page
+    public partial class Dados : BasicPage
     {
-        MANAGERDBEntities ctx = null;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!this.Page.User.Identity.IsAuthenticated || Session["idUsuario"] == null)
+            if (IsPostBack == false)
             {
-                FormsAuthentication.RedirectToLoginPage();
-            }
-            else
-            {
-                ctx = new MANAGERDBEntities();
-                MostrarDados();
+                if (this.ValidateSession() == false)
+                {
+                    FormsAuthentication.RedirectToLoginPage();
+                }
+                else
+                {
+                    this.MostrarDados();
+                }
             }
         }
 
         private void MostrarDados()
         {
-            var idUsuario = Convert.ToInt32(Session["idUsuario"]);
-
-            List<UserDice> dadosUsuario = (from ul in ctx.t_user_leagues
-                                    join l in ctx.t_leagues on ul.id_league equals l.id
-                                    join ud in ctx.mercs_user_dice on ul.id equals ud.id_user_league
-                                    join dt in ctx.mercs_die_types on ud.id_die_type equals dt.id
-                                    join df in ctx.mercs_die_faces on ud.id_die_face equals df.id
-                                    where ul.id_user == idUsuario //hay q identificar liga y ronda
-                                        //&& l.current_round == ud.round
+            List<UserDice> dadosUsuario = (from ul in this.manager.t_user_leagues
+                                           join l in this.manager.t_leagues on ul.id_league equals l.id
+                                           join ud in this.manager.mercs_user_dice on ul.id equals ud.id_user_league
+                                           join dt in this.manager.mercs_die_types on ud.id_die_type equals dt.id
+                                           join df in this.manager.mercs_die_faces on ud.id_die_face equals df.id
+                                    where ul.id_user == this.usuario.id //hay q identificar liga y ronda
+                                            && l.current_round == ud.round
                                     select new UserDice
                                     {
                                         id_die_type = ud.id_die_type,
@@ -59,16 +58,13 @@ namespace ManagerDB.Pages
 
             if (dadosUsuario.Count > 0)
             {
-                var divHtml = new System.Text.StringBuilder();
-                var contador = 1;
                 foreach (var dado in dadosUsuario)
                 {
-                    using(HtmlGenericControl div = new System.Web.UI.HtmlControls.HtmlGenericControl("div"))
-                    {
-                        var imagen = CalcularImagenDado(dado.die_type_name, dado.die_face, dado.rolled_date, dado.spent_date, dado.resources_gained);
-                        dado.img_Dice = imagen;
-                    }
-                    contador++;
+                    //Calculamos que imagen debe ir en el dado
+                    var imagen = CalcularImagenDado(dado.die_type_name, dado.die_face, dado.rolled_date, dado.spent_date, dado.resources_gained);
+                    dado.img_Dice = imagen;
+                    //Elegimos que info mostramos en el dado (si no se ha tirado mostramos la general y si se ha tirado la específica de la cara)
+                    dado.info = (dado.rolled_date == null) ? dado.info_die : dado.info_face;
                 }
 
                 this.RptDices.DataSource = dadosUsuario;

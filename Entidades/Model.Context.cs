@@ -29,7 +29,6 @@ namespace Entidades
         public DbSet<mercs_faction_dice> mercs_faction_dice { get; set; }
         public DbSet<mercs_troops> mercs_troops { get; set; }
         public DbSet<mercs_upgrades> mercs_upgrades { get; set; }
-        public DbSet<mercs_user_dice> mercs_user_dice { get; set; }
         public DbSet<mercs_user_troops> mercs_user_troops { get; set; }
         public DbSet<t_badges> t_badges { get; set; }
         public DbSet<t_game_factions> t_game_factions { get; set; }
@@ -44,5 +43,6 @@ namespace Entidades
         public DbSet<mercs_user_upgrades> mercs_user_upgrades { get; set; }
         public DbSet<mercs_die_faces> mercs_die_faces { get; set; }
         public DbSet<t_messages> t_messages { get; set; }
+        public DbSet<mercs_user_dice> mercs_user_dice { get; set; }
     }
 }

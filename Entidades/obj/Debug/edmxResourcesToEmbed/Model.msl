@@ -48,21 +48,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="mercs_user_dice">
-      <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_dice">
-        <MappingFragment StoreEntitySet="mercs_user_dice">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
-          <ScalarProperty Name="round" ColumnName="round" />
-          <ScalarProperty Name="id_die_type" ColumnName="id_die_type" />
-          <ScalarProperty Name="spent_date" ColumnName="spent_date" />
-          <ScalarProperty Name="resources_gained" ColumnName="resources_gained" />
-          <ScalarProperty Name="rolled_date" ColumnName="rolled_date" />
-          <ScalarProperty Name="id_die_face" ColumnName="id_die_face" />
-          <ScalarProperty Name="id_message" ColumnName="id_message" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="mercs_user_troops">
       <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_troops">
         <MappingFragment StoreEntitySet="mercs_user_troops">
@@ -233,6 +218,21 @@
           <ScalarProperty Name="subject" ColumnName="subject" />
           <ScalarProperty Name="id_user_to" ColumnName="id_user_to" />
           <ScalarProperty Name="id_user_from" ColumnName="id_user_from" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mercs_user_dice">
+      <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_dice">
+        <MappingFragment StoreEntitySet="mercs_user_dice">
+          <ScalarProperty Name="id_message" ColumnName="id_message" />
+          <ScalarProperty Name="id_die_face" ColumnName="id_die_face" />
+          <ScalarProperty Name="rolled_date" ColumnName="rolled_date" />
+          <ScalarProperty Name="resources_gained" ColumnName="resources_gained" />
+          <ScalarProperty Name="spent_date" ColumnName="spent_date" />
+          <ScalarProperty Name="id_die_type" ColumnName="id_die_type" />
+          <ScalarProperty Name="round" ColumnName="round" />
+          <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>

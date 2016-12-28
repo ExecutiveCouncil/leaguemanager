@@ -8,12 +8,12 @@
                     <ItemTemplate>
                         <div style="float:left; margin:5px">
                             <asp:ImageButton runat="server" ID="ImgDice"
-                                Width="240px"
+                                Width="50px"
                                 ToolTip='<%# Eval("name") %>'
                                 AlternateText='<%# Eval("name") %>'
                                 ImageUrl= '<%# "../images/t_dices/mercs/" + Eval("img_Dice").ToString().Trim() %>'
                                 CommandName="RollDice"
-                                CommandArgument='<%# Eval("id") %>' >
+                                CommandArgument='<%# Eval("id_die_type") %>' >
                             </asp:ImageButton>
                         </div>
                     </ItemTemplate>
