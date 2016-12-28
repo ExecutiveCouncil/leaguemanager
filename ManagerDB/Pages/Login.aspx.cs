@@ -53,9 +53,6 @@ namespace ManagerDB.Pages
                 }
 
             }
-
-
-
         }
     }
 }
