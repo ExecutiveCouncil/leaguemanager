@@ -71,8 +71,35 @@
     <Content Include="css\bootstrap.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\style.css" />
+    <Content Include="images\t_games\mercs.png" />
+    <Content Include="images\t_game_factions\mercs\ccc.jpg" />
+    <Content Include="images\t_game_factions\mercs\eic.jpg" />
+    <Content Include="images\t_game_factions\mercs\eu.jpg" />
+    <Content Include="images\t_game_factions\mercs\gcc.jpg" />
+    <Content Include="images\t_game_factions\mercs\h4.jpg" />
+    <Content Include="images\t_game_factions\mercs\h9.jpg" />
+    <Content Include="images\t_game_factions\mercs\iss.jpg" />
+    <Content Include="images\t_game_factions\mercs\kemvar.jpg" />
+    <Content Include="images\t_game_factions\mercs\kwaza.jpg" />
+    <Content Include="images\t_game_factions\mercs\sefadu.jpg" />
+    <Content Include="images\t_game_factions\mercs\texico.jpg" />
+    <Content Include="images\t_game_factions\mercs\uscr.jpg" />
+    <Content Include="Pages\Dados.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\images\t_games\mercs.png" />
+    <Content Include="fonts\images\t_game_factions\mercs\ccc.jpg" />
+    <Content Include="fonts\images\t_game_factions\mercs\eic.jpg" />
+    <Content Include="fonts\images\t_game_factions\mercs\eu.jpg" />
+    <Content Include="fonts\images\t_game_factions\mercs\gcc.jpg" />
+    <Content Include="fonts\images\t_game_factions\mercs\h4.jpg" />
+    <Content Include="fonts\images\t_game_factions\mercs\h9.jpg" />
+    <Content Include="fonts\images\t_game_factions\mercs\iss.jpg" />
+    <Content Include="fonts\images\t_game_factions\mercs\kemvar.jpg" />
+    <Content Include="fonts\images\t_game_factions\mercs\kwaza.jpg" />
+    <Content Include="fonts\images\t_game_factions\mercs\sefadu.jpg" />
+    <Content Include="fonts\images\t_game_factions\mercs\texico.jpg" />
+    <Content Include="fonts\images\t_game_factions\mercs\uscr.jpg" />
     <Content Include="Global.asax" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
@@ -88,6 +115,13 @@
   <ItemGroup>
     <Compile Include="App_Code\BasicPage.cs">
       <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Dados.aspx.cs">
+      <DependentUpon>Dados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Dados.aspx.designer.cs">
+      <DependentUpon>Dados.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
