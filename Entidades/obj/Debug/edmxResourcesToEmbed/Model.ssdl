@@ -1,5 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="MANAGERDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+<Schema Namespace="MANAGERDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="MANAGERDBModelStoreContainer">
+    <EntitySet Name="mercs_die_faces" EntityType="MANAGERDBModel.Store.mercs_die_faces" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="mercs_die_types" EntityType="MANAGERDBModel.Store.mercs_die_types" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="mercs_faction_dice" EntityType="MANAGERDBModel.Store.mercs_faction_dice" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="mercs_troops" EntityType="MANAGERDBModel.Store.mercs_troops" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="mercs_upgrades" EntityType="MANAGERDBModel.Store.mercs_upgrades" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="mercs_user_dice" EntityType="MANAGERDBModel.Store.mercs_user_dice" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="mercs_user_troops" EntityType="MANAGERDBModel.Store.mercs_user_troops" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="mercs_user_upgrades" EntityType="MANAGERDBModel.Store.mercs_user_upgrades" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_badges" EntityType="MANAGERDBModel.Store.t_badges" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_game_factions" EntityType="MANAGERDBModel.Store.t_game_factions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_games" EntityType="MANAGERDBModel.Store.t_games" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_league_titles" EntityType="MANAGERDBModel.Store.t_league_titles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_leagues" EntityType="MANAGERDBModel.Store.t_leagues" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_messages" EntityType="MANAGERDBModel.Store.t_messages" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_syslog" EntityType="MANAGERDBModel.Store.t_syslog" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_systables" EntityType="MANAGERDBModel.Store.t_systables" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_user_leagues" EntityType="MANAGERDBModel.Store.t_user_leagues" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_user_titles" EntityType="MANAGERDBModel.Store.t_user_titles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="t_users" EntityType="MANAGERDBModel.Store.t_users" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
   <EntityType Name="mercs_die_faces">
     <Key>
       <PropertyRef Name="id" />
@@ -63,7 +84,7 @@
     </Key>
     <Property Name="id" Type="int" Nullable="false" />
     <Property Name="id_user_league" Type="int" />
-    <Property Name="round" Type="nchar" MaxLength="10" />
+    <Property Name="round" Type="int" />
     <Property Name="id_die_type" Type="int" />
     <Property Name="spent_date" Type="datetime" />
     <Property Name="resources_gained" Type="int" />
@@ -170,7 +191,7 @@
     <Key>
       <PropertyRef Name="table_name" />
     </Key>
-    <Property Name="table_name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="table_name" Type="varchar" Nullable="false" MaxLength="100" />
     <Property Name="next_id" Type="int" />
     <Property Name="step" Type="int" />
   </EntityType>
@@ -206,36 +227,15 @@
     </Key>
     <Property Name="id" Type="int" Nullable="false" />
     <Property Name="numero_socio" Type="int" />
-    <Property Name="login" Type="varchar" MaxLength="50" />
-    <Property Name="pass" Type="varchar" MaxLength="50" />
+    <Property Name="login" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="pass" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="name" Type="varchar" MaxLength="100" />
     <Property Name="surname" Type="varchar" MaxLength="100" />
     <Property Name="email" Type="varchar" MaxLength="100" />
     <Property Name="avatar_url" Type="varchar" MaxLength="500" />
     <Property Name="info" Type="varchar(max)" />
     <Property Name="login_errors" Type="int" />
-    <Property Name="security_level" Type="int" />
+    <Property Name="security_level" Type="int" Nullable="false" />
     <Property Name="active" Type="varchar" MaxLength="1" />
   </EntityType>
-  <EntityContainer Name="MANAGERDBModelStoreContainer">
-    <EntitySet Name="mercs_die_faces" EntityType="Self.mercs_die_faces" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="mercs_die_types" EntityType="Self.mercs_die_types" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="mercs_faction_dice" EntityType="Self.mercs_faction_dice" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="mercs_troops" EntityType="Self.mercs_troops" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="mercs_upgrades" EntityType="Self.mercs_upgrades" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="mercs_user_dice" EntityType="Self.mercs_user_dice" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="mercs_user_troops" EntityType="Self.mercs_user_troops" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="mercs_user_upgrades" EntityType="Self.mercs_user_upgrades" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="t_badges" EntityType="Self.t_badges" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="t_game_factions" EntityType="Self.t_game_factions" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="t_games" EntityType="Self.t_games" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="t_league_titles" EntityType="Self.t_league_titles" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="t_leagues" EntityType="Self.t_leagues" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="t_messages" EntityType="Self.t_messages" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="t_syslog" EntityType="Self.t_syslog" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="t_systables" EntityType="Self.t_systables" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="t_user_leagues" EntityType="Self.t_user_leagues" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="t_user_titles" EntityType="Self.t_user_titles" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="t_users" EntityType="Self.t_users" Schema="dbo" store:Type="Tables" />
-  </EntityContainer>
 </Schema>

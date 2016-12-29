@@ -54,5 +54,15 @@ namespace ManagerDB.Pages
 
             }
         }
+
+        protected void LoginButton_Command(object sender, CommandEventArgs e)
+        {
+            switch (e.CommandName)
+            {
+                case "Login":
+                    ValidateUser(sender, e);
+                    break;
+            }
+        }
     }
 }
