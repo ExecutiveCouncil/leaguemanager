@@ -33,6 +33,7 @@ namespace ManagerDB.Pages
                               where ul.id_user == this.usuario.id
                               select new
                               {
+                                  league_id = l.id,
                                   user_id = ul.id_user,
                                   team_name = ul.team_name,
                                   team_avatar_url = ul.team_avatar_url,
@@ -65,6 +66,7 @@ namespace ManagerDB.Pages
                                 where m.id_user_to == this.usuario.id
                                 select new
                                 {
+                                    league_id = l.id,
                                     league_avatar_url = l.avatar_url,
                                     league_name = l.name,
                                     user_name_from = u.name,
@@ -91,10 +93,11 @@ namespace ManagerDB.Pages
                         var _miItem = e.Item;
 
                         int _iduser = Convert.ToInt32(e.Item.Cells[0].Text);
+                        base.idLiga = Convert.ToInt32(e.Item.Cells[1].Text);
 
                         //aqui cruzo los dedos
 
-                        this.Response.Redirect("http://www.google.es", true);
+                        this.Response.Redirect("Dados.aspx", true);
                         break;
                     }
             }

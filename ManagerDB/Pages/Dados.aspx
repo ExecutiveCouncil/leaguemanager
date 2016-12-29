@@ -9,8 +9,8 @@
                         <div style="float:left; margin:5px">
                             <asp:ImageButton runat="server" ID="ImgDice"
                                 Width="50px"
-                                ToolTip='<%# Eval("name") %>'
-                                AlternateText='<%# Eval("name") %>'
+                                ToolTip='<%# Eval("info") %>'
+                                AlternateText='<%# Eval("info") %>'
                                 ImageUrl= '<%# "../images/t_dices/mercs/" + Eval("img_Dice").ToString().Trim() %>'
                                 CommandName="RollDice"
                                 CommandArgument='<%# Eval("id_die_type") %>' >

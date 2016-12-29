@@ -7,6 +7,7 @@
                 <asp:DataGrid ID="GrLigas" runat="server" AutoGenerateColumns="false" Width="100%" OnItemCommand="GrLigas_ItemCommand">
                     <Columns>
                         <asp:BoundColumn DataField="user_id" HeaderText="user_id" Visible="false"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="league_id" HeaderText="league_id" Visible="false"></asp:BoundColumn>
                         <asp:ButtonColumn DataTextField="league_name" HeaderText="Liga" CommandName="VerLiga"></asp:ButtonColumn>
                         <asp:BoundColumn DataField="faction_name" HeaderText="Facción"></asp:BoundColumn>
                         <asp:BoundColumn DataField="team_name" HeaderText="Equipo"></asp:BoundColumn>
@@ -23,6 +24,7 @@
             <div class="col-md-12">
                 <asp:DataGrid ID="GrMensajes" runat="server" AutoGenerateColumns="false" Width="100%">
                     <Columns>
+                        <asp:BoundColumn DataField="league_id" HeaderText="league_id" Visible="false"></asp:BoundColumn>
                         <asp:BoundColumn DataField="sent_date" HeaderText="Fecha"></asp:BoundColumn>
                         <asp:BoundColumn DataField="league_name" HeaderText="Liga"></asp:BoundColumn>
                         <asp:BoundColumn DataField="user_name_from" HeaderText="Emisor"></asp:BoundColumn>

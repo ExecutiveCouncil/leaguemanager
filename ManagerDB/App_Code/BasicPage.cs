@@ -54,6 +54,18 @@ namespace ManagerDB.Pages
             }
         }
 
+        protected int idLiga
+        {
+            get
+            {
+                return (int)this.Session["idLiga"];
+            }
+            set
+            {
+                this.Session["idLiga"] = value;
+            }
+        }
+
         /// <summary>
         /// Valida si los datos del entorno estan correctamente definidos o no.
         /// </summary>

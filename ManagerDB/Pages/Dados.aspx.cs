@@ -35,9 +35,10 @@ namespace ManagerDB.Pages
                                            join l in this.manager.t_leagues on ul.id_league equals l.id
                                            join ud in this.manager.mercs_user_dice on ul.id equals ud.id_user_league
                                            join dt in this.manager.mercs_die_types on ud.id_die_type equals dt.id
-                                           join df in this.manager.mercs_die_faces on ud.id_die_face equals df.id
-                                    where ul.id_user == this.usuario.id //hay q identificar liga y ronda
+                                           join df in this.manager.mercs_die_faces.DefaultIfEmpty() on ud.id_die_face equals df.id //para hacer left join
+                                    where ul.id_user == this.usuario.id
                                             && l.current_round == ud.round
+                                            && l.id == this.idLiga
                                     select new UserDice
                                     {
                                         id_die_type = ud.id_die_type,
