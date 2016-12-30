@@ -4,24 +4,24 @@
     <div class="Container">
         <br /><br />
         <div class="row">
-            <div class="col-md-11">
+            <div style="padding-left: 30px">
                 <asp:Repeater runat="server" ID="RptDices" OnItemCommand="RptDices_ItemCommand">
                     <ItemTemplate>
-                        <div style="float:left; margin:5px">
                             <asp:ImageButton runat="server" ID="ImgDice"
-                                Width="50px"
+                                Width="60px"
+                                CssClass="dado"
                                 ToolTip='<%# Eval("info") %>'
                                 AlternateText='<%# Eval("info") %>'
                                 ImageUrl= '<%# "../images/t_dices/mercs/" + Eval("img_Dice").ToString().Trim() %>'
                                 CommandName="RollDice"
                                 CommandArgument='<%# Eval("id") %>' >
                             </asp:ImageButton>
-                        </div>
                     </ItemTemplate>
                 </asp:Repeater>
-                <div class="col-md-1">
-                    <asp:Button CssClass="btn" id="rollButton" runat="server" OnCommand="rollButton_Command" text="Tirar" ToolTip="Tirada completa" ></asp:Button>
-                </div>
+                <asp:Button CssClass="btn" id="rollButton" runat="server" 
+                            OnCommand="rollButton_Command" text="Tirar" 
+                            style="vertical-align:text-bottom"
+                            ToolTip="Tirada completa" Width="100px"></asp:Button>
             </div>
         </div>
     </div>

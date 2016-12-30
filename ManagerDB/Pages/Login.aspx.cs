@@ -34,7 +34,8 @@ namespace ManagerDB.Pages
                 this.manager.SaveChanges();
 
                 base.usuario = usuarioRegistrado;
-                FormsAuthentication.RedirectFromLoginPage(Login1.UserName, Login1.RememberMeSet);
+                //FormsAuthentication.RedirectFromLoginPage(Login1.UserName, false);
+                Response.Redirect("home.aspx", true);
             }      
             else
             {

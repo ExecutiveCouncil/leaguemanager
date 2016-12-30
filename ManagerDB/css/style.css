@@ -92,10 +92,19 @@ body{
 .btn:hover{
   /*background:#FFBF00;*/
   background:#503F25;
-  color:#333;
+  color:#FFBF00;
 }
  
 .btn:active{
   background:#FACC2E;
-  color:#333;
+  color:#FFBF00;
+}
+.dado
+{
+    padding: 5px;
+}
+.dado:hover
+{
+   /*background-color:#d77108;*/
+    padding:0px;
 }

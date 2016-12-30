@@ -19,8 +19,6 @@ namespace ManagerDB
         protected void Session_Start(object sender, EventArgs e)
         {
             //Iniciamos el contexto
-            this.Session["Manager"] = new MANAGERDBEntities();
-            Response.Redirect("/Pages/Login.aspx", true);
         }
 
         protected void Application_BeginRequest(object sender, EventArgs e)

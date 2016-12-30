@@ -21,15 +21,23 @@ namespace ManagerDB.Pages
                 MANAGERDBEntities _mng = null;
                 try
                 {
-                    _mng = (MANAGERDBEntities)this.Session["Manager"];
-                    if (_mng.Database.Connection.State != System.Data.ConnectionState.Open)
+                    if (this.Session["Manager"] != null)
                     {
-                        _mng.Database.Connection.Open();
+                        _mng = (MANAGERDBEntities)this.Session["Manager"];
+                        if (_mng.Database.Connection.State != System.Data.ConnectionState.Open)
+                        {
+                            _mng.Database.Connection.Open();
+                        }
+                    }
+                    else
+                    {
+                        _mng = new MANAGERDBEntities();
+                        this.Session["Manager"] = _mng;
                     }
                 }
                 catch 
                 {
-                    _mng = new MANAGERDBEntities();
+                    //ups
                 }
                 return _mng;
             }
@@ -66,19 +74,28 @@ namespace ManagerDB.Pages
             }
         }
 
+ 
         /// <summary>
         /// Valida si los datos del entorno estan correctamente definidos o no.
         /// </summary>
+        /// <param name="SecurityLevel">Nivel de seguridad minimo necesario</param>
         /// <returns>
         /// True si se permite el acceso a páginas, false en caso contrario.
         /// </returns>
-        public bool ValidateSession()
+        public bool ValidateSession(int? SecurityLevel = null)
         {
             if (this.Session != null &&
-                this.Page.User.Identity.IsAuthenticated == true &&
-                this.manager != null ||
+                //this.Page.User.Identity.IsAuthenticated == true &&
+                this.manager != null &&
                 this.usuario != null )
             {
+                if (SecurityLevel.HasValue)
+                {
+                    if (SecurityLevel >= this.usuario.security_level)
+                    {
+                        return false;
+                    }
+                }
                 return true;
             }
             return false;
