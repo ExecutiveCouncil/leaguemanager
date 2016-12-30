@@ -35,12 +35,12 @@ namespace ManagerDB.Pages
                                            join l in this.manager.t_leagues on ul.id_league equals l.id
                                            join ud in this.manager.mercs_user_dice on ul.id equals ud.id_user_league
                                            join dt in this.manager.mercs_die_types on ud.id_die_type equals dt.id
-                                           join df in this.manager.mercs_die_faces.DefaultIfEmpty() on ud.id_die_face equals df.id //para hacer left join
                                     where ul.id_user == this.usuario.id
                                             && l.current_round == ud.round
                                             && l.id == this.idLiga
                                     select new UserDice
                                     {
+                                        id = ud.id,
                                         id_die_type = ud.id_die_type,
                                         spent_date = ud.spent_date,
                                         resources_gained = ud.resources_gained,
@@ -48,24 +48,33 @@ namespace ManagerDB.Pages
                                         die_type_name = dt.name,
                                         total_faces = dt.total_faces,
                                         info_die = dt.info,
-                                        die_face = df.die_face,
-                                        action = df.action,
-                                        info_face = df.info,
-                                        cost_credits = df.cost_credits,
-                                        sell_materials = df.sell_materials,
-                                        sell_credits = df.sell_credits,
+                                        id_die_face = ud.id_die_face,                                        
                                         img_Dice = ""
                                     }).ToList();
 
             if (dadosUsuario.Count > 0)
             {
+                var caras = (from df in this.manager.mercs_die_faces select df).ToList();
+
                 foreach (var dado in dadosUsuario)
-                {
+                {                    
+                    //Elegimos que info mostramos en el dado (si no se ha tirado mostramos la general y si se ha tirado la específica de la cara)
+                    dado.info = (dado.rolled_date == null) ? dado.info_die : dado.info_face;
+
+                    if (dado.id_die_face != null)
+                    {
+                        var cara = caras.Where(a => a.id == dado.id_die_face).FirstOrDefault();
+                        dado.action = cara.action;
+                        dado.info = cara.info;
+                        dado.cost_credits = cara.cost_credits;
+                        dado.sell_materials = cara.sell_materials;
+                        dado.sell_credits = cara.sell_credits;
+                        dado.die_face = cara.die_face;
+                    }
+
                     //Calculamos que imagen debe ir en el dado
                     var imagen = CalcularImagenDado(dado.die_type_name, dado.die_face, dado.rolled_date, dado.spent_date, dado.resources_gained);
                     dado.img_Dice = imagen;
-                    //Elegimos que info mostramos en el dado (si no se ha tirado mostramos la general y si se ha tirado la específica de la cara)
-                    dado.info = (dado.rolled_date == null) ? dado.info_die : dado.info_face;
                 }
 
                 this.RptDices.DataSource = dadosUsuario;
@@ -114,14 +123,35 @@ namespace ManagerDB.Pages
             return imagen + ".png";
         }
 
+        private void RollDice(int idDice)
+        {
+            var dado = this.manager.mercs_user_dice.Where(a => a.id == idDice).FirstOrDefault();
+            if (dado != null)
+            {
+                if (dado.rolled_date == null)
+                {
+                    //Hacemos la tirada
+                    dado.rolled_date = DateTime.UtcNow;
+                    var tirada = RandomGenerator.RandomNumber(1, 6);
+                    var cara = this.manager.mercs_die_faces.Where(a => a.die_face == tirada && a.id_die_type == dado.id_die_type).FirstOrDefault();
+                    dado.id_die_face = cara.id;
+                }
+            }
+        }
+
         protected void RptDices_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             switch (e.CommandName)
             {
                 case "RollDice":
                     {
-                        int _idDice = Convert.ToInt32(e.CommandArgument);
-
+                        int idDice = Convert.ToInt32(e.CommandArgument);
+                        //Tiramos el dado
+                        RollDice(idDice);
+                        //Guardamos la tirada
+                        this.manager.SaveChanges();
+                        //recalculamos los dados a mostrar
+                        MostrarDados();
                         break;
                     }
                 default:
@@ -129,6 +159,30 @@ namespace ManagerDB.Pages
                         break;
                     }
             }
+        }
+
+        protected void rollButton_Command(object sender, CommandEventArgs e)
+        {
+            var dadosPendientesTirar = (from ul in this.manager.t_user_leagues
+                                           join l in this.manager.t_leagues on ul.id_league equals l.id
+                                           join ud in this.manager.mercs_user_dice on ul.id equals ud.id_user_league
+                                           where ul.id_user == this.usuario.id
+                                                   && l.current_round == ud.round
+                                                   && l.id == this.idLiga
+                                                   && ud.rolled_date == null
+                                           select ud.id
+                                           ).ToList();
+
+            foreach (var idDado in dadosPendientesTirar)
+            {
+                //Tiramos el dado
+                RollDice(idDado);
+            }
+            
+            //Guardamos la tirada
+            this.manager.SaveChanges();
+            //recalculamos los dados a mostrar
+            MostrarDados();
         }
     }
 }

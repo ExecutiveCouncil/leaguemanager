@@ -184,6 +184,7 @@
     <Compile Include="App_Code\BasicPage.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
+    <Compile Include="Clases\RandomGenerator.cs" />
     <Compile Include="Clases\UserDice.cs" />
     <Compile Include="Pages\Dados.aspx.cs">
       <DependentUpon>Dados.aspx</DependentUpon>
