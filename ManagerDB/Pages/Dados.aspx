@@ -24,5 +24,33 @@
                             ToolTip="Tirada completa" Width="100px"></asp:Button>
             </div>
         </div>
+        <br /> <br />
+        <div class="row">
+            <div style="padding-left: 30px">
+                <label id="tituloUsuarios" class="">Dados del resto de participantes:</label>            
+            </div>
+        </div>
+        
+        <div class="row">
+            <asp:Repeater runat="server" ID="RptDatosUsuarios" OnItemDataBound="RptDatosUsuarios_ItemDataBound">
+                <ItemTemplate>
+                    <div style="padding-left: 30px;width:60px">
+                        <asp:Label id="user" Text='<%# Eval("user_name") %>' runat="server"></asp:Label>
+                    </div>
+                    <div style="padding-left: 30px">
+                        <asp:Repeater runat="server" ID="RptDadosUsuarios">
+                            <ItemTemplate>                                    
+                                    <asp:ImageButton runat="server" ID="ImgUserDice"
+                                        Width="45px"
+                                        ToolTip='<%# Eval("info") %>'
+                                        AlternateText='<%# Eval("info") %>'
+                                        ImageUrl= '<%# "../images/t_dices/mercs/" + Eval("img_Dice").ToString().Trim() %>'>
+                                    </asp:ImageButton>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </div>
+                </ItemTemplate>
+            </asp:Repeater>
+        </div>
     </div>
 </asp:Content>
