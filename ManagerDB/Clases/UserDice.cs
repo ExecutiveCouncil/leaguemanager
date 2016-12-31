@@ -7,6 +7,7 @@ namespace ManagerDB.Clases
 {
     public class UserDice
     {
+        public string user_name { get; set; }  
         public int? id { get; set; }  
         public int? id_die_type { get; set; }         
         public DateTime? spent_date { get; set; }
@@ -23,6 +24,7 @@ namespace ManagerDB.Clases
         public int? sell_credits { get; set; }        
         public string img_Dice { get; set; }
         public string info { get; set; }
-        public int? die_face { get; set; }  
+        public int? die_face { get; set; }
+        public int? id_user_league { get; set; }         
     }
 }
