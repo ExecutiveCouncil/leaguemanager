@@ -13,14 +13,6 @@ D:\ManagerDB\Entidades\bin\Debug\EntityFramework.xml
 D:\ManagerDB\Entidades\obj\Debug\Entidades.csprojResolveAssemblyReference.cache
 D:\ManagerDB\Entidades\obj\Debug\Entidades.dll
 D:\ManagerDB\Entidades\obj\Debug\Entidades.pdb
-C:\MZ\github\leaguemanager\Entidades\bin\Debug\Entidades.dll.config
-C:\MZ\github\leaguemanager\Entidades\bin\Debug\Entidades.dll
-C:\MZ\github\leaguemanager\Entidades\bin\Debug\Entidades.pdb
-C:\MZ\github\leaguemanager\Entidades\bin\Debug\EntityFramework.dll
-C:\MZ\github\leaguemanager\Entidades\bin\Debug\EntityFramework.xml
-C:\MZ\github\leaguemanager\Entidades\obj\Debug\Entidades.csprojResolveAssemblyReference.cache
-C:\MZ\github\leaguemanager\Entidades\obj\Debug\Entidades.dll
-C:\MZ\github\leaguemanager\Entidades\obj\Debug\Entidades.pdb
 D:\MegaconZero\leaguemanager\Entidades\obj\Debug\Entidades.dll
 D:\MegaconZero\leaguemanager\Entidades\obj\Debug\Entidades.pdb
 D:\MegaconZero\leaguemanager\Entidades\bin\Debug\Entidades.dll.config
@@ -29,3 +21,10 @@ D:\MegaconZero\leaguemanager\Entidades\bin\Debug\Entidades.pdb
 D:\MegaconZero\leaguemanager\Entidades\bin\Debug\EntityFramework.dll
 D:\MegaconZero\leaguemanager\Entidades\bin\Debug\EntityFramework.xml
 D:\MegaconZero\leaguemanager\Entidades\obj\Debug\Entidades.csprojResolveAssemblyReference.cache
+C:\MZ\github\leaguemanager\Entidades\bin\Debug\Entidades.dll.config
+C:\MZ\github\leaguemanager\Entidades\bin\Debug\Entidades.dll
+C:\MZ\github\leaguemanager\Entidades\bin\Debug\Entidades.pdb
+C:\MZ\github\leaguemanager\Entidades\bin\Debug\EntityFramework.dll
+C:\MZ\github\leaguemanager\Entidades\bin\Debug\EntityFramework.xml
+C:\MZ\github\leaguemanager\Entidades\obj\Debug\Entidades.dll
+C:\MZ\github\leaguemanager\Entidades\obj\Debug\Entidades.pdb

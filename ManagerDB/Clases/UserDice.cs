@@ -25,6 +25,6 @@ namespace ManagerDB.Clases
         public string img_Dice { get; set; }
         public string info { get; set; }
         public int? die_face { get; set; }
-        public int? id_user_league { get; set; }         
+        public int? id_user_league { get; set; }
     }
 }

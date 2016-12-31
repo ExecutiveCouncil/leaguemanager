@@ -50,7 +50,7 @@ namespace ManagerDB.Pages
                                         die_type_name = dt.name,
                                         total_faces = dt.total_faces,
                                         info_die = dt.info,
-                                        id_die_face = ud.id_die_face,                                        
+                                        id_die_face = ud.id_die_face,
                                         img_Dice = ""
                                     }).ToList();
 
@@ -75,11 +75,11 @@ namespace ManagerDB.Pages
                     }
 
                     //Calculamos que imagen debe ir en el dado
-                    var imagen = CalcularImagenDado(dado.die_type_name, dado.die_face, dado.rolled_date, dado.spent_date, dado.resources_gained);
+                    var imagen = CalcularImagenDado(dado.id_die_type, dado.die_face, dado.rolled_date, dado.spent_date, dado.resources_gained);
                     dado.img_Dice = imagen;
                 }
 
-                this.RptDices.DataSource = dadosUsuario;
+                this.RptDices.DataSource = dadosUsuario.OrderBy(o => o.id);
                 this.RptDices.DataBind();
             }
         }
@@ -112,19 +112,7 @@ namespace ManagerDB.Pages
         {            
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                var datos = (Repeater)sender;
-                var datasource = datos.DataSource as IEnumerable<UserDice>;
-                int? idUsuarioLiga = 0;
-                var vuelta = 0;
-                foreach(var dato in datasource)
-                {
-                    idUsuarioLiga = dato.id_user_league;
-                    if (elementoCargado == vuelta)
-                    {
-                        break;
-                    }
-                    vuelta++;
-                }
+                var _usuarioActual = (UserDice)e.Item.DataItem;
 
                 List<UserDice> datosUsuario = (from ul in this.manager.t_user_leagues
                                            join l in this.manager.t_leagues on ul.id_league equals l.id
@@ -134,7 +122,7 @@ namespace ManagerDB.Pages
                                            where ul.id_user != this.usuario.id
                                                    && l.current_round == ud.round
                                                    && l.id == this.idLiga
-                                                   && ul.id == idUsuarioLiga
+                                                   && ul.id == _usuarioActual.id_user_league
                                            select new UserDice
                                            {
                                                user_name = u.login,
@@ -158,7 +146,7 @@ namespace ManagerDB.Pages
                     {
                         //Elegimos que info mostramos en el dado (si no se ha tirado mostramos la general y si se ha tirado la específica de la cara)
                         dado.info = (dado.rolled_date == null) ? dado.info_die : dado.info_face;
-
+                        
                         if (dado.id_die_face != null)
                         {
                             var cara = caras.Where(a => a.id == dado.id_die_face).FirstOrDefault();
@@ -170,35 +158,35 @@ namespace ManagerDB.Pages
                             dado.die_face = cara.die_face;
                         }
 
-                        //Calculamos que imagen debe ir en el dado
-                        var imagen = CalcularImagenDado(dado.die_type_name, dado.die_face, dado.rolled_date, dado.spent_date, dado.resources_gained);
+                        //Calculamos que imagen debe ir en el dadodie_typedie_type
+                        var imagen = CalcularImagenDado(dado.id_die_type, dado.die_face, dado.rolled_date, dado.spent_date, dado.resources_gained);
                         dado.img_Dice = imagen;
                     }
                     Repeater childRepeater = (Repeater)e.Item.FindControl("RptDadosUsuarios");
-                    childRepeater.DataSource = datosUsuario;
+                    childRepeater.DataSource = datosUsuario.OrderByDescending(o=>o.spent_date).ThenByDescending(t=>t.rolled_date).ThenBy(t2=>t2.id_die_type).ThenBy(i=>i.id_die_face);
                     childRepeater.DataBind();
                 }
             }
             elementoCargado++;
         }
         
-        private string CalcularImagenDado(string nombreDado, int? cara, DateTime? fechaTirada, DateTime? fechaUso, int? recursosGanados)
+        private string CalcularImagenDado(int? tipoDado, int? cara, DateTime? fechaTirada, DateTime? fechaUso, int? recursosGanados)
         {
             var imagen = string.Empty;
             //miramos que tipo de imagen corresponde (a,c,g,v)
-            switch(nombreDado)
+            switch (tipoDado)
             {
-                case "Recurso":
+                case 1:
                     imagen = "a";
                     break;
-                case "Economía":
-                    imagen = "c";
+                case 2:
+                    imagen = "v";
                     break;
-                case "Política":
+                case 3:
                     imagen = "g";
                     break;
-                case "Espionaje":
-                    imagen = "v";
+                case 4:
+                    imagen = "c";
                     break;
             }
 
@@ -223,18 +211,23 @@ namespace ManagerDB.Pages
             return imagen + ".png";
         }
 
-        private void RollDice(int idDice)
+        private void RollDice(int idDice, DateTime fecha)
         {
             var dado = this.manager.mercs_user_dice.Where(a => a.id == idDice).FirstOrDefault();
             if (dado != null)
-            {
+            {                
                 if (dado.rolled_date == null)
                 {
                     //Hacemos la tirada
-                    dado.rolled_date = DateTime.UtcNow;
+                    dado.rolled_date = fecha;
                     var tirada = RandomGenerator.RandomNumber(1, 6);
                     var cara = this.manager.mercs_die_faces.Where(a => a.die_face == tirada && a.id_die_type == dado.id_die_type).FirstOrDefault();
                     dado.id_die_face = cara.id;
+                }
+                else if (dado.spent_date == null)
+                {
+                    //Mostramos el modal con las opciones para gastarlo
+                    this.PopUpDado.Show();
                 }
             }
         }
@@ -247,7 +240,7 @@ namespace ManagerDB.Pages
                     {
                         int idDice = Convert.ToInt32(e.CommandArgument);
                         //Tiramos el dado
-                        RollDice(idDice);
+                        RollDice(idDice, DateTime.Now);
                         //Guardamos la tirada
                         this.manager.SaveChanges();
                         //recalculamos los dados a mostrar
@@ -274,10 +267,11 @@ namespace ManagerDB.Pages
                                            ).ToList();
             if (dadosPendientesTirar.Count > 0)
             {
+                var fecha = DateTime.Now;
                 foreach (var idDado in dadosPendientesTirar)
                 {
                     //Tiramos el dado
-                    RollDice(idDado);
+                    RollDice(idDado, fecha);
                 }
             
                 //Guardamos la tirada
