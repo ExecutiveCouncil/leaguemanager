@@ -9,6 +9,7 @@
                         <asp:BoundColumn DataField="user_id" HeaderText="user_id" Visible="false"></asp:BoundColumn>
                         <asp:BoundColumn DataField="league_id" HeaderText="league_id" Visible="false"></asp:BoundColumn>
                         <asp:ButtonColumn DataTextField="league_name" HeaderText="Liga" CommandName="VerLiga"></asp:ButtonColumn>
+                        <asp:BoundColumn DataField="current_round" HeaderText="Ronda"></asp:BoundColumn>
                         <asp:BoundColumn DataField="faction_name" HeaderText="Facción"></asp:BoundColumn>
                         <asp:BoundColumn DataField="team_name" HeaderText="Equipo"></asp:BoundColumn>
                         <asp:BoundColumn DataField="wins" HeaderText="Victorias"></asp:BoundColumn>

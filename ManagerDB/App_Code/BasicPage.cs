@@ -62,18 +62,17 @@ namespace ManagerDB.Pages
             }
         }
 
-        protected int idLiga
+        protected t_leagues liga
         {
             get
             {
-                return (int)this.Session["idLiga"];
+                return (t_leagues)this.Session["liga"];
             }
             set
             {
-                this.Session["idLiga"] = value;
+                this.Session["liga"] = value;
             }
         }
-
  
         /// <summary>
         /// Valida si los datos del entorno estan correctamente definidos o no.

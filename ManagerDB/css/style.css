@@ -72,6 +72,18 @@ body{
 :-ms-input-placeholder{ /* Internet Explorer 10+ */
   color:#5A5A5A;
 }
+
+.cabecera {
+    font-weight:900;
+    color:#FFBF00;
+    font-size:large;
+}
+
+.titulo {
+    font-weight:500;
+    color:#FFBF00;
+    font-size:medium;
+}
  
 .btn{
   width:100%;

@@ -73,7 +73,8 @@ namespace ManagerDB.Pages
                                     user_avatar_url = u.avatar_url,
                                     subject = m.subject,
                                     message = m.message,
-                                    sent_date = m.sent_date
+                                    sent_date = m.sent_date,
+                                    current_round = l.current_round,
                                 }).OrderByDescending(a=> a.sent_date).Take(5).ToList();
 
             if (mensajesUsuario.Count > 0)
@@ -93,7 +94,9 @@ namespace ManagerDB.Pages
                         var _miItem = e.Item;
 
                         int _iduser = Convert.ToInt32(e.Item.Cells[0].Text);
-                        base.idLiga = Convert.ToInt32(e.Item.Cells[1].Text);
+                        var idLiga = Convert.ToInt32(e.Item.Cells[1].Text);
+                        var ligaSeleccionada = (from l in this.manager.t_leagues where l.id == idLiga select l).FirstOrDefault();
+                        base.liga = ligaSeleccionada;
 
                         //aqui cruzo los dedos
 

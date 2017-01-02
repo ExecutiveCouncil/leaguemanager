@@ -13,8 +13,6 @@ namespace ManagerDB.Pages
 {
     public partial class Dados : BasicPage
     {
-        int elementoCargado = 0;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack == false)
@@ -25,6 +23,17 @@ namespace ManagerDB.Pages
                 }
                 else
                 {
+                    //Ponemos la ronda actual y el nombre de la liga
+                    this.lblLiga.Text += this.liga.name;
+                    this.lblRonda.Text += this.liga.current_round.ToString();
+                    this.LblHistorial.Text += this.liga.name + ":";
+
+                    //Ocultamos el botón del historial si estamos en la ronda 1
+                    if (this.liga.current_round == null || this.liga.current_round == 1)
+                    {
+                        this.btnVerHistorial.Visible = false;
+                    }
+
                     this.MostrarDados();
                     this.MostrarDadosUsuarios();
                 }
@@ -39,7 +48,7 @@ namespace ManagerDB.Pages
                                            join dt in this.manager.mercs_die_types on ud.id_die_type equals dt.id
                                     where ul.id_user == this.usuario.id
                                             && l.current_round == ud.round
-                                            && l.id == this.idLiga
+                                            && l.id == this.liga.id
                                     select new UserDice
                                     {
                                         id = ud.id,
@@ -93,7 +102,7 @@ namespace ManagerDB.Pages
                                            join u in this.manager.t_users on ul.id_user equals u.id
                                            where ul.id_user != this.usuario.id
                                                    && l.current_round == ud.round
-                                                   && l.id == this.idLiga
+                                                   && l.id == this.liga.id
                                            select new UserDice
                                            {
                                                user_name = u.login,
@@ -104,12 +113,11 @@ namespace ManagerDB.Pages
             {
                 this.RptDatosUsuarios.DataSource = usuarios;
                 this.RptDatosUsuarios.DataBind();
-                elementoCargado = 0;
             }
         }
 
         protected void RptDatosUsuarios_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {            
+        {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
                 var _usuarioActual = (UserDice)e.Item.DataItem;
@@ -121,7 +129,7 @@ namespace ManagerDB.Pages
                                            join u in this.manager.t_users on ul.id_user equals u.id
                                            where ul.id_user != this.usuario.id
                                                    && l.current_round == ud.round
-                                                   && l.id == this.idLiga
+                                                   && l.id == this.liga.id
                                                    && ul.id == _usuarioActual.id_user_league
                                            select new UserDice
                                            {
@@ -167,7 +175,6 @@ namespace ManagerDB.Pages
                     childRepeater.DataBind();
                 }
             }
-            elementoCargado++;
         }
         
         private string CalcularImagenDado(int? tipoDado, int? cara, DateTime? fechaTirada, DateTime? fechaUso, int? recursosGanados)
@@ -261,7 +268,7 @@ namespace ManagerDB.Pages
                                            join ud in this.manager.mercs_user_dice on ul.id equals ud.id_user_league
                                            where ul.id_user == this.usuario.id
                                                    && l.current_round == ud.round
-                                                   && l.id == this.idLiga
+                                                   && l.id == this.liga.id
                                                    && ud.rolled_date == null
                                            select ud.id
                                            ).ToList();
@@ -278,6 +285,92 @@ namespace ManagerDB.Pages
                 this.manager.SaveChanges();
                 //recalculamos los dados a mostrar
                 MostrarDados();
+            }
+        }
+
+        protected void RptHistorialUsuarios_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
+            {
+                var _usuarioActual = (UserDice)e.Item.DataItem;
+
+                List<UserDice> datosUsuario = (from ul in this.manager.t_user_leagues
+                                               join l in this.manager.t_leagues on ul.id_league equals l.id
+                                               join ud in this.manager.mercs_user_dice on ul.id equals ud.id_user_league
+                                               join dt in this.manager.mercs_die_types on ud.id_die_type equals dt.id
+                                               join u in this.manager.t_users on ul.id_user equals u.id
+                                               where ud.round == _usuarioActual.round
+                                                       && l.id == this.liga.id
+                                                       && ul.id == _usuarioActual.id_user_league
+                                               select new UserDice
+                                               {
+                                                   user_name = u.login,
+                                                   id = ud.id,
+                                                   id_die_type = ud.id_die_type,
+                                                   spent_date = ud.spent_date,
+                                                   resources_gained = ud.resources_gained,
+                                                   rolled_date = ud.rolled_date,
+                                                   die_type_name = dt.name,
+                                                   total_faces = dt.total_faces,
+                                                   info_die = dt.info,
+                                                   id_die_face = ud.id_die_face,
+                                                   img_Dice = "",
+                                                   round = ud.round
+                                               }).ToList();
+
+                if (datosUsuario.Count > 0)
+                {
+                    var caras = (from df in this.manager.mercs_die_faces select df).ToList();
+
+                    foreach (var dado in datosUsuario)
+                    {
+                        //Elegimos que info mostramos en el dado (si no se ha tirado mostramos la general y si se ha tirado la específica de la cara)
+                        dado.info = (dado.rolled_date == null) ? dado.info_die : dado.info_face;
+
+                        if (dado.id_die_face != null)
+                        {
+                            var cara = caras.Where(a => a.id == dado.id_die_face).FirstOrDefault();
+                            dado.action = cara.action;
+                            dado.info = cara.info;
+                            dado.cost_credits = cara.cost_credits;
+                            dado.sell_materials = cara.sell_materials;
+                            dado.sell_credits = cara.sell_credits;
+                            dado.die_face = cara.die_face;
+                        }
+
+                        //Calculamos que imagen debe ir en el dadodie_typedie_type
+                        var imagen = CalcularImagenDado(dado.id_die_type, dado.die_face, dado.rolled_date, dado.spent_date, dado.resources_gained);
+                        dado.img_Dice = imagen;
+                    }
+                    Repeater childRepeater = (Repeater)e.Item.FindControl("RptHistorialDadosUsuarios");
+                    childRepeater.DataSource = datosUsuario.OrderBy(r => r.round).OrderByDescending(o => o.spent_date).ThenByDescending(t => t.rolled_date).ThenBy(t2 => t2.id_die_type).ThenBy(i => i.id_die_face);
+                    childRepeater.DataBind();
+                }
+            }
+
+            PopUpHistorial.Show();
+        }
+
+        protected void btnVerHistorial_Command(object sender, CommandEventArgs e)
+        {
+            List<UserDice> historial = (from ul in this.manager.t_user_leagues
+                                        join l in this.manager.t_leagues on ul.id_league equals l.id
+                                        join ud in this.manager.mercs_user_dice on ul.id equals ud.id_user_league
+                                        join dt in this.manager.mercs_die_types on ud.id_die_type equals dt.id
+                                        join u in this.manager.t_users on ul.id_user equals u.id
+                                        where  ud.round < l.current_round
+                                                && l.id == this.liga.id
+                                        select new UserDice
+                                        {
+                                            user_name = u.login,
+                                            id_user_league = ul.id,
+                                            round = ud.round
+                                        }).Distinct().ToList();
+
+            if (historial.Count > 0)
+            {
+                this.RptHistorialUsuarios.DataSource = historial;
+                this.RptHistorialUsuarios.DataBind();
             }
         }        
     }
