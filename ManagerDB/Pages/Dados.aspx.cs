@@ -2,6 +2,7 @@
 using ManagerDB.Clases;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
@@ -230,9 +231,60 @@ namespace ManagerDB.Pages
                     var tirada = RandomGenerator.RandomNumber(1, 6);
                     var cara = this.manager.mercs_die_faces.Where(a => a.die_face == tirada && a.id_die_type == dado.id_die_type).FirstOrDefault();
                     dado.id_die_face = cara.id;
+
+                    
+
+                    //Guardamos el mensaje
+                    var idMsg = ObtenerIdMensaje();
+                    t_messages msg = new t_messages();
+                    msg.id = idMsg;
+                    msg.id_league = this.liga.id;
+                    msg.id_user_to = this.usuario.id;
+                    msg.message = "Se tira un dado de '" + this.manager.mercs_die_types.Where(a => a.id == dado.id_die_type).FirstOrDefault().name + "' y ha salido '" + cara.info +"'";
+                    msg.round = this.liga.current_round;
+                    msg.sent_date = DateTime.Now;
+                    msg.subject = "Tirada de dado";
+                    
+                    //añadimos el mensaje
+                    this.manager.t_messages.Add(msg);
+                    //Guardamos aquí para que no se pisen los Ids de los mensajes
+                    this.manager.SaveChanges();
+
                 }
-                else if (dado.spent_date == null)
+                else if (dado.spent_date == null)                
                 {
+                    var cara = this.manager.mercs_die_faces.Where(a => a.id == dado.id_die_face).FirstOrDefault();
+                    //Controlamos la visibilidad de las opciones
+                    if (cara.sell_credits > 0)
+                    {
+                        this.optCreditos.Text = " Obtener créditos (" + cara.sell_credits + ")";
+                        this.optCreditos.Visible = true;
+                    }
+                    else
+                    {
+                        this.optCreditos.Visible = false;
+                    }
+
+                    if (cara.sell_materials > 0)
+                    {
+                        this.optMateriales.Text += " Obtener materiales (" + cara.sell_materials + ")";
+                        this.optMateriales.Visible = true;
+                    }
+                    else
+                    {
+                        this.optMateriales.Visible = false;
+                    }
+
+                    if (cara.sell_credits == 0)
+                    {
+                        this.optUsar.ToolTip = cara.info;
+                        this.optUsar.Visible = true;
+                    }
+                    else
+                    {
+                        this.optUsar.Visible = false;
+                    }
+
                     //Mostramos el modal con las opciones para gastarlo
                     this.PopUpDado.Show();
                 }
@@ -372,6 +424,27 @@ namespace ManagerDB.Pages
                 this.RptHistorialUsuarios.DataSource = historial;
                 this.RptHistorialUsuarios.DataBind();
             }
-        }        
+        }
+
+        protected void btnUsarDado_Command(object sender, CommandEventArgs e)
+        {
+
+        }
+
+        private int ObtenerIdMensaje()
+        {
+            var ultimoMsg = (from m in this.manager.t_messages
+                             select m).OrderByDescending(a => a.id).FirstOrDefault();
+            var idMsg = 0;
+            if (ultimoMsg == null)
+            {
+                idMsg = 1;
+            }
+            else
+            {
+                idMsg = ultimoMsg.id + 1;
+            }
+            return idMsg;
+        }
     }
 }

@@ -103,6 +103,42 @@ namespace ManagerDB.Pages {
         protected global::System.Web.UI.WebControls.Button btnClose;
         
         /// <summary>
+        /// Control optCreditos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton optCreditos;
+        
+        /// <summary>
+        /// Control optMateriales.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton optMateriales;
+        
+        /// <summary>
+        /// Control optUsar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton optUsar;
+        
+        /// <summary>
+        /// Control btnUsarDado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnUsarDado;
+        
+        /// <summary>
         /// Control btnOculto.
         /// </summary>
         /// <remarks>

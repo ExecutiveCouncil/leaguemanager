@@ -81,7 +81,26 @@
 
     <asp:Panel ID="PnlPopUp" runat="server" CssClass="PopUp" style="display:none">
         <asp:Button ID="btnClose" CssClass="ClosePopUp" runat="server" Text="X" />
-        <iframe src="./PopDadosBasic.aspx" style="border:none;width:100%"></iframe>
+        <%--<iframe src="./PopDadosBasic.aspx" style="border:none;width:100%"></iframe>--%>
+        <div class="box" style="width:80%; max-width:100%; padding: 10px; margin-top:25px;">            
+            <div style="padding-left: 30px">
+                <div class="row">
+                        <asp:RadioButton id="optCreditos" GroupName="UsarDado" Text="" runat="server"/>
+                    </div>
+                <div class="row">
+                    <asp:RadioButton id="optMateriales" GroupName="UsarDado" Text="" runat="server"/>
+                </div>
+                <div class="row">
+                    <asp:RadioButton id="optUsar" GroupName="UsarDado" Text=" Usar" runat="server"/>
+                </div>
+                <div class="row" style="text-align:center">
+                    <asp:Button CssClass="btn" id="btnUsarDado" runat="server" 
+                                oncommand="btnUsarDado_Command" text="Usar" 
+                                style="vertical-align:text-bottom; margin-left:30px"
+                                ToolTip="Usar dado" Width="100px"></asp:Button>
+                </div>
+            </div>
+        </div>
     </asp:Panel>
     
     <asp:Button ID="btnOculto" runat="server" Text="" style="display:none"/>
@@ -91,7 +110,7 @@
     <asp:Panel ID="PnlHistorico" runat="server" CssClass="PopUp" style="display:none">
         <asp:Button ID="btnCloseHistorico" CssClass="ClosePopUp" runat="server" Text="X" />
         <div>
-            <asp:label id="LblHistorial" class="titulo" runat="server">Historial de tiradas en </asp:label>            
+            <asp:label id="LblHistorial" CssClass="titulo" runat="server">Historial de tiradas en </asp:label>            
         </div>
         <div class="row">
             <asp:Repeater runat="server" ID="RptHistorialUsuarios" OnItemDataBound="RptHistorialUsuarios_ItemDataBound">
