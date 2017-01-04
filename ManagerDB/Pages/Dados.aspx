@@ -91,7 +91,10 @@
                     <asp:RadioButton id="optMateriales" GroupName="UsarDado" Text="" runat="server"/>
                 </div>
                 <div class="row">
-                    <asp:RadioButton id="optUsar" GroupName="UsarDado" Text=" Usar" runat="server"/>
+                    <asp:RadioButton id="optUsar" GroupName="UsarDado" Text="Usar" runat="server"/>
+                </div>
+                <div class="row">
+                    <asp:TextBox ID="txtUsar" runat="server" Height="100px" TextMode="MultiLine" Width="90%"></asp:TextBox>
                 </div>
                 <div class="row" style="text-align:center">
                     <asp:Button CssClass="btn" id="btnUsarDado" runat="server" 

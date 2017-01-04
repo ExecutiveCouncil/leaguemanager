@@ -232,32 +232,21 @@ namespace ManagerDB.Pages
                     var cara = this.manager.mercs_die_faces.Where(a => a.die_face == tirada && a.id_die_type == dado.id_die_type).FirstOrDefault();
                     dado.id_die_face = cara.id;
 
-                    
-
-                    //Guardamos el mensaje
-                    var idMsg = ObtenerIdMensaje();
-                    t_messages msg = new t_messages();
-                    msg.id = idMsg;
-                    msg.id_league = this.liga.id;
-                    msg.id_user_to = this.usuario.id;
-                    msg.message = "Se tira un dado de '" + this.manager.mercs_die_types.Where(a => a.id == dado.id_die_type).FirstOrDefault().name + "' y ha salido '" + cara.info +"'";
-                    msg.round = this.liga.current_round;
-                    msg.sent_date = DateTime.Now;
-                    msg.subject = "Tirada de dado";
-                    
-                    //añadimos el mensaje
-                    this.manager.t_messages.Add(msg);
-                    //Guardamos aquí para que no se pisen los Ids de los mensajes
-                    this.manager.SaveChanges();
-
+                    GuardarMensaje("Tirada de dado", "Se tira un dado de '" + this.manager.mercs_die_types.Where(a => a.id == dado.id_die_type).FirstOrDefault().name + "' y ha salido '" + cara.info + "'", null, this.usuario.id);                    
                 }
                 else if (dado.spent_date == null)                
                 {
+                    //ponemos la pantalla en un modo inicial
+                    optCreditos.Checked = false;
+                    optMateriales.Checked = false;
+                    optUsar.Checked = false;
+                    txtUsar.Text = string.Empty;
+
                     var cara = this.manager.mercs_die_faces.Where(a => a.id == dado.id_die_face).FirstOrDefault();
                     //Controlamos la visibilidad de las opciones
                     if (cara.sell_credits > 0)
                     {
-                        this.optCreditos.Text = " Obtener créditos (" + cara.sell_credits + ")";
+                        this.optCreditos.Text = "Obtener créditos (" + cara.sell_credits + ")";
                         this.optCreditos.Visible = true;
                     }
                     else
@@ -267,7 +256,7 @@ namespace ManagerDB.Pages
 
                     if (cara.sell_materials > 0)
                     {
-                        this.optMateriales.Text += " Obtener materiales (" + cara.sell_materials + ")";
+                        this.optMateriales.Text = "Obtener materiales (" + cara.sell_materials + ")";
                         this.optMateriales.Visible = true;
                     }
                     else
@@ -279,12 +268,17 @@ namespace ManagerDB.Pages
                     {
                         this.optUsar.ToolTip = cara.info;
                         this.optUsar.Visible = true;
+                        this.txtUsar.Visible = true;
                     }
                     else
                     {
                         this.optUsar.Visible = false;
+                        this.txtUsar.Visible = false;
                     }
 
+                    //Guardamos el dado del usuario en los datos de sesión
+                    dadoSeleccionado = dado;
+                    
                     //Mostramos el modal con las opciones para gastarlo
                     this.PopUpDado.Show();
                 }
@@ -428,7 +422,25 @@ namespace ManagerDB.Pages
 
         protected void btnUsarDado_Command(object sender, CommandEventArgs e)
         {
-
+            if (!optUsar.Checked && !optCreditos.Checked && !optMateriales.Checked)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "error", "alert('Debes seleccionar una opción')", true);
+                //lblError.Text = "Debes seleccionar una opción";
+                //lblError.Visible = true;
+            }
+            else if (optUsar.Checked && string.IsNullOrEmpty(txtUsar.Text))
+            {
+                //Obligamos a meter texto si está marcado usar
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "error", "alert('Si se va a usar el dado debe informarse que va a hacerse con él')", true);
+            }
+            else
+            {
+                //Guardamos la fecha de uso del dado
+                var dado = this.manager.mercs_user_dice.Where(a => a.id == dadoSeleccionado.id).FirstOrDefault();
+                dado.spent_date = DateTime.Now;
+                this.manager.SaveChanges();
+                this.MostrarDados();
+            }
         }
 
         private int ObtenerIdMensaje()
@@ -445,6 +457,26 @@ namespace ManagerDB.Pages
                 idMsg = ultimoMsg.id + 1;
             }
             return idMsg;
+        }
+
+        private void GuardarMensaje(string asunto, string mensaje, int? from, int? to)
+        {
+            //Guardamos el mensaje
+            var idMsg = ObtenerIdMensaje();
+            t_messages msg = new t_messages();
+            msg.id = idMsg;
+            msg.id_league = this.liga.id;
+            msg.id_user_from = from;
+            msg.id_user_to = to;
+            msg.message = mensaje;
+            msg.round = this.liga.current_round;
+            msg.sent_date = DateTime.Now;
+            msg.subject = asunto;
+
+            //añadimos el mensaje
+            this.manager.t_messages.Add(msg);
+            //Guardamos aquí para que no se pisen los Ids de los mensajes
+            this.manager.SaveChanges();
         }
     }
 }

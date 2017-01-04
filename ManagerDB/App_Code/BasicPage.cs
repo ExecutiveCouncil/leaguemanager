@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using ManagerDB.Clases;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,6 +72,18 @@ namespace ManagerDB.Pages
             set
             {
                 this.Session["liga"] = value;
+            }
+        }
+
+        protected mercs_user_dice dadoSeleccionado
+        {
+            get
+            {
+                return (mercs_user_dice)this.Session["dadoSeleccionado"];
+            }
+            set
+            {
+                this.Session["dadoSeleccionado"] = value;
             }
         }
  
