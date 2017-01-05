@@ -78,7 +78,6 @@
     <ajax:ModalPopupExtender ID="PopUpDado" runat="server" PopupControlID="PnlPopUp" TargetControlID="btnShow"
         CancelControlID="btnClose" BackgroundCssClass="modalBackground">
     </ajax:ModalPopupExtender>
-
     <asp:Panel ID="PnlPopUp" runat="server" CssClass="PopUp" style="display:none">
         <asp:Button ID="btnClose" CssClass="ClosePopUp" runat="server" Text="X" />
         <%--<iframe src="./PopDadosBasic.aspx" style="border:none;width:100%"></iframe>--%>

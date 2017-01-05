@@ -73,7 +73,7 @@ namespace ManagerDB.Pages
                                     user_avatar_url = u.avatar_url,
                                     subject = m.subject,
                                     message = m.message,
-                                    sent_date = m.sent_date,
+                                    sent_date = m.sent_date.Value,
                                     current_round = l.current_round,
                                 }).OrderByDescending(a=> a.sent_date).Take(5).ToList();
 
@@ -105,5 +105,6 @@ namespace ManagerDB.Pages
                     }
             }
         }
+
     }
 }

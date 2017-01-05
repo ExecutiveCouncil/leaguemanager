@@ -66,6 +66,7 @@ namespace ManagerDB.Pages
                         var _faction = this.manager.t_game_factions.Where(fc => fc.id == _idFaction).FirstOrDefault();
                         this.LbFactionInfo.Text = _faction.info;
                         this.LbFactionName.Text = _faction.name;
+                        this.PopUpFaction.Show();
                         break;
                     }
                 default:
