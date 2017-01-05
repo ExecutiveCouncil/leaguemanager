@@ -28,7 +28,6 @@ D:\MegaconZero\leaguemanager\ManagerDB\bin\Entidades.dll
 D:\MegaconZero\leaguemanager\ManagerDB\bin\EntityFramework.dll
 D:\MegaconZero\leaguemanager\ManagerDB\bin\System.Data.Entity.dll
 D:\MegaconZero\leaguemanager\ManagerDB\bin\Entidades.pdb
-D:\MegaconZero\leaguemanager\ManagerDB\bin\EntityFramework.xml
 C:\MZ\github\leaguemanager\ManagerDB\bin\ManagerDB.dll.config
 C:\MZ\github\leaguemanager\ManagerDB\bin\ManagerDB.dll
 C:\MZ\github\leaguemanager\ManagerDB\bin\ManagerDB.pdb
@@ -51,3 +50,6 @@ C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\bin\Entidades.dll
 C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\bin\System.Data.Entity.dll
 C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\bin\Entidades.pdb
 C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\bin\EntityFramework.xml
+D:\MegaconZero\leaguemanager\ManagerDB\bin\AjaxControlToolkit.dll
+D:\MegaconZero\leaguemanager\ManagerDB\bin\dll\AjaxControlToolkit.dll
+D:\MegaconZero\leaguemanager\ManagerDB\bin\dll\EntityFramework.dll

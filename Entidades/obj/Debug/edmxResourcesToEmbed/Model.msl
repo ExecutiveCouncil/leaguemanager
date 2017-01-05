@@ -196,22 +196,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="t_messages">
-      <EntityTypeMapping TypeName="MANAGERDBModel.t_messages">
-        <MappingFragment StoreEntitySet="t_messages">
-          <ScalarProperty Name="status" ColumnName="status" />
-          <ScalarProperty Name="round" ColumnName="round" />
-          <ScalarProperty Name="id_league" ColumnName="id_league" />
-          <ScalarProperty Name="read_date" ColumnName="read_date" />
-          <ScalarProperty Name="sent_date" ColumnName="sent_date" />
-          <ScalarProperty Name="message" ColumnName="message" />
-          <ScalarProperty Name="subject" ColumnName="subject" />
-          <ScalarProperty Name="id_user_to" ColumnName="id_user_to" />
-          <ScalarProperty Name="id_user_from" ColumnName="id_user_from" />
-          <ScalarProperty Name="id" ColumnName="id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="t_user_titles">
       <EntityTypeMapping TypeName="MANAGERDBModel.t_user_titles">
         <MappingFragment StoreEntitySet="t_user_titles">
@@ -233,6 +217,22 @@
           <ScalarProperty Name="id_die_type" ColumnName="id_die_type" />
           <ScalarProperty Name="round" ColumnName="round" />
           <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_messages">
+      <EntityTypeMapping TypeName="MANAGERDBModel.t_messages">
+        <MappingFragment StoreEntitySet="t_messages">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="round" ColumnName="round" />
+          <ScalarProperty Name="id_league" ColumnName="id_league" />
+          <ScalarProperty Name="read_date" ColumnName="read_date" />
+          <ScalarProperty Name="sent_date" ColumnName="sent_date" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="subject" ColumnName="subject" />
+          <ScalarProperty Name="id_user_to" ColumnName="id_user_to" />
+          <ScalarProperty Name="id_user_from" ColumnName="id_user_from" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
