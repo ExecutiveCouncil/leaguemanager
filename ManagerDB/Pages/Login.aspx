@@ -13,23 +13,21 @@
             <form id="login" runat="server">
                 <div class="row">
                     <div class="center">
-                        <asp:login id="Login1" runat="server" style="width: 100%;">
-                            <layouttemplate>
-                                <div class="box">
-                                    <div class="content">
-                                        <h1>Autentificación requerida</h1>
-                                        <asp:TextBox CssClass="field" placeholder="ID OPERATIVO" id="UserName" runat="server"></asp:TextBox>
-                                        <asp:requiredfieldvalidator id="UserNameRequired" runat="server" controltovalidate="UserName" errormessage="ID Operativo requerido." tooltip="ID Operativo requerido." validationgroup="Login1">*</asp:requiredfieldvalidator>
-                                        <br>
-                                        <asp:TextBox CssClass="field" placeholder="CONTRASEÑA" id="Password" runat="server" textmode="Password"></asp:TextBox>
-                                        <asp:requiredfieldvalidator id="PasswordRequired" runat="server" controltovalidate="Password" errormessage="Contraseña requerida." tooltip="Contraseña requerida." validationgroup="Login1">*</asp:requiredfieldvalidator>
-                                        <br>
-                                        <asp:Button CssClass="btn" id="LoginButton" runat="server" commandname="Login" OnCommand="ValidateUser" text="Acceso" validationgroup="Login1"></asp:Button>
-                                        <br>
-                                        <asp:literal id="FailureText" runat="server" enableviewstate="False"></asp:literal></div>
-                                </div>
-                            </layouttemplate>
-                        </asp:login>
+                        <asp:Panel ID="Login1" runat="server" style="width: 100%;">
+                            <div class="box">
+                                <div class="content">
+                                    <h1>Autentificación requerida</h1>
+                                    <asp:TextBox CssClass="field" placeholder="ID OPERATIVO" id="UserName" runat="server"></asp:TextBox>
+                                    <br />
+                                    <asp:TextBox CssClass="field" placeholder="CONTRASEÑA" id="Password" runat="server" textmode="Password"></asp:TextBox>
+                                    <br />
+                                    <asp:Panel runat="server" ID="PnlErrorLogin" Visible="false">
+                                        <asp:Label runat="server" ID="_LbErrorLogin" style="color:#ffd800;"></asp:Label>
+                                    </asp:Panel>
+                                    <br />
+                                    <asp:Button CssClass="btn" id="LoginButton" runat="server" OnClick="ValidateUser" text="Acceso"></asp:Button>
+                            </div>
+                        </asp:Panel>
                     </div>
                 </div>
             </form>

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using ManagerDB.master;
 
 
 namespace ManagerDB.Pages
@@ -101,6 +102,8 @@ namespace ManagerDB.Pages
                 this.manager != null &&
                 this.usuario != null )
             {
+                ((ManagerDB.master.main)this.Master).LoggedUser = this.usuario.login;
+
                 if (SecurityLevel.HasValue)
                 {
                     if (SecurityLevel >= this.usuario.security_level)
@@ -112,6 +115,7 @@ namespace ManagerDB.Pages
             }
             return false;
         }
+
 
     }
 }

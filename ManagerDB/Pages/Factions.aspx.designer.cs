@@ -58,13 +58,13 @@ namespace ManagerDB.Pages {
         protected global::System.Web.UI.WebControls.Panel PnlPopUp;
         
         /// <summary>
-        /// Control btnClose.
+        /// Control ImgFaction.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClose;
+        protected global::System.Web.UI.WebControls.Image ImgFaction;
         
         /// <summary>
         /// Control LbFactionName.
@@ -74,6 +74,15 @@ namespace ManagerDB.Pages {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LbFactionName;
+        
+        /// <summary>
+        /// Control btnClose.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClose;
         
         /// <summary>
         /// Control LbFactionInfo.

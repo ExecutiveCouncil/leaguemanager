@@ -23,10 +23,13 @@ namespace ManagerDB.Pages
 
         protected void ValidateUser(object sender, EventArgs e)
         {
+            this.Session.RemoveAll();
+            this._LbErrorLogin.Text = null;
+            this.PnlErrorLogin.Visible = true;
 
             var usuarioRegistrado = this.manager.t_users
-                .Where(a => a.login == Login1.UserName && 
-                       a.pass == Login1.Password && 
+                .Where(a => a.login == UserName.Text && 
+                       a.pass == Password.Text && 
                        a.active == "Y").FirstOrDefault();
             if (usuarioRegistrado != null)
             {
@@ -34,6 +37,7 @@ namespace ManagerDB.Pages
                 this.manager.SaveChanges();
 
                 base.usuario = usuarioRegistrado;
+
                 //FormsAuthentication.RedirectFromLoginPage(Login1.UserName, false);
                 Response.Redirect("home.aspx", true);
             }      
@@ -41,7 +45,7 @@ namespace ManagerDB.Pages
             {
                 base.usuario = null;
                 var _usuarioError = this.manager.t_users
-                    .Where(a => a.login == Login1.UserName &&
+                    .Where(a => a.login == UserName.Text &&
                            a.active == "Y").FirstOrDefault();
                 if (_usuarioError != null)
                 {
@@ -53,7 +57,10 @@ namespace ManagerDB.Pages
                     this.manager.SaveChanges();
                 }
 
+                this._LbErrorLogin.Text = "Usuario / Contraseña incorrectos";
+                this.PnlErrorLogin.Visible = true;
             }
+
         }
 
         protected void LoginButton_Command(object sender, CommandEventArgs e)

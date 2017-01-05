@@ -46,7 +46,7 @@
                 <div style="height:65px">
                     <img class="menu_button" src="../images/webapp/menu_icon.png" onclick="openNav()" />
                     <asp:Label runat="server" Text="Manager de liga" Font-Size="XX-Large" style="position:absolute; left:70px; top:10px; color:#a47c05"></asp:Label>
-                    <asp:Label runat="server" Text="Ogawa" Font-Size="XX-Large" style="position:absolute; right:15px; top:10px; "></asp:Label>
+                    <asp:Label runat="server" id="_LbUser" Text="XXXX" Font-Size="XX-Large" style="position:absolute; right:15px; top:10px; "></asp:Label>
                 </div>
             </div>
             <div class="content_separator"></div>

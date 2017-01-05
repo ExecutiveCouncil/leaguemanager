@@ -36,13 +36,13 @@
     <ajax:ModalPopupExtender ID="PopUpFaction" runat="server" PopupControlID="PnlPopUp" TargetControlID="btnShow"
         CancelControlID="btnClose" BackgroundCssClass="modalBackground">
     </ajax:ModalPopupExtender>
-    <asp:Panel ID="PnlPopUp" runat="server" CssClass="PopUp" style="display:none">
-        <asp:Button ID="btnClose" CssClass="ClosePopUp" runat="server" Text="X" />
-        <div class="col-md-4">
-            <h2>
-                <img src="../images/t_game_factions/mercs/ccc.jpg" style="width:40px" />
-                <asp:Label runat="server" ID="LbFactionName"></asp:Label>
-            </h2>
+    <asp:Panel ID="PnlPopUp" runat="server" CssClass="PopUp" style="display:none; max-width:600px; width:80%; height: 400px; overflow:hidden">
+        <h2 style="background-color:#a47c05; color:#35322C; margin-top:0">
+            <asp:Image runat="server" id="ImgFaction" style="width:40px" />
+            <asp:Label runat="server" ID="LbFactionName" style="vertical-align:text-bottom"></asp:Label>
+        </h2>
+        <div style="overflow-y:scroll; height: 300px; padding:10px">
+            <asp:Button ID="btnClose" CssClass="ClosePopUp" runat="server" Text="X" />
             <asp:Label runat="server" ID="LbFactionInfo"></asp:Label>
         </div>
     </asp:Panel>
