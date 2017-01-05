@@ -264,9 +264,9 @@
           <EntitySet Name="t_users" EntityType="MANAGERDBModel.t_users" />
           <EntitySet Name="mercs_user_upgrades" EntityType="MANAGERDBModel.mercs_user_upgrades" />
           <EntitySet Name="mercs_die_faces" EntityType="MANAGERDBModel.mercs_die_faces" />
-          <EntitySet Name="t_messages" EntityType="MANAGERDBModel.t_messages" />
           <EntitySet Name="t_user_titles" EntityType="MANAGERDBModel.t_user_titles" />
           <EntitySet Name="mercs_user_dice" EntityType="MANAGERDBModel.mercs_user_dice" />
+          <EntitySet Name="t_messages" EntityType="MANAGERDBModel.t_messages" />
         </EntityContainer>
         <EntityType Name="mercs_die_types">
           <Key>
@@ -447,21 +447,6 @@
           <Property Name="sell_credits" Type="Int32" />
           <Property Name="open_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="t_messages">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_user_from" Type="Int32" />
-          <Property Name="id_user_to" Type="Int32" />
-          <Property Name="subject" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="sent_date" Type="DateTime" Precision="3" />
-          <Property Name="read_date" Type="DateTime" Precision="3" />
-          <Property Name="id_league" Type="Int32" />
-          <Property Name="round" Type="Int32" />
-          <Property Name="status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="t_user_titles">
           <Key>
             <PropertyRef Name="id" />
@@ -484,6 +469,21 @@
           <Property Type="DateTime" Name="rolled_date" Precision="3" />
           <Property Type="Int32" Name="id_die_face" />
           <Property Type="Int32" Name="id_message" />
+        </EntityType>
+        <EntityType Name="t_messages">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_user_from" />
+          <Property Type="Int32" Name="id_user_to" />
+          <Property Type="String" Name="subject" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="message" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="sent_date" Precision="3" />
+          <Property Type="DateTime" Name="read_date" Precision="3" />
+          <Property Type="Int32" Name="id_league" />
+          <Property Type="Int32" Name="round" />
+          <Property Type="String" Name="status" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -686,22 +686,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="t_messages">
-            <EntityTypeMapping TypeName="MANAGERDBModel.t_messages">
-              <MappingFragment StoreEntitySet="t_messages">
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="round" ColumnName="round" />
-                <ScalarProperty Name="id_league" ColumnName="id_league" />
-                <ScalarProperty Name="read_date" ColumnName="read_date" />
-                <ScalarProperty Name="sent_date" ColumnName="sent_date" />
-                <ScalarProperty Name="message" ColumnName="message" />
-                <ScalarProperty Name="subject" ColumnName="subject" />
-                <ScalarProperty Name="id_user_to" ColumnName="id_user_to" />
-                <ScalarProperty Name="id_user_from" ColumnName="id_user_from" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="t_user_titles">
             <EntityTypeMapping TypeName="MANAGERDBModel.t_user_titles">
               <MappingFragment StoreEntitySet="t_user_titles">
@@ -723,6 +707,22 @@
                 <ScalarProperty Name="id_die_type" ColumnName="id_die_type" />
                 <ScalarProperty Name="round" ColumnName="round" />
                 <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_messages">
+            <EntityTypeMapping TypeName="MANAGERDBModel.t_messages">
+              <MappingFragment StoreEntitySet="t_messages">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="round" ColumnName="round" />
+                <ScalarProperty Name="id_league" ColumnName="id_league" />
+                <ScalarProperty Name="read_date" ColumnName="read_date" />
+                <ScalarProperty Name="sent_date" ColumnName="sent_date" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="subject" ColumnName="subject" />
+                <ScalarProperty Name="id_user_to" ColumnName="id_user_to" />
+                <ScalarProperty Name="id_user_from" ColumnName="id_user_from" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
