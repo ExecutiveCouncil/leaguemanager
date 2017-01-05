@@ -1,6 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="ManagerDB.Pages.Home" MasterPageFile="~/master/main.master" %>
 
 <asp:Content ContentPlaceHolderID="ContentProgram" runat="server">
+
+    <br /><br />
+
     <div class="container">
         <div class="row">
             <div class="col-md-12">
