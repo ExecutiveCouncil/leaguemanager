@@ -12,6 +12,7 @@
           <EntitySet Name="mercs_troops" EntityType="MANAGERDBModel.Store.mercs_troops" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mercs_upgrades" EntityType="MANAGERDBModel.Store.mercs_upgrades" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mercs_user_dice" EntityType="MANAGERDBModel.Store.mercs_user_dice" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mercs_user_dice_msg" EntityType="MANAGERDBModel.Store.mercs_user_dice_msg" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mercs_user_troops" EntityType="MANAGERDBModel.Store.mercs_user_troops" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mercs_user_upgrades" EntityType="MANAGERDBModel.Store.mercs_user_upgrades" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="t_badges" EntityType="MANAGERDBModel.Store.t_badges" store:Type="Tables" Schema="dbo" />
@@ -91,11 +92,23 @@
           <Property Name="id_user_league" Type="int" />
           <Property Name="round" Type="int" />
           <Property Name="id_die_type" Type="int" />
+          <Property Name="id_die_face" Type="int" />
+          <Property Name="rolled_date" Type="datetime" />
+          <Property Name="cost" Type="int" />
           <Property Name="spent_date" Type="datetime" />
           <Property Name="resources_gained" Type="int" />
-          <Property Name="rolled_date" Type="datetime" />
-          <Property Name="id_die_face" Type="int" />
-          <Property Name="id_message" Type="int" />
+          <Property Name="admin_date" Type="datetime" />
+          <Property Name="status" Type="int" />
+        </EntityType>
+        <EntityType Name="mercs_user_dice_msg">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_user_dice" Type="int" />
+          <Property Name="id_user_from" Type="int" />
+          <Property Name="message" Type="varchar(max)" />
+          <Property Name="message_date" Type="datetime" />
         </EntityType>
         <EntityType Name="mercs_user_troops">
           <Key>
@@ -265,8 +278,9 @@
           <EntitySet Name="mercs_user_upgrades" EntityType="MANAGERDBModel.mercs_user_upgrades" />
           <EntitySet Name="mercs_die_faces" EntityType="MANAGERDBModel.mercs_die_faces" />
           <EntitySet Name="t_user_titles" EntityType="MANAGERDBModel.t_user_titles" />
-          <EntitySet Name="mercs_user_dice" EntityType="MANAGERDBModel.mercs_user_dice" />
           <EntitySet Name="t_messages" EntityType="MANAGERDBModel.t_messages" />
+          <EntitySet Name="mercs_user_dice_msg" EntityType="MANAGERDBModel.mercs_user_dice_msg" />
+          <EntitySet Name="mercs_user_dice" EntityType="MANAGERDBModel.mercs_user_dice" />
         </EntityContainer>
         <EntityType Name="mercs_die_types">
           <Key>
@@ -456,20 +470,6 @@
           <Property Type="Int32" Name="id_league_title" />
           <Property Type="DateTime" Name="unlock_date" Precision="3" />
         </EntityType>
-        <EntityType Name="mercs_user_dice">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="Int32" Name="id_user_league" />
-          <Property Type="Int32" Name="round" />
-          <Property Type="Int32" Name="id_die_type" />
-          <Property Type="DateTime" Name="spent_date" Precision="3" />
-          <Property Type="Int32" Name="resources_gained" />
-          <Property Type="DateTime" Name="rolled_date" Precision="3" />
-          <Property Type="Int32" Name="id_die_face" />
-          <Property Type="Int32" Name="id_message" />
-        </EntityType>
         <EntityType Name="t_messages">
           <Key>
             <PropertyRef Name="id" />
@@ -484,6 +484,32 @@
           <Property Type="Int32" Name="id_league" />
           <Property Type="Int32" Name="round" />
           <Property Type="String" Name="status" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="mercs_user_dice_msg">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_user_dice" />
+          <Property Type="Int32" Name="id_user_from" />
+          <Property Type="String" Name="message" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="message_date" Precision="3" />
+        </EntityType>
+        <EntityType Name="mercs_user_dice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_user_league" />
+          <Property Type="Int32" Name="round" />
+          <Property Type="Int32" Name="id_die_type" />
+          <Property Type="Int32" Name="id_die_face" />
+          <Property Type="DateTime" Name="rolled_date" Precision="3" />
+          <Property Type="Int32" Name="cost" />
+          <Property Type="DateTime" Name="spent_date" Precision="3" />
+          <Property Type="Int32" Name="resources_gained" />
+          <Property Type="DateTime" Name="admin_date" Precision="3" />
+          <Property Type="Int32" Name="status" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -696,21 +722,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="mercs_user_dice">
-            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_dice">
-              <MappingFragment StoreEntitySet="mercs_user_dice">
-                <ScalarProperty Name="id_message" ColumnName="id_message" />
-                <ScalarProperty Name="id_die_face" ColumnName="id_die_face" />
-                <ScalarProperty Name="rolled_date" ColumnName="rolled_date" />
-                <ScalarProperty Name="resources_gained" ColumnName="resources_gained" />
-                <ScalarProperty Name="spent_date" ColumnName="spent_date" />
-                <ScalarProperty Name="id_die_type" ColumnName="id_die_type" />
-                <ScalarProperty Name="round" ColumnName="round" />
-                <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="t_messages">
             <EntityTypeMapping TypeName="MANAGERDBModel.t_messages">
               <MappingFragment StoreEntitySet="t_messages">
@@ -723,6 +734,34 @@
                 <ScalarProperty Name="subject" ColumnName="subject" />
                 <ScalarProperty Name="id_user_to" ColumnName="id_user_to" />
                 <ScalarProperty Name="id_user_from" ColumnName="id_user_from" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mercs_user_dice_msg">
+            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_dice_msg">
+              <MappingFragment StoreEntitySet="mercs_user_dice_msg">
+                <ScalarProperty Name="message_date" ColumnName="message_date" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="id_user_from" ColumnName="id_user_from" />
+                <ScalarProperty Name="id_user_dice" ColumnName="id_user_dice" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mercs_user_dice">
+            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_dice">
+              <MappingFragment StoreEntitySet="mercs_user_dice">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="admin_date" ColumnName="admin_date" />
+                <ScalarProperty Name="resources_gained" ColumnName="resources_gained" />
+                <ScalarProperty Name="spent_date" ColumnName="spent_date" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="rolled_date" ColumnName="rolled_date" />
+                <ScalarProperty Name="id_die_face" ColumnName="id_die_face" />
+                <ScalarProperty Name="id_die_type" ColumnName="id_die_type" />
+                <ScalarProperty Name="round" ColumnName="round" />
+                <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

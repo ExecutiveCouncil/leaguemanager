@@ -66,6 +66,9 @@
     <Compile Include="mercs_user_dice.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="mercs_user_dice_msg.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="mercs_user_troops.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

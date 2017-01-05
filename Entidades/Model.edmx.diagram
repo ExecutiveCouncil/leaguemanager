@@ -22,8 +22,9 @@
         <EntityTypeShape EntityType="MANAGERDBModel.mercs_user_upgrades" Width="1.5" PointX="7.25" PointY="9.875" />
         <EntityTypeShape EntityType="MANAGERDBModel.mercs_die_faces" Width="1.5" PointX="9.375" PointY="10.75" />
         <EntityTypeShape EntityType="MANAGERDBModel.t_user_titles" Width="1.5" PointX="2.75" PointY="11" />
-        <EntityTypeShape EntityType="MANAGERDBModel.mercs_user_dice" Width="1.5" PointX="10.875" PointY="7.25" />
         <EntityTypeShape EntityType="MANAGERDBModel.t_messages" Width="1.5" PointX="9.84620666217348" PointY="14.195070765072048" />
+        <EntityTypeShape EntityType="MANAGERDBModel.mercs_user_dice_msg" Width="1.5" PointX="6.375" PointY="13.5" />
+        <EntityTypeShape EntityType="MANAGERDBModel.mercs_user_dice" Width="1.5" PointX="4.25" PointY="13.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

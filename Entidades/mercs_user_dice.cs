@@ -18,10 +18,12 @@ namespace Entidades
         public Nullable<int> id_user_league { get; set; }
         public Nullable<int> round { get; set; }
         public Nullable<int> id_die_type { get; set; }
+        public Nullable<int> id_die_face { get; set; }
+        public Nullable<System.DateTime> rolled_date { get; set; }
+        public Nullable<int> cost { get; set; }
         public Nullable<System.DateTime> spent_date { get; set; }
         public Nullable<int> resources_gained { get; set; }
-        public Nullable<System.DateTime> rolled_date { get; set; }
-        public Nullable<int> id_die_face { get; set; }
-        public Nullable<int> id_message { get; set; }
+        public Nullable<System.DateTime> admin_date { get; set; }
+        public Nullable<int> status { get; set; }
     }
 }

@@ -27,5 +27,8 @@ namespace ManagerDB.Clases
         public int? die_face { get; set; }
         public int? id_user_league { get; set; }
         public int? round { get; set; }
+        public int? cost { get; set; }
+        public DateTime? admin_date { get; set; }
+        public int? status { get; set; }
     }
 }

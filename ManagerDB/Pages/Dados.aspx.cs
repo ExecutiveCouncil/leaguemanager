@@ -61,7 +61,10 @@ namespace ManagerDB.Pages
                                         total_faces = dt.total_faces,
                                         info_die = dt.info,
                                         id_die_face = ud.id_die_face,
-                                        img_Dice = ""
+                                        img_Dice = "",
+                                        cost = ud.cost,
+                                        status = ud.status,
+                                        admin_date = ud.admin_date
                                     }).ToList();
 
             if (dadosUsuario.Count > 0)
@@ -85,7 +88,7 @@ namespace ManagerDB.Pages
                     }
 
                     //Calculamos que imagen debe ir en el dado
-                    var imagen = CalcularImagenDado(dado.id_die_type, dado.die_face, dado.rolled_date, dado.spent_date, dado.resources_gained);
+                    var imagen = CalcularImagenDado(dado.id_die_type, dado.die_face, dado.rolled_date, dado.spent_date, dado.status);
                     dado.img_Dice = imagen;
                 }
 
@@ -144,7 +147,10 @@ namespace ManagerDB.Pages
                                                total_faces = dt.total_faces,
                                                info_die = dt.info,
                                                id_die_face = ud.id_die_face,
-                                               img_Dice = ""
+                                               img_Dice = "",
+                                               cost = ud.cost,
+                                               status = ud.status,
+                                               admin_date = ud.admin_date
                                            }).ToList();
 
                 if (datosUsuario.Count > 0)
@@ -168,7 +174,7 @@ namespace ManagerDB.Pages
                         }
 
                         //Calculamos que imagen debe ir en el dadodie_typedie_type
-                        var imagen = CalcularImagenDado(dado.id_die_type, dado.die_face, dado.rolled_date, dado.spent_date, dado.resources_gained);
+                        var imagen = CalcularImagenDado(dado.id_die_type, dado.die_face, dado.rolled_date, dado.spent_date, dado.status);
                         dado.img_Dice = imagen;
                     }
                     Repeater childRepeater = (Repeater)e.Item.FindControl("RptDadosUsuarios");
@@ -178,7 +184,7 @@ namespace ManagerDB.Pages
             }
         }
         
-        private string CalcularImagenDado(int? tipoDado, int? cara, DateTime? fechaTirada, DateTime? fechaUso, int? recursosGanados)
+        private string CalcularImagenDado(int? tipoDado, int? cara, DateTime? fechaTirada, DateTime? fechaUso, int? status)
         {
             var imagen = string.Empty;
             //miramos que tipo de imagen corresponde (a,c,g,v)
@@ -205,7 +211,7 @@ namespace ManagerDB.Pages
 
                 if (fechaUso != null)
                 {
-                    if (recursosGanados != null)
+                    if (status == 1 || status == 2)
                     {
                         imagen += "s";
                     }
@@ -231,6 +237,7 @@ namespace ManagerDB.Pages
                     var tirada = RandomGenerator.RandomNumber(1, 6);
                     var cara = this.manager.mercs_die_faces.Where(a => a.die_face == tirada && a.id_die_type == dado.id_die_type).FirstOrDefault();
                     dado.id_die_face = cara.id;
+                    dado.status = 0; //sin usar
 
                     GuardarMensaje("Tirada de dado", "Se tira un dado de '" + this.manager.mercs_die_types.Where(a => a.id == dado.id_die_type).FirstOrDefault().name + "' y ha salido '" + cara.info + "'", this.usuario.id, this.usuario.id);                    
                 }
@@ -361,7 +368,10 @@ namespace ManagerDB.Pages
                                                    info_die = dt.info,
                                                    id_die_face = ud.id_die_face,
                                                    img_Dice = "",
-                                                   round = ud.round
+                                                   round = ud.round,
+                                                   cost = ud.cost,
+                                                   status = ud.status,
+                                                   admin_date = ud.admin_date
                                                }).ToList();
 
                 if (datosUsuario.Count > 0)
@@ -385,7 +395,7 @@ namespace ManagerDB.Pages
                         }
 
                         //Calculamos que imagen debe ir en el dadodie_typedie_type
-                        var imagen = CalcularImagenDado(dado.id_die_type, dado.die_face, dado.rolled_date, dado.spent_date, dado.resources_gained);
+                        var imagen = CalcularImagenDado(dado.id_die_type, dado.die_face, dado.rolled_date, dado.spent_date, dado.status);
                         dado.img_Dice = imagen;
                     }
                     Repeater childRepeater = (Repeater)e.Item.FindControl("RptHistorialDadosUsuarios");
@@ -434,10 +444,33 @@ namespace ManagerDB.Pages
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "error", "alert('Si se va a usar el dado debe informarse que va a hacerse con él')", true);
             }
             else
-            {
-                //Guardamos la fecha de uso del dado
+            {                
                 var dado = this.manager.mercs_user_dice.Where(a => a.id == dadoSeleccionado.id).FirstOrDefault();
+                var nombreDado = this.manager.mercs_die_types.Where(a => a.id == dado.id_die_type).FirstOrDefault().name;
+                var cara = this.manager.mercs_die_faces.Where(a => a.id == dado.id_die_face).FirstOrDefault();
+                //Guardamos la fecha de uso del dado
                 dado.spent_date = DateTime.Now;
+
+                if (optCreditos.Checked)
+                {
+                    dado.status = 1; //gastado en creditos
+                    dado.resources_gained = cara.sell_credits;
+                    GuardarMensaje("Dado gastado", "Se gasta un dado de '" + nombreDado + "' y se cambia por " + cara.info + " créditos", this.usuario.id, this.usuario.id);
+                }
+                else if (optMateriales.Checked)
+                {
+                    dado.status = 2; //gastado en materiales
+                    dado.resources_gained = cara.sell_materials;
+                    GuardarMensaje("Dado gastado", "Se gasta un dado de '" + nombreDado + "' y se cambia por " + cara.info + " materiales", this.usuario.id, this.usuario.id);
+                }
+                else if (optUsar.Checked)
+                {
+                    dado.status = 3; //gastado en usar
+                    //También guardamos un mensaje
+                    GuardarMensaje("Dado gastado", "Se gasta un dado de '" + nombreDado + "' con la acción '" + cara.info + "'", this.usuario.id, this.usuario.id);
+                    GuardarRelacionMensajeDado("", this.usuario.id);
+                }                
+
                 this.manager.SaveChanges();
                 this.MostrarDados();
             }
@@ -459,7 +492,7 @@ namespace ManagerDB.Pages
             return idMsg;
         }
 
-        private void GuardarMensaje(string asunto, string mensaje, int? from, int? to)
+        private int GuardarMensaje(string asunto, string mensaje, int? from, int? to)
         {
             //Guardamos el mensaje
             var idMsg = ObtenerIdMensaje();
@@ -477,6 +510,43 @@ namespace ManagerDB.Pages
             this.manager.t_messages.Add(msg);
             //Guardamos aquí para que no se pisen los Ids de los mensajes
             this.manager.SaveChanges();
+
+            return idMsg;
+        }
+
+        private int ObtenerIdRelacionMensajeDado()
+        {
+            var ultimoMsg = (from m in this.manager.mercs_user_dice_msg
+                             select m).OrderByDescending(a => a.id).FirstOrDefault();
+            var idMsg = 0;
+            if (ultimoMsg == null)
+            {
+                idMsg = 1;
+            }
+            else
+            {
+                idMsg = ultimoMsg.id + 1;
+            }
+            return idMsg;
+        }
+
+        private int GuardarRelacionMensajeDado(string mensaje, int? from)
+        {
+            //Guardamos el mensaje
+            var idMsg = ObtenerIdRelacionMensajeDado();
+            mercs_user_dice_msg msg = new mercs_user_dice_msg();
+            msg.id = idMsg;
+            msg.id_user_dice = this.dadoSeleccionado.id;
+            msg.id_user_from = from;
+            msg.message = mensaje;
+            msg.message_date = DateTime.Now;
+
+            //añadimos el mensaje
+            this.manager.mercs_user_dice_msg.Add(msg);
+            //Guardamos aquí para que no se pisen los Ids de los mensajes
+            this.manager.SaveChanges();
+
+            return idMsg;
         }
     }
 }

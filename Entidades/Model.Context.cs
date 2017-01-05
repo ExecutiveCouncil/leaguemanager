@@ -42,7 +42,8 @@ namespace Entidades
         public DbSet<mercs_user_upgrades> mercs_user_upgrades { get; set; }
         public DbSet<mercs_die_faces> mercs_die_faces { get; set; }
         public DbSet<t_user_titles> t_user_titles { get; set; }
-        public DbSet<mercs_user_dice> mercs_user_dice { get; set; }
         public DbSet<t_messages> t_messages { get; set; }
+        public DbSet<mercs_user_dice_msg> mercs_user_dice_msg { get; set; }
+        public DbSet<mercs_user_dice> mercs_user_dice { get; set; }
     }
 }
