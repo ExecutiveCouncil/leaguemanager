@@ -28,3 +28,9 @@ C:\MZ\github\leaguemanager\Entidades\bin\Debug\EntityFramework.dll
 C:\MZ\github\leaguemanager\Entidades\bin\Debug\EntityFramework.xml
 C:\MZ\github\leaguemanager\Entidades\obj\Debug\Entidades.dll
 C:\MZ\github\leaguemanager\Entidades\obj\Debug\Entidades.pdb
+C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\bin\Debug\Entidades.dll.config
+C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\bin\Debug\Entidades.dll
+C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\bin\Debug\Entidades.pdb
+C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\obj\Debug\Entidades.csprojResolveAssemblyReference.cache
+C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\obj\Debug\Entidades.dll
+C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\obj\Debug\Entidades.pdb
