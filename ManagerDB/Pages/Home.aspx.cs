@@ -100,7 +100,7 @@ namespace ManagerDB.Pages
 
                         //aqui cruzo los dedos
 
-                        this.Response.Redirect("Dados.aspx", true);
+                        this.Response.Redirect("LigaDet.aspx?idKey="+idLiga, true);
                         break;
                     }
             }
