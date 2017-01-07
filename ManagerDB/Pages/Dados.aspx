@@ -4,12 +4,22 @@
     <div class="Container">
         <br />
         <div class="row">
-            <div class="col-md-3 col-sm-12" style="padding: 30px;">
+            <div class="col-md-1 col-sm-1"></div>
+            <div class="col-md-3 col-sm-11" style="padding: 30px;">
                 <asp:Label ID="lblLiga" runat="server" CssClass="cabecera">Liga: </asp:Label>
             </div>
-            <div class="col-md-3 col-sm-12" style="padding: 30px;">
+            <div class="col-md-3 col-sm-11" style="padding: 30px;">
                 <asp:Label ID="lblRonda" runat="server" CssClass="cabecera">Ronda: </asp:Label>
             </div>    
+            <div class="col-md-5 col-sm-11">
+                <div class="col-md-3 col-sm-12"></div>
+                <div class="col-md-4 col-sm-12" style="padding: 30px;">
+                    <asp:Label ID="lblCreditos" runat="server" CssClass="cabecera"></asp:Label>
+                </div>   
+                <div class="col-md-4 col-sm-12" style="padding: 30px;">
+                    <asp:Label ID="lblMateriales" runat="server" CssClass="cabecera"></asp:Label>
+                </div>   
+            </div>
         </div>
         <div class="row">
             <div class="box" style="width:80%; max-width:100%; padding: 10px; margin-top:25px;">

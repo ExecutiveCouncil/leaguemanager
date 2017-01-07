@@ -26,8 +26,9 @@ namespace ManagerDB.Pages
                 {
                     //Ponemos la ronda actual y el nombre de la liga
                     this.lblLiga.Text += this.liga.name;
-                    this.lblRonda.Text += this.liga.current_round.ToString();
+                    this.lblRonda.Text += this.liga.current_round.ToString();                    
                     this.LblHistorial.Text += this.liga.name + ":";
+                    this.CalcularRecursos();
 
                     //Ocultamos el botón del historial si estamos en la ronda 1
                     if (this.liga.current_round == null || this.liga.current_round == 1)
@@ -39,6 +40,54 @@ namespace ManagerDB.Pages
                     this.MostrarDadosUsuarios();
                 }
             }
+        }
+
+        private void CalcularRecursos()
+        {
+            this.lblCreditos.Text = "Créditos: " + CalcularCreditos();
+            this.lblMateriales.Text = "Materiales: " + CalcularMateriales();
+        }
+
+        private int? CalcularCreditos()
+        {
+            int? creditos = 0;
+            var creditosConseguidos = (from ul in this.manager.t_user_leagues
+                                           join l in this.manager.t_leagues on ul.id_league equals l.id
+                                           join ud in this.manager.mercs_user_dice on ul.id equals ud.id_user_league
+                                           where ul.id_user == this.usuario.id
+                                                   && l.current_round == ud.round
+                                                   && l.id == this.liga.id
+                                                   && ud.status == 1
+                                           select ud.resources_gained).ToList();
+            creditos = creditosConseguidos.DefaultIfEmpty(0).Sum();
+
+
+            var creditosGastados = (from ul in this.manager.t_user_leagues
+                                    join l in this.manager.t_leagues on ul.id_league equals l.id
+                                    join ud in this.manager.mercs_user_dice on ul.id equals ud.id_user_league
+                                    where ul.id_user == this.usuario.id
+                                            && l.current_round == ud.round
+                                            && l.id == this.liga.id
+                                            && ud.status == 3
+                                    select ud.cost).ToList();
+            creditos -= creditosGastados.DefaultIfEmpty(0).Sum();
+            return creditos;
+        }
+
+        private int? CalcularMateriales()
+        {
+            int? materiales = 0;
+
+            var materialesConseguidos = (from ul in this.manager.t_user_leagues
+                                       join l in this.manager.t_leagues on ul.id_league equals l.id
+                                       join ud in this.manager.mercs_user_dice on ul.id equals ud.id_user_league
+                                       where ul.id_user == this.usuario.id
+                                               && l.current_round == ud.round
+                                               && l.id == this.liga.id
+                                               && ud.status == 2
+                                       select ud.resources_gained).ToList();
+            materiales = materialesConseguidos.DefaultIfEmpty(0).Sum();
+            return materiales;
         }
 
         private void MostrarDados()
@@ -443,6 +492,11 @@ namespace ManagerDB.Pages
                 //Obligamos a meter texto si está marcado usar
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "error", "alert('Si se va a usar el dado debe informarse que va a hacerse con él')", true);
             }
+            else if (optUsar.Checked && CalcularCreditos() < dadoSeleccionado.cost)
+            {
+                //Si no hay creditos suficientes para usar la acción avisamos
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "error", "alert('No hay créditos suficientes para realizar la acción')", true);
+            }
             else
             {                
                 var dado = this.manager.mercs_user_dice.Where(a => a.id == dadoSeleccionado.id).FirstOrDefault();
@@ -473,6 +527,7 @@ namespace ManagerDB.Pages
 
                 this.manager.SaveChanges();
                 this.MostrarDados();
+                this.CalcularRecursos();
             }
         }
 
