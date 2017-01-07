@@ -159,8 +159,17 @@ namespace ManagerDB.Pages
                                            select new UserDice
                                            {
                                                user_name = u.login,
-                                               id_user_league = ul.id
+                                               id_user_league = ul.id,
+                                               user_avatar = u.avatar_url
                                            }).Distinct().ToList();
+            foreach (var usuario in usuarios)
+            {
+                //Si no tiene foto de avatar ponemos la de por defecto
+                if (string.IsNullOrEmpty(usuario.user_avatar))
+                {
+                    usuario.user_avatar = "webapp/user.png";
+                }
+            }
 
             if (usuarios.Count > 0)
             {

@@ -30,5 +30,6 @@ namespace ManagerDB.Clases
         public int? cost { get; set; }
         public DateTime? admin_date { get; set; }
         public int? status { get; set; }
+        public string user_avatar { get; set; }
     }
 }

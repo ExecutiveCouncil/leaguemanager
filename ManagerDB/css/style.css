@@ -36,6 +36,36 @@ table th
   border-radius:7px;
   box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.9);
 }
+
+.boxDados{
+  width:100%;
+  background:#3e3e3e;
+  border:0px;
+  border-left:dashed 1px #FFBF00;
+  border-bottom:dashed 1px #FFBF00;
+  /*box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.9);*/
+  border-radius:7px;
+  padding-bottom:10px;
+  padding-top:10px;
+}
+
+.imagenDados{
+  border-radius:7px;
+}
+
+.textoDadosUsuario{
+  color:#FFBF00;
+  vertical-align:middle;
+  font-weight:bold;
+  padding-left: 50px;
+}
+
+.textoDados{
+  color:#FFBF00;
+  vertical-align:bottom;
+  font-weight:normal;
+  padding-right: 15px;
+}
  
 .content{
   width:85%;

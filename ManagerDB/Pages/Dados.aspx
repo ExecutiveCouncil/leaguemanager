@@ -56,27 +56,31 @@
                 <br />
                 <asp:Repeater runat="server" ID="RptDatosUsuarios" OnItemDataBound="RptDatosUsuarios_ItemDataBound">
                     <ItemTemplate>
-                        <div style="padding-left: 30px;width:60px">
-                            <%--<asp:Image runat="server" ID="ImgUser"
-                                            Width="45px"
-                                            ToolTip='<%# Eval("user_name") %>'
-                                            AlternateText='<%# Eval("user_name") %>'
-                                            ImageUrl= '<%# "../images/t_dices/mercs/" + Eval("img_Dice").ToString().Trim() %>'>
-                                        </asp:Image>--%>
-                            <asp:Label id="user" Text='<%# Eval("user_name") %>' runat="server"></asp:Label>
+                        <div class="boxDados">
+                            <div style="padding-left: 30px">
+                                <asp:Image CssClass="imagenDados" runat="server" ID="ImgUser"
+                                                Width="45px"
+                                                ToolTip='<%# Eval("user_name") %>'
+                                                AlternateText='<%# Eval("user_name") %>'
+                                                ImageUrl= '<%# "../images/" + Eval("user_avatar").ToString().Trim() %>'>
+                                            </asp:Image>
+                                <asp:Label id="user" Text='<%# Eval("user_name") %>' CssClass="textoDadosUsuario" runat="server"></asp:Label>
+                            </div>
+                            <div style="padding-left: 30px">
+                                <label class="textoDados">Recursos: </label>
+                                <asp:Repeater runat="server" ID="RptDadosUsuarios">
+                                    <ItemTemplate>                                    
+                                            <asp:Image runat="server" ID="ImgUserDice"
+                                                Width="45px"
+                                                ToolTip='<%# Eval("info") %>'
+                                                AlternateText='<%# Eval("info") %>'
+                                                ImageUrl= '<%# "../images/t_dices/mercs/" + Eval("img_Dice").ToString().Trim() %>'>
+                                            </asp:Image>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </div>
                         </div>
-                        <div style="padding-left: 30px">
-                            <asp:Repeater runat="server" ID="RptDadosUsuarios">
-                                <ItemTemplate>                                    
-                                        <asp:Image runat="server" ID="ImgUserDice"
-                                            Width="45px"
-                                            ToolTip='<%# Eval("info") %>'
-                                            AlternateText='<%# Eval("info") %>'
-                                            ImageUrl= '<%# "../images/t_dices/mercs/" + Eval("img_Dice").ToString().Trim() %>'>
-                                        </asp:Image>
-                                </ItemTemplate>
-                            </asp:Repeater>
-                        </div>
+                        <br />
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
