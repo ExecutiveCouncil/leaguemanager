@@ -10,6 +10,21 @@ body{
   font-family: 'Ubuntu Mono', sans-serif;
   text-transform:uppercase;
 }
+
+a{
+    color:#a47c05;
+    text-decoration:none;
+}
+
+a:hover{
+    text-decoration:underline;
+    color:#FFBF00;
+}
+
+table th
+{
+    background-color:red;
+}
  
 .box{
   width:90%;
@@ -42,6 +57,40 @@ body{
   text-align:center;
 }
  
+h1{
+    color:#a47c05;
+}
+
+h2{
+    color:#a47c05;
+}
+
+h3{
+    color:#a47c05;
+}
+
+.content_menu{
+    background-color:#2C2C2C;
+    border-bottom:10px solid #FFBF00;
+    color:#888;
+    font-family: 'Ubuntu Mono', sans-serif;
+}
+
+.menu_button{
+    position:absolute; 
+    left:5px; 
+    top:8px; 
+    width:48px; 
+    cursor:pointer;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+}
+.menu_button:hover
+{
+    filter: alpha(opacity=100);
+    opacity: 1;
+}
+
 .field{
   width:100%;
   margin:10px auto;
@@ -56,7 +105,7 @@ body{
   font-weight:700;
   letter-spacing:0.125em;
   text-align:center;
-  text-transform:uppercase;
+  /*text-transform:uppercase;*/
 }
  
  
@@ -142,7 +191,7 @@ body{
     padding-bottom: 10px; 
     padding-top:40px; 
     position:relative;
-    color:#FFBF00;
+    /*color:#FFBF00;*/
 }
 
 .PopUp .ClosePopUp
@@ -154,9 +203,117 @@ body{
     border:none;
     font-weight: bold;
     font-size:larger;
+    color:#a47c05;
+}
+
+.PopUp .ClosePopUp:hover {
     color: #FFBF00;
 }
 
-    .PopUp .ClosePopUp:hover {
-        color:#503F25;
-    }
+.overlay {
+    height: 0%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0, 0.9);
+    overflow-y: hidden;
+    transition: 0.5s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #FFBF00;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay {overflow-y: auto;}
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 15px;
+    right: 35px;
+  }
+}
+
+.grid
+{
+    border: 3px solid #222;
+}
+
+.grid_header
+{
+    background-color: #503F25;
+    color:#FFBF00;
+    border-bottom: 3px solid #222;
+}
+.grid_header td{
+    padding: 3px;        
+}
+
+.grid_row{
+    background-color: #3e3e3e;
+    color:#818181;
+}
+.grid_row:hover{
+    background-color: #111111;
+}
+.grid_row td{
+    padding: 3px;        
+}
+
+.grid_alternate_row{
+    background-color: #35322C;
+    color:#818181;
+}
+
+.grid_alternate_row:hover{
+    background-color: #111111;
+}
+
+.grid_alternate_row td
+{
+    padding: 3px;
+}
+
+.img_button{
+    padding: 5px;
+}
+
+.img_button:hover{
+    border: 3px solid #FFBF00;
+    padding: 0px;
+}
+
+.dropdown
+{
+    background-color:transparent;
+    border-color: #503F25;
+    min-width: 300px;
+    color:#818181;
+}

@@ -10,25 +10,43 @@
 namespace ManagerDB.Pages {
     
     
-    public partial class FactionsAspx {
+    public partial class LigaDetAspx {
         
         /// <summary>
-        /// Control DrpGames.
+        /// Control DrpLigas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DrpGames;
+        protected global::System.Web.UI.WebControls.DropDownList DrpLigas;
         
         /// <summary>
-        /// Control RptFactions.
+        /// Control LbClasif.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RptFactions;
+        protected global::System.Web.UI.WebControls.Label LbClasif;
+        
+        /// <summary>
+        /// Control GrJugadores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DataGrid GrJugadores;
+        
+        /// <summary>
+        /// Control _LbNoJugadores.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label _LbNoJugadores;
         
         /// <summary>
         /// Control btnShow.

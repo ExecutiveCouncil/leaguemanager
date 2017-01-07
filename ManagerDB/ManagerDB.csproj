@@ -72,6 +72,15 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\AjaxControlToolkit.dll" />
+    <Content Include="bin\dll\AjaxControlToolkit.dll" />
+    <Content Include="bin\dll\EntityFramework.dll" />
+    <Content Include="bin\Entidades.dll" />
+    <Content Include="bin\Entidades.pdb" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\ManagerDB.dll" />
+    <Content Include="bin\ManagerDB.pdb" />
+    <Content Include="bin\System.Data.Entity.dll" />
     <Content Include="css\bootstrap-theme.css" />
     <Content Include="css\bootstrap-theme.min.css" />
     <Content Include="css\bootstrap.css" />
@@ -164,6 +173,7 @@
     <Content Include="images\t_game_factions\mercs\sefadu.jpg" />
     <Content Include="images\t_game_factions\mercs\texico.jpg" />
     <Content Include="images\t_game_factions\mercs\uscr.jpg" />
+    <Content Include="images\webapp\menu_icon.png" />
     <Content Include="Pages\Dados.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -184,10 +194,12 @@
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\npm.js" />
+    <Content Include="Pages\LigaDet.aspx" />
     <Content Include="Pages\Factions.aspx" />
     <Content Include="Pages\Home.aspx" />
     <Content Include="Pages\League.aspx" />
     <Content Include="Pages\Login.aspx" />
+    <Content Include="Pages\Logout.aspx" />
     <Content Include="Pages\PopDadosBasic.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -223,6 +235,13 @@
     <Compile Include="master\main.master.designer.cs">
       <DependentUpon>main.master</DependentUpon>
     </Compile>
+    <Compile Include="Pages\LigaDet.aspx.cs">
+      <DependentUpon>LigaDet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\LigaDet.aspx.designer.cs">
+      <DependentUpon>LigaDet.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Factions.aspx.cs">
       <DependentUpon>Factions.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -251,6 +270,13 @@
     <Compile Include="Pages\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\PopDadosBasic.aspx.cs">
       <DependentUpon>PopDadosBasic.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -271,6 +297,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="master\main.master" />
+    <Content Include="bin\ManagerDB.dll.config" />
     <None Include="Properties\PublishProfiles\Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -285,6 +312,7 @@
       <Name>Entidades</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

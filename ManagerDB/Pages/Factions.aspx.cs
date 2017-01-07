@@ -40,6 +40,11 @@ namespace ManagerDB.Pages
             {
                 this.DrpGames.Items.Add(new ListItem(_item.game_name, _item.game_id.ToString()));
             }
+            if (this.DrpGames.Items.Count == 2)
+            {
+                this.DrpGames.SelectedIndex = 1;
+                DrpGames_SelectedIndexChanged(null, null);
+            }
         }
 
         protected void DrpGames_SelectedIndexChanged(object sender, EventArgs e)
@@ -66,6 +71,10 @@ namespace ManagerDB.Pages
                         var _faction = this.manager.t_game_factions.Where(fc => fc.id == _idFaction).FirstOrDefault();
                         this.LbFactionInfo.Text = _faction.info;
                         this.LbFactionName.Text = _faction.name;
+                        this.ImgFaction.ImageUrl = "../images/" + _faction.avatar_url;
+                        this.ImgFaction.ToolTip = _faction.name;
+                        this.ImgFaction.AlternateText = _faction.name;
+                        this.PopUpFaction.Show();
                         break;
                     }
                 default:

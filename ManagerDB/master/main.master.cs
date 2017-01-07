@@ -9,6 +9,19 @@ namespace ManagerDB.master
 {
     public partial class main : System.Web.UI.MasterPage
     {
+
+        public string LoggedUser
+        {
+            get
+            {
+                return this._LbUser.Text;
+            }
+            set
+            {
+                this._LbUser.Text = value;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 
