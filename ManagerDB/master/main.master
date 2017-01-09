@@ -37,7 +37,7 @@
                   <!-- Overlay content -->
                   <div class="overlay-content">
                     <a href="../pages/home.aspx">CUENTA</a>
-                    <a href="../pages/home.aspx">LIGAS</a>
+                    <a href="../pages/leagues.aspx">LIGAS</a>
                     <a href="../pages/factions.aspx">FACCIONES</a>
                     <a href="../pages/logout.aspx">DESCONECTAR</a>
                   </div>

@@ -31,23 +31,24 @@ namespace ManagerDB.Pages
                                 join g in this.manager.t_games on l.id_game equals g.id
                                 join gf in this.manager.t_game_factions on ul.id_faction equals gf.id
                               where ul.id_user == this.usuario.id
+                                    && l.active == "Y"
                               select new
                               {
                                   league_id = l.id,
                                   user_id = ul.id_user,
                                   team_name = ul.team_name,
-                                  team_avatar_url = ul.team_avatar_url,
+                                  team_avatar_url = this.PATH_IMAGES + ul.team_avatar_url,
                                   wins = ul.wins,
                                   losses = ul.losses,
                                   draws = ul.draws,
                                   score = ul.total_score,
                                   league_name = l.name,
-                                  league_avatar_url = l.avatar_url,
+                                  league_avatar_url = this.PATH_IMAGES + l.avatar_url,
                                   current_round = l.current_round,
                                   game_name = g.name,
-                                  game_avatar_url = g.avatar_url,
+                                  game_avatar_url = this.PATH_IMAGES + g.avatar_url,
                                   faction_name = gf.name,
-                                  faction_avatar_url = gf.avatar_url
+                                  faction_avatar_url = this.PATH_IMAGES + gf.avatar_url
                               }).ToList();
 
             if (ligasUsuario.Count > 0)
@@ -93,14 +94,8 @@ namespace ManagerDB.Pages
                     {
                         var _miItem = e.Item;
 
-                        int _iduser = Convert.ToInt32(e.Item.Cells[0].Text);
                         var idLiga = Convert.ToInt32(e.Item.Cells[1].Text);
-                        var ligaSeleccionada = (from l in this.manager.t_leagues where l.id == idLiga select l).FirstOrDefault();
-                        base.liga = ligaSeleccionada;
-
-                        //aqui cruzo los dedos
-
-                        this.Response.Redirect("LigaDet.aspx?idKey="+idLiga, true);
+                        this.Response.Redirect("LeagueDet.aspx?idKey="+idLiga, true);
                         break;
                     }
             }

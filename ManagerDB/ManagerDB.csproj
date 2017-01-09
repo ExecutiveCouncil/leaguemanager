@@ -92,6 +92,11 @@
     <Content Include="dll\EntityFramework.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\t_badges\alpha.png" />
+    <Content Include="images\t_badges\bronce.png" />
+    <Content Include="images\t_badges\mercs2017.png" />
+    <Content Include="images\t_badges\oro.png" />
+    <Content Include="images\t_badges\plata.png" />
     <Content Include="images\t_dices\mercs\a.png" />
     <Content Include="images\t_dices\mercs\a1.png" />
     <Content Include="images\t_dices\mercs\a1s.png" />
@@ -173,6 +178,8 @@
     <Content Include="images\t_game_factions\mercs\sefadu.jpg" />
     <Content Include="images\t_game_factions\mercs\texico.jpg" />
     <Content Include="images\t_game_factions\mercs\uscr.jpg" />
+    <Content Include="images\t_leagues\mercs2017.jpg" />
+    <Content Include="images\t_leagues\mercs_league.jpg" />
     <Content Include="images\webapp\menu_icon.png" />
     <Content Include="images\webapp\user.png" />
     <Content Include="Pages\Dados.aspx" />
@@ -195,7 +202,8 @@
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\npm.js" />
-    <Content Include="Pages\LigaDet.aspx" />
+    <Content Include="Pages\Leagues.aspx" />
+    <Content Include="Pages\LeagueDet.aspx" />
     <Content Include="Pages\Factions.aspx" />
     <Content Include="Pages\Home.aspx" />
     <Content Include="Pages\League.aspx" />
@@ -237,12 +245,19 @@
       <DependentUpon>main.master</DependentUpon>
     </Compile>
     <Compile Include="Clases\JugadorLiga.cs" />
-    <Compile Include="Pages\LigaDet.aspx.cs">
-      <DependentUpon>LigaDet.aspx</DependentUpon>
+    <Compile Include="Pages\Leagues.aspx.cs">
+      <DependentUpon>Leagues.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\LigaDet.aspx.designer.cs">
-      <DependentUpon>LigaDet.aspx</DependentUpon>
+    <Compile Include="Pages\Leagues.aspx.designer.cs">
+      <DependentUpon>Leagues.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\LeagueDet.aspx.cs">
+      <DependentUpon>LeagueDet.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\LeagueDet.aspx.designer.cs">
+      <DependentUpon>LeagueDet.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Factions.aspx.cs">
       <DependentUpon>Factions.aspx</DependentUpon>

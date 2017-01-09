@@ -1,5 +1,5 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LigaDet.aspx.cs"
-    Inherits="ManagerDB.Pages.LigaDetAspx" MasterPageFile="~/master/main.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LeagueDet.aspx.cs"
+    Inherits="ManagerDB.Pages.LeagueDetAspx" MasterPageFile="~/master/main.master" %>
 
 <asp:Content ContentPlaceHolderID="ContentProgram" runat="server">
     <div class="container">

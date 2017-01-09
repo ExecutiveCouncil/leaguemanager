@@ -10,7 +10,7 @@
 namespace ManagerDB.Pages {
     
     
-    public partial class LigaDetAspx {
+    public partial class LeagueDetAspx {
         
         /// <summary>
         /// Control DrpLigas.

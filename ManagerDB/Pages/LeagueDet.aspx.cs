@@ -6,7 +6,7 @@ using System.Web.UI.WebControls;
 
 namespace ManagerDB.Pages
 {
-    public partial class LigaDetAspx : BasicPage
+    public partial class LeagueDetAspx : BasicPage
     {
 
         private int idKey
@@ -116,7 +116,7 @@ namespace ManagerDB.Pages
                                     title_id = lt.id,
                                     badge_id = b.id,
                                     badge_name = b.name,
-                                    badge_url = "../images" + b.avatar_url,
+                                    badge_url = this.PATH_IMAGES + b.avatar_url,
                                     title_info = lt.info,
                                     title_name = lt.name
                                 }).ToList();

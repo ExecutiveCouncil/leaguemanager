@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h3>LIGAS</h3>
+                <h3>LIGAS ACTIVAS</h3>
             </div>
         </div>
         <br />
@@ -22,13 +22,13 @@
                         <asp:BoundColumn DataField="user_id" HeaderText="user_id" Visible="false"></asp:BoundColumn>
                         <asp:BoundColumn DataField="league_id" HeaderText="league_id" Visible="false"></asp:BoundColumn>
                         <asp:ButtonColumn DataTextField="league_name" HeaderText="Liga" CommandName="VerLiga"></asp:ButtonColumn>
-                        <asp:BoundColumn DataField="team_name" HeaderText="Equipo"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="team_name" HeaderText="Nombre equipo"></asp:BoundColumn>
                         <asp:BoundColumn DataField="faction_name" HeaderText="Facción"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="wins" HeaderText="Victorias"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="losses" HeaderText="Derrotas"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="draws" HeaderText="Empates"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="score" HeaderText="Puntos"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="current_round" HeaderText="Ronda"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="wins" HeaderText="Victorias" ItemStyle-Width="50px"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="losses" HeaderText="Derrotas" ItemStyle-Width="50px"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="draws" HeaderText="Empates" ItemStyle-Width="50px"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="score" HeaderText="Puntos" ItemStyle-Width="50px"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="current_round" HeaderText="Ronda" ItemStyle-Width="50px"></asp:BoundColumn>
                     </Columns>
                 </asp:DataGrid>
             </div>

@@ -10,6 +10,7 @@ using ManagerDB.master;
 
 namespace ManagerDB.Pages
 {
+
     public class BasicPage : System.Web.UI.Page
     {
 
@@ -48,6 +49,11 @@ namespace ManagerDB.Pages
                 this.Session["Manager"] = value;
             }
         }
+
+        /// <summary>
+        /// Directorio paadre del que cuelgan las imágenes de la web
+        /// </summary>
+        public string PATH_IMAGES = "../images";
 
         /// <summary>
         /// Datos del usuario
