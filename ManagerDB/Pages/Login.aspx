@@ -16,7 +16,7 @@
                         <asp:Panel ID="Login1" runat="server" style="width: 100%;">
                             <div class="box">
                                 <div class="content">
-                                    <h1>Autentificación requerida</h1>
+                                    <h1>AUTENTIFICACIÓN REQUERIDA</h1>
                                     <asp:TextBox CssClass="field" placeholder="ID OPERATIVO" id="UserName" runat="server"></asp:TextBox>
                                     <br />
                                     <asp:TextBox CssClass="field" placeholder="CONTRASEÑA" id="Password" runat="server" textmode="Password"></asp:TextBox>

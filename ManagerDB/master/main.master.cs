@@ -18,7 +18,7 @@ namespace ManagerDB.master
             }
             set
             {
-                this._LbUser.Text = value;
+                this._LbUser.Text = value.ToUpper();
             }
         }
 

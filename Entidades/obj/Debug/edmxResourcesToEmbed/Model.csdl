@@ -18,8 +18,9 @@
     <EntitySet Name="mercs_user_upgrades" EntityType="MANAGERDBModel.mercs_user_upgrades" />
     <EntitySet Name="mercs_die_faces" EntityType="MANAGERDBModel.mercs_die_faces" />
     <EntitySet Name="t_user_titles" EntityType="MANAGERDBModel.t_user_titles" />
-    <EntitySet Name="mercs_user_dice" EntityType="MANAGERDBModel.mercs_user_dice" />
     <EntitySet Name="t_messages" EntityType="MANAGERDBModel.t_messages" />
+    <EntitySet Name="mercs_user_dice_msg" EntityType="MANAGERDBModel.mercs_user_dice_msg" />
+    <EntitySet Name="mercs_user_dice" EntityType="MANAGERDBModel.mercs_user_dice" />
   </EntityContainer>
   <EntityType Name="mercs_die_types">
     <Key>
@@ -209,20 +210,6 @@
     <Property Type="Int32" Name="id_league_title" />
     <Property Type="DateTime" Name="unlock_date" Precision="3" />
   </EntityType>
-  <EntityType Name="mercs_user_dice">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="Int32" Name="id_user_league" />
-    <Property Type="Int32" Name="round" />
-    <Property Type="Int32" Name="id_die_type" />
-    <Property Type="DateTime" Name="spent_date" Precision="3" />
-    <Property Type="Int32" Name="resources_gained" />
-    <Property Type="DateTime" Name="rolled_date" Precision="3" />
-    <Property Type="Int32" Name="id_die_face" />
-    <Property Type="Int32" Name="id_message" />
-  </EntityType>
   <EntityType Name="t_messages">
     <Key>
       <PropertyRef Name="id" />
@@ -237,5 +224,31 @@
     <Property Type="Int32" Name="id_league" />
     <Property Type="Int32" Name="round" />
     <Property Type="String" Name="status" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="mercs_user_dice_msg">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id_user_dice" />
+    <Property Type="Int32" Name="id_user_from" />
+    <Property Type="String" Name="message" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="message_date" Precision="3" />
+  </EntityType>
+  <EntityType Name="mercs_user_dice">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id_user_league" />
+    <Property Type="Int32" Name="round" />
+    <Property Type="Int32" Name="id_die_type" />
+    <Property Type="Int32" Name="id_die_face" />
+    <Property Type="DateTime" Name="rolled_date" Precision="3" />
+    <Property Type="Int32" Name="cost" />
+    <Property Type="DateTime" Name="spent_date" Precision="3" />
+    <Property Type="Int32" Name="resources_gained" />
+    <Property Type="DateTime" Name="admin_date" Precision="3" />
+    <Property Type="Int32" Name="status" />
   </EntityType>
 </Schema>

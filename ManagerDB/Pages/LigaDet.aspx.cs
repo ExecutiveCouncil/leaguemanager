@@ -41,6 +41,7 @@ namespace ManagerDB.Pages
                         t_leagues _liga = this.manager.t_leagues.Where(p => p.id == this.idKey).FirstOrDefault();
                         this.DrpLigas.SelectedValue = _liga.id.ToString();
                         this.CargarJugadores();
+                        this.CargarBadges();
                     }
                 }
             }
@@ -51,12 +52,13 @@ namespace ManagerDB.Pages
             this.DrpLigas.Items.Clear();
             this.DrpLigas.Items.Add(new ListItem("seleccione una liga", "-1"));
             var _ligas = this.manager.t_leagues.Where(p=>p.active == "Y").ToList();
-
             foreach (t_leagues _liga in _ligas)
             {
                 this.DrpLigas.Items.Add(new ListItem(_liga.name, _liga.id.ToString()));
             }
         }
+
+        private EnvironmentVariableTarget _jugador;
 
         private void CargarJugadores()
         {
@@ -69,7 +71,7 @@ namespace ManagerDB.Pages
                                 join u in this.manager.t_users on ul.id_user equals u.id
                                 join gf in this.manager.t_game_factions on ul.id_faction equals gf.id
                                 where ul.id_league == _idLiga
-                                select new
+                                select new JugadorLiga
                                 {
                                     league_id = l.id,
                                     user_id = ul.id_user,
@@ -102,6 +104,36 @@ namespace ManagerDB.Pages
             }
         }
 
+        private void CargarBadges()
+        {
+            int _idLiga = Convert.ToInt32(this.DrpLigas.SelectedValue);
+
+            var _listaBadges = (from lt in this.manager.t_league_titles
+                                join b in this.manager.t_badges on lt.id_badge equals b.id
+                                where lt.id_league == _idLiga
+                                select new
+                                {
+                                    title_id = lt.id,
+                                    badge_id = b.id,
+                                    badge_name = b.name,
+                                    badge_url = "../images" + b.avatar_url,
+                                    title_info = lt.info,
+                                    title_name = lt.name
+                                }).ToList();
+
+            if (_listaBadges.Count > 0)
+            {
+                this.GrBadges.DataSource = _listaBadges;
+                this.GrBadges.DataBind();
+            }
+            else
+            {
+                this.GrBadges.DataSource = null;
+                this.GrBadges.DataBind();
+                this._LbNoBadges.Visible = true;
+            }
+
+        }
 
         protected void GrClasificacion_ItemCommand(object source, DataGridCommandEventArgs e)
         {
@@ -111,6 +143,26 @@ namespace ManagerDB.Pages
         protected void DrpLigas_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.CargarJugadores();
+            this.CargarBadges();
+        }
+
+        protected void GrJugadores_ItemDataBound(object sender, DataGridItemEventArgs e)
+        {
+            if (e.Item.ItemType == ListItemType.Item)
+            {
+                JugadorLiga _jugadorLiga = (JugadorLiga)e.Item.DataItem;
+                if (this.usuario != null &&
+                    _jugadorLiga.user_id == this.usuario.id)
+                {
+                    //pintamos diferente la fila que representa al usuario conectado.
+                    e.Item.Style.Add("color", "#ffffff");
+                }
+            }
+
+
+
+
+
         }
     }
 }

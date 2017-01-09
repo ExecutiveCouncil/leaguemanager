@@ -7,6 +7,7 @@
     <EntitySet Name="mercs_troops" EntityType="MANAGERDBModel.Store.mercs_troops" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="mercs_upgrades" EntityType="MANAGERDBModel.Store.mercs_upgrades" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="mercs_user_dice" EntityType="MANAGERDBModel.Store.mercs_user_dice" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="mercs_user_dice_msg" EntityType="MANAGERDBModel.Store.mercs_user_dice_msg" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="mercs_user_troops" EntityType="MANAGERDBModel.Store.mercs_user_troops" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="mercs_user_upgrades" EntityType="MANAGERDBModel.Store.mercs_user_upgrades" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="t_badges" EntityType="MANAGERDBModel.Store.t_badges" store:Type="Tables" Schema="dbo" />
@@ -86,11 +87,23 @@
     <Property Name="id_user_league" Type="int" />
     <Property Name="round" Type="int" />
     <Property Name="id_die_type" Type="int" />
+    <Property Name="id_die_face" Type="int" />
+    <Property Name="rolled_date" Type="datetime" />
+    <Property Name="cost" Type="int" />
     <Property Name="spent_date" Type="datetime" />
     <Property Name="resources_gained" Type="int" />
-    <Property Name="rolled_date" Type="datetime" />
-    <Property Name="id_die_face" Type="int" />
-    <Property Name="id_message" Type="int" />
+    <Property Name="admin_date" Type="datetime" />
+    <Property Name="status" Type="int" />
+  </EntityType>
+  <EntityType Name="mercs_user_dice_msg">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id_user_dice" Type="int" />
+    <Property Name="id_user_from" Type="int" />
+    <Property Name="message" Type="varchar(max)" />
+    <Property Name="message_date" Type="datetime" />
   </EntityType>
   <EntityType Name="mercs_user_troops">
     <Key>

@@ -8,7 +8,7 @@ body{
   background:#161616;
   color:#888;
   font-family: 'Ubuntu Mono', sans-serif;
-  text-transform:uppercase;
+  /*text-transform:uppercase;*/
 }
 
 a{

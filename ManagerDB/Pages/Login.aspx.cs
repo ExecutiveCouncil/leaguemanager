@@ -29,17 +29,34 @@ namespace ManagerDB.Pages
 
             var usuarioRegistrado = this.manager.t_users
                 .Where(a => a.login == UserName.Text && 
-                       a.pass == Password.Text && 
                        a.active == "Y").FirstOrDefault();
             if (usuarioRegistrado != null)
             {
-                usuarioRegistrado.login_errors = 0;
-                this.manager.SaveChanges();
 
-                base.usuario = usuarioRegistrado;
+                if (usuarioRegistrado.pass == Password.Text)
+                {
+                    usuarioRegistrado.login_errors = 0;
+                    this.manager.SaveChanges();
 
-                //FormsAuthentication.RedirectFromLoginPage(Login1.UserName, false);
-                Response.Redirect("home.aspx", true);
+                    base.usuario = usuarioRegistrado;
+
+                    //FormsAuthentication.RedirectFromLoginPage(Login1.UserName, false);
+                    Response.Redirect("home.aspx", true);
+                }
+                else
+                {
+                    usuarioRegistrado.login_errors++;
+                    if (usuarioRegistrado.login_errors >= 5)
+                    {
+                        usuarioRegistrado.active = "N";
+                    }
+                    
+                    this.manager.SaveChanges();
+
+                    this._LbErrorLogin.Text = "Usuario / Contraseña incorrectos";
+                    this.PnlErrorLogin.Visible = true;
+
+                }
             }      
             else
             {

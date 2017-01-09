@@ -16,7 +16,9 @@
         <br />
         <h3><asp:Label runat="server" ID="LbClasif" Text="CLASIFICACION"></asp:Label></h3>
         <br />
-        <asp:DataGrid ID="GrJugadores" runat="server" AutoGenerateColumns="false" Width="100%" OnItemCommand="GrClasificacion_ItemCommand" 
+        <asp:DataGrid ID="GrJugadores" runat="server" AutoGenerateColumns="false" Width="100%" 
+                    OnItemCommand="GrClasificacion_ItemCommand" 
+                    OnItemDataBound="GrJugadores_ItemDataBound"
                     ShowHeader="true" 
                     CssClass="grid"
                     HeaderStyle-CssClass="grid_header" 
@@ -36,23 +38,35 @@
             </Columns>
         </asp:DataGrid>
         <asp:Label runat="server" style="color:#ffd800;" Text="No hay jugadores" ID="_LbNoJugadores" Visible="false"></asp:Label>
+        <br />
+        <asp:Panel runat="server" ID="PnlBadges">
+            <br />
+            <h3><asp:Label runat="server" ID="Label1" Text="INSIGNIAS DISPONIBLES"></asp:Label></h3>
+            <br />
+            <asp:DataGrid ID="GrBadges" runat="server" AutoGenerateColumns="false" Width="100%" 
+                        ShowHeader="true" 
+                        CssClass="grid"
+                        HeaderStyle-CssClass="grid_header" 
+                        ItemStyle-CssClass="grid_row" 
+                        AlternatingItemStyle-CssClass="grid_alternate_row"
+                        >
+                <Columns>
+                    <asp:BoundColumn DataField="title_id" Visible="false"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="badge_id" Visible="false"></asp:BoundColumn>
+                    <asp:TemplateColumn HeaderText="">
+                        <ItemTemplate>
+                            <asp:Image runat="server" ImageUrl='<%# Eval("badge_url") %>' Width="45px" ToolTip='<%# Eval("badge_name") %>' CssClass="imagenDados" />
+                        </ItemTemplate>
+                    </asp:TemplateColumn>
+                    <asp:BoundColumn DataField="title_name" HeaderText="Título" HeaderStyle-Font-Bold="true" ItemStyle-Width="220px"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="title_info" HeaderText="Reglas" ></asp:BoundColumn>
+                </Columns>
+            </asp:DataGrid>
+
+            <asp:Label runat="server" style="color:#ffd800;" Text="No hay insignias" ID="_LbNoBadges" Visible="false"></asp:Label>
+        </asp:Panel>
+
+        <br /><br />
 
     </div>
-
-    <!-- Popup -->
-    <asp:Button ID="btnShow" runat="server" Text="Show Modal Popup" style="display:none"/>
-    <ajax:ModalPopupExtender ID="PopUpFaction" runat="server" PopupControlID="PnlPopUp" TargetControlID="btnShow"
-        CancelControlID="btnClose" BackgroundCssClass="modalBackground">
-    </ajax:ModalPopupExtender>
-    <asp:Panel ID="PnlPopUp" runat="server" CssClass="PopUp" style="display:none; max-width:600px; width:80%; height: 400px; overflow:hidden">
-        <h2 style="background-color:#a47c05; color:#35322C; margin-top:0">
-            <asp:Image runat="server" id="ImgFaction" style="width:40px" />
-            <asp:Label runat="server" ID="LbFactionName" style="vertical-align:text-bottom"></asp:Label>
-        </h2>
-        <div style="overflow-y:scroll; height: 300px; padding:10px">
-            <asp:Button ID="btnClose" CssClass="ClosePopUp" runat="server" Text="X" />
-            <asp:Label runat="server" ID="LbFactionInfo"></asp:Label>
-        </div>
-    </asp:Panel>
-
 </asp:Content>

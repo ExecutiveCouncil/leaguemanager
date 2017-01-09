@@ -36,16 +36,16 @@
 
                   <!-- Overlay content -->
                   <div class="overlay-content">
-                    <a href="../pages/home.aspx">Cuenta</a>
-                    <a href="../pages/home.aspx">Ligas</a>
-                    <a href="../pages/factions.aspx">Facciones</a>
-                    <a href="../pages/logout.aspx">Desconectar</a>
+                    <a href="../pages/home.aspx">CUENTA</a>
+                    <a href="../pages/home.aspx">LIGAS</a>
+                    <a href="../pages/factions.aspx">FACCIONES</a>
+                    <a href="../pages/logout.aspx">DESCONECTAR</a>
                   </div>
                 </div>
                 <!-- Use any element to open/show the overlay navigation menu -->
                 <div style="height:65px">
                     <img class="menu_button" src="../images/webapp/menu_icon.png" onclick="openNav()" />
-                    <asp:Label runat="server" Text="Manager de liga" Font-Size="XX-Large" style="position:absolute; left:70px; top:10px; color:#a47c05"></asp:Label>
+                    <asp:Label runat="server" Text="MANAGER DE LIGA" Font-Size="XX-Large" style="position:absolute; left:70px; top:10px; color:#a47c05"></asp:Label>
                     <asp:Label runat="server" id="_LbUser" Text="XXXX" Font-Size="XX-Large" style="position:absolute; right:15px; top:10px; "></asp:Label>
                 </div>
             </div>

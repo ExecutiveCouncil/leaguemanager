@@ -49,66 +49,39 @@ namespace ManagerDB.Pages {
         protected global::System.Web.UI.WebControls.Label _LbNoJugadores;
         
         /// <summary>
-        /// Control btnShow.
+        /// Control PnlBadges.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnShow;
+        protected global::System.Web.UI.WebControls.Panel PnlBadges;
         
         /// <summary>
-        /// Control PopUpFaction.
+        /// Control Label1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender PopUpFaction;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
-        /// Control PnlPopUp.
+        /// Control GrBadges.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PnlPopUp;
+        protected global::System.Web.UI.WebControls.DataGrid GrBadges;
         
         /// <summary>
-        /// Control ImgFaction.
+        /// Control _LbNoBadges.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImgFaction;
-        
-        /// <summary>
-        /// Control LbFactionName.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LbFactionName;
-        
-        /// <summary>
-        /// Control btnClose.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClose;
-        
-        /// <summary>
-        /// Control LbFactionInfo.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LbFactionInfo;
+        protected global::System.Web.UI.WebControls.Label _LbNoBadges;
     }
 }

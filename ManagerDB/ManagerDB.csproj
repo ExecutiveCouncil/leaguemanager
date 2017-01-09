@@ -236,6 +236,7 @@
     <Compile Include="master\main.master.designer.cs">
       <DependentUpon>main.master</DependentUpon>
     </Compile>
+    <Compile Include="Clases\JugadorLiga.cs" />
     <Compile Include="Pages\LigaDet.aspx.cs">
       <DependentUpon>LigaDet.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
