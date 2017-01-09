@@ -53,7 +53,7 @@ namespace ManagerDB.Pages
         /// <summary>
         /// Directorio paadre del que cuelgan las imágenes de la web
         /// </summary>
-        public string PATH_IMAGES = "../images";
+        public string PATH_IMAGES = "../images/";
 
         /// <summary>
         /// Datos del usuario
