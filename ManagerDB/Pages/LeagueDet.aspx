@@ -14,6 +14,22 @@
             OnSelectedIndexChanged="DrpLigas_SelectedIndexChanged"></asp:DropDownList>
         </h3>
         <br />
+        <table style="width:100%">
+            <tr>
+                <td>
+                    <asp:Image runat="server" ID="ImgLiga" />
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td>Nombre de la liga</td>
+                            <td>#nombre#</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <br />
         <h3><asp:Label runat="server" ID="LbClasif" Text="CLASIFICACION"></asp:Label></h3>
         <br />
         <asp:DataGrid ID="GrJugadores" runat="server" AutoGenerateColumns="false" Width="100%" 
