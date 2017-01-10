@@ -182,6 +182,7 @@
     <Content Include="images\t_leagues\mercs_league.jpg" />
     <Content Include="images\webapp\menu_icon.png" />
     <Content Include="images\webapp\user.png" />
+    <Content Include="Pages\AdminDados.aspx" />
     <Content Include="Pages\Dados.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -220,6 +221,13 @@
     </Compile>
     <Compile Include="Clases\RandomGenerator.cs" />
     <Compile Include="Clases\UserDice.cs" />
+    <Compile Include="Pages\AdminDados.aspx.cs">
+      <DependentUpon>AdminDados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\AdminDados.aspx.designer.cs">
+      <DependentUpon>AdminDados.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Dados.aspx.cs">
       <DependentUpon>Dados.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

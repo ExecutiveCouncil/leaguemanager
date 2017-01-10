@@ -2,12 +2,9 @@
 using ManagerDB.Clases;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Web;
 using System.Web.Security;
 using System.Web.UI;
-using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 namespace ManagerDB.Pages
@@ -269,11 +266,15 @@ namespace ManagerDB.Pages
 
                 if (fechaUso != null)
                 {
-                    if (status == 1 || status == 2)
+                    if (status == 1)
                     {
                         imagen += "s";
                     }
-                    else
+                    else if (status == 2)
+                    {
+                        imagen += "m";
+                    }
+                    else                    
                     {
                         imagen += "u";
                     }

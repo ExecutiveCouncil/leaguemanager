@@ -95,6 +95,10 @@ namespace ManagerDB.Pages
                         var _miItem = e.Item;
 
                         var idLiga = Convert.ToInt32(e.Item.Cells[1].Text);
+
+                        var ligaSeleccionada = (from l in this.manager.t_leagues where l.id == idLiga select l).FirstOrDefault();
+                        base.liga = ligaSeleccionada;
+
                         this.Response.Redirect("LeagueDet.aspx?idKey="+idLiga, true);
                         break;
                     }
