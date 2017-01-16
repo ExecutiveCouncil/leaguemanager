@@ -13,6 +13,24 @@ namespace ManagerDB.Pages {
     public partial class LeagueDetAspx {
         
         /// <summary>
+        /// Control BtBack.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BtBack;
+        
+        /// <summary>
+        /// Control _LbTitle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label _LbTitle;
+        
+        /// <summary>
         /// Control DrpLigas.
         /// </summary>
         /// <remarks>

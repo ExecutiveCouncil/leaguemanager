@@ -64,6 +64,17 @@ namespace ManagerDB.Pages
         {
 
             int _idLiga = Convert.ToInt32(this.DrpLigas.SelectedValue);
+            var _ligaSeleccionada = (from l in this.manager.t_leagues where l.id == _idLiga select l).FirstOrDefault();
+            base.liga = _ligaSeleccionada;
+            if (_ligaSeleccionada != null)
+            {
+                this._LbTitle.Text = _ligaSeleccionada.name;
+            }
+            else
+            {
+                this._LbTitle.Text = "Debe seleccionar una liga";
+            }
+
             this._LbNoJugadores.Visible = false;
             var ligasUsuario = (from ul in this.manager.t_user_leagues
                                 join l in this.manager.t_leagues on ul.id_league equals l.id
@@ -119,7 +130,7 @@ namespace ManagerDB.Pages
                                     badge_url = this.PATH_IMAGES + b.avatar_url,
                                     title_info = lt.info,
                                     title_name = lt.name
-                                }).ToList();
+                                }).OrderBy(b=>b.badge_id).ToList();
 
             if (_listaBadges.Count > 0)
             {

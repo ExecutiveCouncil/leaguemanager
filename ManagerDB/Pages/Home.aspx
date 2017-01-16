@@ -5,7 +5,20 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h3>LIGAS ACTIVAS</h3>
+                <h1>
+                    <asp:ImageButton runat="server" ID="BtBack" 
+                                     ImageUrl="~/images/webapp/back.png" OnClientClick="goBack();" 
+                                     CssClass="image_button" Width="40px" 
+                                     style="vertical-align:text-top;"/>
+                    INICIO
+                </h1>
+                <hr />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3>MIS LIGAS (ACTIVAS)</h3>
             </div>
         </div>
         <br />
@@ -36,7 +49,7 @@
         <br />
         <div class="row">
             <div class="col-md-12">
-                <h3>MENSAJES</h3>
+                <h3>ULTIMOS MENSAJES</h3>
             </div>
         </div>
         <br />
@@ -48,14 +61,34 @@
                             HeaderStyle-CssClass="grid_header" 
                             ItemStyle-CssClass="grid_row" 
                             AlternatingItemStyle-CssClass="grid_alternate_row"
+                            OnItemCommand="GrMensajes_ItemCommand"
                     >
                     <Columns>
                         <asp:BoundColumn DataField="league_id" HeaderText="league_id" Visible="false"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="sent_date" HeaderText="Fecha"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="league_name" HeaderText="Liga"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="user_name_from" HeaderText="Emisor"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="subject" HeaderText="Asunto"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="message" HeaderText="Mensaje"></asp:BoundColumn>
+                        <asp:TemplateColumn HeaderText="Usuario" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="75px" ItemStyle-VerticalAlign="Top">
+                            <ItemTemplate>
+                                <asp:ImageButton runat="server" id="_imgUsuario" ImageUrl='<%# Eval("user_from_avatar_url") %>' Width="75px" 
+                                                 CommandArgument='<%# Eval("user_from_id") %>'
+                                                 CommandName="VerUsuario" />
+                                <br />
+                                <strong><asp:Label runat="server" ID="_lbUsuarioNombre" Text='<%# Eval("user_from_name") %>' Font-Size="X-Small"></asp:Label></strong>
+                                <br />
+                                <asp:Label runat="server" ID="_LbFecha" Font-Italic="true" Font-Size="X-Small" Text='<%# Convert.ToDateTime(Eval("sent_date")).ToShortDateString() %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateColumn>
+                        <asp:TemplateColumn ItemStyle-VerticalAlign="Top" HeaderText="Mensaje">
+                            <ItemTemplate>
+                                <asp:LinkButton runat="server" ID="Label1" Text='<%# Eval("league_name") %>' 
+                                                CommandName="VerLiga" 
+                                                CommandArgument='<%# Eval("league_id") %>'></asp:LinkButton>
+                                -
+                                <strong>
+                                <asp:Label runat="server" ID="_LbTitulo" Text='<%# Eval("subject") %>' ForeColor="#ffffff"></asp:Label>
+                                </strong>
+                                <br />
+                                <asp:Label runat="server" ID="_LbMessage" Text='<%# Eval("message") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateColumn>
                     </Columns>
                 </asp:DataGrid>
             </div>

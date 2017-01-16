@@ -5,11 +5,18 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <h1>
+                    <asp:ImageButton runat="server" ID="BtBack" 
+                                     ImageUrl="~/images/webapp/back.png" OnClientClick="goBack();" 
+                                     CssClass="image_button" Width="40px" 
+                                     style="vertical-align:text-top;"/>
+                    FACCIONES
+                </h1>
             </div>
         </div>
+        <hr />
         <br /><br />
         <h3>
-        Facciones
         <asp:DropDownList runat="server" ID="DrpGames" AutoPostBack="true" CssClass="dropdown"
             OnSelectedIndexChanged="DrpGames_SelectedIndexChanged"></asp:DropDownList>
 

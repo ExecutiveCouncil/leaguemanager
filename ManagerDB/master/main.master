@@ -26,6 +26,11 @@
                     function closeNav() {
                         document.getElementById("myNav").style.height = "0%";
                     }
+
+                    function goBack() {
+                        window.history.back();
+                        return false;
+                    }
                 </script>         
 
                 <!-- The overlay -->
@@ -36,7 +41,7 @@
 
                   <!-- Overlay content -->
                   <div class="overlay-content">
-                    <a href="../pages/home.aspx">CUENTA</a>
+                    <a href="../pages/home.aspx">INICIO</a>
                     <a href="../pages/leagues.aspx">LIGAS</a>
                     <a href="../pages/factions.aspx">FACCIONES</a>
                     <a href="../pages/logout.aspx">DESCONECTAR</a>
@@ -45,7 +50,7 @@
                 <!-- Use any element to open/show the overlay navigation menu -->
                 <div style="height:65px">
                     <img class="menu_button" src="../images/webapp/menu_icon.png" onclick="openNav()" />
-                    <asp:Label runat="server" Text="MANAGER DE LIGA" Font-Size="XX-Large" style="position:absolute; left:70px; top:10px; color:#a47c05"></asp:Label>
+                    <strong><asp:Label runat="server" Text="MANAGER DE LIGA" Font-Size="XX-Large" style="position:absolute; left:70px; top:10px; color:#a47c05"></asp:Label></strong>
                     <asp:Label runat="server" id="_LbUser" Text="XXXX" Font-Size="XX-Large" style="position:absolute; right:15px; top:10px; "></asp:Label>
                 </div>
             </div>

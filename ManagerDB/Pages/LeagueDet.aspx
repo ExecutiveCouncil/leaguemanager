@@ -3,8 +3,19 @@
 
 <asp:Content ContentPlaceHolderID="ContentProgram" runat="server">
     <div class="container">
+
+
+
         <div class="row">
             <div class="col-md-12">
+                <h1>
+                    <asp:ImageButton runat="server" ID="BtBack" 
+                                     ImageUrl="~/images/webapp/back.png" OnClientClick="goBack();" 
+                                     CssClass="image_button" Width="40px" 
+                                     style="vertical-align:text-top;"/>
+                    <asp:Label runat="server" ID="_LbTitle"></asp:Label>
+                </h1>
+                <hr />
             </div>
         </div>
         <br /><br />
@@ -69,13 +80,20 @@
                 <Columns>
                     <asp:BoundColumn DataField="title_id" Visible="false"></asp:BoundColumn>
                     <asp:BoundColumn DataField="badge_id" Visible="false"></asp:BoundColumn>
-                    <asp:TemplateColumn HeaderText="">
+                    <asp:TemplateColumn HeaderText="Insignia" ItemStyle-Width="50px">
                         <ItemTemplate>
-                            <asp:Image runat="server" ImageUrl='<%# Eval("badge_url") %>' Width="45px" ToolTip='<%# Eval("badge_name") %>' CssClass="imagenDados" />
+                            <asp:Image runat="server" ImageUrl='<%# Eval("badge_url") %>' Width="50px" ToolTip='<%# Eval("badge_name") %>' CssClass="imagenDados" />
                         </ItemTemplate>
                     </asp:TemplateColumn>
-                    <asp:BoundColumn DataField="title_name" HeaderText="Título" HeaderStyle-Font-Bold="true" ItemStyle-Width="220px"></asp:BoundColumn>
-                    <asp:BoundColumn DataField="title_info" HeaderText="Reglas" ></asp:BoundColumn>
+                    <asp:TemplateColumn HeaderText="Título" ItemStyle-VerticalAlign="Top">
+                        <ItemTemplate>
+                            <strong>
+                            <asp:Label runat="server" ID="_LbNombreTitulo" Text='<%# Eval("title_name") %>' ForeColor="#ffffff"></asp:Label>
+                            </strong>
+                            <br />
+                            <asp:Label runat="server" ID="_LbInfo" Text='<%# Eval("title_info") %>'></asp:Label>
+                        </ItemTemplate>
+                    </asp:TemplateColumn>
                 </Columns>
             </asp:DataGrid>
 

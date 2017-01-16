@@ -68,15 +68,16 @@ namespace ManagerDB.Pages
                                 select new
                                 {
                                     league_id = l.id,
-                                    league_avatar_url = l.avatar_url,
+                                    league_avatar_url = this.PATH_IMAGES + l.avatar_url,
                                     league_name = l.name,
-                                    user_name_from = u.name,
-                                    user_avatar_url = u.avatar_url,
+                                    user_from_id = u.id,
+                                    user_from_name = u.name,
+                                    user_from_avatar_url = this.PATH_IMAGES + u.avatar_url,
                                     subject = m.subject,
                                     message = m.message,
                                     sent_date = m.sent_date.Value,
                                     current_round = l.current_round,
-                                }).OrderByDescending(a=> a.sent_date).Take(5).ToList();
+                                }).OrderByDescending(a=> a.sent_date).Take(10).ToList();
 
             if (mensajesUsuario.Count > 0)
             {
@@ -94,12 +95,29 @@ namespace ManagerDB.Pages
                     {
                         var _miItem = e.Item;
 
-                        var idLiga = Convert.ToInt32(e.Item.Cells[1].Text);
+                        var _idLiga = Convert.ToInt32(e.Item.Cells[1].Text);
 
-                        var ligaSeleccionada = (from l in this.manager.t_leagues where l.id == idLiga select l).FirstOrDefault();
-                        base.liga = ligaSeleccionada;
+                        var _ligaSeleccionada = (from l in this.manager.t_leagues where l.id == _idLiga select l).FirstOrDefault();
+                        base.liga = _ligaSeleccionada;
 
-                        this.Response.Redirect("LeagueDet.aspx?idKey="+idLiga, true);
+                        this.Response.Redirect("LeagueDet.aspx?idKey=" + _ligaSeleccionada.id, true);
+                        break;
+                    }
+            }
+        }
+
+        protected void GrMensajes_ItemCommand(object source, DataGridCommandEventArgs e)
+        {
+            switch (e.CommandName)
+            {
+                case "VerLiga":
+                    {
+                        int _idLiga = Convert.ToInt32(e.CommandArgument);
+
+                        var _ligaSeleccionada = (from l in this.manager.t_leagues where l.id == _idLiga select l).FirstOrDefault();
+                        base.liga = _ligaSeleccionada;
+
+                        this.Response.Redirect("LeagueDet.aspx?idKey=" + _ligaSeleccionada.id, true);
                         break;
                     }
             }
