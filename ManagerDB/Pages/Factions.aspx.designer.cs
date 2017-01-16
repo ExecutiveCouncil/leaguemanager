@@ -31,6 +31,15 @@ namespace ManagerDB.Pages {
         protected global::System.Web.UI.WebControls.DropDownList DrpGames;
         
         /// <summary>
+        /// Control LbClasif.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbClasif;
+        
+        /// <summary>
         /// Control RptFactions.
         /// </summary>
         /// <remarks>
@@ -38,6 +47,15 @@ namespace ManagerDB.Pages {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater RptFactions;
+        
+        /// <summary>
+        /// Control _LbNoFactions.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label _LbNoFactions;
         
         /// <summary>
         /// Control btnShow.

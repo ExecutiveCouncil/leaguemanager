@@ -40,7 +40,7 @@ namespace ManagerDB.Pages
             {
                 this.DrpGames.Items.Add(new ListItem(_item.game_name, _item.game_id.ToString()));
             }
-            if (this.DrpGames.Items.Count == 2)
+            if (this.DrpGames.Items.Count > 1)
             {
                 this.DrpGames.SelectedIndex = 1;
                 DrpGames_SelectedIndexChanged(null, null);
@@ -55,7 +55,17 @@ namespace ManagerDB.Pages
                 .Where(fc => fc.id_game == _id &&
                        fc.id != 0).ToList();
 
-            this.RptFactions.DataSource = _listaFacciones;
+            if (_listaFacciones.Count > 0)
+            {
+                _LbNoFactions.Visible = false;
+                this.RptFactions.DataSource = _listaFacciones;
+            }
+            else
+            {
+                _LbNoFactions.Visible = true;
+                this.RptFactions.DataSource = null;
+            }
+
             this.RptFactions.DataBind();
 
         }

@@ -18,7 +18,6 @@
                 <hr />
             </div>
         </div>
-        <br /><br />
         <h3>
         <asp:DropDownList runat="server" ID="DrpLigas" AutoPostBack="true" CssClass="dropdown"
             style="min-width:350px"

@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <h1>
                     <asp:ImageButton runat="server" ID="BtBack" 
-                                     ImageUrl="~/images/webapp/back.png" OnClientClick="goBack();" 
+                                     ImageUrl="~/images/webapp/back.png" OnClientClick="goHome();" 
                                      CssClass="image_button" Width="40px" 
                                      style="vertical-align:text-top;"/>
                     FACCIONES
@@ -15,13 +15,14 @@
             </div>
         </div>
         <hr />
-        <br /><br />
         <h3>
         <asp:DropDownList runat="server" ID="DrpGames" AutoPostBack="true" CssClass="dropdown"
             OnSelectedIndexChanged="DrpGames_SelectedIndexChanged"></asp:DropDownList>
 
         </h3>
         <br /><br />
+        <h3><asp:Label runat="server" ID="LbClasif" Text="LISTA DE FACCIONES"></asp:Label></h3>
+        <br />
         <asp:Repeater runat="server" ID="RptFactions" OnItemCommand="RptFactions_ItemCommand">
             <ItemTemplate>
                 <div style="float:left; margin:5px">
@@ -36,6 +37,7 @@
                 </div>
             </ItemTemplate>
         </asp:Repeater>
+        <asp:Label runat="server" style="color:#ffd800;" Text="No hay facciones dadas de alta" ID="_LbNoFactions" Visible="false"></asp:Label>
     </div>
 
     <!-- Popup -->
