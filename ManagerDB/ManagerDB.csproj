@@ -232,7 +232,7 @@
     <Content Include="Pages\MiPerfil.aspx" />
     <Content Include="Pages\Leagues.aspx" />
     <Content Include="Pages\LeagueDet.aspx" />
-    <Content Include="Pages\Factions.aspx" />
+    <Content Include="Pages\Games.aspx" />
     <Content Include="Pages\Home.aspx" />
     <Content Include="Pages\League.aspx" />
     <Content Include="Pages\Login.aspx" />
@@ -308,12 +308,12 @@
     <Compile Include="Pages\LeagueDet.aspx.designer.cs">
       <DependentUpon>LeagueDet.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Factions.aspx.cs">
-      <DependentUpon>Factions.aspx</DependentUpon>
+    <Compile Include="Pages\Games.aspx.cs">
+      <DependentUpon>Games.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Pages\Factions.aspx.designer.cs">
-      <DependentUpon>Factions.aspx</DependentUpon>
+    <Compile Include="Pages\Games.aspx.designer.cs">
+      <DependentUpon>Games.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>

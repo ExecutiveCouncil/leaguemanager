@@ -48,7 +48,7 @@
                   <div class="overlay-content">
                     <a href="../pages/home.aspx">INICIO</a>
                     <a href="../pages/leagues.aspx">LIGAS</a>
-                    <a href="../pages/factions.aspx">FACCIONES</a>
+                    <a href="../pages/games.aspx">JUEGOS</a>
                     <a href="../pages/logout.aspx">DESCONECTAR</a>
                   </div>
                 </div>

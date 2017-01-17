@@ -6,7 +6,7 @@ using System.Web.UI.WebControls;
 
 namespace ManagerDB.Pages
 {
-    public partial class FactionsAspx : BasicPage
+    public partial class GamesAspx : BasicPage
     {
 
         protected void Page_Load(object sender, EventArgs e)
@@ -49,8 +49,13 @@ namespace ManagerDB.Pages
 
         protected void DrpGames_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //rellenar repeater
             int _id = Convert.ToInt32(this.DrpGames.SelectedValue);
+
+            //datos del juego
+            var _juego = this.manager.t_games
+                .Where(g => g.id == _id).FirstOrDefault();
+            
+            //repeater de facciones
             var _listaFacciones = this.manager.t_game_factions
                 .Where(fc => fc.id_game == _id &&
                        fc.id != 0).ToList();

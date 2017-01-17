@@ -10,7 +10,7 @@
 namespace ManagerDB.Pages {
     
     
-    public partial class FactionsAspx {
+    public partial class GamesAspx {
         
         /// <summary>
         /// Control DrpGames.

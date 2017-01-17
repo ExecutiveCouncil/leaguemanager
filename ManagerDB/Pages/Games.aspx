@@ -1,12 +1,12 @@
-﻿  <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Factions.aspx.cs"
-    Inherits="ManagerDB.Pages.FactionsAspx" MasterPageFile="~/master/main.master" %>
+﻿  <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Games.aspx.cs"
+    Inherits="ManagerDB.Pages.GamesAspx" MasterPageFile="~/master/main.master" %>
 
 <asp:Content ContentPlaceHolderID="ContentProgram" runat="server">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <h1>
-                    FACCIONES
+                    JUEGOS
                 </h1>
             </div>
         </div>
@@ -17,7 +17,7 @@
 
         </h3>
         <br /><br />
-        <h3><asp:Label runat="server" ID="LbClasif" Text="LISTA DE FACCIONES"></asp:Label></h3>
+        <h3><asp:Label runat="server" ID="LbClasif" Text="FACCIONES DISPONIBLES"></asp:Label></h3>
         <br />
         <asp:Repeater runat="server" ID="RptFactions" OnItemCommand="RptFactions_ItemCommand">
             <ItemTemplate>
