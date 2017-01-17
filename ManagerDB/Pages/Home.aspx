@@ -6,10 +6,6 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>
-                    <asp:ImageButton runat="server" ID="BtBack" 
-                                     ImageUrl="~/images/webapp/back.png" OnClientClick="goBack();" 
-                                     CssClass="image_button" Width="40px" 
-                                     style="vertical-align:text-top;"/>
                     INICIO
                 </h1>
                 <hr />
@@ -61,8 +57,7 @@
                             HeaderStyle-CssClass="grid_header" 
                             ItemStyle-CssClass="grid_row" 
                             AlternatingItemStyle-CssClass="grid_alternate_row"
-                            OnItemCommand="GrMensajes_ItemCommand"
-                    >
+                            OnItemCommand="GrMensajes_ItemCommand">
                     <Columns>
                         <asp:BoundColumn DataField="league_id" HeaderText="league_id" Visible="false"></asp:BoundColumn>
                         <asp:TemplateColumn HeaderText="Usuario" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="75px" ItemStyle-VerticalAlign="Top">

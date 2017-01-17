@@ -6,11 +6,7 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>
-                    <asp:ImageButton runat="server" ID="BtBack" 
-                                     ImageUrl="~/images/webapp/back.png" OnClientClick="goBack();" 
-                                     CssClass="image_button" Width="40px" 
-                                     style="vertical-align:text-top;"/>
-                    LIGAS
+                        LIGAS
                 </h1>
                 <hr />
             </div>

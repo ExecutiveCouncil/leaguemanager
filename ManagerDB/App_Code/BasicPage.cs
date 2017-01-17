@@ -109,6 +109,7 @@ namespace ManagerDB.Pages
                 this.usuario != null )
             {
                 ((ManagerDB.master.main)this.Master).LoggedUser = this.usuario.login;
+                ((ManagerDB.master.main)this.Master).ImgUser = this.PATH_IMAGES + this.usuario.avatar_url;
 
                 if (SecurityLevel.HasValue)
                 {

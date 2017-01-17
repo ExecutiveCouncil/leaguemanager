@@ -3,9 +3,6 @@
 
 <asp:Content ContentPlaceHolderID="ContentProgram" runat="server">
     <div class="container">
-
-
-
         <div class="row">
             <div class="col-md-12">
                 <h1>
@@ -24,21 +21,30 @@
             OnSelectedIndexChanged="DrpLigas_SelectedIndexChanged"></asp:DropDownList>
         </h3>
         <br />
-        <table style="width:100%">
-            <tr>
-                <td>
-                    <asp:Image runat="server" ID="ImgLiga" />
-                </td>
-                <td>
-                    <table>
-                        <tr>
-                            <td>Nombre de la liga</td>
-                            <td>#nombre#</td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-        </table>
+
+        <asp:Table runat="server" Width="100%">
+            <asp:TableRow>
+                <asp:TableCell Width="200px">
+                    <asp:Image runat="server" ID="ImgLiga" Width="200px" />
+                </asp:TableCell>
+                <asp:TableCell Width="10px"></asp:TableCell>
+                <asp:TableCell VerticalAlign="Top">
+                    <p class="row">
+                        <asp:Label runat="server" ID="Label6" Text="Fecha inicio de liga"></asp:Label>
+                        <asp:TextBox runat="server" Enabled="false" ID="TxFechaInicio" Text="XXXXXX" Width="100%"></asp:TextBox>
+                    </p>
+                    <p class="row">
+                        <asp:Label runat="server" ID="Label2" Text="Fecha fin de liga"></asp:Label>
+                        <asp:TextBox runat="server" Enabled="false" ID="TxFechaFin" Text="XXXXXX" Width="100%"></asp:TextBox>
+                    </p>
+                    <p class="row">
+                        <asp:Label runat="server" ID="Label3" Text="Información adicional"></asp:Label>
+                        <asp:TextBox runat="server" Enabled="false" ID="TxInfo" Text="XXXXXX" Width="100%"></asp:TextBox>
+                    </p>
+                </asp:TableCell>
+            </asp:TableRow>
+        </asp:Table>
+
         <br />
         <h3><asp:Label runat="server" ID="LbClasif" Text="CLASIFICACION"></asp:Label></h3>
         <br />

@@ -25,13 +25,25 @@ table th
 {
     background-color:red;
 }
+
+
+.div_box{
+  background:#222;
+  border-radius:7px;
+  box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.9);
+  padding-left:25px;
+  padding-right:25px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
  
 .box{
   width:90%;
   max-width:450px;
   height:auto;
   margin:0 auto;
-  margin-top:100px;
+  margin-top:0px;
   background:#222;
   border-radius:7px;
   box-shadow: 0px 3px 10px 1px rgba(0, 0, 0, 0.9);
@@ -357,4 +369,48 @@ h3{
 {
     filter: alpha(opacity=100);
     opacity: 1;
+}
+
+
+p.row
+{
+	position:relative;
+	width: 100%;
+	margin-top: 0px;
+	margin-bottom: 5px;
+	margin-left: 5px;
+	padding: 0;
+	overflow: hidden;
+	min-height: 2.6em;
+	text-align: left;
+}
+p.row span, p.row label
+{
+	color: #a47c05;
+    padding-top: 0px;
+	position: absolute;
+	width: 145px;
+	border-bottom: solid 0px #a47c05;
+	border-right: solid 0px #a47c05;
+	margin-top: 1px;
+	bottom: 0;
+	left: 0;
+}
+
+p.row input, p.row textarea, p.row select, p.row div.dateContainer
+{
+	position: absolute;
+	bottom: 0;
+	left: 150px;
+	max-width: 60%;
+	vertical-align: text-top;
+    border:none;
+    min-height: 1.75em;
+    color:#000000;
+}
+
+input[type="text"]:disabled {
+    background-color: transparent;
+    color:#FFBF00;
+    font-weight: bold;
 }

@@ -58,6 +58,15 @@ namespace ManagerDB.master {
         protected global::System.Web.UI.WebControls.Label _LbUser;
         
         /// <summary>
+        /// Control _imgUser.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton _imgUser;
+        
+        /// <summary>
         /// Control ContentProgram.
         /// </summary>
         /// <remarks>

@@ -66,9 +66,24 @@ namespace ManagerDB.Pages
             int _idLiga = Convert.ToInt32(this.DrpLigas.SelectedValue);
             var _ligaSeleccionada = (from l in this.manager.t_leagues where l.id == _idLiga select l).FirstOrDefault();
             base.liga = _ligaSeleccionada;
+            this.TxFechaInicio.Text = "---";
+            this.TxFechaFin.Text = "---";
+            this.TxInfo.Text = "---";
+            this.ImgLiga.ImageUrl = null;
             if (_ligaSeleccionada != null)
             {
                 this._LbTitle.Text = _ligaSeleccionada.name;
+                this.ImgLiga.ImageUrl = this.PATH_IMAGES + _ligaSeleccionada.avatar_url;
+                if (_ligaSeleccionada.start_date.HasValue == true)
+                {
+                    this.TxFechaInicio.Text = _ligaSeleccionada.start_date.Value.ToLongDateString();
+                }
+                if (_ligaSeleccionada.end_date.HasValue == true)
+                {
+                    this.TxFechaFin.Text = _ligaSeleccionada.end_date.Value.ToLongDateString();
+                }
+                this.TxInfo.Text = _ligaSeleccionada.info;
+
             }
             else
             {

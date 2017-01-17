@@ -22,6 +22,18 @@ namespace ManagerDB.master
             }
         }
 
+        public string ImgUser
+        {
+            get
+            {
+                return this._imgUser.ImageUrl;
+            }
+            set
+            {
+                this._imgUser.ImageUrl = value;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
 

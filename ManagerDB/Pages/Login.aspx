@@ -12,8 +12,14 @@
         <div class="container">
             <form id="login" runat="server">
                 <div class="row">
+                    <div class="center" style="text-align:center;" >
+                        
+                    </div>
+                </div>
+                <div class="row">
                     <div class="center">
-                        <asp:Panel ID="Login1" runat="server" style="width: 100%;">
+                        <asp:Panel ID="Login1" runat="server" style="width: 100%;text-align:center;margin-top:5vh">
+                            <img src="../images/t_games/mercs.png" style="max-width:500px;"/>
                             <div class="box">
                                 <div class="content">
                                     <h1>AUTENTIFICACIÓN REQUERIDA</h1>
@@ -24,8 +30,8 @@
                                     <asp:Panel runat="server" ID="PnlErrorLogin" Visible="false">
                                         <asp:Label runat="server" ID="_LbErrorLogin" style="color:#ffd800;"></asp:Label>
                                     </asp:Panel>
-                                    <br />
                                     <asp:Button CssClass="btn" id="LoginButton" runat="server" OnClick="ValidateUser" text="Acceso"></asp:Button>
+                                </div>
                             </div>
                         </asp:Panel>
                     </div>
