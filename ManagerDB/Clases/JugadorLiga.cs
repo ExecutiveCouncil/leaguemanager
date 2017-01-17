@@ -19,6 +19,7 @@ namespace ManagerDB.Pages
         public int? score { get; set; }
         public string league_name { get; set; }
         public string league_avatar_url { get; set; }
+        public int? game_id { get; set; }
         public string game_name { get; set; }
         public string game_avatar_url { get; set; }
         public string faction_name { get; set; }

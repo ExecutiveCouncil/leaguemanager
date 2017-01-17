@@ -200,8 +200,13 @@
     <Content Include="images\t_leagues\mercs_league.jpg" />
     <Content Include="images\t_leagues\whfantasy2017.jpg" />
     <Content Include="images\webapp\back.png" />
+    <Content Include="images\webapp\LAGUARIDA.png" />
     <Content Include="images\webapp\menu_icon.png" />
+    <Content Include="images\webapp\user.jpg" />
     <Content Include="images\webapp\user.png" />
+    <Content Include="images\webapp\user_old.png" />
+    <Content Include="images\webapp\WALLPAPER.jpg" />
+    <Content Include="images\webapp\wallpaper_menu.jpg" />
     <Content Include="Pages\AdminDados.aspx" />
     <Content Include="Pages\Dados.aspx" />
     <Content Include="Default.aspx" />
@@ -223,6 +228,7 @@
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\npm.js" />
+    <Content Include="Pages\MiLiga.aspx" />
     <Content Include="Pages\MiPerfil.aspx" />
     <Content Include="Pages\Leagues.aspx" />
     <Content Include="Pages\LeagueDet.aspx" />
@@ -274,6 +280,13 @@
       <DependentUpon>main.master</DependentUpon>
     </Compile>
     <Compile Include="Clases\JugadorLiga.cs" />
+    <Compile Include="Pages\MiLiga.aspx.cs">
+      <DependentUpon>MiLiga.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\MiLiga.aspx.designer.cs">
+      <DependentUpon>MiLiga.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\MiPerfil.aspx.cs">
       <DependentUpon>MiPerfil.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

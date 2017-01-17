@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="ManagerDB.Pages.Home" MasterPageFile="~/master/main.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MiLiga.aspx.cs" Inherits="ManagerDB.Pages.MiLigaAspx" MasterPageFile="~/master/main.master" %>
 
 <asp:Content ContentPlaceHolderID="ContentProgram" runat="server">
 
@@ -6,47 +6,68 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>
-                    INICIO
+                    <asp:ImageButton runat="server" ID="BtBack" 
+                                     ImageUrl="~/images/webapp/back.png" OnClientClick="goBack();" 
+                                     CssClass="image_button" Width="40px" 
+                                     style="vertical-align:text-top;"/>
+                    <asp:Label runat="server" ID="LbTituloLiga"></asp:Label>
                 </h1>
                 <hr />
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <h3>MIS LIGAS (ACTIVAS)</h3>
-            </div>
-        </div>
+        <br />
+        <asp:Table runat="server" Width="100%">
+            <asp:TableRow>
+                <asp:TableCell Width="200px">
+                    <asp:Image runat="server" ID="ImgLiga" Width="200px" />
+                </asp:TableCell>
+                <asp:TableCell Width="10px"></asp:TableCell>
+                <asp:TableCell VerticalAlign="Top">
+                    <p class="row">
+                        <asp:Label runat="server" ID="Label6" Text="Fecha inicio de liga"></asp:Label>
+                        <asp:TextBox runat="server" Enabled="false" ID="TxFechaInicio" Text="XXXXXX" Width="100%"></asp:TextBox>
+                    </p>
+                    <p class="row">
+                        <asp:Label runat="server" ID="Label2" Text="Fecha fin de liga"></asp:Label>
+                        <asp:TextBox runat="server" Enabled="false" ID="TxFechaFin" Text="XXXXXX" Width="100%"></asp:TextBox>
+                    </p>
+                    <p class="row">
+                        <asp:Label runat="server" ID="Label3" Text="Información adicional"></asp:Label>
+                        <asp:TextBox runat="server" Enabled="false" ID="TxInfo" Text="XXXXXX" Width="100%"></asp:TextBox>
+                    </p>
+                </asp:TableCell>
+            </asp:TableRow>
+        </asp:Table>
         <br />
         <div class="row">
             <div class="col-md-12">
-                <asp:DataGrid ID="GrLigas" runat="server" AutoGenerateColumns="false" Width="100%" OnItemCommand="GrLigas_ItemCommand" 
-                            ShowHeader="true" 
-                            CssClass="grid"
-                            HeaderStyle-CssClass="grid_header" 
-                            ItemStyle-CssClass="grid_row" 
-                            AlternatingItemStyle-CssClass="grid_alternate_row"
-                            >
-                    <Columns>
-                        <asp:BoundColumn DataField="user_id" HeaderText="user_id" Visible="false"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="league_id" HeaderText="league_id" Visible="false"></asp:BoundColumn>
-                        <asp:ButtonColumn DataTextField="league_name" HeaderText="Liga" CommandName="VerLiga"></asp:ButtonColumn>
-                        <asp:BoundColumn DataField="team_name" HeaderText="Nombre equipo"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="faction_name" HeaderText="Facción"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="wins" HeaderText="Victorias" ItemStyle-Width="50px"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="losses" HeaderText="Derrotas" ItemStyle-Width="50px"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="draws" HeaderText="Empates" ItemStyle-Width="50px"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="score" HeaderText="Puntos" ItemStyle-Width="50px"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="current_round" HeaderText="Ronda" ItemStyle-Width="50px"></asp:BoundColumn>
-                    </Columns>
-                </asp:DataGrid>
-                <asp:Label runat="server" style="color:#ffd800;" Text="No participa en ninguna liga" ID="_LbNoLiga" Visible="false"></asp:Label>
+                <h3>PANEL DE CONTROL</h3>
             </div>
         </div>
         <br />
+        <asp:DataGrid ID="GrJugadores" runat="server" AutoGenerateColumns="false" Width="100%" 
+                    ShowHeader="true" 
+                    CssClass="grid"
+                    HeaderStyle-CssClass="grid_header" 
+                    ItemStyle-CssClass="grid_row" 
+                    AlternatingItemStyle-CssClass="grid_alternate_row">
+            <Columns>
+                <asp:BoundColumn DataField="user_id" HeaderText="user_id" Visible="false"></asp:BoundColumn>
+                <asp:BoundColumn DataField="league_id" HeaderText="league_id" Visible="false"></asp:BoundColumn>
+                <asp:BoundColumn DataField="wins" HeaderText="Victorias"></asp:BoundColumn>
+                <asp:BoundColumn DataField="losses" HeaderText="Derrotas"></asp:BoundColumn>
+                <asp:BoundColumn DataField="draws" HeaderText="Empates"></asp:BoundColumn>
+                <asp:BoundColumn DataField="score" HeaderText="Puntos"></asp:BoundColumn>
+            </Columns>
+        </asp:DataGrid>
+        <br />
+        <asp:Panel runat="server" ID="PnlUsuarioLigaMERCS" Visible="false" class="div_box" style="text-align:right">
+            <asp:Button CssClass="btn" id="BtInformePartida" runat="server" OnClick="BtRecursosMERCS_Click" text="INFORMAR PARTIDA" Width="200px"></asp:Button>
+            <asp:Button CssClass="btn" id="BtRecursosMERCS" runat="server" OnClick="BtRecursosMERCS_Click" text="USAR DADOS" Width="150px"></asp:Button>
+        </asp:Panel>
         <div class="row">
             <div class="col-md-12">
-                <h3>ULTIMOS MENSAJES RECIBIDOS</h3>
+                <h3>MENSAJES RECIBIDOS</h3>
             </div>
         </div>
         <br />

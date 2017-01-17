@@ -42,11 +42,11 @@
         CancelControlID="btnClose" BackgroundCssClass="modalBackground">
     </ajax:ModalPopupExtender>
     <asp:Panel ID="PnlPopUp" runat="server" CssClass="PopUp" style="display:none; max-width:600px; width:80%; height: 400px; overflow:hidden">
-        <h2 style="background-color:#a47c05; color:#35322C; margin-top:0">
+        <h2 style="padding-left:10px; background-color:transparent; color:#ffffff; margin-top:0">
             <asp:Image runat="server" id="ImgFaction" style="width:40px" />
             <asp:Label runat="server" ID="LbFactionName" style="vertical-align:text-bottom"></asp:Label>
         </h2>
-        <div style="overflow-y:scroll; height: 300px; padding:10px">
+        <div style="overflow-y:auto; height: 300px; padding:10px" class="div_box">
             <asp:Button ID="btnClose" CssClass="ClosePopUp" runat="server" Text="X" />
             <asp:Label runat="server" ID="LbFactionInfo"></asp:Label>
         </div>

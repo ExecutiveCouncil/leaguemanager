@@ -72,11 +72,12 @@
     <ajax:ModalPopupExtender ID="PopUpMensaje" runat="server" PopupControlID="PnlPopUp" TargetControlID="btnShow"
         CancelControlID="btnClose" BackgroundCssClass="modalBackground" OkControlID="">
     </ajax:ModalPopupExtender>
-    <asp:Panel ID="PnlPopUp" runat="server" CssClass="PopUp" style="display:none; width:300px;">
+    <asp:Panel ID="PnlPopUp" runat="server" CssClass="PopUp" style="display:none; width:400px;">
         <div class="div_box" style="padding:10px; text-align:center">
-            <asp:Button ID="btnClose" CssClass="ClosePopUp" runat="server" Text="X" />
+            <asp:Label runat="server" ID="LbTitulo" CssClass="TitlePopUp" Text="MENSAJE DEL SISTEMA" ></asp:Label>
+            <asp:Button runat="server" ID="btnClose" CssClass="ClosePopUp" Text="X" />
             <br />
-            <asp:Label runat="server" id="LbPopMensaje" Text="" ForeColor="#ffffff"></asp:Label>
+            <asp:Label runat="server" id="LbPopMensaje" Text="" ForeColor="#e3e3e3"></asp:Label>
             <br /><br />
             <asp:Button CssClass="btn" id="BtAceptar" runat="server" text="ACEPTAR" style="width:145px"></asp:Button>
         </div>

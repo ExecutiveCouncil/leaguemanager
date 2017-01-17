@@ -54,8 +54,15 @@ namespace ManagerDB.Pages
             if (ligasUsuario.Count > 0)
             {
                 this.GrLigas.DataSource = ligasUsuario;
-                this.GrLigas.DataBind();
+                this._LbNoLiga.Visible = false;
             }
+            else
+            {
+                this.GrLigas.DataSource = null;
+                this._LbNoLiga.Visible = true;
+            }
+            this.GrLigas.DataBind();
+
         }
 
         private void CargarUltimosMensajes()
@@ -82,9 +89,14 @@ namespace ManagerDB.Pages
             if (mensajesUsuario.Count > 0)
             {
                 this.GrMensajes.DataSource = mensajesUsuario;
-                this.GrMensajes.DataBind();
-
+                _LbNoMensajes.Visible = false;
             }
+            else
+            {
+                _LbNoMensajes.Visible = true;
+                this.GrMensajes.DataSource = null;
+            }
+            this.GrMensajes.DataBind();
         }
 
         protected void GrLigas_ItemCommand(object source, DataGridCommandEventArgs e)

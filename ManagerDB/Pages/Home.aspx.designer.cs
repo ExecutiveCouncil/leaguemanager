@@ -22,6 +22,15 @@ namespace ManagerDB.Pages {
         protected global::System.Web.UI.WebControls.DataGrid GrLigas;
         
         /// <summary>
+        /// Control _LbNoLiga.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label _LbNoLiga;
+        
+        /// <summary>
         /// Control GrMensajes.
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace ManagerDB.Pages {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DataGrid GrMensajes;
+        
+        /// <summary>
+        /// Control _LbNoMensajes.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label _LbNoMensajes;
         
         /// <summary>
         /// Control Ligas.

@@ -8,7 +8,7 @@
         <link href="~/css/bootstrap.min.css" rel="stylesheet"/>
         <link id="Link1" rel="stylesheet" runat="server" media="screen" href="~/css/style.css" />
     </head>
-    <body> 
+    <body style="background-image:url(../images/webapp/wallpaper.jpg); background-size:cover"> 
         <div class="container">
             <form id="login" runat="server">
                 <div class="row">

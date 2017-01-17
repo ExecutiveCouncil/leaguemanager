@@ -10,79 +10,34 @@
 namespace ManagerDB.Pages {
     
     
-    public partial class MiPerfilAspx {
+    public partial class MiLigaAspx {
         
         /// <summary>
-        /// Control ImgUser.
+        /// Control BtBack.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImgUser;
+        protected global::System.Web.UI.WebControls.ImageButton BtBack;
         
         /// <summary>
-        /// Control Label3.
+        /// Control LbTituloLiga.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label LbTituloLiga;
         
         /// <summary>
-        /// Control TxNombre.
+        /// Control ImgLiga.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxNombre;
-        
-        /// <summary>
-        /// Control Label4.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
-        
-        /// <summary>
-        /// Control TxApellidos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxApellidos;
-        
-        /// <summary>
-        /// Control Label5.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label5;
-        
-        /// <summary>
-        /// Control TxEmail.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxEmail;
-        
-        /// <summary>
-        /// Control BtDatosUsuario.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtDatosUsuario;
+        protected global::System.Web.UI.WebControls.Image ImgLiga;
         
         /// <summary>
         /// Control Label6.
@@ -94,13 +49,13 @@ namespace ManagerDB.Pages {
         protected global::System.Web.UI.WebControls.Label Label6;
         
         /// <summary>
-        /// Control TxUserLogin.
+        /// Control TxFechaInicio.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxUserLogin;
+        protected global::System.Web.UI.WebControls.TextBox TxFechaInicio;
         
         /// <summary>
         /// Control Label2.
@@ -112,120 +67,102 @@ namespace ManagerDB.Pages {
         protected global::System.Web.UI.WebControls.Label Label2;
         
         /// <summary>
-        /// Control TxPasswdActual.
+        /// Control TxFechaFin.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxPasswdActual;
+        protected global::System.Web.UI.WebControls.TextBox TxFechaFin;
         
         /// <summary>
-        /// Control LbLogin.
+        /// Control Label3.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LbLogin;
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
-        /// Control TxPasswd1.
+        /// Control TxInfo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxPasswd1;
+        protected global::System.Web.UI.WebControls.TextBox TxInfo;
         
         /// <summary>
-        /// Control Label1.
+        /// Control GrJugadores.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.DataGrid GrJugadores;
         
         /// <summary>
-        /// Control TxPasswd2.
+        /// Control PnlUsuarioLigaMERCS.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TxPasswd2;
+        protected global::System.Web.UI.WebControls.Panel PnlUsuarioLigaMERCS;
         
         /// <summary>
-        /// Control BtLoginUsuario.
+        /// Control BtInformePartida.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtLoginUsuario;
+        protected global::System.Web.UI.WebControls.Button BtInformePartida;
         
         /// <summary>
-        /// Control btnShow.
+        /// Control BtRecursosMERCS.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnShow;
+        protected global::System.Web.UI.WebControls.Button BtRecursosMERCS;
         
         /// <summary>
-        /// Control PopUpMensaje.
+        /// Control GrMensajes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::AjaxControlToolkit.ModalPopupExtender PopUpMensaje;
+        protected global::System.Web.UI.WebControls.DataGrid GrMensajes;
         
         /// <summary>
-        /// Control PnlPopUp.
+        /// Control _LbNoMensajes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel PnlPopUp;
+        protected global::System.Web.UI.WebControls.Label _LbNoMensajes;
         
         /// <summary>
-        /// Control LbTitulo.
+        /// Control Ligas.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LbTitulo;
+        protected global::System.Web.UI.WebControls.PlaceHolder Ligas;
         
         /// <summary>
-        /// Control btnClose.
+        /// Control UltimosMensajes.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClose;
-        
-        /// <summary>
-        /// Control LbPopMensaje.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LbPopMensaje;
-        
-        /// <summary>
-        /// Control BtAceptar.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtAceptar;
+        protected global::System.Web.UI.WebControls.PlaceHolder UltimosMensajes;
     }
 }

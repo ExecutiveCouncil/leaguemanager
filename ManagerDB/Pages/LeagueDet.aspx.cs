@@ -51,10 +51,17 @@ namespace ManagerDB.Pages
         {
             this.DrpLigas.Items.Clear();
             this.DrpLigas.Items.Add(new ListItem("seleccione una liga", "-1"));
-            var _ligas = this.manager.t_leagues.Where(p=>p.active == "Y").ToList();
+            var _ligas = this.manager.t_leagues.OrderByDescending(o=>o.active).ToList();
             foreach (t_leagues _liga in _ligas)
             {
-                this.DrpLigas.Items.Add(new ListItem(_liga.name, _liga.id.ToString()));
+                if (_liga.active == "Y")
+                {
+                    this.DrpLigas.Items.Add(new ListItem(_liga.name, _liga.id.ToString()));
+                }
+                else
+                {
+                    this.DrpLigas.Items.Add(new ListItem(_liga.name + " - [FINALIZADA]", _liga.id.ToString()));
+                }
             }
         }
 
@@ -66,6 +73,8 @@ namespace ManagerDB.Pages
             int _idLiga = Convert.ToInt32(this.DrpLigas.SelectedValue);
             var _ligaSeleccionada = (from l in this.manager.t_leagues where l.id == _idLiga select l).FirstOrDefault();
             base.liga = _ligaSeleccionada;
+
+            this.PnlUsuarioLiga.Visible = false;
             this.TxFechaInicio.Text = "---";
             this.TxFechaFin.Text = "---";
             this.TxInfo.Text = "---";
@@ -84,13 +93,22 @@ namespace ManagerDB.Pages
                 }
                 this.TxInfo.Text = _ligaSeleccionada.info;
 
+                if (_ligaSeleccionada.active == "Y")
+                {
+                    var _ligaUsuario = this.manager.t_user_leagues
+                        .Where(a => a.id_user == this.usuario.id &&
+                                    a.id_league == _ligaSeleccionada.id).FirstOrDefault();
+                    if (_ligaUsuario != null)
+                    {
+                        this.PnlUsuarioLiga.Visible = true;
+                    }
+                }
             }
             else
             {
                 this._LbTitle.Text = "Debe seleccionar una liga";
             }
 
-            this._LbNoJugadores.Visible = false;
             var ligasUsuario = (from ul in this.manager.t_user_leagues
                                 join l in this.manager.t_leagues on ul.id_league equals l.id
                                 join g in this.manager.t_games on l.id_game equals g.id
@@ -120,14 +138,15 @@ namespace ManagerDB.Pages
             if (ligasUsuario.Count > 0)
             {
                 this.GrJugadores.DataSource = ligasUsuario;
-                this.GrJugadores.DataBind();
+                this._LbNoJugadores.Visible = false;
             }
             else
             {
                 this.GrJugadores.DataSource = null;
-                this.GrJugadores.DataBind();
                 this._LbNoJugadores.Visible = true;
             }
+            this.GrJugadores.DataBind();
+
         }
 
         private void CargarBadges()
@@ -189,6 +208,14 @@ namespace ManagerDB.Pages
 
 
 
+        }
+
+        protected void BtLiga_Click(object sender, EventArgs e)
+        {
+            if (this.liga != null)
+            {
+                Response.Redirect("miLiga.aspx?idKey=" + this.liga.id, true);
+            }
         }
     }
 }
