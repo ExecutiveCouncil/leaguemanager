@@ -74,6 +74,7 @@ namespace ManagerDB.Pages
             var _ligaSeleccionada = (from l in this.manager.t_leagues where l.id == _idLiga select l).FirstOrDefault();
             base.liga = _ligaSeleccionada;
 
+            this.BtAdministrar.Visible = false;
             this.PnlUsuarioLiga.Visible = false;
             this.TxFechaInicio.Text = "---";
             this.TxFechaFin.Text = "---";
@@ -81,6 +82,7 @@ namespace ManagerDB.Pages
             this.ImgLiga.ImageUrl = null;
             if (_ligaSeleccionada != null)
             {
+                
                 this._LbTitle.Text = _ligaSeleccionada.name;
                 this.ImgLiga.ImageUrl = this.PATH_IMAGES + _ligaSeleccionada.avatar_url;
                 if (_ligaSeleccionada.start_date.HasValue == true)
@@ -101,6 +103,12 @@ namespace ManagerDB.Pages
                     if (_ligaUsuario != null)
                     {
                         this.PnlUsuarioLiga.Visible = true;
+
+                        if (_ligaUsuario.security_level == 1)
+                        {
+                            this.BtAdministrar.Visible = true;
+                        }
+
                     }
                 }
             }
