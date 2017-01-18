@@ -23,7 +23,7 @@
         </div>
         <div class="row">
             <asp:Button CssClass="btn" id="btnAddTurno" runat="server" 
-                                    OnCommand="btnAddTurno_Command" text="Generar turno" 
+                                    OnCommand="btnAddTurno_Command" text="Generar ronda" 
                                     style="vertical-align:text-bottom;width:250px;"
                                     ToolTip="Pasa la liga al siguiente turno" Width="150px"></asp:Button> 
         </div>
