@@ -250,8 +250,8 @@ namespace ManagerDB.Pages
                 var dado = this.manager.mercs_user_dice.Where(a => a.id == dadoSeleccionado.id).FirstOrDefault();
                 var nombreDado = this.manager.mercs_die_types.Where(a => a.id == dado.id_die_type).FirstOrDefault().name;
                 var cara = this.manager.mercs_die_faces.Where(a => a.id == dado.id_die_face).FirstOrDefault();
-                //Guardamos la fecha de uso del dado
-                dado.spent_date = DateTime.Now;
+                //Guardamos la fecha de administracion del dado
+                dado.admin_date = DateTime.Now;
 
                 if (optReroll.Checked)
                 {
@@ -418,6 +418,14 @@ namespace ManagerDB.Pages
                         int _idDado = Convert.ToInt32( e.CommandArgument);
                         var dado = this.manager.mercs_user_dice.Where(a => a.id == _idDado).FirstOrDefault();
                         dadoSeleccionado = dado;
+
+                        //Vaciamos el popup
+                        txtMensaje.Text = string.Empty;
+                        txtAumentarCoste.Text = string.Empty;
+                        optReroll.Checked = false;
+                        optAumentarCoste.Checked = false;
+                        optEliminar.Checked = false;
+
                         PopUpDado.Show();
                         break;
                     }

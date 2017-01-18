@@ -134,7 +134,7 @@
                     <asp:RadioButton id="optMateriales" GroupName="UsarDado" Text="" runat="server"/>
                 </div>
                 <div style="margin-left:25px">
-                    <asp:RadioButton id="optUsar" GroupName="UsarDado" Text="Usar" runat="server"/>
+                    <asp:RadioButton id="optUsar" GroupName="UsarDado" Text="" runat="server"/>
                 </div>
                 <div style="margin-left:25px">
                     <asp:TextBox ID="txtUsar" runat="server" Height="100px" TextMode="MultiLine" Width="90%"></asp:TextBox>

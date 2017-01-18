@@ -316,6 +316,7 @@ namespace ManagerDB.Pages
                     var cara = this.manager.mercs_die_faces.Where(a => a.die_face == tirada && a.id_die_type == dado.id_die_type).FirstOrDefault();
                     dado.id_die_face = cara.id;
                     dado.status = 0; //sin usar
+                    dado.cost = cara.cost_credits;
 
                     GuardarMensaje("Tirada de dado", "Se tira un dado de '" + this.manager.mercs_die_types.Where(a => a.id == dado.id_die_type).FirstOrDefault().name + "' y ha salido '" + cara.info + "'", this.usuario.id, this.usuario.id);                    
                 }
@@ -352,6 +353,7 @@ namespace ManagerDB.Pages
                     if (cara.sell_credits == 0)
                     {
                         this.optUsar.ToolTip = cara.info;
+                        this.optUsar.Text = "Usar (coste: " + ((cara.cost_credits == null) ? 0 : cara.cost_credits) + " créditos)";
                         this.optUsar.Visible = true;
                         this.txtUsar.Visible = true;
                     }

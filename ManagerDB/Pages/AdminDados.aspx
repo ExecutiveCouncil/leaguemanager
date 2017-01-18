@@ -91,7 +91,7 @@
                 </div>
                 <div class="row">
                     <asp:RadioButton id="optAumentarCoste" GroupName="AdminDado" Text="Aumentar coste" runat="server"/>
-                    <asp:TextBox ID="txtAumentarCoste" runat="server" Height="23px" Width="10px"></asp:TextBox>
+                    <asp:TextBox ID="txtAumentarCoste" runat="server" Height="23px" Width="30px"  style="margin-left:25px;"></asp:TextBox>
                 </div>
                 <div class="row">                    
                     <asp:RadioButton id="optEliminar" GroupName="AdminDado" Text="Eliminar dado" runat="server"/>
