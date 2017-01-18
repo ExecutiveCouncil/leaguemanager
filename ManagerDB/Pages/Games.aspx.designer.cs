@@ -22,6 +22,24 @@ namespace ManagerDB.Pages {
         protected global::System.Web.UI.WebControls.DropDownList DrpGames;
         
         /// <summary>
+        /// Control ImgGame.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image ImgGame;
+        
+        /// <summary>
+        /// Control _LbInfoGame.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label _LbInfoGame;
+        
+        /// <summary>
         /// Control LbClasif.
         /// </summary>
         /// <remarks>

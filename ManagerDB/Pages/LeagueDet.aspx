@@ -8,7 +8,7 @@
                 <h1>
                     <asp:ImageButton runat="server" ID="BtBack" 
                                      ImageUrl="~/images/webapp/back.png" OnClientClick="goBack();" 
-                                     CssClass="image_button" Width="40px" 
+                                     CssClass="image_button" Width="45px" 
                                      style="vertical-align:text-top;"/>
                     <asp:Label runat="server" ID="_LbTitle"></asp:Label>
                 </h1>
@@ -60,7 +60,7 @@
             <Columns>
                 <asp:BoundColumn DataField="user_id" HeaderText="user_id" Visible="false"></asp:BoundColumn>
                 <asp:BoundColumn DataField="league_id" HeaderText="league_id" Visible="false"></asp:BoundColumn>
-                <asp:BoundColumn DataField="user_name" HeaderText="Jugador"></asp:BoundColumn>
+                <asp:ButtonColumn CommandName="VerJugador" DataTextField="user_name" HeaderText="Jugador"></asp:ButtonColumn>
                 <asp:BoundColumn DataField="team_name" HeaderText="Equipo"></asp:BoundColumn>
                 <asp:BoundColumn DataField="faction_name" HeaderText="Facción"></asp:BoundColumn>
                 <asp:BoundColumn DataField="wins" HeaderText="Victorias"></asp:BoundColumn>

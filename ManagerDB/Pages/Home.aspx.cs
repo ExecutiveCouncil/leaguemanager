@@ -115,6 +115,15 @@ namespace ManagerDB.Pages
                         this.Response.Redirect("LeagueDet.aspx?idKey=" + _ligaSeleccionada.id, true);
                         break;
                     }
+
+                case "VerUsuarioLiga":
+                    {
+                        int _idUser = Convert.ToInt32(e.Item.Cells[0].Text);
+                        int _idLiga = Convert.ToInt32(e.Item.Cells[1].Text);
+                        this.Response.Redirect("UserLeague.aspx?idLeague=" + _idLiga + "&idUser=" + _idUser, true);
+                        break;
+                    }
+
             }
         }
 

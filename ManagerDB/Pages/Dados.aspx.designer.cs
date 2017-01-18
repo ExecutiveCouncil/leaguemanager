@@ -13,6 +13,24 @@ namespace ManagerDB.Pages {
     public partial class Dados {
         
         /// <summary>
+        /// Control BtBack.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BtBack;
+        
+        /// <summary>
+        /// Control _LbTitle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label _LbTitle;
+        
+        /// <summary>
         /// Control lblLiga.
         /// </summary>
         /// <remarks>
@@ -49,6 +67,15 @@ namespace ManagerDB.Pages {
         protected global::System.Web.UI.WebControls.Label lblMateriales;
         
         /// <summary>
+        /// Control PnlDados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PnlDados;
+        
+        /// <summary>
         /// Control RptDices.
         /// </summary>
         /// <remarks>
@@ -76,6 +103,24 @@ namespace ManagerDB.Pages {
         protected global::System.Web.UI.WebControls.Button btnVerHistorial;
         
         /// <summary>
+        /// Control _LbNoDadosAsignados.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label _LbNoDadosAsignados;
+        
+        /// <summary>
+        /// Control PnlDadosUsuarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PnlDadosUsuarios;
+        
+        /// <summary>
         /// Control RptDatosUsuarios.
         /// </summary>
         /// <remarks>
@@ -83,6 +128,15 @@ namespace ManagerDB.Pages {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Repeater RptDatosUsuarios;
+        
+        /// <summary>
+        /// Control _LbNoDadosUsuarios.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label _LbNoDadosUsuarios;
         
         /// <summary>
         /// Control btnShow.
@@ -119,6 +173,15 @@ namespace ManagerDB.Pages {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnClose;
+        
+        /// <summary>
+        /// Control LbTitulo.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbTitulo;
         
         /// <summary>
         /// Control optCreditos.
@@ -164,6 +227,15 @@ namespace ManagerDB.Pages {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnUsarDado;
+        
+        /// <summary>
+        /// Control BtCancelar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button BtCancelar;
         
         /// <summary>
         /// Control btnOculto.

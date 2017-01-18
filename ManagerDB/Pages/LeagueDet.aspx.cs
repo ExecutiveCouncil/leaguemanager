@@ -182,7 +182,16 @@ namespace ManagerDB.Pages
 
         protected void GrClasificacion_ItemCommand(object source, DataGridCommandEventArgs e)
         {
-
+            switch (e.CommandName)
+            {
+                case "VerJugador":
+                    {
+                        int _idUser = Convert.ToInt32(e.Item.Cells[0].Text);
+                        int _idLiga = Convert.ToInt32(e.Item.Cells[1].Text);
+                        this.Response.Redirect("UserLeague.aspx?idLeague=" + _idLiga + "&idUser=" + _idUser, true);
+                        break;
+                    }
+            }
         }
 
         protected void DrpLigas_SelectedIndexChanged(object sender, EventArgs e)
@@ -214,7 +223,7 @@ namespace ManagerDB.Pages
         {
             if (this.liga != null)
             {
-                Response.Redirect("miLiga.aspx?idKey=" + this.liga.id, true);
+                Response.Redirect("UserLeague.aspx?idLeague=" + this.liga.id + "&idUser=" + this.usuario.id, true);
             }
         }
     }

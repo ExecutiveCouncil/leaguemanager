@@ -31,7 +31,7 @@
                         <asp:BoundColumn DataField="user_id" HeaderText="user_id" Visible="false"></asp:BoundColumn>
                         <asp:BoundColumn DataField="league_id" HeaderText="league_id" Visible="false"></asp:BoundColumn>
                         <asp:ButtonColumn DataTextField="league_name" HeaderText="Liga" CommandName="VerLiga"></asp:ButtonColumn>
-                        <asp:BoundColumn DataField="team_name" HeaderText="Nombre equipo"></asp:BoundColumn>
+                        <asp:ButtonColumn DataTextField="team_name" HeaderText="Nombre equipo" CommandName="VerUsuarioLiga"></asp:ButtonColumn>
                         <asp:BoundColumn DataField="faction_name" HeaderText="Facción"></asp:BoundColumn>
                         <asp:BoundColumn DataField="wins" HeaderText="Victorias" ItemStyle-Width="50px"></asp:BoundColumn>
                         <asp:BoundColumn DataField="losses" HeaderText="Derrotas" ItemStyle-Width="50px"></asp:BoundColumn>

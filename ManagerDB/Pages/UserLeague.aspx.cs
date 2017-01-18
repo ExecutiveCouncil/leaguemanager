@@ -5,16 +5,32 @@ using System.Web.UI.WebControls;
 
 namespace ManagerDB.Pages
 {
-    public partial class MiLigaAspx : BasicPage
+    public partial class UserLeagueAspx : BasicPage
     {
 
-        private int idKey
+        private int idLiga
         {
             get
             {
                 try
                 {
-                    return Convert.ToInt32(Request.QueryString["idKey"]);
+                    return Convert.ToInt32(Request.QueryString["idLeague"]);
+                }
+                catch
+                {
+                    return -1;
+                }
+            }
+        }
+
+
+        private int idUsuario
+        {
+            get
+            {
+                try
+                {
+                    return Convert.ToInt32(Request.QueryString["idUser"]);
                 }
                 catch
                 {
@@ -41,7 +57,7 @@ namespace ManagerDB.Pages
 
         private void CargarDatosLiga()
         {
-            var _ligaSeleccionada = (from l in this.manager.t_leagues where l.id == this.idKey select l).FirstOrDefault();
+            var _ligaSeleccionada = (from l in this.manager.t_leagues where l.id == this.idLiga select l).FirstOrDefault();
             this.TxFechaInicio.Text = "---";
             this.TxFechaFin.Text = "---";
             this.TxInfo.Text = "---";
@@ -66,8 +82,8 @@ namespace ManagerDB.Pages
                                     join g in this.manager.t_games on l.id_game equals g.id
                                     join u in this.manager.t_users on ul.id_user equals u.id
                                     join gf in this.manager.t_game_factions on ul.id_faction equals gf.id
-                                    where ul.id_league == this.idKey &&
-                                          ul.id_user == this.usuario.id
+                                    where ul.id_league == this.idLiga &&
+                                          ul.id_user == this.idUsuario
                                     select new JugadorLiga
                                     {
                                         league_id = l.id,
@@ -85,10 +101,13 @@ namespace ManagerDB.Pages
                                         game_id = l.id_game,
                                         game_name = g.name,
                                         game_avatar_url = g.avatar_url,
+                                        faction_id = gf.id,
                                         faction_name = gf.name,
+                                        faction_info = gf.info,
                                         faction_avatar_url = gf.avatar_url
                                     }).OrderBy(o => o.score).ThenBy(t => t.wins).ToList();
 
+                var _ligaActual = ligasUsuario.FirstOrDefault();
                 if (ligasUsuario.Count > 0)
                 {
                     this.GrJugadores.DataSource = ligasUsuario;
@@ -98,15 +117,40 @@ namespace ManagerDB.Pages
                     this.GrJugadores.DataSource = null;
                 }
                 this.GrJugadores.DataBind();
-
-                var _ligaActual = ligasUsuario.FirstOrDefault();
-                
+                this.PnlMensajes.Visible = false;
                 this.PnlUsuarioLigaMERCS.Visible = false;
-                if (_ligaActual.game_id == 1) //mercs
+                this.TxNombreEquipo.Text = "---";
+                this.TxNombreFaccion.Text = "---";
+                this.TxJugador.Text = "---";
+                this.ImgEquipo.ImageUrl = null;
+                this.ImgFaccion.ImageUrl = null;
+                this.ImgFaccion.CommandArgument = "0";
+                if (_ligaActual != null) //mercs
                 {
-                    this.PnlUsuarioLigaMERCS.Visible = true;
-                }
+                    if (_ligaActual.game_id == 1 &&
+                        _ligaActual.user_id == this.usuario.id)
+                    {
+                        this.PnlUsuarioLigaMERCS.Visible = true;
+                    }
 
+                    if (_ligaActual.user_id == this.usuario.id)
+                    {
+                        this.PnlMensajes.Visible = true;
+                    }
+
+                    this.TxJugador.Text = _ligaActual.user_name;
+                    this.TxNombreEquipo.Text = _ligaActual.team_name;
+                    this.TxNombreFaccion.Text = _ligaActual.faction_name;
+                    this.ImgEquipo.ImageUrl = this.PATH_IMAGES + _ligaActual.team_avatar_url;
+                    this.ImgFaccion.ImageUrl = this.PATH_IMAGES + _ligaActual.faction_avatar_url;
+
+                    //Popupp de facción
+                    this.LbFactionInfo.Text = _ligaActual.faction_info;
+                    this.LbFactionName.Text = _ligaActual.faction_name;
+                    this.ImgFaction.ImageUrl = this.PATH_IMAGES + _ligaActual.faction_avatar_url;
+                    this.ImgFaction.ToolTip = _ligaActual.faction_name;
+                    this.ImgFaction.AlternateText = _ligaActual.faction_name;
+                }
             }
         }
 
@@ -117,7 +161,7 @@ namespace ManagerDB.Pages
                                    join l in this.manager.t_leagues on m.id_league equals l.id
                                    join u in this.manager.t_users on m.id_user_from equals u.id
                                 where m.id_user_to == this.usuario.id &&
-                                      l.id == this.idKey                                  
+                                      l.id == this.idLiga                                  
                                 select new
                                 {
                                     league_id = l.id,
@@ -165,6 +209,11 @@ namespace ManagerDB.Pages
         protected void BtRecursosMERCS_Click(object sender, EventArgs e)
         {
             Response.Redirect("../pages/dados.aspx", true);
+        }
+
+        protected void ImgFaccion_Click(object sender, System.Web.UI.ImageClickEventArgs e)
+        {
+            this.PopUpFaction.Show();
         }
 
     }

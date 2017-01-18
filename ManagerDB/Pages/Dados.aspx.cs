@@ -22,8 +22,8 @@ namespace ManagerDB.Pages
                 else
                 {
                     //Ponemos la ronda actual y el nombre de la liga
-                    this.lblLiga.Text += this.liga.name;
-                    this.lblRonda.Text += this.liga.current_round.ToString();                    
+                    this.lblLiga.Text = this.liga.name;
+                    this.lblRonda.Text = "RONDA: <span style='color:#e3e3e3;'>" + this.liga.current_round.ToString() + "</span>";                    
                     this.LblHistorial.Text += this.liga.name + ":";
                     this.CalcularRecursos();
 
@@ -41,8 +41,8 @@ namespace ManagerDB.Pages
 
         private void CalcularRecursos()
         {
-            this.lblCreditos.Text = "Créditos: " + CalcularCreditos();
-            this.lblMateriales.Text = "Materiales: " + CalcularMateriales();
+            this.lblCreditos.Text = "Créditos: <span style='color:#e3e3e3;'>" + CalcularCreditos() + "</span>";
+            this.lblMateriales.Text = "Materiales: <span style='color:#e3e3e3;'>" + CalcularMateriales() + "</span>";
         }
 
         private int? CalcularCreditos()
@@ -137,10 +137,18 @@ namespace ManagerDB.Pages
                     var imagen = CalcularImagenDado(dado.id_die_type, dado.die_face, dado.rolled_date, dado.spent_date, dado.status);
                     dado.img_Dice = imagen;
                 }
-
-                this.RptDices.DataSource = dadosUsuario.OrderBy(o => o.id);
-                this.RptDices.DataBind();
+                
+                    this.RptDices.DataSource = dadosUsuario.OrderBy(o => o.id);
+                    this.PnlDados.Visible = true;
+                    this._LbNoDadosAsignados.Visible = false;
             }
+            else
+            {
+                this.RptDices.DataSource = null;
+                this.PnlDados.Visible = false;
+                this._LbNoDadosAsignados.Visible = true;
+            }
+            this.RptDices.DataBind();
         }
 
         private void MostrarDadosUsuarios()
@@ -156,7 +164,9 @@ namespace ManagerDB.Pages
                                            select new UserDice
                                            {
                                                user_name = u.login,
+                                               id_user = u.id,
                                                id_user_league = ul.id,
+                                               id_league = l.id,
                                                user_avatar = u.avatar_url
                                            }).Distinct().ToList();
             foreach (var usuario in usuarios)
@@ -171,8 +181,17 @@ namespace ManagerDB.Pages
             if (usuarios.Count > 0)
             {
                 this.RptDatosUsuarios.DataSource = usuarios;
-                this.RptDatosUsuarios.DataBind();
+                this.PnlDadosUsuarios.Visible = true;
+                this._LbNoDadosUsuarios.Visible = false;
             }
+            else
+            {
+                this.RptDatosUsuarios.DataSource = null;
+                this.PnlDadosUsuarios.Visible = false;
+                this._LbNoDadosUsuarios.Visible = true;
+            }
+            this.RptDatosUsuarios.DataBind();
+
         }
 
         protected void RptDatosUsuarios_ItemDataBound(object sender, RepeaterItemEventArgs e)
@@ -612,6 +631,25 @@ namespace ManagerDB.Pages
             this.manager.SaveChanges();
 
             return idMsg;
+        }
+
+        protected void RptDatosUsuarios_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            switch (e.CommandName)
+            {
+      
+                case "VerUsuarioLiga":
+                    {
+                        int _idUsuarioLiga = Convert.ToInt32(e.CommandArgument);
+                        var _ligaUsuario = this.manager.t_user_leagues.Where(w => w.id == _idUsuarioLiga).FirstOrDefault();
+
+                        if (_ligaUsuario != null)
+                        {
+                            this.Response.Redirect("UserLeague.aspx?idLeague=" + _ligaUsuario.id_league + "&idUser=" + _ligaUsuario.id_user, true);
+                        }
+                        break;
+                    }
+            }
         }
     }
 }

@@ -14,8 +14,21 @@
         <h3>
         <asp:DropDownList runat="server" ID="DrpGames" AutoPostBack="true" CssClass="dropdown"
             OnSelectedIndexChanged="DrpGames_SelectedIndexChanged"></asp:DropDownList>
-
         </h3>
+
+        <asp:Table runat="server" Width="100%">
+            <asp:TableRow>
+                <asp:TableCell Width="200px">
+                    <asp:Image runat="server" ID="ImgGame" Width="200px" />
+                </asp:TableCell>
+                <asp:TableCell Width="10px"></asp:TableCell>
+                <asp:TableCell VerticalAlign="Top">
+                    <asp:Label runat="server" ID="_LbInfoGame"></asp:Label>
+                </asp:TableCell>
+            </asp:TableRow>
+        </asp:Table>
+
+
         <br /><br />
         <h3><asp:Label runat="server" ID="LbClasif" Text="FACCIONES DISPONIBLES"></asp:Label></h3>
         <br />

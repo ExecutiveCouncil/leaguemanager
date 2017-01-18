@@ -96,7 +96,5 @@
                 <asp:Label runat="server" style="color:#ffd800;" Text="No hay ligas inactivas en estos momentos" ID="_LbNoLigasInactivas" Visible="false"></asp:Label>
             </div>
         </div>
-
-
     </div>
 </asp:Content>

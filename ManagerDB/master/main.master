@@ -7,8 +7,10 @@
         <title></title>
         <link id="StyleBootstrap" rel="stylesheet" runat="server" media="screen" href="~/css/bootstrap.min.css" />
         <link id="StyleCustom" rel="stylesheet" runat="server" media="screen" href="~/css/style.css" />
+        <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet" />
     </head> 
-    <body style="background-image:url(../images/webapp/wallpaper.jpg); background-repeat:repeat">
+    <body  style="background-image:url(../images/webapp/wallpaper.jpg); background-repeat:repeat">
         <form id="home_form" runat="server">
             <asp:ScriptManager runat="server" ID="MainScriptManager">
                 <Scripts>
@@ -55,7 +57,7 @@
                 <!-- Use any element to open/show the overlay navigation menu -->
                 <div style="height:65px; background-image:url(../images/webapp/wallpaper_menu.jpg); background-size:cover">
                     <img class="menu_button" src="../images/webapp/menu_icon.png" onclick="openNav()" />
-                    <strong><asp:Label runat="server" Text="MANAGER DE LIGA" Font-Size="XX-Large" style="position:absolute; left:70px; top:10px; color:#a47c05"></asp:Label></strong>
+                    <strong><asp:Label runat="server" Text="MENU" Font-Size="XX-Large" style="position:absolute; left:70px; top:10px; color:#a47c05"></asp:Label></strong>
                     <asp:Label runat="server" id="_LbUser" Text="XXXX" Font-Size="XX-Large" style="position:absolute; right:80px; top:10px; "></asp:Label>
                     <asp:ImageButton runat="server" ID="_imgUser" ImageUrl="~/images/webapp/user.png" ToolTip="Mi cuenta" 
                                      style="position:absolute; right:15px; top:10px; width=50px; height:50px" 

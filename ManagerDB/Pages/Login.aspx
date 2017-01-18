@@ -7,6 +7,8 @@
         <title></title>    
         <link href="~/css/bootstrap.min.css" rel="stylesheet"/>
         <link id="Link1" rel="stylesheet" runat="server" media="screen" href="~/css/style.css" />
+        <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Play" rel="stylesheet" />
     </head>
     <body style="background-image:url(../images/webapp/wallpaper.jpg); background-size:cover"> 
         <div class="container">

@@ -60,6 +60,10 @@ namespace ManagerDB.Pages
                 .Where(fc => fc.id_game == _id &&
                        fc.id != 0).ToList();
 
+            this._LbInfoGame.Text = _juego.info;
+            this.ImgGame.ImageUrl = this.PATH_IMAGES + _juego.avatar_url;
+            this.ImgGame.AlternateText = _juego.name;
+
             if (_listaFacciones.Count > 0)
             {
                 _LbNoFactions.Visible = false;

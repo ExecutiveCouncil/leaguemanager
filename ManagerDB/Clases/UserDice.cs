@@ -36,5 +36,6 @@ namespace ManagerDB.Clases
         public string textoCreditos { get; set; }
         public string textoMateriales { get; set; }
         public int? id_user { get; set; }
+        public int? id_league { get; set; }
     }
 }

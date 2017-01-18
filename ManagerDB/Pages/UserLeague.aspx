@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="MiLiga.aspx.cs" Inherits="ManagerDB.Pages.MiLigaAspx" MasterPageFile="~/master/main.master" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="UserLeague.aspx.cs" Inherits="ManagerDB.Pages.UserLeagueAspx" MasterPageFile="~/master/main.master" %>
 
 <asp:Content ContentPlaceHolderID="ContentProgram" runat="server">
 
@@ -8,7 +8,7 @@
                 <h1>
                     <asp:ImageButton runat="server" ID="BtBack" 
                                      ImageUrl="~/images/webapp/back.png" OnClientClick="goBack();" 
-                                     CssClass="image_button" Width="40px" 
+                                     CssClass="image_button" Width="45px" 
                                      style="vertical-align:text-top;"/>
                     <asp:Label runat="server" ID="LbTituloLiga"></asp:Label>
                 </h1>
@@ -45,6 +45,32 @@
             </div>
         </div>
         <br />
+        <asp:Table runat="server" Width="100%">
+            <asp:TableRow>
+                <asp:TableCell Width="200px" style="position:relative">
+                    <asp:Image runat="server" ID="ImgEquipo" Width="200px" AlternateText="Imagen equipo"/>
+                    <asp:ImageButton runat="server" ID="ImgFaccion" class="image_button" 
+                                     Width="50px" style="position:absolute; bottom:0; right:0;" 
+                                     AlternateText="Faccion" OnClick="ImgFaccion_Click"/>
+                </asp:TableCell>
+                <asp:TableCell Width="10px"></asp:TableCell>
+                <asp:TableCell VerticalAlign="Top">
+                    <p class="row">
+                        <asp:Label runat="server" ID="Label4" Text="Nombre del equipo"></asp:Label>
+                        <asp:TextBox runat="server" Enabled="false" ID="TxNombreEquipo" Text="XXXXXX" Width="100%"></asp:TextBox>
+                    </p>
+                    <p class="row">
+                        <asp:Label runat="server" ID="Label7" Text="Jugador"></asp:Label>
+                        <asp:TextBox runat="server" Enabled="false" ID="TxJugador" Text="XXXXXX" Width="100%"></asp:TextBox>
+                    </p>
+                    <p class="row">
+                        <asp:Label runat="server" ID="Label5" Text="Facción utilizada"></asp:Label>
+                        <asp:TextBox runat="server" Enabled="false" ID="TxNombreFaccion" Text="XXXXXX" Width="100%"></asp:TextBox>
+                    </p>
+                </asp:TableCell>
+            </asp:TableRow>
+        </asp:Table>
+        <br />
         <asp:DataGrid ID="GrJugadores" runat="server" AutoGenerateColumns="false" Width="100%" 
                     ShowHeader="true" 
                     CssClass="grid"
@@ -65,13 +91,14 @@
             <asp:Button CssClass="btn" id="BtInformePartida" runat="server" OnClick="BtRecursosMERCS_Click" text="INFORMAR PARTIDA" Width="200px"></asp:Button>
             <asp:Button CssClass="btn" id="BtRecursosMERCS" runat="server" OnClick="BtRecursosMERCS_Click" text="USAR DADOS" Width="150px"></asp:Button>
         </asp:Panel>
-        <div class="row">
-            <div class="col-md-12">
-                <h3>MENSAJES RECIBIDOS</h3>
+        <asp:Panel runat="server" id="PnlMensajes" Visible="false">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>MENSAJES RECIBIDOS</h3>
+                </div>
             </div>
-        </div>
-        <br />
-        <div class="row">
+            <br />
+            <div class="row">
             <div class="col-md-12">
                 <asp:DataGrid ID="GrMensajes" runat="server" AutoGenerateColumns="false" Width="100%"
                             ShowHeader="true" 
@@ -111,20 +138,24 @@
                 <asp:Label runat="server" style="color:#ffd800;" Text="No hay mensajes" ID="_LbNoMensajes" Visible="false"></asp:Label>
             </div>
         </div>
+        </asp:Panel>
+        <br /><br />
 
-    <!-- Modo manual (placeholder) -->
-        <div class="row">
-            <div class="col-md-8">
-                <asp:PlaceHolder ID = "Ligas" runat="server" />
+        <!-- Popup -->
+        <asp:Button ID="btnShow" runat="server" Text="Show Modal Popup" style="display:none"/>
+        <ajax:ModalPopupExtender ID="PopUpFaction" runat="server" PopupControlID="PnlPopUp" TargetControlID="btnShow"
+            CancelControlID="btnClose" BackgroundCssClass="modalBackground">
+        </ajax:ModalPopupExtender>
+        <asp:Panel ID="PnlPopUp" runat="server" CssClass="PopUp" style="display:none; max-width:600px; width:80%; height: 400px; overflow:hidden">
+            <h2 style="padding-left:10px; background-color:transparent; color:#ffffff; margin-top:0">
+                <asp:Image runat="server" id="ImgFaction" style="width:40px" />
+                <asp:Label runat="server" ID="LbFactionName" style="vertical-align:text-bottom"></asp:Label>
+            </h2>
+            <div style="overflow-y:auto; height: 300px; padding:10px" class="div_box">
+                <asp:Button ID="btnClose" CssClass="ClosePopUp" runat="server" Text="X" />
+                <asp:Label runat="server" ID="LbFactionInfo"></asp:Label>
             </div>
-        </div>
-        <br />
-        <div class="row">
-            <div class="col-md-8">
-                <asp:PlaceHolder ID = "UltimosMensajes" runat="server" />
-            </div>
-        </div>
-
-        <br />
+        </asp:Panel>
     </div>
+
 </asp:Content>

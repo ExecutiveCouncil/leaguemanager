@@ -24,5 +24,7 @@ namespace ManagerDB.Pages
         public string game_avatar_url { get; set; }
         public string faction_name { get; set; }
         public string faction_avatar_url { get; set; }
+        public int? faction_id { get; set; }
+        public string faction_info { get; set; }
     }
 }
