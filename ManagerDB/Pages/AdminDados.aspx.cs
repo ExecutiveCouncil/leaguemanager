@@ -15,7 +15,22 @@ namespace ManagerDB.Pages
         {
             if (IsPostBack == false)
             {
-                if (this.ValidateSession() == false || this.usuario.security_level != 1)
+                var admin = false;
+                if (this.usuario != null && this.liga != null)
+                {
+                    var _ligaUsuario = this.manager.t_user_leagues
+                            .Where(a => a.id_user == this.usuario.id &&
+                                        a.id_league == this.liga.id).FirstOrDefault();
+                    if (_ligaUsuario != null)
+                    {
+                        if (_ligaUsuario.security_level == 1)
+                        {
+                            admin = true;
+                        }
+                    }
+                }
+
+                if (this.ValidateSession() == false || !admin)
                 {
                     FormsAuthentication.RedirectToLoginPage();
                 }
@@ -28,13 +43,6 @@ namespace ManagerDB.Pages
                     this.MostrarDadosUsuarios();
                 }
             }
-        }
-
-        private void AdministrarDado(int idDice)
-        {
-            var dado = this.manager.mercs_user_dice.Where(a => a.id == idDice).FirstOrDefault();
-            dadoSeleccionado = dado;
-            PopUpDado.Show();
         }
 
         private int? CalcularCreditos(int? idUsuario)
@@ -399,6 +407,21 @@ namespace ManagerDB.Pages
                 idDado = ultimoDado.id + 1;
             }
             return idDado;
+        }
+
+        protected void RptDadosUsuarios_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            switch (e.CommandName)
+            {
+                case "AdministrarDado":
+                    {
+                        int _idDado = Convert.ToInt32( e.CommandArgument);
+                        var dado = this.manager.mercs_user_dice.Where(a => a.id == _idDado).FirstOrDefault();
+                        dadoSeleccionado = dado;
+                        PopUpDado.Show();
+                        break;
+                    }
+            }
         }
     }
 }
