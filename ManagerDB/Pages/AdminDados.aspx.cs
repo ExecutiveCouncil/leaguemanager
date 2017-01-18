@@ -15,7 +15,7 @@ namespace ManagerDB.Pages
         {
             if (IsPostBack == false)
             {
-                if (this.ValidateSession() == false)
+                if (this.ValidateSession() == false || this.usuario.security_level != 1)
                 {
                     FormsAuthentication.RedirectToLoginPage();
                 }
@@ -23,7 +23,7 @@ namespace ManagerDB.Pages
                 {
                     //Ponemos la ronda actual y el nombre de la liga
                     this.lblLiga.Text += this.liga.name;
-                    this.lblRonda.Text += this.liga.current_round.ToString();
+                    this.lblRonda.Text = "Ronda: " + this.liga.current_round.ToString();
 
                     this.MostrarDadosUsuarios();
                 }
@@ -347,6 +347,58 @@ namespace ManagerDB.Pages
         protected void btnAddDado_Command(object sender, CommandEventArgs e)
         {
             
+        }
+
+        protected void btnAddTurno_Command(object sender, CommandEventArgs e)
+        {
+            //Actualizamos el turno en la liga
+            var nuevoTurno = this.liga.current_round + 1;
+            var ligaActualizar = this.manager.t_leagues.Where(a => a.id == this.liga.id).FirstOrDefault();
+            ligaActualizar.current_round = nuevoTurno;
+            this.lblRonda.Text = "Ronda: " + nuevoTurno;
+            this.liga.current_round = nuevoTurno;
+
+            //Insertamos los dados por usuario y facción
+            var dadosFacciones = (from ul in this.manager.t_user_leagues
+                                            join fd in this.manager.mercs_faction_dice on ul.id_faction equals fd.id_game_faction
+                                            where ul.id_league == this.liga.id
+                                            select new 
+                                            {
+                                                id_user_league = ul.id,
+                                                id_die_type = fd.id_die_type
+                                           }).ToList();
+
+            var idDado = ObtenerIdNuevoDado();
+            foreach(var dado in dadosFacciones)
+            {
+                var dadoNuevo = new mercs_user_dice();
+                dadoNuevo.id = idDado;
+                dadoNuevo.id_user_league = dado.id_user_league;
+                dadoNuevo.id_die_type = dado.id_die_type;
+                dadoNuevo.round = nuevoTurno;
+                dadoNuevo.status = 0;
+                this.manager.mercs_user_dice.Add(dadoNuevo);
+                idDado++;
+            }
+
+            this.manager.SaveChanges();
+            this.MostrarDadosUsuarios();
+        }
+
+        private int ObtenerIdNuevoDado()
+        {
+            var ultimoDado = (from m in this.manager.mercs_user_dice
+                             select m).OrderByDescending(a => a.id).FirstOrDefault();
+            var idDado = 0;
+            if (ultimoDado == null)
+            {
+                idDado = 1;
+            }
+            else
+            {
+                idDado = ultimoDado.id + 1;
+            }
+            return idDado;
         }
     }
 }

@@ -480,7 +480,7 @@ namespace ManagerDB.Pages
                                             user_name = u.login,
                                             id_user_league = ul.id,
                                             round = ud.round
-                                        }).Distinct().ToList();
+                                        }).OrderBy(a=>a.round).ThenBy(a=>a.id_user_league).Distinct().ToList();
 
             if (historial.Count > 0)
             {

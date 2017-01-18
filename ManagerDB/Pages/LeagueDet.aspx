@@ -71,7 +71,7 @@
         </asp:DataGrid>
         <asp:Label runat="server" style="color:#ffd800;" Text="No hay jugadores" ID="_LbNoJugadores" Visible="false"></asp:Label>
         <br />
-        <asp:Panel runat="server" ID="PnlUsuarioLiga" Visible="false" class="div_box" style="text-align:right">
+        <asp:Panel runat="server" ID="PnlUsuarioLiga" Visible="false" CssClass="div_box" style="text-align:right">
             <asp:Button CssClass="btn" id="BtLiga" runat="server" OnClick="BtLiga_Click" text="ACCEDER" Width="150px"></asp:Button>
         </asp:Panel>
 

@@ -9,7 +9,7 @@
                 <asp:Label ID="lblLiga" runat="server" CssClass="cabecera">Liga: </asp:Label>
             </div>
             <div class="col-md-3 col-sm-11" style="padding: 30px;">
-                <asp:Label ID="lblRonda" runat="server" CssClass="cabecera">Ronda: </asp:Label>
+                <asp:Label ID="lblRonda" runat="server" CssClass="cabecera"></asp:Label>
             </div>    
             <div class="col-md-5 col-sm-11">
                 <div class="col-md-3 col-sm-12"></div>
@@ -20,6 +20,12 @@
                     <asp:Label ID="lblMateriales" runat="server" CssClass="cabecera"></asp:Label>
                 </div>   
             </div>
+        </div>
+        <div class="row">
+            <asp:Button CssClass="btn" id="btnAddTurno" runat="server" 
+                                    OnCommand="btnAddTurno_Command" text="Generar turno" 
+                                    style="vertical-align:text-bottom;width:250px;"
+                                    ToolTip="Pasa la liga al siguiente turno" Width="150px"></asp:Button> 
         </div>
         <div class="row">
             <div class="box" style="width:80%; max-width:100%; padding: 10px; margin-top:25px;">
@@ -80,8 +86,7 @@
         <asp:Button ID="btnClose" CssClass="ClosePopUp" runat="server" Text="X" />
         <div class="box" style="width:80%; max-width:100%; padding: 10px; margin-top:25px;">            
             <div style="padding-left: 30px">
-                <div class="row">
-                    
+                <div class="row">                    
                     <asp:RadioButton id="optReroll" GroupName="AdminDado" Text="Reroll" runat="server"/>
                 </div>
                 <div class="row">
