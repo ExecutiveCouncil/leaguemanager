@@ -55,7 +55,7 @@
                             </div>
                             <div style="padding-left: 30px">
                                 <label class="textoDados">Recursos: </label>
-                                <asp:Repeater runat="server" ID="RptDadosUsuarios">
+                                <asp:Repeater runat="server" ID="RptDadosUsuarios" OnItemCommand="RptDadosUsuarios_ItemCommand">
                                     <ItemTemplate>                                    
                                         <asp:ImageButton runat="server" ID="ImgDice"
                                             Width="60px"

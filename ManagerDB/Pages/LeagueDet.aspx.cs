@@ -234,5 +234,10 @@ namespace ManagerDB.Pages
                 Response.Redirect("UserLeague.aspx?idLeague=" + this.liga.id + "&idUser=" + this.usuario.id, true);
             }
         }
+
+        protected void BtAdministrar_Click(object sender, EventArgs e)
+        {            
+            Response.Redirect("AdminDados.aspx", true);
+        }
     }
 }
