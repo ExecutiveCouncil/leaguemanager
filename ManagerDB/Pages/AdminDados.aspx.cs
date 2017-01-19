@@ -198,10 +198,10 @@ namespace ManagerDB.Pages
                     imagen = "a";
                     break;
                 case 2:
-                    imagen = "v";
+                    imagen = "g";
                     break;
                 case 3:
-                    imagen = "g";
+                    imagen = "v";
                     break;
                 case 4:
                     imagen = "c";
