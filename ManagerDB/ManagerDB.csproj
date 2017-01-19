@@ -133,7 +133,6 @@
     <Content Include="images\t_dices\mercs\c5u.png" />
     <Content Include="images\t_dices\mercs\c6.png" />
     <Content Include="images\t_dices\mercs\c6s.png" />
-    <Content Include="images\t_dices\mercs\c6u.png" />
     <Content Include="images\t_dices\mercs\g.png" />
     <Content Include="images\t_dices\mercs\g1.png" />
     <Content Include="images\t_dices\mercs\g1m.png" />
@@ -179,7 +178,6 @@
     <Content Include="images\t_dices\mercs\v5u.png" />
     <Content Include="images\t_dices\mercs\v6.png" />
     <Content Include="images\t_dices\mercs\v6s.png" />
-    <Content Include="images\t_dices\mercs\v6u.png" />
     <Content Include="images\t_games\mercs.png" />
     <Content Include="images\t_games\mercs_small.png" />
     <Content Include="images\t_games\wh40k.jpg" />
@@ -199,14 +197,18 @@
     <Content Include="images\t_leagues\mercs2017.jpg" />
     <Content Include="images\t_leagues\mercs_league.jpg" />
     <Content Include="images\t_leagues\whfantasy2017.jpg" />
+    <Content Include="images\t_user_leagues\manumercs2017.jpg" />
     <Content Include="images\webapp\back.png" />
     <Content Include="images\webapp\LAGUARIDA.png" />
     <Content Include="images\webapp\menu_icon.png" />
-    <Content Include="images\webapp\user.jpg" />
     <Content Include="images\webapp\user.png" />
     <Content Include="images\webapp\user_old.png" />
     <Content Include="images\webapp\WALLPAPER.jpg" />
     <Content Include="images\webapp\wallpaper_menu.jpg" />
+    <Content Include="images\webapp\wallpaper_menu1.jpg" />
+    <Content Include="images\webapp\wallpaper_menu2.jpg" />
+    <Content Include="images\webapp\wallpaper_menu4.jpg" />
+    <Content Include="images\webapp\wallpaper_menu5.jpg" />
     <Content Include="Pages\AdminDados.aspx" />
     <Content Include="Pages\Dados.aspx" />
     <Content Include="Default.aspx" />
@@ -365,6 +367,7 @@
     <Content Include="master\main.master" />
     <Content Include="bin\ManagerDB.dll.config" />
     <None Include="Properties\PublishProfiles\Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\PC.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

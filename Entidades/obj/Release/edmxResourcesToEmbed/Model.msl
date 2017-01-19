@@ -48,21 +48,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="mercs_user_dice">
-      <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_dice">
-        <MappingFragment StoreEntitySet="mercs_user_dice">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
-          <ScalarProperty Name="round" ColumnName="round" />
-          <ScalarProperty Name="id_die_type" ColumnName="id_die_type" />
-          <ScalarProperty Name="spent_date" ColumnName="spent_date" />
-          <ScalarProperty Name="resources_gained" ColumnName="resources_gained" />
-          <ScalarProperty Name="rolled_date" ColumnName="rolled_date" />
-          <ScalarProperty Name="id_die_face" ColumnName="id_die_face" />
-          <ScalarProperty Name="id_message" ColumnName="id_message" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="mercs_user_troops">
       <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_troops">
         <MappingFragment StoreEntitySet="mercs_user_troops">
@@ -131,22 +116,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="t_messages">
-      <EntityTypeMapping TypeName="MANAGERDBModel.t_messages">
-        <MappingFragment StoreEntitySet="t_messages">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="id_user_from" ColumnName="id_user_from" />
-          <ScalarProperty Name="id_user_to" ColumnName="id_user_to" />
-          <ScalarProperty Name="subject" ColumnName="subject" />
-          <ScalarProperty Name="message" ColumnName="message" />
-          <ScalarProperty Name="sent_date" ColumnName="sent_date" />
-          <ScalarProperty Name="read_date" ColumnName="read_date" />
-          <ScalarProperty Name="id_league" ColumnName="id_league" />
-          <ScalarProperty Name="round" ColumnName="round" />
-          <ScalarProperty Name="status" ColumnName="status" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="t_syslog">
       <EntityTypeMapping TypeName="MANAGERDBModel.t_syslog">
         <MappingFragment StoreEntitySet="t_syslog">
@@ -183,16 +152,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="t_user_titles">
-      <EntityTypeMapping TypeName="MANAGERDBModel.t_user_titles">
-        <MappingFragment StoreEntitySet="t_user_titles">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
-          <ScalarProperty Name="id_league_title" ColumnName="id_league_title" />
-          <ScalarProperty Name="unlock_date" ColumnName="unlock_date" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="t_users">
       <EntityTypeMapping TypeName="MANAGERDBModel.t_users">
         <MappingFragment StoreEntitySet="t_users">
@@ -217,6 +176,75 @@
           <ScalarProperty Name="active" ColumnName="active" />
           <ScalarProperty Name="gained_date" ColumnName="gained_date" />
           <ScalarProperty Name="id_upgrade" ColumnName="id_upgrade" />
+          <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mercs_die_faces">
+      <EntityTypeMapping TypeName="MANAGERDBModel.mercs_die_faces">
+        <MappingFragment StoreEntitySet="mercs_die_faces">
+          <ScalarProperty Name="open_url" ColumnName="open_url" />
+          <ScalarProperty Name="sell_credits" ColumnName="sell_credits" />
+          <ScalarProperty Name="sell_materials" ColumnName="sell_materials" />
+          <ScalarProperty Name="cost_credits" ColumnName="cost_credits" />
+          <ScalarProperty Name="info" ColumnName="info" />
+          <ScalarProperty Name="action" ColumnName="action" />
+          <ScalarProperty Name="die_face" ColumnName="die_face" />
+          <ScalarProperty Name="id_die_type" ColumnName="id_die_type" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_user_titles">
+      <EntityTypeMapping TypeName="MANAGERDBModel.t_user_titles">
+        <MappingFragment StoreEntitySet="t_user_titles">
+          <ScalarProperty Name="unlock_date" ColumnName="unlock_date" />
+          <ScalarProperty Name="id_league_title" ColumnName="id_league_title" />
+          <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="t_messages">
+      <EntityTypeMapping TypeName="MANAGERDBModel.t_messages">
+        <MappingFragment StoreEntitySet="t_messages">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="round" ColumnName="round" />
+          <ScalarProperty Name="id_league" ColumnName="id_league" />
+          <ScalarProperty Name="read_date" ColumnName="read_date" />
+          <ScalarProperty Name="sent_date" ColumnName="sent_date" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="subject" ColumnName="subject" />
+          <ScalarProperty Name="id_user_to" ColumnName="id_user_to" />
+          <ScalarProperty Name="id_user_from" ColumnName="id_user_from" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mercs_user_dice_msg">
+      <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_dice_msg">
+        <MappingFragment StoreEntitySet="mercs_user_dice_msg">
+          <ScalarProperty Name="message_date" ColumnName="message_date" />
+          <ScalarProperty Name="message" ColumnName="message" />
+          <ScalarProperty Name="id_user_from" ColumnName="id_user_from" />
+          <ScalarProperty Name="id_user_dice" ColumnName="id_user_dice" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="mercs_user_dice">
+      <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_dice">
+        <MappingFragment StoreEntitySet="mercs_user_dice">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="admin_date" ColumnName="admin_date" />
+          <ScalarProperty Name="resources_gained" ColumnName="resources_gained" />
+          <ScalarProperty Name="spent_date" ColumnName="spent_date" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="rolled_date" ColumnName="rolled_date" />
+          <ScalarProperty Name="id_die_face" ColumnName="id_die_face" />
+          <ScalarProperty Name="id_die_type" ColumnName="id_die_type" />
+          <ScalarProperty Name="round" ColumnName="round" />
           <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
           <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>

@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace ManagerDB.Pages
 {
-    public partial class AdminDados : BasicPage
+    public partial class AdminDadosAspx : BasicPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,8 +37,8 @@ namespace ManagerDB.Pages
                 else
                 {
                     //Ponemos la ronda actual y el nombre de la liga
+                    this.lblRonda.Text = "RONDA ACTUAL: <span style='color:#e3e3e3;'>" + this.liga.current_round.ToString() + "</span>";                    
                     this.lblLiga.Text += this.liga.name;
-                    this.lblRonda.Text = "Ronda: " + this.liga.current_round.ToString();
 
                     this.MostrarDadosUsuarios();
                 }
@@ -363,7 +363,7 @@ namespace ManagerDB.Pages
             var nuevoTurno = this.liga.current_round + 1;
             var ligaActualizar = this.manager.t_leagues.Where(a => a.id == this.liga.id).FirstOrDefault();
             ligaActualizar.current_round = nuevoTurno;
-            this.lblRonda.Text = "Ronda: " + nuevoTurno;
+            this.lblRonda.Text = "RONDA ACTUAL: <span style='color:#e3e3e3;'>" + nuevoTurno + "</span>";                    
             this.liga.current_round = nuevoTurno;
 
             //Insertamos los dados por usuario y facción

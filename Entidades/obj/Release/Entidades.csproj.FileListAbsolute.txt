@@ -5,3 +5,10 @@ d:\Projects\ManagerDB\Entidades\bin\Release\EntityFramework.dll
 d:\Projects\ManagerDB\Entidades\bin\Release\EntityFramework.xml
 d:\Projects\ManagerDB\Entidades\obj\Release\Entidades.dll
 d:\Projects\ManagerDB\Entidades\obj\Release\Entidades.pdb
+C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\bin\Release\Entidades.dll.config
+C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\bin\Release\Entidades.dll
+C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\bin\Release\Entidades.pdb
+C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\bin\Release\EntityFramework.dll
+C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\obj\Release\Entidades.csprojResolveAssemblyReference.cache
+C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\obj\Release\Entidades.dll
+C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\obj\Release\Entidades.pdb

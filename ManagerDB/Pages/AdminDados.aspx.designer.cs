@@ -10,7 +10,25 @@
 namespace ManagerDB.Pages {
     
     
-    public partial class AdminDados {
+    public partial class AdminDadosAspx {
+        
+        /// <summary>
+        /// Control BtBack.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton BtBack;
+        
+        /// <summary>
+        /// Control _LbTitle.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label _LbTitle;
         
         /// <summary>
         /// Control lblLiga.
@@ -29,24 +47,6 @@ namespace ManagerDB.Pages {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblRonda;
-        
-        /// <summary>
-        /// Control lblCreditos.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCreditos;
-        
-        /// <summary>
-        /// Control lblMateriales.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMateriales;
         
         /// <summary>
         /// Control btnAddTurno.

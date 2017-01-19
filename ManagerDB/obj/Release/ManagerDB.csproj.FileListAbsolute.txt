@@ -9,3 +9,13 @@ d:\Projects\ManagerDB\ManagerDB\bin\EntityFramework.SqlServer.xml
 d:\Projects\ManagerDB\ManagerDB\obj\Release\ManagerDB.csprojResolveAssemblyReference.cache
 d:\Projects\ManagerDB\ManagerDB\obj\Release\ManagerDB.dll
 d:\Projects\ManagerDB\ManagerDB\obj\Release\ManagerDB.pdb
+C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\bin\dll\AjaxControlToolkit.dll
+C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\bin\ManagerDB.dll.config
+C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\bin\ManagerDB.dll
+C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\bin\ManagerDB.pdb
+C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\bin\Entidades.dll
+C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\bin\EntityFramework.dll
+C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\bin\Entidades.pdb
+C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\obj\Release\ManagerDB.csprojResolveAssemblyReference.cache
+C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\obj\Release\ManagerDB.dll
+C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\obj\Release\ManagerDB.pdb

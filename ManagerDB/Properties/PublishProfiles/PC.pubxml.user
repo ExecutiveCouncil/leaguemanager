@@ -1,0 +1,541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+Este archivo es utilizado por el proceso de paquete/publicación de nuestro proyecto Web. Puede personalizar el comportamiento de este proceso
+editando este archivo MSBuild. Para conocer más acerca de esto, visite http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\manu\Documents\GitHub\publicar</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/AjaxControlToolkit.dll">
+      <publishTime>01/05/2017 10:40:57</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>01/19/2017 13:18:27</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>01/19/2017 13:18:27</publishTime>
+    </File>
+    <File Include="bin/dll/AjaxControlToolkit.dll">
+      <publishTime>01/05/2017 10:40:57</publishTime>
+    </File>
+    <File Include="bin/dll/EntityFramework.dll">
+      <publishTime>01/05/2017 10:40:58</publishTime>
+    </File>
+    <File Include="bin/Entidades.dll">
+      <publishTime>01/19/2017 13:15:03</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>01/05/2017 10:40:58</publishTime>
+    </File>
+    <File Include="bin/ManagerDB.dll">
+      <publishTime>01/19/2017 13:18:24</publishTime>
+    </File>
+    <File Include="bin/ManagerDB.dll.config">
+      <publishTime>01/05/2017 12:37:18</publishTime>
+    </File>
+    <File Include="bin/System.Data.Entity.dll">
+      <publishTime>03/18/2010 19:31:26</publishTime>
+    </File>
+    <File Include="css/bootstrap-theme.css">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="css/bootstrap-theme.css.map">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="css/bootstrap-theme.min.css">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="css/bootstrap-theme.min.css.map">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="css/bootstrap.css">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="css/bootstrap.css.map">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="css/bootstrap.min.css">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="css/bootstrap.min.css.map">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="css/style.css">
+      <publishTime>01/19/2017 09:35:08</publishTime>
+    </File>
+    <File Include="Default.aspx">
+      <publishTime>01/05/2017 10:00:39</publishTime>
+    </File>
+    <File Include="dll/AjaxControlToolkit.dll">
+      <publishTime>01/05/2017 10:40:57</publishTime>
+    </File>
+    <File Include="dll/EntityFramework.dll">
+      <publishTime>01/05/2017 10:40:58</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="fonts/images/t_games/mercs.png">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="fonts/images/t_game_factions/mercs/ccc.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="fonts/images/t_game_factions/mercs/eic.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="fonts/images/t_game_factions/mercs/eu.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="fonts/images/t_game_factions/mercs/gcc.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="fonts/images/t_game_factions/mercs/h4.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="fonts/images/t_game_factions/mercs/h9.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="fonts/images/t_game_factions/mercs/iss.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="fonts/images/t_game_factions/mercs/kemvar.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="fonts/images/t_game_factions/mercs/kwaza.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="fonts/images/t_game_factions/mercs/sefadu.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="fonts/images/t_game_factions/mercs/texico.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="fonts/images/t_game_factions/mercs/uscr.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="images/t_badges/alpha.png">
+      <publishTime>01/16/2017 13:34:32</publishTime>
+    </File>
+    <File Include="images/t_badges/bronce.png">
+      <publishTime>01/16/2017 13:36:57</publishTime>
+    </File>
+    <File Include="images/t_badges/mercs2017.png">
+      <publishTime>01/16/2017 13:37:27</publishTime>
+    </File>
+    <File Include="images/t_badges/oro.png">
+      <publishTime>01/16/2017 13:35:43</publishTime>
+    </File>
+    <File Include="images/t_badges/plata.png">
+      <publishTime>01/16/2017 13:36:26</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/a.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/a1.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/a1s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/a2.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/a2s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/a3.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/a3s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/a4.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/a4s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/a5.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/a5s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/a6.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/a6s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c1.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c1m.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c1s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c1u.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c2.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c2m.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c2s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c2u.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c3.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c3m.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c3s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c3u.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c4.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c4m.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c4s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c4u.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c5.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c5m.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c5s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c5u.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c6.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/c6s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g1.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g1m.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g1s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g1u.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g2.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g2m.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g2s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g2u.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g3.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g3m.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g3s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g3u.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g4.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g4s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g5.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g5s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g6.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/g6s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/n.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/n1p.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/n2r.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v1.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v1m.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v1s.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v1u.png">
+      <publishTime>01/10/2017 09:25:57</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v2.png">
+      <publishTime>01/10/2017 09:25:58</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v2m.png">
+      <publishTime>01/10/2017 09:25:58</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v2s.png">
+      <publishTime>01/10/2017 09:25:58</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v2u.png">
+      <publishTime>01/10/2017 09:25:58</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v3.png">
+      <publishTime>01/10/2017 09:25:58</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v3m.png">
+      <publishTime>01/10/2017 09:25:58</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v3s.png">
+      <publishTime>01/10/2017 09:25:58</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v3u.png">
+      <publishTime>01/10/2017 09:25:58</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v4.png">
+      <publishTime>01/10/2017 09:25:58</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v4m.png">
+      <publishTime>01/10/2017 09:25:58</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v4s.png">
+      <publishTime>01/10/2017 09:25:58</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v4u.png">
+      <publishTime>01/10/2017 09:25:58</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v5.png">
+      <publishTime>01/10/2017 09:25:58</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v5m.png">
+      <publishTime>01/10/2017 09:25:58</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v5s.png">
+      <publishTime>01/10/2017 09:25:58</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v5u.png">
+      <publishTime>01/10/2017 09:25:58</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v6.png">
+      <publishTime>01/10/2017 09:25:58</publishTime>
+    </File>
+    <File Include="images/t_dices/mercs/v6s.png">
+      <publishTime>01/10/2017 09:25:58</publishTime>
+    </File>
+    <File Include="images/t_games/mercs.png">
+      <publishTime>01/16/2017 13:13:07</publishTime>
+    </File>
+    <File Include="images/t_games/mercs_small.png">
+      <publishTime>01/16/2017 12:30:04</publishTime>
+    </File>
+    <File Include="images/t_games/wh40k.jpg">
+      <publishTime>01/16/2017 13:05:28</publishTime>
+    </File>
+    <File Include="images/t_games/whfantasy.jpg">
+      <publishTime>01/16/2017 13:10:08</publishTime>
+    </File>
+    <File Include="images/t_game_factions/mercs/ccc.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="images/t_game_factions/mercs/eic.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="images/t_game_factions/mercs/eu.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="images/t_game_factions/mercs/gcc.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="images/t_game_factions/mercs/h4.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="images/t_game_factions/mercs/h9.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="images/t_game_factions/mercs/iss.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="images/t_game_factions/mercs/kemvar.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="images/t_game_factions/mercs/kwaza.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="images/t_game_factions/mercs/sefadu.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="images/t_game_factions/mercs/texico.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="images/t_game_factions/mercs/uscr.jpg">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="images/t_leagues/mercs2017.jpg">
+      <publishTime>01/09/2017 12:46:52</publishTime>
+    </File>
+    <File Include="images/t_leagues/mercs_league.jpg">
+      <publishTime>01/09/2017 12:37:55</publishTime>
+    </File>
+    <File Include="images/t_leagues/whfantasy2017.jpg">
+      <publishTime>01/16/2017 13:06:20</publishTime>
+    </File>
+    <File Include="images/t_user_leagues/manumercs2017.jpg">
+      <publishTime>01/18/2017 09:46:41</publishTime>
+    </File>
+    <File Include="images/webapp/back.png">
+      <publishTime>01/16/2017 13:25:17</publishTime>
+    </File>
+    <File Include="images/webapp/LAGUARIDA.png">
+      <publishTime>01/17/2017 11:12:08</publishTime>
+    </File>
+    <File Include="images/webapp/menu_icon.png">
+      <publishTime>01/05/2017 13:32:11</publishTime>
+    </File>
+    <File Include="images/webapp/user.png">
+      <publishTime>01/17/2017 16:44:58</publishTime>
+    </File>
+    <File Include="images/webapp/user_old.png">
+      <publishTime>01/09/2017 09:17:23</publishTime>
+    </File>
+    <File Include="images/webapp/WALLPAPER.jpg">
+      <publishTime>01/18/2017 12:06:49</publishTime>
+    </File>
+    <File Include="images/webapp/wallpaper_menu.jpg">
+      <publishTime>01/18/2017 12:04:38</publishTime>
+    </File>
+    <File Include="images/webapp/wallpaper_menu1.jpg">
+      <publishTime>01/17/2017 16:49:31</publishTime>
+    </File>
+    <File Include="images/webapp/wallpaper_menu2.jpg">
+      <publishTime>01/18/2017 11:54:53</publishTime>
+    </File>
+    <File Include="images/webapp/wallpaper_menu4.jpg">
+      <publishTime>01/18/2017 11:50:11</publishTime>
+    </File>
+    <File Include="images/webapp/wallpaper_menu5.jpg">
+      <publishTime>01/18/2017 11:48:05</publishTime>
+    </File>
+    <File Include="js/bootstrap.js">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="js/bootstrap.min.js">
+      <publishTime>01/05/2017 10:00:40</publishTime>
+    </File>
+    <File Include="js/npm.js">
+      <publishTime>01/05/2017 10:00:41</publishTime>
+    </File>
+    <File Include="master/main.master">
+      <publishTime>01/19/2017 12:20:45</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>01/05/2017 10:16:58</publishTime>
+    </File>
+    <File Include="Pages/AdminDados.aspx">
+      <publishTime>01/19/2017 13:12:37</publishTime>
+    </File>
+    <File Include="Pages/Dados.aspx">
+      <publishTime>01/19/2017 12:50:18</publishTime>
+    </File>
+    <File Include="Pages/Games.aspx">
+      <publishTime>01/18/2017 16:10:39</publishTime>
+    </File>
+    <File Include="Pages/Home.aspx">
+      <publishTime>01/18/2017 16:48:22</publishTime>
+    </File>
+    <File Include="Pages/League.aspx">
+      <publishTime>01/05/2017 10:00:39</publishTime>
+    </File>
+    <File Include="Pages/LeagueDet.aspx">
+      <publishTime>01/19/2017 08:57:15</publishTime>
+    </File>
+    <File Include="Pages/Leagues.aspx">
+      <publishTime>01/18/2017 13:10:25</publishTime>
+    </File>
+    <File Include="Pages/Login.aspx">
+      <publishTime>01/18/2017 13:14:23</publishTime>
+    </File>
+    <File Include="Pages/Logout.aspx">
+      <publishTime>01/05/2017 17:48:47</publishTime>
+    </File>
+    <File Include="Pages/MiPerfil.aspx">
+      <publishTime>01/17/2017 17:26:57</publishTime>
+    </File>
+    <File Include="Pages/PopDadosBasic.aspx">
+      <publishTime>01/05/2017 10:00:39</publishTime>
+    </File>
+    <File Include="Pages/UserLeague.aspx">
+      <publishTime>01/19/2017 09:16:22</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>01/19/2017 13:18:25</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>01/19/2017 13:15:05</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
