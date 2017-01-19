@@ -50,21 +50,25 @@
                                     Width="60px"
                                     CssClass="dado"
                                     ToolTip='<%# Eval("info") %>'
-                                    AlternateText='<%# Eval("info") %>'
-                                    ImageUrl= '<%# "../images/t_dices/mercs/" + Eval("img_Dice").ToString().Trim() %>'
+                                    AlternateText='<%# Eval("die_type_name") %>'
+                                    ImageUrl= '<%# Eval("img_Dice").ToString().Trim() %>'
                                     CommandName="RollDice"
                                     CommandArgument='<%# Eval("id") %>'>
                                 </asp:ImageButton>
                         </ItemTemplate>
                     </asp:Repeater>
                     <asp:Button CssClass="btn" id="rollButton" runat="server" 
-                                OnCommand="rollButton_Command" text="Tirar" 
-                                style="vertical-align:text-bottom; margin-left:30px;"
-                                ToolTip="Tirada completa" Width="100px"></asp:Button>
-                    <asp:Button CssClass="btn" id="btnVerHistorial" runat="server"
-                                onCommand="btnVerHistorial_Command" text="Ver Historial" 
-                                style="vertical-align:text-bottom; margin-left:30px; float:right"
+                                OnCommand="rollButton_Command" text="Tirar dados" 
+                                style="vertical-align:text-bottom; float:right; margin-left:15px"
+                                ToolTip="Tirada completa" Width="150px"></asp:Button>
+
+                    <asp:Button CssClass="btn" id="btnVerMiHistorial" runat="server"
+                                text="Historial" 
+                                style="vertical-align:text-bottom; float:right; margin-left:15px"
+                                OnCommand="btnVerHistorial_Command"
                                 ToolTip="Ver historial de las tiradas de dados" Width="150px"></asp:Button>                
+
+
                 </asp:Panel>
                 <asp:Label runat="server" style="color:#ffd800;" Text="Sin dados asignados" ID="_LbNoDadosAsignados" Visible="false"></asp:Label>
             </div>
@@ -85,7 +89,7 @@
                                                         Width="45px"
                                                         ToolTip='<%# Eval("user_name") %>'
                                                         AlternateText='<%# Eval("user_name") %>'
-                                                        ImageUrl= '<%# "../images/" + Eval("user_avatar").ToString().Trim() %>'>
+                                                        ImageUrl= '<%# this.PATH_IMAGES + Eval("user_avatar").ToString().Trim() %>'>
                                                     </asp:ImageButton>
                                     </asp:TableCell>
                                     <asp:TableCell VerticalAlign="Middle" Width="75px">
@@ -97,16 +101,24 @@
                                                     <asp:Image runat="server" ID="ImgUserDice"
                                                         Width="45px"
                                                         ToolTip='<%# Eval("info") %>'
-                                                        AlternateText='<%# Eval("info") %>'
-                                                        ImageUrl= '<%# "../images/t_dices/mercs/" + Eval("img_Dice").ToString().Trim() %>'>
+                                                        AlternateText='<%# Eval("die_type_name") %>'
+                                                        ImageUrl= '<%# Eval("img_Dice").ToString().Trim() %>'>
                                                     </asp:Image>
                                             </ItemTemplate>
                                         </asp:Repeater>
+                                    </asp:TableCell>
+                                    <asp:TableCell HorizontalAlign="Right" Width="160px">
+                                        <asp:Button CssClass="btn" id="btnVerHistorial" runat="server"
+                                                    text="Historial" 
+                                                    CommandName="VerHistorialUsuario" CommandArgument='<%# Eval("id_user_league") %>'
+                                                    ToolTip="Ver historial de las tiradas de dados" Width="150px"></asp:Button>                
                                     </asp:TableCell>
                                 </asp:TableRow>
                             </asp:Table>
                         </ItemTemplate>
                     </asp:Repeater>
+                    <div style="text-align:right">
+                    </div>
                 </asp:Panel>
                 <asp:Label runat="server" style="color:#ffd800;" Text="No hay datos de otros usuarios" ID="_LbNoDadosUsuarios" Visible="false"></asp:Label>
             </div>
@@ -127,16 +139,30 @@
         <div class="div_box">            
             <div>
                 <br />
-                <div style="margin-left:25px">
-                        <asp:RadioButton id="optCreditos" GroupName="UsarDado" Text="" runat="server"/>
-                    </div>
+                <table style="width:100%">
+                    <tr>
+                        <td style="width:55px; vertical-align:top; text-align:left">
+                            <asp:Image runat="server" ID="ImgDadoUsar" Width="45px" />
+                        </td>
+                        <td>
+                            <asp:Label runat="server" ID="LbNombreDado" Font-Bold="true" ForeColor="#e3e3e3"></asp:Label><br />
+                            <asp:Label runat="server" ID="LbInfoDado"></asp:Label>
+                        </td>
+                    </tr>
+                </table>                        
+                <br />
                 <div class="row" style="margin-left:25px">
                     <asp:RadioButton id="optMateriales" GroupName="UsarDado" Text="" runat="server"/>
+                </div>
+                <div style="margin-left:25px">
+                    <asp:RadioButton id="optCreditos" GroupName="UsarDado" Text="" runat="server"/>
                 </div>
                 <div style="margin-left:25px">
                     <asp:RadioButton id="optUsar" GroupName="UsarDado" Text="" runat="server"/>
                 </div>
                 <div style="margin-left:25px">
+                    <asp:Label runat="server" ID="LbObservaciones" Text="Notas para el admin (P.ej: jugador objetivo)"></asp:Label>
+                    <br />
                     <asp:TextBox ID="txtUsar" runat="server" Height="100px" TextMode="MultiLine" Width="90%"></asp:TextBox>
                 </div>
                 <br />
@@ -156,31 +182,43 @@
     <ajax:ModalPopupExtender ID="PopUpHistorial" runat="server" PopupControlID="PnlHistorico" TargetControlID="btnOculto"
         CancelControlID="btnCloseHistorico" BackgroundCssClass="modalBackground">
     </ajax:ModalPopupExtender>
-    <asp:Panel ID="PnlHistorico" runat="server" CssClass="PopUp" style="display:none">
+    <asp:Panel ID="PnlHistorico" runat="server" CssClass="PopUp" style="display:none; height:50vh; width:70vw">
         <asp:Button ID="btnCloseHistorico" CssClass="ClosePopUp" runat="server" Text="X" />
-        <div>
-            <asp:label id="LblHistorial" CssClass="titulo" runat="server">Historial de tiradas en </asp:label>            
-        </div>
-        <div class="row">
-            <asp:Repeater runat="server" ID="RptHistorialUsuarios" OnItemDataBound="RptHistorialUsuarios_ItemDataBound">
-                <ItemTemplate>
-                    <div style="padding-left: 30px;width:90%;padding-top:10px;">
-                        <asp:Label id="user" Text='<%# Eval("user_name") + " ronda " + Eval("round") + ":" %>' runat="server"></asp:Label>  
-                        <div>                     
-                            <asp:Repeater runat="server" ID="RptHistorialDadosUsuarios">
-                                <ItemTemplate>                                    
-                                        <asp:Image runat="server" ID="ImgUserDice"
-                                            Width="25px"
-                                            ToolTip='<%# Eval("info") %>'
-                                            AlternateText='<%# Eval("info") %>'
-                                            ImageUrl= '<%# "../images/t_dices/mercs/" + Eval("img_Dice").ToString().Trim() %>'>
-                                        </asp:Image>
-                                </ItemTemplate>
-                            </asp:Repeater>
-                        </div> 
-                    </div>
-                </ItemTemplate>
-            </asp:Repeater>
+        <asp:Label runat="server" ID="LblHistorial" CssClass="TitlePopUp" Text="---" ></asp:Label>
+        <div class="div_box" style="height:100%; width:100%; overflow:auto">            
+            <table style="width:100%">
+            <tr>
+                <th style="height:2em; font-weight:bold; color:#e3e3e3">JUGADOR</th>
+                <th style="height:2em; font-weight:bold; color:#e3e3e3">RONDA</th>
+                <th style="height:2em; font-weight:bold; color:#e3e3e3">DADOS</th>
+            </tr>
+                <asp:Repeater runat="server" ID="RptHistorialUsuarios" OnItemDataBound="RptHistorialUsuarios_ItemDataBound">
+                    <ItemTemplate>
+                        <tr>
+                            <td style="width:80px; height:30px;">
+                                <asp:Label id="user" Text='<%# Eval("user_name") %>' runat="server"></asp:Label>  
+                            </td>
+                            <td style="width:60px; text-align:center">
+                                <asp:Label id="Label1" Text='<%# Eval("round") %>' runat="server"></asp:Label>  
+                            </td>
+                            <td>
+                                <asp:Repeater runat="server" ID="RptHistorialDadosUsuarios">
+                                    <ItemTemplate>                                    
+                                            <asp:Image runat="server" ID="ImgUserDice"
+                                                Width="25px"
+                                                style="margin-right:5px; float:left"
+                                                ToolTip='<%# Eval("info") %>'
+                                                AlternateText='<%# Eval("info") %>'
+                                                ImageUrl= '<%# Eval("img_Dice").ToString().Trim() %>'>
+                                            </asp:Image>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                                <div style="clear:both"></div>
+                            </td>
+                        </tr>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </table>
         </div>
     </asp:Panel>
  

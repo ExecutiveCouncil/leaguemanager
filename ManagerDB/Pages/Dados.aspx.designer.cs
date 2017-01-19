@@ -94,13 +94,13 @@ namespace ManagerDB.Pages {
         protected global::System.Web.UI.WebControls.Button rollButton;
         
         /// <summary>
-        /// Control btnVerHistorial.
+        /// Control btnVerMiHistorial.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVerHistorial;
+        protected global::System.Web.UI.WebControls.Button btnVerMiHistorial;
         
         /// <summary>
         /// Control _LbNoDadosAsignados.
@@ -184,13 +184,31 @@ namespace ManagerDB.Pages {
         protected global::System.Web.UI.WebControls.Label LbTitulo;
         
         /// <summary>
-        /// Control optCreditos.
+        /// Control ImgDadoUsar.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton optCreditos;
+        protected global::System.Web.UI.WebControls.Image ImgDadoUsar;
+        
+        /// <summary>
+        /// Control LbNombreDado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbNombreDado;
+        
+        /// <summary>
+        /// Control LbInfoDado.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbInfoDado;
         
         /// <summary>
         /// Control optMateriales.
@@ -202,6 +220,15 @@ namespace ManagerDB.Pages {
         protected global::System.Web.UI.WebControls.RadioButton optMateriales;
         
         /// <summary>
+        /// Control optCreditos.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton optCreditos;
+        
+        /// <summary>
         /// Control optUsar.
         /// </summary>
         /// <remarks>
@@ -209,6 +236,15 @@ namespace ManagerDB.Pages {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButton optUsar;
+        
+        /// <summary>
+        /// Control LbObservaciones.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LbObservaciones;
         
         /// <summary>
         /// Control txtUsar.

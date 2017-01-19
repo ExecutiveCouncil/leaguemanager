@@ -66,9 +66,13 @@
             </div>
             <div class="content_separator"></div>
             <div class="content_program">
-                <asp:ContentPlaceHolder ID="ContentProgram" runat="server">
+                <asp:UpdatePanel runat="server">
+                    <ContentTemplate>
+                        <asp:ContentPlaceHolder ID="ContentProgram" runat="server">
         
-                </asp:ContentPlaceHolder>
+                        </asp:ContentPlaceHolder>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
             </div>
         </form>
     </body>

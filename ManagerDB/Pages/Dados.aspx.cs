@@ -24,13 +24,13 @@ namespace ManagerDB.Pages
                     //Ponemos la ronda actual y el nombre de la liga
                     this.lblLiga.Text = this.liga.name;
                     this.lblRonda.Text = "RONDA: <span style='color:#e3e3e3;'>" + this.liga.current_round.ToString() + "</span>";                    
-                    this.LblHistorial.Text += this.liga.name + ":";
+                    this.LblHistorial.Text = this.liga.name;
                     this.CalcularRecursos();
 
                     //Ocultamos el botón del historial si estamos en la ronda 1
                     if (this.liga.current_round == null || this.liga.current_round == 1)
                     {
-                        this.btnVerHistorial.Visible = false;
+                        //this.btnVerHistorial.Visible = false;
                     }
 
                     this.MostrarDados();
@@ -89,6 +89,8 @@ namespace ManagerDB.Pages
 
         private void MostrarDados()
         {
+
+            this.rollButton.Visible = false;
             List<UserDice> dadosUsuario = (from ul in this.manager.t_user_leagues
                                            join l in this.manager.t_leagues on ul.id_league equals l.id
                                            join ud in this.manager.mercs_user_dice on ul.id equals ud.id_user_league
@@ -127,10 +129,18 @@ namespace ManagerDB.Pages
                         var cara = caras.Where(a => a.id == dado.id_die_face).FirstOrDefault();
                         dado.action = cara.action;
                         dado.info = cara.info;
+                        dado.die_type_name = cara.action;
                         dado.cost_credits = cara.cost_credits;
                         dado.sell_materials = cara.sell_materials;
                         dado.sell_credits = cara.sell_credits;
                         dado.die_face = cara.die_face;
+                        
+                    }
+
+                    if (dado.rolled_date.HasValue == false)
+                    {
+                        //Si al menos falta un dado por tirar mostramos el boton de realizar tiradas
+                        this.rollButton.Visible = true;
                     }
 
                     //Calculamos que imagen debe ir en el dado
@@ -300,7 +310,7 @@ namespace ManagerDB.Pages
                 }
             }
 
-            return imagen + ".png";
+            return this.PATH_IMAGES + "t_dices/mercs/" + imagen + ".png";
         }
 
         private void RollDice(int idDice, DateTime fecha)
@@ -332,7 +342,7 @@ namespace ManagerDB.Pages
                     //Controlamos la visibilidad de las opciones
                     if (cara.sell_credits > 0)
                     {
-                        this.optCreditos.Text = "Obtener créditos (" + cara.sell_credits + ")";
+                        this.optCreditos.Text = "Convertir en créditos (+" + cara.sell_credits + " créditos)";
                         this.optCreditos.Visible = true;
                     }
                     else
@@ -342,7 +352,7 @@ namespace ManagerDB.Pages
 
                     if (cara.sell_materials > 0)
                     {
-                        this.optMateriales.Text = "Obtener materiales (" + cara.sell_materials + ")";
+                        this.optMateriales.Text = "Convertir en materiales (+" + cara.sell_materials + " materiales)";
                         this.optMateriales.Visible = true;
                     }
                     else
@@ -353,19 +363,26 @@ namespace ManagerDB.Pages
                     if (cara.sell_credits == 0)
                     {
                         this.optUsar.ToolTip = cara.info;
-                        this.optUsar.Text = "Usar (coste: " + ((cara.cost_credits == null) ? 0 : cara.cost_credits) + " créditos)";
+                        this.optUsar.Text = "Usar habilidad (coste: " + ((cara.cost_credits == null) ? 0 : cara.cost_credits) + " créditos)";
                         this.optUsar.Visible = true;
                         this.txtUsar.Visible = true;
+                        this.LbObservaciones.Visible = true;
                     }
                     else
                     {
+                        this.LbObservaciones.Visible = false;
                         this.optUsar.Visible = false;
                         this.txtUsar.Visible = false;
                     }
 
                     //Guardamos el dado del usuario en los datos de sesión
                     dadoSeleccionado = dado;
-                    
+
+                    this.LbInfoDado.Text = cara.info;
+                    this.LbNombreDado.Text = cara.action;
+                    this.ImgDadoUsar.ImageUrl = CalcularImagenDado(cara.id_die_type, cara.die_face, dado.rolled_date, dado.spent_date, dado.status);
+                    this.ImgDadoUsar.AlternateText = cara.action;
+
                     //Mostramos el modal con las opciones para gastarlo
                     this.PopUpDado.Show();
                 }
@@ -483,8 +500,6 @@ namespace ManagerDB.Pages
                     childRepeater.DataBind();
                 }
             }
-
-            PopUpHistorial.Show();
         }
 
         protected void btnVerHistorial_Command(object sender, CommandEventArgs e)
@@ -494,8 +509,8 @@ namespace ManagerDB.Pages
                                         join ud in this.manager.mercs_user_dice on ul.id equals ud.id_user_league
                                         join dt in this.manager.mercs_die_types on ud.id_die_type equals dt.id
                                         join u in this.manager.t_users on ul.id_user equals u.id
-                                        where  ud.round < l.current_round
-                                                && l.id == this.liga.id
+                                        where  l.id == this.liga.id
+                                                && ul.id_user == this.usuario.id
                                         select new UserDice
                                         {
                                             user_name = u.login,
@@ -508,6 +523,8 @@ namespace ManagerDB.Pages
                 this.RptHistorialUsuarios.DataSource = historial;
                 this.RptHistorialUsuarios.DataBind();
             }
+            PopUpHistorial.Show();
+
         }
 
         protected void btnUsarDado_Command(object sender, CommandEventArgs e)
@@ -649,6 +666,32 @@ namespace ManagerDB.Pages
                         {
                             this.Response.Redirect("UserLeague.aspx?idLeague=" + _ligaUsuario.id_league + "&idUser=" + _ligaUsuario.id_user, true);
                         }
+                        break;
+                    }
+
+                case "VerHistorialUsuario":
+                    {
+                        int _idUserLeague = Convert.ToInt32(e.CommandArgument);
+                        
+                        List<UserDice> historial = (from ul in this.manager.t_user_leagues
+                                                    join l in this.manager.t_leagues on ul.id_league equals l.id
+                                                    join ud in this.manager.mercs_user_dice on ul.id equals ud.id_user_league
+                                                    join dt in this.manager.mercs_die_types on ud.id_die_type equals dt.id
+                                                    join u in this.manager.t_users on ul.id_user equals u.id
+                                                    where ul.id == _idUserLeague
+                                                    select new UserDice
+                                                    {
+                                                        user_name = u.login,
+                                                        id_user_league = ul.id,
+                                                        round = ud.round
+                                                    }).OrderBy(a => a.round).ThenBy(a => a.id_user_league).Distinct().ToList();
+
+                        if (historial.Count > 0)
+                        {
+                            this.RptHistorialUsuarios.DataSource = historial;
+                            this.RptHistorialUsuarios.DataBind();
+                        }
+                        PopUpHistorial.Show();
                         break;
                     }
             }

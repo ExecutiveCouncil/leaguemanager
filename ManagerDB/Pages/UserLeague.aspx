@@ -56,12 +56,12 @@
                 <asp:TableCell Width="10px"></asp:TableCell>
                 <asp:TableCell VerticalAlign="Top">
                     <p class="row">
-                        <asp:Label runat="server" ID="Label4" Text="Nombre del equipo"></asp:Label>
-                        <asp:TextBox runat="server" Enabled="false" ID="TxNombreEquipo" Text="XXXXXX" Width="100%"></asp:TextBox>
-                    </p>
-                    <p class="row">
                         <asp:Label runat="server" ID="Label7" Text="Jugador"></asp:Label>
                         <asp:TextBox runat="server" Enabled="false" ID="TxJugador" Text="XXXXXX" Width="100%"></asp:TextBox>
+                    </p>
+                    <p class="row">
+                        <asp:Label runat="server" ID="Label4" Text="Nombre del equipo"></asp:Label>
+                        <asp:TextBox runat="server" Enabled="false" ID="TxNombreEquipo" Text="XXXXXX" Width="100%"></asp:TextBox>
                     </p>
                     <p class="row">
                         <asp:Label runat="server" ID="Label5" Text="Facción utilizada"></asp:Label>

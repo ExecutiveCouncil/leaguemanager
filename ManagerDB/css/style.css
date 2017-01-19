@@ -23,12 +23,6 @@ a:hover{
     color:#FFBF00;
 }
 
-table th
-{
-    background-color:red;
-}
-
-
 .div_box{
   background:#222;
   border-radius:7px;
@@ -341,7 +335,7 @@ h3{
 }
 .grid_header td{
     padding: 3px;
-    border: solid 1px #333;       
+    border: solid 1px #222;       
 }
 
 .grid_row{
@@ -353,7 +347,7 @@ h3{
 }
 .grid_row td{
     padding: 3px;       
-    border: solid 1px #333; 
+    border: solid 1px #222; 
 }
 
 .grid_alternate_row{
@@ -368,7 +362,7 @@ h3{
 .grid_alternate_row td
 {
     padding: 3px;
-    border: solid 1px #333;
+    border: solid 1px #222;
 }
 
 .img_button{
