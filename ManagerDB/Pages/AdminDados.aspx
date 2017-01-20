@@ -15,8 +15,6 @@
                 <hr />
             </div>
         </div>
-
-
         <br />
         <div class="row">
             <div class="col-md-12">
@@ -38,29 +36,29 @@
         <div class="row">
             <div class="col-md-12">
                 <h3>
-                    <label id="tituloUsuarios" class="titulo">PARTICIPANTES</label>            
+                    <label id="tituloUsuarios">PARTICIPANTES</label>            
                 </h3>
-                <div class="div_box">
-                    <asp:Repeater runat="server" ID="RptDatosUsuarios" OnItemDataBound="RptDatosUsuarios_ItemDataBound">
-                        <ItemTemplate>
-                            <div class="boxDados">
-                                <div style="padding-left: 30px">
-                                    <asp:Image CssClass="imagenDados" runat="server" ID="ImgUser"
-                                                    Width="45px"
-                                                    ToolTip='<%# Eval("user_name") %>'
-                                                    AlternateText='<%# Eval("user_name") %>'
-                                                    ImageUrl= '<%# "../images/" + Eval("user_avatar").ToString().Trim() %>'>
-                                                </asp:Image>
-                                    <asp:Label id="user" Text='<%# Eval("user_name") %>' CssClass="textoDadosUsuario" runat="server"></asp:Label>
-                                    <asp:Label id="creditos" Text='<%# Eval("textoCreditos") %>' CssClass="textoDadosUsuario" runat="server"></asp:Label>
-                                    <asp:Label id="materiales" Text='<%# Eval("textoMateriales") %>' CssClass="textoDadosUsuario" runat="server"></asp:Label>                           
-                                    <asp:Button CssClass="btn" id="btnAddDado" runat="server" 
-                                        OnCommand="btnAddDado_Command" text="Añadir dado" 
-                                        style="vertical-align:text-bottom; margin-right:30px; float:right"
-                                        ToolTip="Ver historial de las tiradas de dados" Width="150px"></asp:Button> 
-                                </div>
-                                <div style="padding-left: 30px">
-                                    <label class="textoDados">Recursos: </label>
+                <asp:Repeater runat="server" ID="RptDatosUsuarios" OnItemDataBound="RptDatosUsuarios_ItemDataBound">
+                    <ItemTemplate>
+                        <div class="div_box">
+                            <asp:Table runat="server" Width="100%">
+                            <asp:TableRow>
+                                <asp:TableCell RowSpan="2" Width="60px" HorizontalAlign="Center">
+                                    <asp:Image runat="server" ID="ImgUser"
+                                                Width="45px"
+                                                ToolTip='<%# Eval("user_name") %>'
+                                                AlternateText='<%# Eval("user_name") %>'
+                                                ImageUrl= '<%# this.PATH_IMAGES + Eval("user_avatar").ToString().Trim() %>'>
+                                    </asp:Image>
+                                    <br />
+                                    <asp:Label id="user" Text='<%# Eval("user_name") %>' runat="server"></asp:Label>
+                                </asp:TableCell>
+                                <asp:TableCell style="padding-left:5px" VerticalAlign="Middle" Width="100px">
+                                    <asp:Label id="creditos" Text='<%# Eval("textoCreditos") %>' runat="server" ForeColor="#a47c05"></asp:Label>
+                                    <br />
+                                    <asp:Label id="materiales" Text='<%# Eval("textoMateriales") %>' runat="server" ForeColor="#a47c05"></asp:Label>                           
+                                </asp:TableCell>
+                                <asp:TableCell>
                                     <asp:Repeater runat="server" ID="RptDadosUsuarios" OnItemCommand="RptDadosUsuarios_ItemCommand">
                                         <ItemTemplate>                                    
                                             <asp:ImageButton runat="server" ID="ImgDice"
@@ -74,12 +72,16 @@
                                             </asp:ImageButton>
                                         </ItemTemplate>
                                     </asp:Repeater>
-                                </div>
-                            </div>
-                            <br />
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </div>
+                                    <asp:ImageButton CssClass="dado" id="btnAddDado" runat="server" 
+                                        OnCommand="btnAddDado_Command"  ImageUrl="../images/t_dices/mercs/add.png" 
+                                        ToolTip="Añadir un dado" Width="60px"></asp:ImageButton> 
+                                </asp:TableCell>
+                            </asp:TableRow>
+                        </asp:Table>
+                        </div>
+                        <br />
+                    </ItemTemplate>
+                </asp:Repeater>
             </div>
         </div>
     </div>

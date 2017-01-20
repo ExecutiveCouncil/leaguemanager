@@ -203,12 +203,14 @@
     <Content Include="images\webapp\menu_icon.png" />
     <Content Include="images\webapp\user.png" />
     <Content Include="images\webapp\user_old.png" />
+    <Content Include="images\webapp\waiting.gif" />
     <Content Include="images\webapp\WALLPAPER.jpg" />
     <Content Include="images\webapp\wallpaper_menu.jpg" />
     <Content Include="images\webapp\wallpaper_menu1.jpg" />
     <Content Include="images\webapp\wallpaper_menu2.jpg" />
     <Content Include="images\webapp\wallpaper_menu4.jpg" />
     <Content Include="images\webapp\wallpaper_menu5.jpg" />
+    <Content Include="js\webapp.js" />
     <Content Include="Pages\AdminDados.aspx" />
     <Content Include="Pages\Dados.aspx" />
     <Content Include="Default.aspx" />

@@ -16,6 +16,7 @@
                 <Scripts>
                     <asp:ScriptReference Path="~/js/jquery.min.js"/>
                     <asp:ScriptReference Path="~/js/bootstrap.min.js"/>
+                    <asp:ScriptReference Path="~/js/webapp.js"/>
                 </Scripts>
             </asp:ScriptManager>
             <div class="content_menu">
@@ -66,8 +67,15 @@
             </div>
             <div class="content_separator"></div>
             <div class="content_program">
-                <asp:UpdatePanel runat="server">
+                <asp:UpdatePanel runat="server" >
                     <ContentTemplate>
+                        <ajax:ModalPopupExtender ID="ModalProgress" runat="server" TargetControlID="MDPopup"
+                            PopupControlID="MDPopup" BackgroundCssClass="backgroundprogressbar">
+                        </ajax:ModalPopupExtender>
+                        <asp:Panel ID="MDPopup" runat="server" CssClass="progressbar" style="display: none; width: 380px;">
+                            <asp:Image ID="Image1" runat="server" ImageUrl="~/images/webapp/waiting.gif" style="vertical-align:text-bottom; margin-right: 10px"/>
+                            <asp:Label ID="Label1" runat="server" Text="Espere un momento ..." />
+                        </asp:Panel>
                         <asp:ContentPlaceHolder ID="ContentProgram" runat="server">
         
                         </asp:ContentPlaceHolder>
