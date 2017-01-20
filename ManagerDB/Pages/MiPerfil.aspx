@@ -5,6 +5,10 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>
+                    <asp:ImageButton runat="server" ID="BtBack" 
+                                     ImageUrl="~/images/webapp/back.png" OnClientClick="goBack();" 
+                                     CssClass="image_button" Width="45px" 
+                                     style="vertical-align:text-top;"/>
                     PERFIL
                 </h1>
                 <hr />
@@ -14,8 +18,8 @@
         <asp:Image runat="server" ID="ImgUser" Width="150px"/>
         <br /><br />
         <div class="row">
+            <h3>DATOS DE USUARIO</h3>
             <div class="div_box">
-                <h3>DATOS DE USUARIO</h3>
                 <p class="row">
                     <asp:Label runat="server" ID="Label3" Text="Nombre"></asp:Label>
                     <asp:TextBox runat="server" ID="TxNombre" Width="25%"></asp:TextBox>
@@ -38,8 +42,8 @@
         </div>
         <br /><br />
         <div class="row">
+            <h3>ACCESO AL SISTEMA</h3>
             <div class="div_box">
-                <h3>ACCESO AL SISTEMA</h3>
                 <p class="row">
                     <asp:Label runat="server" ID="Label6" Text="Usuario"></asp:Label>
                     <asp:TextBox runat="server" Enabled="false" ID="TxUserLogin" Text=""></asp:TextBox>

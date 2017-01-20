@@ -74,6 +74,7 @@ namespace ManagerDB.Pages
                                 where m.id_user_to == this.usuario.id
                                 select new
                                 {
+                                    message_id = m.id,
                                     league_id = l.id,
                                     league_avatar_url = this.PATH_IMAGES + l.avatar_url,
                                     league_name = l.name,
@@ -139,6 +140,14 @@ namespace ManagerDB.Pages
                         base.liga = _ligaSeleccionada;
 
                         this.Response.Redirect("LeagueDet.aspx?idKey=" + _ligaSeleccionada.id, true);
+                        break;
+                    }
+                case "VerJugador":
+                    {
+                        int _idMessage = Convert.ToInt32(e.CommandArgument);
+                        var _msg = (from l in this.manager.t_messages where l.id == _idMessage select l).FirstOrDefault();
+
+                        this.Response.Redirect("UserLeague.aspx?idLeague=" + _msg.id_league + "&idUser=" + _msg.id_user_from, true);
                         break;
                     }
             }

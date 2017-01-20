@@ -60,22 +60,35 @@ namespace ManagerDB.Pages
                 .Where(fc => fc.id_game == _id &&
                        fc.id != 0).ToList();
 
-            this._LbInfoGame.Text = _juego.info;
-            this.ImgGame.ImageUrl = this.PATH_IMAGES + _juego.avatar_url;
-            this.ImgGame.AlternateText = _juego.name;
-
-            if (_listaFacciones.Count > 0)
+            if (_juego != null)
             {
-                _LbNoFactions.Visible = false;
-                this.RptFactions.DataSource = _listaFacciones;
+
+                this._LbInfoGame.Text = _juego.info;
+                this.ImgGame.ImageUrl = this.PATH_IMAGES + _juego.avatar_url;
+                this.ImgGame.AlternateText = _juego.name;
+
+                if (_listaFacciones.Count > 0)
+                {
+                    _LbNoFactions.Visible = false;
+                    this.RptFactions.DataSource = _listaFacciones;
+                }
+                else
+                {
+                    _LbNoFactions.Visible = true;
+                    this.RptFactions.DataSource = null;
+                }
+
+                this.RptFactions.DataBind();
             }
             else
             {
+                this._LbInfoGame.Text = null;
+                this.ImgGame.AlternateText = null;
+                this.ImgGame.ImageUrl = null;
                 _LbNoFactions.Visible = true;
                 this.RptFactions.DataSource = null;
+                this.RptFactions.DataBind();
             }
-
-            this.RptFactions.DataBind();
 
         }
 

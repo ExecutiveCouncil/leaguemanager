@@ -51,8 +51,45 @@ namespace ManagerDB.Pages
                 {
                     CargarDatosLiga();
                     CargarMensajes();
+                    CargarInsignias();
                 }
             }
+        }
+
+        private void CargarInsignias()
+        {
+            var _insignias = (from ut in this.manager.t_user_titles
+                                   join ul in this.manager.t_user_leagues on ut.id_user_league equals ul.id
+                                   join lt in this.manager.t_league_titles on ut.id_league_title equals lt.id
+                                   join b in this.manager.t_badges on lt.id_badge equals b.id
+                                   join l in this.manager.t_leagues on lt.id_league equals l.id
+                                   where ul.id_user == this.idUsuario &&
+                                         ul.id_league == this.idLiga
+                                   select new
+                                   {
+                                       title_avatar_url = this.PATH_IMAGES + b.avatar_url,
+                                       title_name = lt.name,
+                                       title_info = lt.info,
+                                       title_date = ut.unlock_date,
+                                       title_id = ut.id,
+                                   }).OrderByDescending(a => a.title_date).ToList();
+
+            if (_insignias.Count > 0)
+            {
+                this.RptInsigniasAll.DataSource = _insignias;
+                this.RptInsignias.DataSource = _insignias.Take(10);
+                this._LbNoInsignias.Visible = false;
+                this.PnlInsignias.Visible = true;
+            }
+            else
+            {
+                this.RptInsigniasAll.DataSource = null;
+                this.RptInsignias.DataSource = null;
+                this._LbNoInsignias.Visible = true;
+                this.PnlInsignias.Visible = false;
+            }
+            this.RptInsigniasAll.DataBind();
+            this.RptInsignias.DataBind();
         }
 
         private void CargarDatosLiga()
@@ -164,6 +201,7 @@ namespace ManagerDB.Pages
                                       l.id == this.idLiga                                  
                                 select new
                                 {
+                                    message_id = m.id,
                                     league_id = l.id,
                                     league_avatar_url = this.PATH_IMAGES + l.avatar_url,
                                     league_name = l.name,
@@ -201,6 +239,14 @@ namespace ManagerDB.Pages
                         base.liga = _ligaSeleccionada;
 
                         this.Response.Redirect("LeagueDet.aspx?idKey=" + _ligaSeleccionada.id, true);
+                        break;
+                    }
+                case "VerJugador":
+                    {
+                        int _idMessage = Convert.ToInt32(e.CommandArgument);
+                        var _msg = (from l in this.manager.t_messages where l.id == _idMessage select l).FirstOrDefault();
+
+                        this.Response.Redirect("UserLeague.aspx?idLeague=" + _msg.id_league + "&idUser=" + _msg.id_user_from, true);
                         break;
                     }
             }
