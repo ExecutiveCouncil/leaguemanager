@@ -41,7 +41,7 @@ namespace ManagerDB.Pages
 
         private void CalcularRecursos()
         {
-            this.lblCreditos.Text = "Créditos: <span style='color:#e3e3e3;'>" + CalcularCreditos() + "</span>";
+            this.lblCreditos.Text = "Recursos: <span style='color:#e3e3e3;'>" + CalcularCreditos() + "</span>";
             this.lblMateriales.Text = "Materiales: <span style='color:#e3e3e3;'>" + CalcularMateriales() + "</span>";
         }
 
@@ -328,7 +328,7 @@ namespace ManagerDB.Pages
                     dado.status = 0; //sin usar
                     dado.cost = cara.cost_credits;
 
-                    GuardarMensaje("Tirada de dado", "Se tira un dado de '" + this.manager.mercs_die_types.Where(a => a.id == dado.id_die_type).FirstOrDefault().name + "' y ha salido '" + cara.info + "'", this.usuario.id, this.usuario.id);                    
+                    GuardarMensaje("Tirada de dado", "Se tira un dado de '" + this.manager.mercs_die_types.Where(a => a.id == dado.id_die_type).FirstOrDefault().name + "' y ha salido '" + cara.action + " (" + cara.info + ")'", this.usuario.id, this.usuario.id);                    
                 }
                 else if (dado.spent_date == null)                
                 {
@@ -342,7 +342,7 @@ namespace ManagerDB.Pages
                     //Controlamos la visibilidad de las opciones
                     if (cara.sell_credits > 0)
                     {
-                        this.optCreditos.Text = "Convertir en créditos (+" + cara.sell_credits + " créditos)";
+                        this.optCreditos.Text = "Convertir en recursos (+" + cara.sell_credits + " recursos)";
                         this.optCreditos.Visible = true;
                     }
                     else
@@ -363,7 +363,7 @@ namespace ManagerDB.Pages
                     if (cara.sell_credits == 0)
                     {
                         this.optUsar.ToolTip = cara.info;
-                        this.optUsar.Text = "Usar habilidad (coste: " + ((cara.cost_credits == null) ? 0 : cara.cost_credits) + " créditos)";
+                        this.optUsar.Text = "Usar habilidad (coste: " + ((cara.cost_credits == null) ? 0 : cara.cost_credits) + " recursos)";
                         this.optUsar.Visible = true;
                         this.txtUsar.Visible = true;
                         this.LbObservaciones.Visible = true;
@@ -543,7 +543,7 @@ namespace ManagerDB.Pages
             else if (optUsar.Checked && CalcularCreditos() < dadoSeleccionado.cost)
             {
                 //Si no hay creditos suficientes para usar la acción avisamos
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "error", "alert('No hay créditos suficientes para realizar la acción')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "error", "alert('No hay recursos suficientes para realizar la acción')", true);
             }
             else
             {                
@@ -557,7 +557,7 @@ namespace ManagerDB.Pages
                 {
                     dado.status = 1; //gastado en creditos
                     dado.resources_gained = cara.sell_credits;
-                    GuardarMensaje("Dado gastado", "Se gasta un dado de '" + nombreDado + "' y se cambia por " + cara.info + " créditos", this.usuario.id, this.usuario.id);
+                    GuardarMensaje("Dado gastado", "Se gasta un dado de '" + nombreDado + "' y se cambia por " + cara.info + " recursos", this.usuario.id, this.usuario.id);
                 }
                 else if (optMateriales.Checked)
                 {

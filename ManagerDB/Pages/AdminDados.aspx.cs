@@ -90,19 +90,24 @@ namespace ManagerDB.Pages
         private void MostrarDadosUsuarios()
         {
             List<UserDice> usuarios = (from ul in this.manager.t_user_leagues
-                                           join l in this.manager.t_leagues on ul.id_league equals l.id
-                                           join ud in this.manager.mercs_user_dice on ul.id equals ud.id_user_league
-                                           join dt in this.manager.mercs_die_types on ud.id_die_type equals dt.id
-                                           join u in this.manager.t_users on ul.id_user equals u.id
-                                           where l.current_round == ud.round
-                                                    && l.id == this.liga.id
-                                           select new UserDice
-                                           {
-                                               user_name = u.login,
-                                               id_user_league = ul.id,
-                                               user_avatar = u.avatar_url,
-                                               id_user = u.id
-                                           }).Distinct().ToList();
+                        join l in this.manager.t_leagues on ul.id_league equals l.id
+                        join ud in this.manager.mercs_user_dice on ul.id equals ud.id_user_league
+                        join dt in this.manager.mercs_die_types on ud.id_die_type equals dt.id
+                        join u in this.manager.t_users on ul.id_user equals u.id
+                        where l.current_round == this.liga.current_round
+                                 && l.id == this.liga.id
+                        select new UserDice
+                        {
+                            user_name = u.login,
+                            id_user_league = ul.id,
+                            user_avatar = u.avatar_url,
+                            id_user = u.id,
+                            wins = ul.wins,
+                            draws =ul.draws,
+                            losses = ul.losses,
+                            total_score = ul.total_score
+                        }).Distinct().ToList();
+
             foreach (var usuario in usuarios)
             {
                 //Si no tiene foto de avatar ponemos la de por defecto
@@ -112,7 +117,7 @@ namespace ManagerDB.Pages
                 }
                 var creditos = CalcularCreditos(usuario.id_user);
                 var materiales = CalcularMateriales(usuario.id_user);
-                usuario.textoCreditos = "Créditos: " + creditos;
+                usuario.textoCreditos = "Recursos: " + creditos;
                 usuario.textoMateriales = "Materiales: " + materiales;
                 usuario.creditos = creditos;
                 usuario.materiales = materiales;
@@ -265,7 +270,7 @@ namespace ManagerDB.Pages
                 {
                     var costeTotal = dado.cost + Convert.ToInt32(txtAumentarCoste.Text);
                     dado.cost = costeTotal;
-                    GuardarMensaje("Coste aumentado de dado", "Un dado de '" + nombreDado + "' aumenta su coste en " + txtAumentarCoste.Text + " créditos (ahora cuesta " + costeTotal + ")", this.usuario.id, this.usuario.id);
+                    GuardarMensaje("Coste aumentado de dado", "Un dado de '" + nombreDado + "' aumenta su coste en " + txtAumentarCoste.Text + " recursos (ahora cuesta " + costeTotal + ")", this.usuario.id, this.usuario.id);
                 }
                 else if (optEliminar.Checked)
                 {
@@ -354,15 +359,13 @@ namespace ManagerDB.Pages
 
         protected void btnAddDado_Command(object sender, CommandEventArgs e)
         {
-            
+            this.PopUpAddDados.Show();
         }
 
         protected void btnAddTurno_Command(object sender, CommandEventArgs e)
         {
-            //Actualizamos el turno en la liga
             var nuevoTurno = this.liga.current_round + 1;
-            var ligaActualizar = this.manager.t_leagues.Where(a => a.id == this.liga.id).FirstOrDefault();
-            ligaActualizar.current_round = nuevoTurno;
+            //Actualizamos el turno en la liga            
             this.lblRonda.Text = "RONDA ACTUAL: <span style='color:#e3e3e3;'>" + nuevoTurno + "</span>";                    
             this.liga.current_round = nuevoTurno;
 
@@ -430,6 +433,56 @@ namespace ManagerDB.Pages
                         break;
                     }
             }
+        }
+
+        protected void btnActivarTurno_Command(object sender, CommandEventArgs e)
+        {
+            //Actualizamos el turno en la liga
+            var nuevoTurno = this.liga.current_round + 1;
+            var ligaActualizar = this.manager.t_leagues.Where(a => a.id == this.liga.id).FirstOrDefault();
+            if (ligaActualizar.current_round + 1 != nuevoTurno)
+            {
+                ligaActualizar.current_round = nuevoTurno;
+                this.lblRonda.Text = "RONDA ACTUAL: <span style='color:#e3e3e3;'>" + nuevoTurno + "</span>";
+                this.liga.current_round = nuevoTurno;
+            }
+
+            this.manager.SaveChanges();
+            this.MostrarDadosUsuarios();
+        }
+
+        protected void AddVictorias_Command(object sender, CommandEventArgs e)
+        {
+            int _idUser = Convert.ToInt32( e.CommandArgument);
+            var usuarioLiga = this.manager.t_user_leagues.Where(a => a.id == _idUser).FirstOrDefault();
+            usuarioLiga.wins = usuarioLiga.wins+1;
+            usuarioLiga.total_score = usuarioLiga.total_score+25;
+            this.manager.SaveChanges();
+            this.MostrarDadosUsuarios();
+        }
+
+        protected void AddEmpates_Command(object sender, CommandEventArgs e)
+        {
+            int _idUser = Convert.ToInt32(e.CommandArgument);
+            var usuarioLiga = this.manager.t_user_leagues.Where(a => a.id == _idUser).FirstOrDefault();
+            usuarioLiga.draws = usuarioLiga.draws+1;
+            usuarioLiga.total_score = usuarioLiga.total_score + 10;
+            this.manager.SaveChanges();
+            this.MostrarDadosUsuarios();
+        }
+
+        protected void AddPerdidas_Command(object sender, CommandEventArgs e)
+        {
+            int _idUser = Convert.ToInt32(e.CommandArgument);
+            var usuarioLiga = this.manager.t_user_leagues.Where(a => a.id == _idUser).FirstOrDefault();
+            usuarioLiga.losses = usuarioLiga.losses+1;
+            this.manager.SaveChanges();
+            this.MostrarDadosUsuarios();
+        }
+
+        protected void AddDado(object sender, CommandEventArgs e)
+        {
+            
         }
     }
 }

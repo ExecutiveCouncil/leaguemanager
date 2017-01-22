@@ -37,5 +37,9 @@ namespace ManagerDB.Clases
         public string textoMateriales { get; set; }
         public int? id_user { get; set; }
         public int? id_league { get; set; }
+        public int? wins { get; set; }
+        public int? draws { get; set; }
+        public int? losses { get; set; }
+        public int? total_score { get; set; }
     }
 }

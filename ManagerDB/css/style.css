@@ -208,14 +208,26 @@ h3{
   background:#FACC2E;
   color:#FFBF00;
 }
+
 .dado
 {
     padding: 5px;
 }
+
 .dado:hover
 {
    /*background-color:#d77108;*/
     padding:0px;
+}
+
+.dado2
+{
+    margin-left: 5px;
+}
+
+.dado2:hover
+{
+   background-color:#d77108;
 }
 
 .modalBackground
