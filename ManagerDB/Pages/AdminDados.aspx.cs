@@ -147,6 +147,7 @@ namespace ManagerDB.Pages
                                            select new UserDice
                                            {
                                                user_name = u.login,
+                                               id_user_league = ul.id,
                                                id = ud.id,
                                                id_die_type = ud.id_die_type,
                                                spent_date = ud.spent_date,
@@ -359,6 +360,7 @@ namespace ManagerDB.Pages
 
         protected void btnAddDado_Command(object sender, CommandEventArgs e)
         {
+            this.idUsuarioLigaSeleccionado = Convert.ToInt32(e.CommandArgument);
             this.PopUpAddDados.Show();
         }
 
@@ -480,9 +482,29 @@ namespace ManagerDB.Pages
             this.MostrarDadosUsuarios();
         }
 
-        protected void AddDado(object sender, CommandEventArgs e)
+        protected void ImgAddDados_Command(object sender, CommandEventArgs e)
         {
-            
+            switch (e.CommandName)
+            {
+                case "AddDado":
+                    {
+                        int tipoDado = Convert.ToInt32(e.CommandArgument);
+                        var nombreDado = this.manager.mercs_die_types.Where(a => a.id == tipoDado).FirstOrDefault().name;
+                        mercs_user_dice dado = new mercs_user_dice();
+                        dado.id = ObtenerIdNuevoDado();
+                        dado.id_user_league = this.idUsuarioLigaSeleccionado;
+                        dado.round = this.liga.current_round;
+                        dado.id_die_type = tipoDado;
+                        dado.status = 0;
+                        this.manager.mercs_user_dice.Add(dado);
+                        this.manager.SaveChanges();
+
+                        GuardarMensaje("Añadido dado", "Se ha añadido un dado de '" + nombreDado + "'", this.usuario.id, idUsuarioLigaSeleccionado);
+                        break;
+                    }
+            }
+
+            this.MostrarDadosUsuarios();
         }
     }
 }

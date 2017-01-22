@@ -78,7 +78,7 @@
                                     </asp:Repeater>
                                     <asp:ImageButton CssClass="dado" id="btnAddDado" runat="server" 
                                         OnCommand="btnAddDado_Command"  ImageUrl="../images/t_dices/mercs/add.png" 
-                                        ToolTip="Añadir un dado" Width="60px"></asp:ImageButton> 
+                                        ToolTip="Añadir un dado" Width="60px" CommandArgument='<%# Eval("id_user_league") %>'></asp:ImageButton> 
                                 </asp:TableCell>                                
                             </asp:TableRow>
                             <asp:TableRow>
@@ -159,6 +159,7 @@
                                                 ToolTip='Resursos'
                                                 AlternateText='Resursos'
                                                 ImageUrl= "../images/t_dices/mercs/a.png"
+                                                OnCommand="ImgAddDados_Command"
                                                 CommandName="AddDado"
                                                 CommandArgument='1' />
                     <asp:ImageButton runat="server" ID="ImgDice2"
@@ -167,6 +168,7 @@
                                                 ToolTip='Economía'
                                                 AlternateText='Economía'
                                                 ImageUrl= "../images/t_dices/mercs/g.png"
+                                                OnCommand="ImgAddDados_Command"
                                                 CommandName="AddDado"
                                                 CommandArgument='2'/>
                     <asp:ImageButton runat="server" ID="ImgDice3"
@@ -175,6 +177,7 @@
                                                 ToolTip='Política'
                                                 AlternateText='Política'
                                                 ImageUrl= "../images/t_dices/mercs/v.png"
+                                                OnCommand="ImgAddDados_Command"
                                                 CommandName="AddDado"
                                                 CommandArgument='3'/>
                     <asp:ImageButton runat="server" ID="ImgDice4"
@@ -183,6 +186,7 @@
                                                 ToolTip='Espionaje'
                                                 AlternateText='Espionaje'
                                                 ImageUrl= "../images/t_dices/mercs/c.png"
+                                                OnCommand="ImgAddDados_Command"
                                                 CommandName="AddDado"
                                                 CommandArgument='4'/>
                 </div>

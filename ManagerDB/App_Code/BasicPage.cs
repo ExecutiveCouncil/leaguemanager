@@ -93,6 +93,18 @@ namespace ManagerDB.Pages
                 this.Session["dadoSeleccionado"] = value;
             }
         }
+
+        protected int? idUsuarioLigaSeleccionado
+        {
+            get
+            {
+                return (int?)this.Session["idUsuarioLigaSeleccionado"];
+            }
+            set
+            {
+                this.Session["idUsuarioLigaSeleccionado"] = value;
+            }
+        }
  
         /// <summary>
         /// Valida si los datos del entorno estan correctamente definidos o no.
