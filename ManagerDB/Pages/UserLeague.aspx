@@ -15,33 +15,9 @@
                 <hr />
             </div>
         </div>
-        <br />
-        <asp:Table runat="server" Width="100%">
-            <asp:TableRow>
-                <asp:TableCell Width="200px">
-                    <asp:Image runat="server" ID="ImgLiga" Width="200px" />
-                </asp:TableCell>
-                <asp:TableCell Width="10px"></asp:TableCell>
-                <asp:TableCell VerticalAlign="Top">
-                    <p class="row">
-                        <asp:Label runat="server" ID="Label6" Text="Fecha inicio de liga"></asp:Label>
-                        <asp:TextBox runat="server" Enabled="false" ID="TxFechaInicio" Text="XXXXXX" Width="100%"></asp:TextBox>
-                    </p>
-                    <p class="row">
-                        <asp:Label runat="server" ID="Label2" Text="Fecha fin de liga"></asp:Label>
-                        <asp:TextBox runat="server" Enabled="false" ID="TxFechaFin" Text="XXXXXX" Width="100%"></asp:TextBox>
-                    </p>
-                    <p class="row">
-                        <asp:Label runat="server" ID="Label3" Text="Información adicional"></asp:Label>
-                        <asp:TextBox runat="server" Enabled="false" ID="TxInfo" Text="XXXXXX" Width="100%"></asp:TextBox>
-                    </p>
-                </asp:TableCell>
-            </asp:TableRow>
-        </asp:Table>
-        <br />
         <div class="row">
             <div class="col-md-12">
-                <h3>PANEL DE CONTROL</h3>
+                <h3>DATOS DEL JUGADOR</h3>
             </div>
         </div>
         <br />
@@ -56,7 +32,7 @@
                 <asp:TableCell Width="10px"></asp:TableCell>
                 <asp:TableCell VerticalAlign="Top">
                     <p class="row">
-                        <asp:Label runat="server" ID="Label7" Text="Jugador"></asp:Label>
+                        <asp:Label runat="server" ID="Label7" Text="Nombre del jugador"></asp:Label>
                         <asp:TextBox runat="server" Enabled="false" ID="TxJugador" Text="XXXXXX" Width="100%"></asp:TextBox>
                     </p>
                     <p class="row">
@@ -108,9 +84,70 @@
         </asp:DataGrid>
         <br />
         <asp:Panel runat="server" ID="PnlUsuarioLigaMERCS" Visible="false" class="div_box" style="text-align:right">
+            <asp:Button CssClass="btn" id="BtAdminMERCS" runat="server" OnClick="BtAdminMERCS_Click" text="ADMINISTRAR LIGA" Width="200px"></asp:Button>
             <asp:Button CssClass="btn" id="BtInformePartida" runat="server" OnClick="BtRecursosMERCS_Click" text="INFORMAR PARTIDA" Width="200px"></asp:Button>
-            <asp:Button CssClass="btn" id="BtRecursosMERCS" runat="server" OnClick="BtRecursosMERCS_Click" text="USAR DADOS" Width="150px"></asp:Button>
+            <asp:Button CssClass="btn" id="BtRecursosMERCS" runat="server" OnClick="BtRecursosMERCS_Click" text="PANEL DE CONTROL" Width="200px"></asp:Button>
         </asp:Panel>
+        <br />
+
+        <asp:Panel runat="server" id="PnlMejoras">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>MEJORAS ACTIVAS</h3>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+            <div class="col-md-12">
+                <asp:DataGrid ID="GrMejoras" runat="server" AutoGenerateColumns="false" Width="100%"
+                            ShowHeader="true" 
+                            CssClass="grid"
+                            HeaderStyle-CssClass="grid_header" 
+                            ItemStyle-CssClass="grid_row" 
+                            AlternatingItemStyle-CssClass="grid_alternate_row"
+                            OnItemCommand="GrMensajes_ItemCommand">
+                    <Columns>
+                        <asp:BoundColumn DataField="upgrade_id" HeaderText="ID" Visible="false"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="upgrade_name" HeaderText="Mejora" ItemStyle-Width="150px"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="upgrade_rules" HeaderText="Reglas especiales"></asp:BoundColumn>
+                    </Columns>
+                </asp:DataGrid>
+                <asp:Label runat="server" style="color:#ffd800;" Text="No se han realizado mejoras" ID="_LbNoMejoras" Visible="false"></asp:Label>
+            </div>
+        </div>
+        </asp:Panel>
+
+        <br /><br />
+
+        <asp:Panel runat="server" id="PnlTropas">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>TROPAS RECLUTADAS</h3>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+            <div class="col-md-12">
+                <asp:DataGrid ID="GrTropas" runat="server" AutoGenerateColumns="false" Width="100%"
+                            ShowHeader="true" 
+                            CssClass="grid"
+                            HeaderStyle-CssClass="grid_header" 
+                            ItemStyle-CssClass="grid_row" 
+                            AlternatingItemStyle-CssClass="grid_alternate_row"
+                            OnItemCommand="GrMensajes_ItemCommand">
+                    <Columns>
+                        <asp:BoundColumn DataField="troop_id" HeaderText="ID" Visible="false"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="troop_name" HeaderText="Tropa" ItemStyle-Width="150px"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="troop_rules" HeaderText="Reglas especiales"></asp:BoundColumn>
+                    </Columns>
+                </asp:DataGrid>
+                <asp:Label runat="server" style="color:#ffd800;" Text="No hay tropas disponibles" ID="_LbNoTroops" Visible="false"></asp:Label>
+            </div>
+        </div>
+        </asp:Panel>
+
+        <br /><br />
+
         <asp:Panel runat="server" id="PnlMensajes" Visible="false">
             <div class="row">
                 <div class="col-md-12">

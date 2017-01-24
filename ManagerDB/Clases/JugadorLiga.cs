@@ -9,7 +9,9 @@ namespace ManagerDB.Pages
     {
         public int league_id { get; set; }
         public int? user_id { get; set; }
+        public int? userleague_sec_level { get; set; }
         public string user_name { get; set; }
+        public string user_surname { get; set; }
         public string user_avatar { get; set; }
         public string team_name { get; set; }
         public string team_avatar_url { get; set; }

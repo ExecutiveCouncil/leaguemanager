@@ -52,10 +52,67 @@ namespace ManagerDB.Pages
                     CargarDatosLiga();
                     CargarMensajes();
                     CargarInsignias();
+                    CargarTropas();
+                    CargarMejoras();
                 }
             }
         }
 
+        private void CargarTropas()
+        {
+            var _tropas = (from ut in this.manager.mercs_user_troops
+                           join ul in this.manager.t_user_leagues on ut.id_user_league equals ul.id
+                           join tr in this.manager.mercs_troops on ut.id_troop equals tr.id
+                           where ul.id_user == this.idUsuario &&
+                                 ul.id_league == this.idLiga
+                           select new
+                              {
+                                  troop_id = ut.id,
+                                  troop_name = tr.name,
+                                  troop_rules = tr.conflict_rule,
+                              }).OrderByDescending(a => a.troop_id).ToList();
+
+            if (_tropas.Count > 0)
+            {
+                this.GrTropas.DataSource = _tropas;
+                this._LbNoTroops.Visible = false;
+            }
+            else
+            {
+                this.GrTropas.DataSource = null;
+                this._LbNoTroops.Visible = true;
+            }
+            this.GrTropas.DataBind();
+        }
+
+        private void CargarMejoras()
+        {
+            var _tropas = (from uu in this.manager.mercs_user_upgrades
+                           join ul in this.manager.t_user_leagues on uu.id_user_league equals ul.id
+                           join up in this.manager.mercs_upgrades on uu.id_upgrade equals up.id
+                           where ul.id_user == this.idUsuario &&
+                                 ul.id_league == this.idLiga
+                           select new
+                           {
+                               upgrade_id = uu.id,
+                               upgrade_name = up.name,
+                               upgrade_rules = up.function_rule
+                           }).OrderByDescending(a => a.upgrade_id).ToList();
+
+            if (_tropas.Count > 0)
+            {
+                this.GrMejoras.DataSource = _tropas;
+                this._LbNoMejoras.Visible = false;
+            }
+            else
+            {
+                this.GrMejoras.DataSource = null;
+                this._LbNoMejoras.Visible = true;
+            }
+            this.GrMejoras.DataBind();
+        }
+
+        
         private void CargarInsignias()
         {
             var _insignias = (from ut in this.manager.t_user_titles
@@ -95,24 +152,10 @@ namespace ManagerDB.Pages
         private void CargarDatosLiga()
         {
             var _ligaSeleccionada = (from l in this.manager.t_leagues where l.id == this.idLiga select l).FirstOrDefault();
-            this.TxFechaInicio.Text = "---";
-            this.TxFechaFin.Text = "---";
-            this.TxInfo.Text = "---";
-            this.ImgLiga.ImageUrl = null;
             if (_ligaSeleccionada != null)
             {
                 this.liga = _ligaSeleccionada;
                 this.LbTituloLiga.Text = _ligaSeleccionada.name;
-                this.ImgLiga.ImageUrl = this.PATH_IMAGES + _ligaSeleccionada.avatar_url;
-                if (_ligaSeleccionada.start_date.HasValue == true)
-                {
-                    this.TxFechaInicio.Text = _ligaSeleccionada.start_date.Value.ToLongDateString();
-                }
-                if (_ligaSeleccionada.end_date.HasValue == true)
-                {
-                    this.TxFechaFin.Text = _ligaSeleccionada.end_date.Value.ToLongDateString();
-                }
-                this.TxInfo.Text = _ligaSeleccionada.info;
 
                 var ligasUsuario = (from ul in this.manager.t_user_leagues
                                     join l in this.manager.t_leagues on ul.id_league equals l.id
@@ -124,8 +167,10 @@ namespace ManagerDB.Pages
                                     select new JugadorLiga
                                     {
                                         league_id = l.id,
+                                        userleague_sec_level = ul.security_level,
                                         user_id = ul.id_user,
                                         user_name = u.name,
+                                        user_surname = u.surname,
                                         user_avatar = u.avatar_url,
                                         team_name = ul.team_name,
                                         team_avatar_url = ul.team_avatar_url,
@@ -153,6 +198,13 @@ namespace ManagerDB.Pages
                 {
                     this.GrJugadores.DataSource = null;
                 }
+
+                this.BtAdminMERCS.Visible = false;
+                if (_ligaActual.userleague_sec_level == 1)
+                {
+                    this.BtAdminMERCS.Visible = true;
+                }
+
                 this.GrJugadores.DataBind();
                 this.PnlMensajes.Visible = false;
                 this.PnlUsuarioLigaMERCS.Visible = false;
@@ -175,7 +227,7 @@ namespace ManagerDB.Pages
                         this.PnlMensajes.Visible = true;
                     }
 
-                    this.TxJugador.Text = _ligaActual.user_name;
+                    this.TxJugador.Text = _ligaActual.user_name + " " + _ligaActual.user_surname;
                     this.TxNombreEquipo.Text = _ligaActual.team_name;
                     this.TxNombreFaccion.Text = _ligaActual.faction_name;
                     this.ImgEquipo.ImageUrl = this.PATH_IMAGES + _ligaActual.team_avatar_url;
@@ -260,6 +312,11 @@ namespace ManagerDB.Pages
         protected void ImgFaccion_Click(object sender, System.Web.UI.ImageClickEventArgs e)
         {
             this.PopUpFaction.Show();
+        }
+
+        protected void BtAdminMERCS_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("AdminDados.aspx", true);
         }
 
     }
