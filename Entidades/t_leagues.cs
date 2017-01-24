@@ -18,10 +18,11 @@ namespace Entidades
         public Nullable<int> id_game { get; set; }
         public string name { get; set; }
         public string info { get; set; }
-        public string avatar_url { get; set; }
         public Nullable<int> current_round { get; set; }
+        public Nullable<int> current_phase { get; set; }
         public Nullable<System.DateTime> start_date { get; set; }
         public Nullable<System.DateTime> end_date { get; set; }
+        public string avatar_url { get; set; }
         public string active { get; set; }
     }
 }

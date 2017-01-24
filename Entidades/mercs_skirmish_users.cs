@@ -12,15 +12,14 @@ namespace Entidades
     using System;
     using System.Collections.Generic;
     
-    public partial class mercs_user_troops
+    public partial class mercs_skirmish_users
     {
         public int id { get; set; }
+        public Nullable<int> id_skirmish { get; set; }
         public Nullable<int> id_user_league { get; set; }
-        public Nullable<int> id_troop { get; set; }
-        public string nickname { get; set; }
-        public Nullable<System.DateTime> enlist_date { get; set; }
-        public Nullable<int> kit1_qty { get; set; }
-        public Nullable<int> kit2_qty { get; set; }
-        public string current_status { get; set; }
+        public string team_name { get; set; }
+        public Nullable<int> mission_score { get; set; }
+        public string skirmish_results { get; set; }
+        public string reward { get; set; }
     }
 }

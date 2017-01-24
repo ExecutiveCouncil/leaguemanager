@@ -6,9 +6,14 @@
     <edmx:StorageModels>
     <Schema Namespace="MANAGERDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="MANAGERDBModelStoreContainer">
+          <EntitySet Name="merc_regions" EntityType="MANAGERDBModel.Store.merc_regions" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mercs_die_faces" EntityType="MANAGERDBModel.Store.mercs_die_faces" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mercs_die_types" EntityType="MANAGERDBModel.Store.mercs_die_types" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mercs_faction_dice" EntityType="MANAGERDBModel.Store.mercs_faction_dice" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mercs_missions" EntityType="MANAGERDBModel.Store.mercs_missions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mercs_skirmish_user_troops" EntityType="MANAGERDBModel.Store.mercs_skirmish_user_troops" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mercs_skirmish_users" EntityType="MANAGERDBModel.Store.mercs_skirmish_users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="mercs_skirmishes" EntityType="MANAGERDBModel.Store.mercs_skirmishes" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mercs_troops" EntityType="MANAGERDBModel.Store.mercs_troops" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mercs_upgrades" EntityType="MANAGERDBModel.Store.mercs_upgrades" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="mercs_user_dice" EntityType="MANAGERDBModel.Store.mercs_user_dice" store:Type="Tables" Schema="dbo" />
@@ -27,6 +32,16 @@
           <EntitySet Name="t_user_titles" EntityType="MANAGERDBModel.Store.t_user_titles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="t_users" EntityType="MANAGERDBModel.Store.t_users" store:Type="Tables" Schema="dbo" />
         </EntityContainer>
+        <EntityType Name="merc_regions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="500" />
+          <Property Name="info" Type="varchar(max)" />
+          <Property Name="color_hexcode" Type="varchar" MaxLength="7" />
+          <Property Name="reward" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="mercs_die_faces">
           <Key>
             <PropertyRef Name="id" />
@@ -58,6 +73,54 @@
           <Property Name="id_game_faction" Type="int" />
           <Property Name="id_die_type" Type="int" />
         </EntityType>
+        <EntityType Name="mercs_missions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="name" Type="varchar" MaxLength="500" />
+          <Property Name="info" Type="varchar(max)" />
+          <Property Name="rules" Type="varchar(max)" />
+          <Property Name="reward" Type="varchar(max)" />
+          <Property Name="map_url" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="mercs_skirmish_user_troops">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_skirmish_user" Type="int" />
+          <Property Name="id_user_troop" Type="int" />
+          <Property Name="enemies_killed" Type="int" />
+          <Property Name="enemies_wounded" Type="int" />
+          <Property Name="kit1_spent" Type="int" />
+          <Property Name="kit2_spent" Type="int" />
+          <Property Name="troop_status" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="mercs_skirmish_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_skirmish" Type="int" />
+          <Property Name="id_user_league" Type="int" />
+          <Property Name="team_name" Type="varchar" MaxLength="50" />
+          <Property Name="mission_score" Type="int" />
+          <Property Name="skirmish_results" Type="varchar" MaxLength="50" />
+          <Property Name="reward" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="mercs_skirmishes">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="league_round" Type="int" />
+          <Property Name="skirmish_date" Type="datetime" />
+          <Property Name="admin_date" Type="datetime" />
+          <Property Name="id_mission" Type="int" />
+          <Property Name="id_region" Type="int" />
+        </EntityType>
         <EntityType Name="mercs_troops">
           <Key>
             <PropertyRef Name="id" />
@@ -65,11 +128,18 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="id_game_faction" Type="int" />
           <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="info" Type="varchar(max)" />
+          <Property Name="avatar_url" Type="varchar" MaxLength="500" />
+          <Property Name="starting_merc" Type="varchar" MaxLength="1" />
+          <Property Name="cost_credits" Type="int" />
+          <Property Name="cost_materials" Type="int" />
+          <Property Name="cost_upkeep" Type="int" />
+          <Property Name="cost_notes" Type="varchar(max)" />
           <Property Name="conflict_rule" Type="varchar(max)" />
-          <Property Name="cost" Type="varchar" MaxLength="200" />
-          <Property Name="upkeep" Type="varchar" MaxLength="200" />
-          <Property Name="notes" Type="varchar(max)" />
-          <Property Name="starting" Type="varchar" MaxLength="1" />
+          <Property Name="kit1_name" Type="varchar" MaxLength="100" />
+          <Property Name="kit1_qty" Type="int" />
+          <Property Name="kit2_name" Type="varchar" MaxLength="100" />
+          <Property Name="kit2_qty" Type="int" />
         </EntityType>
         <EntityType Name="mercs_upgrades">
           <Key>
@@ -117,8 +187,11 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="id_user_league" Type="int" />
           <Property Name="id_troop" Type="int" />
-          <Property Name="gained_date" Type="datetime" />
-          <Property Name="status" Type="varchar" MaxLength="1" />
+          <Property Name="nickname" Type="varchar" MaxLength="500" />
+          <Property Name="enlist_date" Type="datetime" />
+          <Property Name="kit1_qty" Type="int" />
+          <Property Name="kit2_qty" Type="int" />
+          <Property Name="current_status" Type="varchar" MaxLength="1" />
         </EntityType>
         <EntityType Name="mercs_user_upgrades">
           <Key>
@@ -176,10 +249,11 @@
           <Property Name="id_game" Type="int" />
           <Property Name="name" Type="varchar" MaxLength="100" />
           <Property Name="info" Type="varchar(max)" />
-          <Property Name="avatar_url" Type="varchar" MaxLength="500" />
           <Property Name="current_round" Type="int" />
+          <Property Name="current_phase" Type="int" />
           <Property Name="start_date" Type="datetime" />
           <Property Name="end_date" Type="datetime" />
+          <Property Name="avatar_url" Type="varchar" MaxLength="500" />
           <Property Name="active" Type="varchar" MaxLength="1" />
         </EntityType>
         <EntityType Name="t_messages">
@@ -261,239 +335,153 @@
     <edmx:ConceptualModels>
       <Schema Namespace="MANAGERDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="MANAGERDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="merc_regions" EntityType="MANAGERDBModel.merc_regions" />
+          <EntitySet Name="mercs_die_faces" EntityType="MANAGERDBModel.mercs_die_faces" />
           <EntitySet Name="mercs_die_types" EntityType="MANAGERDBModel.mercs_die_types" />
           <EntitySet Name="mercs_faction_dice" EntityType="MANAGERDBModel.mercs_faction_dice" />
+          <EntitySet Name="mercs_missions" EntityType="MANAGERDBModel.mercs_missions" />
+          <EntitySet Name="mercs_skirmish_user_troops" EntityType="MANAGERDBModel.mercs_skirmish_user_troops" />
+          <EntitySet Name="mercs_skirmish_users" EntityType="MANAGERDBModel.mercs_skirmish_users" />
+          <EntitySet Name="mercs_skirmishes" EntityType="MANAGERDBModel.mercs_skirmishes" />
           <EntitySet Name="mercs_troops" EntityType="MANAGERDBModel.mercs_troops" />
           <EntitySet Name="mercs_upgrades" EntityType="MANAGERDBModel.mercs_upgrades" />
+          <EntitySet Name="mercs_user_dice" EntityType="MANAGERDBModel.mercs_user_dice" />
+          <EntitySet Name="mercs_user_dice_msg" EntityType="MANAGERDBModel.mercs_user_dice_msg" />
           <EntitySet Name="mercs_user_troops" EntityType="MANAGERDBModel.mercs_user_troops" />
+          <EntitySet Name="mercs_user_upgrades" EntityType="MANAGERDBModel.mercs_user_upgrades" />
           <EntitySet Name="t_badges" EntityType="MANAGERDBModel.t_badges" />
           <EntitySet Name="t_game_factions" EntityType="MANAGERDBModel.t_game_factions" />
           <EntitySet Name="t_games" EntityType="MANAGERDBModel.t_games" />
           <EntitySet Name="t_league_titles" EntityType="MANAGERDBModel.t_league_titles" />
           <EntitySet Name="t_leagues" EntityType="MANAGERDBModel.t_leagues" />
+          <EntitySet Name="t_messages" EntityType="MANAGERDBModel.t_messages" />
           <EntitySet Name="t_syslog" EntityType="MANAGERDBModel.t_syslog" />
           <EntitySet Name="t_systables" EntityType="MANAGERDBModel.t_systables" />
           <EntitySet Name="t_user_leagues" EntityType="MANAGERDBModel.t_user_leagues" />
-          <EntitySet Name="t_users" EntityType="MANAGERDBModel.t_users" />
-          <EntitySet Name="mercs_user_upgrades" EntityType="MANAGERDBModel.mercs_user_upgrades" />
-          <EntitySet Name="mercs_die_faces" EntityType="MANAGERDBModel.mercs_die_faces" />
           <EntitySet Name="t_user_titles" EntityType="MANAGERDBModel.t_user_titles" />
-          <EntitySet Name="t_messages" EntityType="MANAGERDBModel.t_messages" />
-          <EntitySet Name="mercs_user_dice_msg" EntityType="MANAGERDBModel.mercs_user_dice_msg" />
-          <EntitySet Name="mercs_user_dice" EntityType="MANAGERDBModel.mercs_user_dice" />
+          <EntitySet Name="t_users" EntityType="MANAGERDBModel.t_users" />
         </EntityContainer>
-        <EntityType Name="mercs_die_types">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="total_faces" Type="Int32" />
-          <Property Name="info" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="mercs_faction_dice">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_game_faction" Type="Int32" />
-          <Property Name="id_die_type" Type="Int32" />
-        </EntityType>
-        <EntityType Name="mercs_troops">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_game_faction" Type="Int32" />
-          <Property Name="name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="conflict_rule" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="cost" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-          <Property Name="upkeep" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-          <Property Name="notes" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="starting" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="mercs_upgrades">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_game_faction" Type="Int32" />
-          <Property Name="name" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-          <Property Name="function_rule" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="conflict_rule" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="cost" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-          <Property Name="upkeep" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-          <Property Name="notes" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="mercs_user_troops">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_user_league" Type="Int32" />
-          <Property Name="id_troop" Type="Int32" />
-          <Property Name="gained_date" Type="DateTime" Precision="3" />
-          <Property Name="status" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="t_badges">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-          <Property Name="info" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="avatar_url" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="t_game_factions">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_game" Type="Int32" />
-          <Property Name="name" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-          <Property Name="info" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="avatar_url" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="t_games">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-          <Property Name="info" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="avatar_url" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="t_league_titles">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_league" Type="Int32" />
-          <Property Name="name" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-          <Property Name="info" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="id_badge" Type="Int32" />
-        </EntityType>
-        <EntityType Name="t_leagues">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_game" Type="Int32" />
-          <Property Name="name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="info" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="avatar_url" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="current_round" Type="Int32" />
-          <Property Name="start_date" Type="DateTime" Precision="3" />
-          <Property Name="end_date" Type="DateTime" Precision="3" />
-          <Property Name="active" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="t_syslog">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="message" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="creation_date" Type="DateTime" Precision="3" />
-        </EntityType>
-        <EntityType Name="t_systables">
-          <Key>
-            <PropertyRef Name="table_name" />
-          </Key>
-          <Property Name="table_name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="next_id" Type="Int32" />
-          <Property Name="step" Type="Int32" />
-        </EntityType>
-        <EntityType Name="t_user_leagues">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_user" Type="Int32" />
-          <Property Name="id_league" Type="Int32" />
-          <Property Name="id_faction" Type="Int32" />
-          <Property Name="team_name" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-          <Property Name="team_avatar_url" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="wins" Type="Int32" />
-          <Property Name="losses" Type="Int32" />
-          <Property Name="draws" Type="Int32" />
-          <Property Name="total_score" Type="Int32" />
-          <Property Name="security_level" Type="Int32" />
-          <Property Name="active" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="t_users">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="numero_socio" Type="Int32" />
-          <Property Name="login" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
-          <Property Name="pass" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="surname" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="avatar_url" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-          <Property Name="info" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="login_errors" Type="Int32" />
-          <Property Name="security_level" Type="Int32" Nullable="false" />
-          <Property Name="active" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="mercs_user_upgrades">
+        <EntityType Name="merc_regions">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="Int32" Name="id_user_league" />
-          <Property Type="Int32" Name="id_upgrade" />
-          <Property Type="DateTime" Name="gained_date" Precision="3" />
-          <Property Type="String" Name="active" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="name" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="color_hexcode" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="reward" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="mercs_die_faces">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
-          <Property Name="id_die_type" Type="Int32" />
-          <Property Name="die_face" Type="Int32" />
-          <Property Name="action" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="cost_credits" Type="Int32" />
-          <Property Name="sell_materials" Type="Int32" />
-          <Property Name="sell_credits" Type="Int32" />
-          <Property Name="open_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_die_type" />
+          <Property Type="Int32" Name="die_face" />
+          <Property Type="String" Name="action" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="cost_credits" />
+          <Property Type="Int32" Name="sell_materials" />
+          <Property Type="Int32" Name="sell_credits" />
+          <Property Type="String" Name="open_url" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="t_user_titles">
+        <EntityType Name="mercs_die_types">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="total_faces" />
+          <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="mercs_faction_dice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_game_faction" />
+          <Property Type="Int32" Name="id_die_type" />
+        </EntityType>
+        <EntityType Name="mercs_missions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="type" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="name" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="rules" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="reward" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="map_url" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="mercs_skirmish_user_troops">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_skirmish_user" />
+          <Property Type="Int32" Name="id_user_troop" />
+          <Property Type="Int32" Name="enemies_killed" />
+          <Property Type="Int32" Name="enemies_wounded" />
+          <Property Type="Int32" Name="kit1_spent" />
+          <Property Type="Int32" Name="kit2_spent" />
+          <Property Type="String" Name="troop_status" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="mercs_skirmish_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_skirmish" />
           <Property Type="Int32" Name="id_user_league" />
-          <Property Type="Int32" Name="id_league_title" />
-          <Property Type="DateTime" Name="unlock_date" Precision="3" />
+          <Property Type="String" Name="team_name" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="mission_score" />
+          <Property Type="String" Name="skirmish_results" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="reward" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="t_messages">
+        <EntityType Name="mercs_skirmishes">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="Int32" Name="id_user_from" />
-          <Property Type="Int32" Name="id_user_to" />
-          <Property Type="String" Name="subject" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="message" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="sent_date" Precision="3" />
-          <Property Type="DateTime" Name="read_date" Precision="3" />
-          <Property Type="Int32" Name="id_league" />
-          <Property Type="Int32" Name="round" />
-          <Property Type="String" Name="status" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="league_round" />
+          <Property Type="DateTime" Name="skirmish_date" Precision="3" />
+          <Property Type="DateTime" Name="admin_date" Precision="3" />
+          <Property Type="Int32" Name="id_mission" />
+          <Property Type="Int32" Name="id_region" />
         </EntityType>
-        <EntityType Name="mercs_user_dice_msg">
+        <EntityType Name="mercs_troops">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="Int32" Name="id_user_dice" />
-          <Property Type="Int32" Name="id_user_from" />
-          <Property Type="String" Name="message" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="DateTime" Name="message_date" Precision="3" />
+          <Property Type="Int32" Name="id_game_faction" />
+          <Property Type="String" Name="name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="avatar_url" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="starting_merc" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="cost_credits" />
+          <Property Type="Int32" Name="cost_materials" />
+          <Property Type="Int32" Name="cost_upkeep" />
+          <Property Type="String" Name="cost_notes" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="conflict_rule" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="kit1_name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="kit1_qty" />
+          <Property Type="String" Name="kit2_name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="kit2_qty" />
+        </EntityType>
+        <EntityType Name="mercs_upgrades">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_game_faction" />
+          <Property Type="String" Name="name" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="function_rule" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="conflict_rule" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="cost" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="upkeep" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="notes" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="mercs_user_dice">
           <Key>
@@ -511,188 +499,179 @@
           <Property Type="DateTime" Name="admin_date" Precision="3" />
           <Property Type="Int32" Name="status" />
         </EntityType>
-      </Schema>
+        <EntityType Name="mercs_user_dice_msg">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_user_dice" />
+          <Property Type="Int32" Name="id_user_from" />
+          <Property Type="String" Name="message" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="message_date" Precision="3" />
+        </EntityType>
+        <EntityType Name="mercs_user_troops">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_user_league" />
+          <Property Type="Int32" Name="id_troop" />
+          <Property Type="String" Name="nickname" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="enlist_date" Precision="3" />
+          <Property Type="Int32" Name="kit1_qty" />
+          <Property Type="Int32" Name="kit2_qty" />
+          <Property Type="String" Name="current_status" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="mercs_user_upgrades">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_user_league" />
+          <Property Type="Int32" Name="id_upgrade" />
+          <Property Type="DateTime" Name="gained_date" Precision="3" />
+          <Property Type="String" Name="active" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_badges">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="avatar_url" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_game_factions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_game" />
+          <Property Type="String" Name="name" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="avatar_url" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_games">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="name" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="avatar_url" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_league_titles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_league" />
+          <Property Type="String" Name="name" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="id_badge" />
+        </EntityType>
+        <EntityType Name="t_leagues">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_game" />
+          <Property Type="String" Name="name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="current_round" />
+          <Property Type="Int32" Name="current_phase" />
+          <Property Type="DateTime" Name="start_date" Precision="3" />
+          <Property Type="DateTime" Name="end_date" Precision="3" />
+          <Property Type="String" Name="avatar_url" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="active" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_messages">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_user_from" />
+          <Property Type="Int32" Name="id_user_to" />
+          <Property Type="String" Name="subject" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="message" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="sent_date" Precision="3" />
+          <Property Type="DateTime" Name="read_date" Precision="3" />
+          <Property Type="Int32" Name="id_league" />
+          <Property Type="Int32" Name="round" />
+          <Property Type="String" Name="status" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_syslog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="message" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="creation_date" Precision="3" />
+        </EntityType>
+        <EntityType Name="t_systables">
+          <Key>
+            <PropertyRef Name="table_name" />
+          </Key>
+          <Property Type="String" Name="table_name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="next_id" />
+          <Property Type="Int32" Name="step" />
+        </EntityType>
+        <EntityType Name="t_user_leagues">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_user" />
+          <Property Type="Int32" Name="id_league" />
+          <Property Type="Int32" Name="id_faction" />
+          <Property Type="String" Name="team_name" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="team_avatar_url" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="wins" />
+          <Property Type="Int32" Name="losses" />
+          <Property Type="Int32" Name="draws" />
+          <Property Type="Int32" Name="total_score" />
+          <Property Type="Int32" Name="security_level" />
+          <Property Type="String" Name="active" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_user_titles">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="id_user_league" />
+          <Property Type="Int32" Name="id_league_title" />
+          <Property Type="DateTime" Name="unlock_date" Precision="3" />
+        </EntityType>
+        <EntityType Name="t_users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="numero_socio" />
+          <Property Type="String" Name="login" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="pass" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="name" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="surname" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="email" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="avatar_url" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="login_errors" />
+          <Property Type="Int32" Name="security_level" Nullable="false" />
+          <Property Type="String" Name="active" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MANAGERDBModelStoreContainer" CdmEntityContainer="MANAGERDBEntities">
-          <EntitySetMapping Name="mercs_die_types">
-            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_die_types">
-              <MappingFragment StoreEntitySet="mercs_die_types">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="total_faces" ColumnName="total_faces" />
+          <EntitySetMapping Name="merc_regions">
+            <EntityTypeMapping TypeName="MANAGERDBModel.merc_regions">
+              <MappingFragment StoreEntitySet="merc_regions">
+                <ScalarProperty Name="reward" ColumnName="reward" />
+                <ScalarProperty Name="color_hexcode" ColumnName="color_hexcode" />
                 <ScalarProperty Name="info" ColumnName="info" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="mercs_faction_dice">
-            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_faction_dice">
-              <MappingFragment StoreEntitySet="mercs_faction_dice">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_game_faction" ColumnName="id_game_faction" />
-                <ScalarProperty Name="id_die_type" ColumnName="id_die_type" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="mercs_troops">
-            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_troops">
-              <MappingFragment StoreEntitySet="mercs_troops">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_game_faction" ColumnName="id_game_faction" />
                 <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="conflict_rule" ColumnName="conflict_rule" />
-                <ScalarProperty Name="cost" ColumnName="cost" />
-                <ScalarProperty Name="upkeep" ColumnName="upkeep" />
-                <ScalarProperty Name="notes" ColumnName="notes" />
-                <ScalarProperty Name="starting" ColumnName="starting" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="mercs_upgrades">
-            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_upgrades">
-              <MappingFragment StoreEntitySet="mercs_upgrades">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_game_faction" ColumnName="id_game_faction" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="function_rule" ColumnName="function_rule" />
-                <ScalarProperty Name="conflict_rule" ColumnName="conflict_rule" />
-                <ScalarProperty Name="cost" ColumnName="cost" />
-                <ScalarProperty Name="upkeep" ColumnName="upkeep" />
-                <ScalarProperty Name="notes" ColumnName="notes" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="mercs_user_troops">
-            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_troops">
-              <MappingFragment StoreEntitySet="mercs_user_troops">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
-                <ScalarProperty Name="id_troop" ColumnName="id_troop" />
-                <ScalarProperty Name="gained_date" ColumnName="gained_date" />
-                <ScalarProperty Name="status" ColumnName="status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="t_badges">
-            <EntityTypeMapping TypeName="MANAGERDBModel.t_badges">
-              <MappingFragment StoreEntitySet="t_badges">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="info" ColumnName="info" />
-                <ScalarProperty Name="avatar_url" ColumnName="avatar_url" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="t_game_factions">
-            <EntityTypeMapping TypeName="MANAGERDBModel.t_game_factions">
-              <MappingFragment StoreEntitySet="t_game_factions">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_game" ColumnName="id_game" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="info" ColumnName="info" />
-                <ScalarProperty Name="avatar_url" ColumnName="avatar_url" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="t_games">
-            <EntityTypeMapping TypeName="MANAGERDBModel.t_games">
-              <MappingFragment StoreEntitySet="t_games">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="info" ColumnName="info" />
-                <ScalarProperty Name="avatar_url" ColumnName="avatar_url" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="t_league_titles">
-            <EntityTypeMapping TypeName="MANAGERDBModel.t_league_titles">
-              <MappingFragment StoreEntitySet="t_league_titles">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_league" ColumnName="id_league" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="info" ColumnName="info" />
-                <ScalarProperty Name="id_badge" ColumnName="id_badge" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="t_leagues">
-            <EntityTypeMapping TypeName="MANAGERDBModel.t_leagues">
-              <MappingFragment StoreEntitySet="t_leagues">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_game" ColumnName="id_game" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="info" ColumnName="info" />
-                <ScalarProperty Name="avatar_url" ColumnName="avatar_url" />
-                <ScalarProperty Name="current_round" ColumnName="current_round" />
-                <ScalarProperty Name="start_date" ColumnName="start_date" />
-                <ScalarProperty Name="end_date" ColumnName="end_date" />
-                <ScalarProperty Name="active" ColumnName="active" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="t_syslog">
-            <EntityTypeMapping TypeName="MANAGERDBModel.t_syslog">
-              <MappingFragment StoreEntitySet="t_syslog">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="message" ColumnName="message" />
-                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="t_systables">
-            <EntityTypeMapping TypeName="MANAGERDBModel.t_systables">
-              <MappingFragment StoreEntitySet="t_systables">
-                <ScalarProperty Name="table_name" ColumnName="table_name" />
-                <ScalarProperty Name="next_id" ColumnName="next_id" />
-                <ScalarProperty Name="step" ColumnName="step" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="t_user_leagues">
-            <EntityTypeMapping TypeName="MANAGERDBModel.t_user_leagues">
-              <MappingFragment StoreEntitySet="t_user_leagues">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="id_user" ColumnName="id_user" />
-                <ScalarProperty Name="id_league" ColumnName="id_league" />
-                <ScalarProperty Name="id_faction" ColumnName="id_faction" />
-                <ScalarProperty Name="team_name" ColumnName="team_name" />
-                <ScalarProperty Name="team_avatar_url" ColumnName="team_avatar_url" />
-                <ScalarProperty Name="wins" ColumnName="wins" />
-                <ScalarProperty Name="losses" ColumnName="losses" />
-                <ScalarProperty Name="draws" ColumnName="draws" />
-                <ScalarProperty Name="total_score" ColumnName="total_score" />
-                <ScalarProperty Name="security_level" ColumnName="security_level" />
-                <ScalarProperty Name="active" ColumnName="active" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="t_users">
-            <EntityTypeMapping TypeName="MANAGERDBModel.t_users">
-              <MappingFragment StoreEntitySet="t_users">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="numero_socio" ColumnName="numero_socio" />
-                <ScalarProperty Name="login" ColumnName="login" />
-                <ScalarProperty Name="pass" ColumnName="pass" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="surname" ColumnName="surname" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="avatar_url" ColumnName="avatar_url" />
-                <ScalarProperty Name="info" ColumnName="info" />
-                <ScalarProperty Name="login_errors" ColumnName="login_errors" />
-                <ScalarProperty Name="security_level" ColumnName="security_level" />
-                <ScalarProperty Name="active" ColumnName="active" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="mercs_user_upgrades">
-            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_upgrades">
-              <MappingFragment StoreEntitySet="mercs_user_upgrades">
-                <ScalarProperty Name="active" ColumnName="active" />
-                <ScalarProperty Name="gained_date" ColumnName="gained_date" />
-                <ScalarProperty Name="id_upgrade" ColumnName="id_upgrade" />
-                <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -712,12 +691,219 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="t_user_titles">
-            <EntityTypeMapping TypeName="MANAGERDBModel.t_user_titles">
-              <MappingFragment StoreEntitySet="t_user_titles">
-                <ScalarProperty Name="unlock_date" ColumnName="unlock_date" />
-                <ScalarProperty Name="id_league_title" ColumnName="id_league_title" />
+          <EntitySetMapping Name="mercs_die_types">
+            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_die_types">
+              <MappingFragment StoreEntitySet="mercs_die_types">
+                <ScalarProperty Name="info" ColumnName="info" />
+                <ScalarProperty Name="total_faces" ColumnName="total_faces" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mercs_faction_dice">
+            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_faction_dice">
+              <MappingFragment StoreEntitySet="mercs_faction_dice">
+                <ScalarProperty Name="id_die_type" ColumnName="id_die_type" />
+                <ScalarProperty Name="id_game_faction" ColumnName="id_game_faction" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mercs_missions">
+            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_missions">
+              <MappingFragment StoreEntitySet="mercs_missions">
+                <ScalarProperty Name="map_url" ColumnName="map_url" />
+                <ScalarProperty Name="reward" ColumnName="reward" />
+                <ScalarProperty Name="rules" ColumnName="rules" />
+                <ScalarProperty Name="info" ColumnName="info" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mercs_skirmish_user_troops">
+            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_skirmish_user_troops">
+              <MappingFragment StoreEntitySet="mercs_skirmish_user_troops">
+                <ScalarProperty Name="troop_status" ColumnName="troop_status" />
+                <ScalarProperty Name="kit2_spent" ColumnName="kit2_spent" />
+                <ScalarProperty Name="kit1_spent" ColumnName="kit1_spent" />
+                <ScalarProperty Name="enemies_wounded" ColumnName="enemies_wounded" />
+                <ScalarProperty Name="enemies_killed" ColumnName="enemies_killed" />
+                <ScalarProperty Name="id_user_troop" ColumnName="id_user_troop" />
+                <ScalarProperty Name="id_skirmish_user" ColumnName="id_skirmish_user" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mercs_skirmish_users">
+            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_skirmish_users">
+              <MappingFragment StoreEntitySet="mercs_skirmish_users">
+                <ScalarProperty Name="reward" ColumnName="reward" />
+                <ScalarProperty Name="skirmish_results" ColumnName="skirmish_results" />
+                <ScalarProperty Name="mission_score" ColumnName="mission_score" />
+                <ScalarProperty Name="team_name" ColumnName="team_name" />
                 <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
+                <ScalarProperty Name="id_skirmish" ColumnName="id_skirmish" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mercs_skirmishes">
+            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_skirmishes">
+              <MappingFragment StoreEntitySet="mercs_skirmishes">
+                <ScalarProperty Name="id_region" ColumnName="id_region" />
+                <ScalarProperty Name="id_mission" ColumnName="id_mission" />
+                <ScalarProperty Name="admin_date" ColumnName="admin_date" />
+                <ScalarProperty Name="skirmish_date" ColumnName="skirmish_date" />
+                <ScalarProperty Name="league_round" ColumnName="league_round" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mercs_troops">
+            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_troops">
+              <MappingFragment StoreEntitySet="mercs_troops">
+                <ScalarProperty Name="kit2_qty" ColumnName="kit2_qty" />
+                <ScalarProperty Name="kit2_name" ColumnName="kit2_name" />
+                <ScalarProperty Name="kit1_qty" ColumnName="kit1_qty" />
+                <ScalarProperty Name="kit1_name" ColumnName="kit1_name" />
+                <ScalarProperty Name="conflict_rule" ColumnName="conflict_rule" />
+                <ScalarProperty Name="cost_notes" ColumnName="cost_notes" />
+                <ScalarProperty Name="cost_upkeep" ColumnName="cost_upkeep" />
+                <ScalarProperty Name="cost_materials" ColumnName="cost_materials" />
+                <ScalarProperty Name="cost_credits" ColumnName="cost_credits" />
+                <ScalarProperty Name="starting_merc" ColumnName="starting_merc" />
+                <ScalarProperty Name="avatar_url" ColumnName="avatar_url" />
+                <ScalarProperty Name="info" ColumnName="info" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id_game_faction" ColumnName="id_game_faction" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mercs_upgrades">
+            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_upgrades">
+              <MappingFragment StoreEntitySet="mercs_upgrades">
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="upkeep" ColumnName="upkeep" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="conflict_rule" ColumnName="conflict_rule" />
+                <ScalarProperty Name="function_rule" ColumnName="function_rule" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id_game_faction" ColumnName="id_game_faction" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mercs_user_dice">
+            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_dice">
+              <MappingFragment StoreEntitySet="mercs_user_dice">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="admin_date" ColumnName="admin_date" />
+                <ScalarProperty Name="resources_gained" ColumnName="resources_gained" />
+                <ScalarProperty Name="spent_date" ColumnName="spent_date" />
+                <ScalarProperty Name="cost" ColumnName="cost" />
+                <ScalarProperty Name="rolled_date" ColumnName="rolled_date" />
+                <ScalarProperty Name="id_die_face" ColumnName="id_die_face" />
+                <ScalarProperty Name="id_die_type" ColumnName="id_die_type" />
+                <ScalarProperty Name="round" ColumnName="round" />
+                <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mercs_user_dice_msg">
+            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_dice_msg">
+              <MappingFragment StoreEntitySet="mercs_user_dice_msg">
+                <ScalarProperty Name="message_date" ColumnName="message_date" />
+                <ScalarProperty Name="message" ColumnName="message" />
+                <ScalarProperty Name="id_user_from" ColumnName="id_user_from" />
+                <ScalarProperty Name="id_user_dice" ColumnName="id_user_dice" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mercs_user_troops">
+            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_troops">
+              <MappingFragment StoreEntitySet="mercs_user_troops">
+                <ScalarProperty Name="current_status" ColumnName="current_status" />
+                <ScalarProperty Name="kit2_qty" ColumnName="kit2_qty" />
+                <ScalarProperty Name="kit1_qty" ColumnName="kit1_qty" />
+                <ScalarProperty Name="enlist_date" ColumnName="enlist_date" />
+                <ScalarProperty Name="nickname" ColumnName="nickname" />
+                <ScalarProperty Name="id_troop" ColumnName="id_troop" />
+                <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mercs_user_upgrades">
+            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_upgrades">
+              <MappingFragment StoreEntitySet="mercs_user_upgrades">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="gained_date" ColumnName="gained_date" />
+                <ScalarProperty Name="id_upgrade" ColumnName="id_upgrade" />
+                <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_badges">
+            <EntityTypeMapping TypeName="MANAGERDBModel.t_badges">
+              <MappingFragment StoreEntitySet="t_badges">
+                <ScalarProperty Name="avatar_url" ColumnName="avatar_url" />
+                <ScalarProperty Name="info" ColumnName="info" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_game_factions">
+            <EntityTypeMapping TypeName="MANAGERDBModel.t_game_factions">
+              <MappingFragment StoreEntitySet="t_game_factions">
+                <ScalarProperty Name="avatar_url" ColumnName="avatar_url" />
+                <ScalarProperty Name="info" ColumnName="info" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id_game" ColumnName="id_game" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_games">
+            <EntityTypeMapping TypeName="MANAGERDBModel.t_games">
+              <MappingFragment StoreEntitySet="t_games">
+                <ScalarProperty Name="avatar_url" ColumnName="avatar_url" />
+                <ScalarProperty Name="info" ColumnName="info" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_league_titles">
+            <EntityTypeMapping TypeName="MANAGERDBModel.t_league_titles">
+              <MappingFragment StoreEntitySet="t_league_titles">
+                <ScalarProperty Name="id_badge" ColumnName="id_badge" />
+                <ScalarProperty Name="info" ColumnName="info" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id_league" ColumnName="id_league" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_leagues">
+            <EntityTypeMapping TypeName="MANAGERDBModel.t_leagues">
+              <MappingFragment StoreEntitySet="t_leagues">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="avatar_url" ColumnName="avatar_url" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="current_phase" ColumnName="current_phase" />
+                <ScalarProperty Name="current_round" ColumnName="current_round" />
+                <ScalarProperty Name="info" ColumnName="info" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id_game" ColumnName="id_game" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -738,30 +924,66 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="mercs_user_dice_msg">
-            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_dice_msg">
-              <MappingFragment StoreEntitySet="mercs_user_dice_msg">
-                <ScalarProperty Name="message_date" ColumnName="message_date" />
+          <EntitySetMapping Name="t_syslog">
+            <EntityTypeMapping TypeName="MANAGERDBModel.t_syslog">
+              <MappingFragment StoreEntitySet="t_syslog">
+                <ScalarProperty Name="creation_date" ColumnName="creation_date" />
                 <ScalarProperty Name="message" ColumnName="message" />
-                <ScalarProperty Name="id_user_from" ColumnName="id_user_from" />
-                <ScalarProperty Name="id_user_dice" ColumnName="id_user_dice" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="mercs_user_dice">
-            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_user_dice">
-              <MappingFragment StoreEntitySet="mercs_user_dice">
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="admin_date" ColumnName="admin_date" />
-                <ScalarProperty Name="resources_gained" ColumnName="resources_gained" />
-                <ScalarProperty Name="spent_date" ColumnName="spent_date" />
-                <ScalarProperty Name="cost" ColumnName="cost" />
-                <ScalarProperty Name="rolled_date" ColumnName="rolled_date" />
-                <ScalarProperty Name="id_die_face" ColumnName="id_die_face" />
-                <ScalarProperty Name="id_die_type" ColumnName="id_die_type" />
-                <ScalarProperty Name="round" ColumnName="round" />
+          <EntitySetMapping Name="t_systables">
+            <EntityTypeMapping TypeName="MANAGERDBModel.t_systables">
+              <MappingFragment StoreEntitySet="t_systables">
+                <ScalarProperty Name="step" ColumnName="step" />
+                <ScalarProperty Name="next_id" ColumnName="next_id" />
+                <ScalarProperty Name="table_name" ColumnName="table_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_user_leagues">
+            <EntityTypeMapping TypeName="MANAGERDBModel.t_user_leagues">
+              <MappingFragment StoreEntitySet="t_user_leagues">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="security_level" ColumnName="security_level" />
+                <ScalarProperty Name="total_score" ColumnName="total_score" />
+                <ScalarProperty Name="draws" ColumnName="draws" />
+                <ScalarProperty Name="losses" ColumnName="losses" />
+                <ScalarProperty Name="wins" ColumnName="wins" />
+                <ScalarProperty Name="team_avatar_url" ColumnName="team_avatar_url" />
+                <ScalarProperty Name="team_name" ColumnName="team_name" />
+                <ScalarProperty Name="id_faction" ColumnName="id_faction" />
+                <ScalarProperty Name="id_league" ColumnName="id_league" />
+                <ScalarProperty Name="id_user" ColumnName="id_user" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_user_titles">
+            <EntityTypeMapping TypeName="MANAGERDBModel.t_user_titles">
+              <MappingFragment StoreEntitySet="t_user_titles">
+                <ScalarProperty Name="unlock_date" ColumnName="unlock_date" />
+                <ScalarProperty Name="id_league_title" ColumnName="id_league_title" />
                 <ScalarProperty Name="id_user_league" ColumnName="id_user_league" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_users">
+            <EntityTypeMapping TypeName="MANAGERDBModel.t_users">
+              <MappingFragment StoreEntitySet="t_users">
+                <ScalarProperty Name="active" ColumnName="active" />
+                <ScalarProperty Name="security_level" ColumnName="security_level" />
+                <ScalarProperty Name="login_errors" ColumnName="login_errors" />
+                <ScalarProperty Name="info" ColumnName="info" />
+                <ScalarProperty Name="avatar_url" ColumnName="avatar_url" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="surname" ColumnName="surname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="numero_socio" ColumnName="numero_socio" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

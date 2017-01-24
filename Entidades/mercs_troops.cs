@@ -17,10 +17,17 @@ namespace Entidades
         public int id { get; set; }
         public Nullable<int> id_game_faction { get; set; }
         public string name { get; set; }
+        public string info { get; set; }
+        public string avatar_url { get; set; }
+        public string starting_merc { get; set; }
+        public Nullable<int> cost_credits { get; set; }
+        public Nullable<int> cost_materials { get; set; }
+        public Nullable<int> cost_upkeep { get; set; }
+        public string cost_notes { get; set; }
         public string conflict_rule { get; set; }
-        public string cost { get; set; }
-        public string upkeep { get; set; }
-        public string notes { get; set; }
-        public string starting { get; set; }
+        public string kit1_name { get; set; }
+        public Nullable<int> kit1_qty { get; set; }
+        public string kit2_name { get; set; }
+        public Nullable<int> kit2_qty { get; set; }
     }
 }
