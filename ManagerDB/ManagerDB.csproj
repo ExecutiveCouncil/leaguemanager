@@ -244,6 +244,7 @@
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\npm.js" />
+    <Content Include="Pages\UserAdmin.aspx" />
     <Content Include="Pages\UserLeague.aspx" />
     <Content Include="Pages\MiPerfil.aspx" />
     <Content Include="Pages\Leagues.aspx" />
@@ -296,6 +297,13 @@
       <DependentUpon>main.master</DependentUpon>
     </Compile>
     <Compile Include="Clases\JugadorLiga.cs" />
+    <Compile Include="Pages\UserAdmin.aspx.cs">
+      <DependentUpon>UserAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\UserAdmin.aspx.designer.cs">
+      <DependentUpon>UserAdmin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\UserLeague.aspx.cs">
       <DependentUpon>UserLeague.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

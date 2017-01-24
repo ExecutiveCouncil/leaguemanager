@@ -18,7 +18,7 @@
         <EntityTypeShape EntityType="MANAGERDBModel.mercs_user_dice" Width="1.5" PointX="6.125" PointY="15.5" />
         <EntityTypeShape EntityType="MANAGERDBModel.mercs_user_dice_msg" Width="1.5" PointX="9.125" PointY="17" />
         <EntityTypeShape EntityType="MANAGERDBModel.mercs_user_troops" Width="1.5" PointX="12.125" PointY="18.5" />
-        <EntityTypeShape EntityType="MANAGERDBModel.mercs_user_upgrades" Width="1.5" PointX="15.125" PointY="20" />
+        <EntityTypeShape EntityType="MANAGERDBModel.mercs_user_upgrades" Width="1.5" PointX="1.375" PointY="18.125" />
         <EntityTypeShape EntityType="MANAGERDBModel.t_badges" Width="1.5" PointX="18.125" PointY="21.5" />
         <EntityTypeShape EntityType="MANAGERDBModel.t_game_factions" Width="1.5" PointX="0.625" PointY="23" />
         <EntityTypeShape EntityType="MANAGERDBModel.t_games" Width="1.5" PointX="3.125" PointY="24.5" />

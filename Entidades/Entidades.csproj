@@ -57,6 +57,18 @@
     <Compile Include="mercs_faction_dice.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="mercs_missions.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mercs_skirmishes.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mercs_skirmish_users.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="mercs_skirmish_user_troops.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="mercs_troops.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -73,6 +85,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="mercs_user_upgrades.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="merc_regions.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Model.Context.cs">
