@@ -135,6 +135,86 @@ namespace ManagerDB.Pages
             return false;
         }
 
+        /// <summary>
+        /// Obtiene el segundo numerador de una tabla
+        /// </summary>
+        /// <param name="Manager"></param>
+        /// <param name="NombreTabla"></param>
+        /// <returns></returns>
+        public int GetNextTableId(string NombreTabla)
+        {
+            int _newValue = 1;
+            t_systables _tabla = this.manager.t_systables.Where(w => w.table_name == NombreTabla).FirstOrDefault();
+            if (_tabla != null)
+            {
+                if (_tabla.step.HasValue == false)
+                {
+                    _tabla.step = 1;
+                }
+
+                if (_tabla.next_id.HasValue == false)
+                {
+                    _tabla.next_id = 1;
+                }
+                _newValue = _tabla.next_id.Value;
+                _tabla.next_id = _tabla.next_id.Value + _tabla.step;
+                this.manager.SaveChanges();
+            }
+            else
+            {
+                //NO esta dada de alta en numeradores
+                _tabla = new t_systables();
+                _tabla.next_id = 1;
+                _tabla.step = 1;
+                _tabla.table_name = NombreTabla;
+                this.manager.t_systables.Add(_tabla);
+                this.manager.SaveChanges();
+
+                _newValue = 1;
+            }
+
+            return _newValue;
+        }
+        /// <summary>
+        /// Obtiene el segundo numerador de una tabla
+        /// </summary>
+        /// <param name="Manager"></param>
+        /// <param name="NombreTabla"></param>
+        /// <returns></returns>
+        public static int GetNextTableId(MANAGERDBEntities Manager, string NombreTabla)
+        {
+            int _newValue = 1;
+            t_systables _tabla = Manager.t_systables.Where(w => w.table_name == NombreTabla).FirstOrDefault();
+            if (_tabla != null)
+            {
+                if (_tabla.step.HasValue == false)
+                {
+                    _tabla.step = 1;
+                }
+                
+                if (_tabla.next_id.HasValue == false)
+                {
+                    _tabla.next_id = 1;
+                }
+                _newValue = _tabla.next_id.Value;
+                _tabla.next_id = _tabla.next_id.Value + _tabla.step;
+                Manager.SaveChanges();
+            }
+            else
+            {
+                //NO esta dada de alta en numeradores
+                _tabla = new t_systables();
+                _tabla.next_id = 1;
+                _tabla.step = 1;
+                _tabla.table_name = NombreTabla;
+                Manager.t_systables.Add(_tabla);
+                Manager.SaveChanges();
+                _newValue = 1;
+            }
+
+            return _newValue;
+        }
+
 
     }
 }

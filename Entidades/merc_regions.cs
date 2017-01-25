@@ -18,6 +18,5 @@ namespace Entidades
         public string name { get; set; }
         public string info { get; set; }
         public string color_hexcode { get; set; }
-        public string reward { get; set; }
     }
 }

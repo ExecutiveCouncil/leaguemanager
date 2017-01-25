@@ -4,34 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MANAGERDBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="MANAGERDBModelStoreContainer">
-          <EntitySet Name="merc_regions" EntityType="MANAGERDBModel.Store.merc_regions" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="mercs_die_faces" EntityType="MANAGERDBModel.Store.mercs_die_faces" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="mercs_die_types" EntityType="MANAGERDBModel.Store.mercs_die_types" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="mercs_faction_dice" EntityType="MANAGERDBModel.Store.mercs_faction_dice" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="mercs_missions" EntityType="MANAGERDBModel.Store.mercs_missions" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="mercs_skirmish_user_troops" EntityType="MANAGERDBModel.Store.mercs_skirmish_user_troops" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="mercs_skirmish_users" EntityType="MANAGERDBModel.Store.mercs_skirmish_users" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="mercs_skirmishes" EntityType="MANAGERDBModel.Store.mercs_skirmishes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="mercs_troops" EntityType="MANAGERDBModel.Store.mercs_troops" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="mercs_upgrades" EntityType="MANAGERDBModel.Store.mercs_upgrades" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="mercs_user_dice" EntityType="MANAGERDBModel.Store.mercs_user_dice" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="mercs_user_dice_msg" EntityType="MANAGERDBModel.Store.mercs_user_dice_msg" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="mercs_user_troops" EntityType="MANAGERDBModel.Store.mercs_user_troops" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="mercs_user_upgrades" EntityType="MANAGERDBModel.Store.mercs_user_upgrades" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="t_badges" EntityType="MANAGERDBModel.Store.t_badges" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="t_game_factions" EntityType="MANAGERDBModel.Store.t_game_factions" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="t_games" EntityType="MANAGERDBModel.Store.t_games" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="t_league_titles" EntityType="MANAGERDBModel.Store.t_league_titles" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="t_leagues" EntityType="MANAGERDBModel.Store.t_leagues" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="t_messages" EntityType="MANAGERDBModel.Store.t_messages" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="t_syslog" EntityType="MANAGERDBModel.Store.t_syslog" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="t_systables" EntityType="MANAGERDBModel.Store.t_systables" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="t_user_leagues" EntityType="MANAGERDBModel.Store.t_user_leagues" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="t_user_titles" EntityType="MANAGERDBModel.Store.t_user_titles" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="t_users" EntityType="MANAGERDBModel.Store.t_users" store:Type="Tables" Schema="dbo" />
-        </EntityContainer>
+    <Schema Namespace="MANAGERDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="merc_regions">
           <Key>
             <PropertyRef Name="id" />
@@ -40,7 +13,6 @@
           <Property Name="name" Type="varchar" MaxLength="500" />
           <Property Name="info" Type="varchar(max)" />
           <Property Name="color_hexcode" Type="varchar" MaxLength="7" />
-          <Property Name="reward" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="mercs_die_faces">
           <Key>
@@ -81,7 +53,6 @@
           <Property Name="type" Type="varchar" MaxLength="50" />
           <Property Name="name" Type="varchar" MaxLength="500" />
           <Property Name="info" Type="varchar(max)" />
-          <Property Name="rules" Type="varchar(max)" />
           <Property Name="reward" Type="varchar(max)" />
           <Property Name="map_url" Type="varchar" MaxLength="500" />
         </EntityType>
@@ -277,13 +248,17 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="message" Type="varchar(max)" />
+          <Property Name="stack_trace" Type="varchar(max)" />
+          <Property Name="url" Type="varchar" MaxLength="500" />
+          <Property Name="logged_user" Type="varchar" MaxLength="500" />
+          <Property Name="client_ip" Type="varchar" MaxLength="50" />
           <Property Name="creation_date" Type="datetime" />
         </EntityType>
         <EntityType Name="t_systables">
           <Key>
             <PropertyRef Name="table_name" />
           </Key>
-          <Property Name="table_name" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="table_name" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="next_id" Type="int" />
           <Property Name="step" Type="int" />
         </EntityType>
@@ -319,8 +294,8 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="numero_socio" Type="int" />
-          <Property Name="login" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="pass" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="login" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pass" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="100" />
           <Property Name="surname" Type="varchar" MaxLength="100" />
           <Property Name="email" Type="varchar" MaxLength="100" />
@@ -330,16 +305,41 @@
           <Property Name="security_level" Type="int" Nullable="false" />
           <Property Name="active" Type="varchar" MaxLength="1" />
         </EntityType>
+        <EntityContainer Name="MANAGERDBModelStoreContainer">
+          <EntitySet Name="merc_regions" EntityType="Self.merc_regions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mercs_die_faces" EntityType="Self.mercs_die_faces" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mercs_die_types" EntityType="Self.mercs_die_types" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mercs_faction_dice" EntityType="Self.mercs_faction_dice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mercs_missions" EntityType="Self.mercs_missions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mercs_skirmish_user_troops" EntityType="Self.mercs_skirmish_user_troops" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mercs_skirmish_users" EntityType="Self.mercs_skirmish_users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mercs_skirmishes" EntityType="Self.mercs_skirmishes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mercs_troops" EntityType="Self.mercs_troops" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mercs_upgrades" EntityType="Self.mercs_upgrades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mercs_user_dice" EntityType="Self.mercs_user_dice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mercs_user_dice_msg" EntityType="Self.mercs_user_dice_msg" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mercs_user_troops" EntityType="Self.mercs_user_troops" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="mercs_user_upgrades" EntityType="Self.mercs_user_upgrades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_badges" EntityType="Self.t_badges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_game_factions" EntityType="Self.t_game_factions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_games" EntityType="Self.t_games" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_league_titles" EntityType="Self.t_league_titles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_leagues" EntityType="Self.t_leagues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_messages" EntityType="Self.t_messages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_syslog" EntityType="Self.t_syslog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_systables" EntityType="Self.t_systables" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_user_leagues" EntityType="Self.t_user_leagues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_user_titles" EntityType="Self.t_user_titles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_users" EntityType="Self.t_users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MANAGERDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="MANAGERDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="merc_regions" EntityType="MANAGERDBModel.merc_regions" />
           <EntitySet Name="mercs_die_faces" EntityType="MANAGERDBModel.mercs_die_faces" />
           <EntitySet Name="mercs_die_types" EntityType="MANAGERDBModel.mercs_die_types" />
           <EntitySet Name="mercs_faction_dice" EntityType="MANAGERDBModel.mercs_faction_dice" />
-          <EntitySet Name="mercs_missions" EntityType="MANAGERDBModel.mercs_missions" />
           <EntitySet Name="mercs_skirmish_user_troops" EntityType="MANAGERDBModel.mercs_skirmish_user_troops" />
           <EntitySet Name="mercs_skirmish_users" EntityType="MANAGERDBModel.mercs_skirmish_users" />
           <EntitySet Name="mercs_skirmishes" EntityType="MANAGERDBModel.mercs_skirmishes" />
@@ -360,17 +360,9 @@
           <EntitySet Name="t_user_leagues" EntityType="MANAGERDBModel.t_user_leagues" />
           <EntitySet Name="t_user_titles" EntityType="MANAGERDBModel.t_user_titles" />
           <EntitySet Name="t_users" EntityType="MANAGERDBModel.t_users" />
+          <EntitySet Name="merc_regions" EntityType="MANAGERDBModel.merc_regions" />
+          <EntitySet Name="mercs_missions" EntityType="MANAGERDBModel.mercs_missions" />
         </EntityContainer>
-        <EntityType Name="merc_regions">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="name" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="color_hexcode" MaxLength="7" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="reward" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="mercs_die_faces">
           <Key>
             <PropertyRef Name="id" />
@@ -401,18 +393,6 @@
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="Int32" Name="id_game_faction" />
           <Property Type="Int32" Name="id_die_type" />
-        </EntityType>
-        <EntityType Name="mercs_missions">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" />
-          <Property Type="String" Name="type" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="name" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="rules" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="reward" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="map_url" MaxLength="500" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="mercs_skirmish_user_troops">
           <Key>
@@ -607,6 +587,10 @@
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="message" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="creation_date" Precision="3" />
+          <Property Name="stack_trace" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="logged_user" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="client_ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="t_systables">
           <Key>
@@ -659,23 +643,32 @@
           <Property Type="Int32" Name="security_level" Nullable="false" />
           <Property Type="String" Name="active" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="merc_regions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="color_hexcode" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="mercs_missions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="reward" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="map_url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="MANAGERDBModelStoreContainer" CdmEntityContainer="MANAGERDBEntities">
-          <EntitySetMapping Name="merc_regions">
-            <EntityTypeMapping TypeName="MANAGERDBModel.merc_regions">
-              <MappingFragment StoreEntitySet="merc_regions">
-                <ScalarProperty Name="reward" ColumnName="reward" />
-                <ScalarProperty Name="color_hexcode" ColumnName="color_hexcode" />
-                <ScalarProperty Name="info" ColumnName="info" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="mercs_die_faces">
             <EntityTypeMapping TypeName="MANAGERDBModel.mercs_die_faces">
               <MappingFragment StoreEntitySet="mercs_die_faces">
@@ -706,19 +699,6 @@
               <MappingFragment StoreEntitySet="mercs_faction_dice">
                 <ScalarProperty Name="id_die_type" ColumnName="id_die_type" />
                 <ScalarProperty Name="id_game_faction" ColumnName="id_game_faction" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="mercs_missions">
-            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_missions">
-              <MappingFragment StoreEntitySet="mercs_missions">
-                <ScalarProperty Name="map_url" ColumnName="map_url" />
-                <ScalarProperty Name="reward" ColumnName="reward" />
-                <ScalarProperty Name="rules" ColumnName="rules" />
-                <ScalarProperty Name="info" ColumnName="info" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -927,6 +907,10 @@
           <EntitySetMapping Name="t_syslog">
             <EntityTypeMapping TypeName="MANAGERDBModel.t_syslog">
               <MappingFragment StoreEntitySet="t_syslog">
+                <ScalarProperty Name="client_ip" ColumnName="client_ip" />
+                <ScalarProperty Name="logged_user" ColumnName="logged_user" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="stack_trace" ColumnName="stack_trace" />
                 <ScalarProperty Name="creation_date" ColumnName="creation_date" />
                 <ScalarProperty Name="message" ColumnName="message" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -984,6 +968,28 @@
                 <ScalarProperty Name="pass" ColumnName="pass" />
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="numero_socio" ColumnName="numero_socio" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="merc_regions">
+            <EntityTypeMapping TypeName="MANAGERDBModel.merc_regions">
+              <MappingFragment StoreEntitySet="merc_regions">
+                <ScalarProperty Name="color_hexcode" ColumnName="color_hexcode" />
+                <ScalarProperty Name="info" ColumnName="info" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="mercs_missions">
+            <EntityTypeMapping TypeName="MANAGERDBModel.mercs_missions">
+              <MappingFragment StoreEntitySet="mercs_missions">
+                <ScalarProperty Name="map_url" ColumnName="map_url" />
+                <ScalarProperty Name="reward" ColumnName="reward" />
+                <ScalarProperty Name="info" ColumnName="info" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -21,3 +21,13 @@ function ShowWaitScreen() {
     //con pantalla de espera.
     return true;
 }
+
+//Regresa a la página de inicio (default.aspx) desde cualquier punto de la aplicación
+//NOTA: Funciona incluso desde ventanas de PopUp.
+function GoHome() {
+    if (window.top !== window.self) {
+        window.top.location = '../pages/home.aspx';
+    } else {
+        window.location = '../pages/home.aspx';
+    }
+}

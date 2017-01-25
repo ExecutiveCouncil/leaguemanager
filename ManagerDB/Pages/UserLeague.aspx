@@ -107,7 +107,7 @@
                             AlternatingItemStyle-CssClass="grid_alternate_row"
                             OnItemCommand="GrMensajes_ItemCommand">
                     <Columns>
-                        <asp:BoundColumn DataField="upgrade_id" HeaderText="ID" Visible="false"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="upgrade_id1" HeaderText="ID" Visible="false"></asp:BoundColumn>
                         <asp:BoundColumn DataField="upgrade_name" HeaderText="Mejora" ItemStyle-Width="150px"></asp:BoundColumn>
                         <asp:BoundColumn DataField="upgrade_rules" HeaderText="Reglas especiales"></asp:BoundColumn>
                     </Columns>
