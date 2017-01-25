@@ -72,8 +72,8 @@
         <asp:Label runat="server" style="color:#ffd800;" Text="No hay jugadores" ID="_LbNoJugadores" Visible="false"></asp:Label>
         <br />
         <asp:Panel runat="server" ID="PnlUsuarioLiga" Visible="false" CssClass="div_box" style="text-align:right">            
-            <asp:Button CssClass="btn" id="BtAdministrar" runat="server" OnClick="BtAdministrar_Click" Visible="false" text="ADMINISTRAR" Width="150px"></asp:Button>
-            <asp:Button CssClass="btn" id="BtLiga" runat="server" OnClick="BtLiga_Click" text="ACCEDER" Width="150px"></asp:Button>
+            <asp:Button CssClass="btn" id="BtAdministrar" runat="server" OnClick="BtAdministrar_Click" Visible="false" text="ADMINISTRAR LIGA" Width="200px"></asp:Button>
+            <asp:Button CssClass="btn" id="BtLiga" runat="server" OnClick="BtLiga_Click" text="MI EQUIPO" Width="150px"></asp:Button>
         </asp:Panel>
 
         <br />

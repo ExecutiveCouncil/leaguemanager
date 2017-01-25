@@ -39,7 +39,7 @@
                         Width="100px"
                         ToolTip='<%# Eval("name") %>'
                         AlternateText='<%# Eval("name") %>'
-                        ImageUrl= '<%# "../images/" + Eval("avatar_url").ToString().Trim() %>'
+                        ImageUrl= '<%# this.PATH_IMAGES + Eval("avatar_url").ToString().Trim() %>'
                         CommandName="ViewFaction"
                         CommandArgument='<%# Eval("id") %>' >
                     </asp:ImageButton>

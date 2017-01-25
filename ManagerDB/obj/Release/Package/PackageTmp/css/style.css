@@ -196,6 +196,7 @@ h3{
   letter-spacing:0.125em;
   text-align:center;
   text-transform:uppercase;
+  cursor: pointer;
 }
  
 .btn:hover{
@@ -208,14 +209,26 @@ h3{
   background:#FACC2E;
   color:#FFBF00;
 }
+
 .dado
 {
     padding: 5px;
 }
+
 .dado:hover
 {
    /*background-color:#d77108;*/
     padding:0px;
+}
+
+.dado2
+{
+    margin-left: 5px;
+}
+
+.dado2:hover
+{
+   background-color:#d77108;
 }
 
 .modalBackground
@@ -443,4 +456,33 @@ input[type="radio"] {
     border:none;
     margin-right: 5px;
     vertical-align:text-bottom;
+}
+
+.progressbar
+{
+	display: block;
+	position: absolute;
+	padding: 1.5em;
+	border-radius: 10px;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	/*border-top: 15px solid #094887;*/
+	/*border-bottom: 15px solid #094887;*/
+	/*border: 5px solid #094887;*/
+	/*outline: 4px solid #589BBC;ºº*/
+	background-color: transparent;
+	font-size: 1.5em;
+    top:0;
+}
+.backgroundprogressbar
+{
+	/*background-color:Transparent;*/
+	background-color: #000000;
+	filter: Alpha(Opacity=20, FinishOpacity=60, Style=1, StartX=0, StartY=0, FinishX=0, FinishY=100px); 
+	opacity: 0.9; 
+	-moz-opacity: 0.9; 
+	-khtml-opacity: 0.9;
+	height: 100%;
+	width: 100%;
+	margin: 0;
 }

@@ -1,239 +1,131 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="MANAGERDBModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
   <EntityContainer Name="MANAGERDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="mercs_die_faces" EntityType="MANAGERDBModel.mercs_die_faces" />
     <EntitySet Name="mercs_die_types" EntityType="MANAGERDBModel.mercs_die_types" />
     <EntitySet Name="mercs_faction_dice" EntityType="MANAGERDBModel.mercs_faction_dice" />
+    <EntitySet Name="mercs_skirmish_user_troops" EntityType="MANAGERDBModel.mercs_skirmish_user_troops" />
+    <EntitySet Name="mercs_skirmish_users" EntityType="MANAGERDBModel.mercs_skirmish_users" />
+    <EntitySet Name="mercs_skirmishes" EntityType="MANAGERDBModel.mercs_skirmishes" />
     <EntitySet Name="mercs_troops" EntityType="MANAGERDBModel.mercs_troops" />
     <EntitySet Name="mercs_upgrades" EntityType="MANAGERDBModel.mercs_upgrades" />
+    <EntitySet Name="mercs_user_dice" EntityType="MANAGERDBModel.mercs_user_dice" />
+    <EntitySet Name="mercs_user_dice_msg" EntityType="MANAGERDBModel.mercs_user_dice_msg" />
     <EntitySet Name="mercs_user_troops" EntityType="MANAGERDBModel.mercs_user_troops" />
+    <EntitySet Name="mercs_user_upgrades" EntityType="MANAGERDBModel.mercs_user_upgrades" />
     <EntitySet Name="t_badges" EntityType="MANAGERDBModel.t_badges" />
     <EntitySet Name="t_game_factions" EntityType="MANAGERDBModel.t_game_factions" />
     <EntitySet Name="t_games" EntityType="MANAGERDBModel.t_games" />
     <EntitySet Name="t_league_titles" EntityType="MANAGERDBModel.t_league_titles" />
     <EntitySet Name="t_leagues" EntityType="MANAGERDBModel.t_leagues" />
+    <EntitySet Name="t_messages" EntityType="MANAGERDBModel.t_messages" />
     <EntitySet Name="t_syslog" EntityType="MANAGERDBModel.t_syslog" />
     <EntitySet Name="t_systables" EntityType="MANAGERDBModel.t_systables" />
     <EntitySet Name="t_user_leagues" EntityType="MANAGERDBModel.t_user_leagues" />
-    <EntitySet Name="t_users" EntityType="MANAGERDBModel.t_users" />
-    <EntitySet Name="mercs_user_upgrades" EntityType="MANAGERDBModel.mercs_user_upgrades" />
-    <EntitySet Name="mercs_die_faces" EntityType="MANAGERDBModel.mercs_die_faces" />
     <EntitySet Name="t_user_titles" EntityType="MANAGERDBModel.t_user_titles" />
-    <EntitySet Name="t_messages" EntityType="MANAGERDBModel.t_messages" />
-    <EntitySet Name="mercs_user_dice_msg" EntityType="MANAGERDBModel.mercs_user_dice_msg" />
-    <EntitySet Name="mercs_user_dice" EntityType="MANAGERDBModel.mercs_user_dice" />
+    <EntitySet Name="t_users" EntityType="MANAGERDBModel.t_users" />
+    <EntitySet Name="merc_regions" EntityType="MANAGERDBModel.merc_regions" />
+    <EntitySet Name="mercs_missions" EntityType="MANAGERDBModel.mercs_missions" />
   </EntityContainer>
+  <EntityType Name="mercs_die_faces">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id_die_type" />
+    <Property Type="Int32" Name="die_face" />
+    <Property Type="String" Name="action" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="cost_credits" />
+    <Property Type="Int32" Name="sell_materials" />
+    <Property Type="Int32" Name="sell_credits" />
+    <Property Type="String" Name="open_url" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
   <EntityType Name="mercs_die_types">
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-    <Property Name="total_faces" Type="Int32" />
-    <Property Name="info" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="total_faces" />
+    <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="mercs_faction_dice">
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="id_game_faction" Type="Int32" />
-    <Property Name="id_die_type" Type="Int32" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id_game_faction" />
+    <Property Type="Int32" Name="id_die_type" />
+  </EntityType>
+  <EntityType Name="mercs_skirmish_user_troops">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id_skirmish_user" />
+    <Property Type="Int32" Name="id_user_troop" />
+    <Property Type="Int32" Name="enemies_killed" />
+    <Property Type="Int32" Name="enemies_wounded" />
+    <Property Type="Int32" Name="kit1_spent" />
+    <Property Type="Int32" Name="kit2_spent" />
+    <Property Type="String" Name="troop_status" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="mercs_skirmish_users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id_skirmish" />
+    <Property Type="Int32" Name="id_user_league" />
+    <Property Type="String" Name="team_name" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="mission_score" />
+    <Property Type="String" Name="skirmish_results" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="reward" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="mercs_skirmishes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="league_round" />
+    <Property Type="DateTime" Name="skirmish_date" Precision="3" />
+    <Property Type="DateTime" Name="admin_date" Precision="3" />
+    <Property Type="Int32" Name="id_mission" />
+    <Property Type="Int32" Name="id_region" />
   </EntityType>
   <EntityType Name="mercs_troops">
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="id_game_faction" Type="Int32" />
-    <Property Name="name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-    <Property Name="conflict_rule" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-    <Property Name="cost" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-    <Property Name="upkeep" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-    <Property Name="notes" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-    <Property Name="starting" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id_game_faction" />
+    <Property Type="String" Name="name" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="avatar_url" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="starting_merc" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="cost_credits" />
+    <Property Type="Int32" Name="cost_materials" />
+    <Property Type="Int32" Name="cost_upkeep" />
+    <Property Type="String" Name="cost_notes" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="conflict_rule" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="kit1_name" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="kit1_qty" />
+    <Property Type="String" Name="kit2_name" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="kit2_qty" />
   </EntityType>
   <EntityType Name="mercs_upgrades">
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="id_game_faction" Type="Int32" />
-    <Property Name="name" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-    <Property Name="function_rule" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-    <Property Name="conflict_rule" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-    <Property Name="cost" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-    <Property Name="upkeep" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-    <Property Name="notes" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-  </EntityType>
-  <EntityType Name="mercs_user_troops">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="id_user_league" Type="Int32" />
-    <Property Name="id_troop" Type="Int32" />
-    <Property Name="gained_date" Type="DateTime" Precision="3" />
-    <Property Name="status" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
-  </EntityType>
-  <EntityType Name="t_badges">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="name" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-    <Property Name="info" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-    <Property Name="avatar_url" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-  </EntityType>
-  <EntityType Name="t_game_factions">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="id_game" Type="Int32" />
-    <Property Name="name" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-    <Property Name="info" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-    <Property Name="avatar_url" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-  </EntityType>
-  <EntityType Name="t_games">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="name" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-    <Property Name="info" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-    <Property Name="avatar_url" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-  </EntityType>
-  <EntityType Name="t_league_titles">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="id_league" Type="Int32" />
-    <Property Name="name" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-    <Property Name="info" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-    <Property Name="id_badge" Type="Int32" />
-  </EntityType>
-  <EntityType Name="t_leagues">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="id_game" Type="Int32" />
-    <Property Name="name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-    <Property Name="info" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-    <Property Name="avatar_url" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-    <Property Name="current_round" Type="Int32" />
-    <Property Name="start_date" Type="DateTime" Precision="3" />
-    <Property Name="end_date" Type="DateTime" Precision="3" />
-    <Property Name="active" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
-  </EntityType>
-  <EntityType Name="t_syslog">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="message" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-    <Property Name="creation_date" Type="DateTime" Precision="3" />
-  </EntityType>
-  <EntityType Name="t_systables">
-    <Key>
-      <PropertyRef Name="table_name" />
-    </Key>
-    <Property Name="table_name" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-    <Property Name="next_id" Type="Int32" />
-    <Property Name="step" Type="Int32" />
-  </EntityType>
-  <EntityType Name="t_user_leagues">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="id_user" Type="Int32" />
-    <Property Name="id_league" Type="Int32" />
-    <Property Name="id_faction" Type="Int32" />
-    <Property Name="team_name" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
-    <Property Name="team_avatar_url" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-    <Property Name="wins" Type="Int32" />
-    <Property Name="losses" Type="Int32" />
-    <Property Name="draws" Type="Int32" />
-    <Property Name="total_score" Type="Int32" />
-    <Property Name="security_level" Type="Int32" />
-    <Property Name="active" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
-  </EntityType>
-  <EntityType Name="t_users">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="numero_socio" Type="Int32" />
-    <Property Name="login" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
-    <Property Name="pass" Type="String" MaxLength="50" Unicode="false" FixedLength="false" Nullable="false" />
-    <Property Name="name" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-    <Property Name="surname" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-    <Property Name="email" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-    <Property Name="avatar_url" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
-    <Property Name="info" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-    <Property Name="login_errors" Type="Int32" />
-    <Property Name="security_level" Type="Int32" Nullable="false" />
-    <Property Name="active" Type="String" MaxLength="1" Unicode="false" FixedLength="false" />
-  </EntityType>
-  <EntityType Name="mercs_user_upgrades">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
     <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="Int32" Name="id_user_league" />
-    <Property Type="Int32" Name="id_upgrade" />
-    <Property Type="DateTime" Name="gained_date" Precision="3" />
-    <Property Type="String" Name="active" MaxLength="1" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="mercs_die_faces">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" />
-    <Property Name="id_die_type" Type="Int32" />
-    <Property Name="die_face" Type="Int32" />
-    <Property Name="action" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="cost_credits" Type="Int32" />
-    <Property Name="sell_materials" Type="Int32" />
-    <Property Name="sell_credits" Type="Int32" />
-    <Property Name="open_url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="t_user_titles">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="Int32" Name="id_user_league" />
-    <Property Type="Int32" Name="id_league_title" />
-    <Property Type="DateTime" Name="unlock_date" Precision="3" />
-  </EntityType>
-  <EntityType Name="t_messages">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="Int32" Name="id_user_from" />
-    <Property Type="Int32" Name="id_user_to" />
-    <Property Type="String" Name="subject" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Type="String" Name="message" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Type="DateTime" Name="sent_date" Precision="3" />
-    <Property Type="DateTime" Name="read_date" Precision="3" />
-    <Property Type="Int32" Name="id_league" />
-    <Property Type="Int32" Name="round" />
-    <Property Type="String" Name="status" MaxLength="1" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="mercs_user_dice_msg">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Type="Int32" Name="id" Nullable="false" />
-    <Property Type="Int32" Name="id_user_dice" />
-    <Property Type="Int32" Name="id_user_from" />
-    <Property Type="String" Name="message" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Type="DateTime" Name="message_date" Precision="3" />
+    <Property Type="Int32" Name="id_game_faction" />
+    <Property Type="String" Name="name" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="function_rule" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="conflict_rule" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="cost" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="upkeep" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="notes" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="mercs_user_dice">
     <Key>
@@ -250,5 +142,189 @@
     <Property Type="Int32" Name="resources_gained" />
     <Property Type="DateTime" Name="admin_date" Precision="3" />
     <Property Type="Int32" Name="status" />
+  </EntityType>
+  <EntityType Name="mercs_user_dice_msg">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id_user_dice" />
+    <Property Type="Int32" Name="id_user_from" />
+    <Property Type="String" Name="message" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="message_date" Precision="3" />
+  </EntityType>
+  <EntityType Name="mercs_user_troops">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id_user_league" />
+    <Property Type="Int32" Name="id_troop" />
+    <Property Type="String" Name="nickname" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="enlist_date" Precision="3" />
+    <Property Type="Int32" Name="kit1_qty" />
+    <Property Type="Int32" Name="kit2_qty" />
+    <Property Type="String" Name="current_status" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="mercs_user_upgrades">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id_user_league" />
+    <Property Type="Int32" Name="id_upgrade" />
+    <Property Type="DateTime" Name="gained_date" Precision="3" />
+    <Property Type="String" Name="active" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="t_badges">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="avatar_url" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="t_game_factions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id_game" />
+    <Property Type="String" Name="name" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="avatar_url" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="t_games">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="avatar_url" MaxLength="500" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="t_league_titles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id_league" />
+    <Property Type="String" Name="name" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="id_badge" />
+  </EntityType>
+  <EntityType Name="t_leagues">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id_game" />
+    <Property Type="String" Name="name" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="current_round" />
+    <Property Type="Int32" Name="current_phase" />
+    <Property Type="DateTime" Name="start_date" Precision="3" />
+    <Property Type="DateTime" Name="end_date" Precision="3" />
+    <Property Type="String" Name="avatar_url" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="active" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="t_messages">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id_user_from" />
+    <Property Type="Int32" Name="id_user_to" />
+    <Property Type="String" Name="subject" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="message" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="sent_date" Precision="3" />
+    <Property Type="DateTime" Name="read_date" Precision="3" />
+    <Property Type="Int32" Name="id_league" />
+    <Property Type="Int32" Name="round" />
+    <Property Type="String" Name="status" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="t_syslog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="message" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="DateTime" Name="creation_date" Precision="3" />
+    <Property Name="stack_trace" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="logged_user" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+    <Property Name="client_ip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="t_systables">
+    <Key>
+      <PropertyRef Name="table_name" />
+    </Key>
+    <Property Type="String" Name="table_name" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="next_id" />
+    <Property Type="Int32" Name="step" />
+  </EntityType>
+  <EntityType Name="t_user_leagues">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id_user" />
+    <Property Type="Int32" Name="id_league" />
+    <Property Type="Int32" Name="id_faction" />
+    <Property Type="String" Name="team_name" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="team_avatar_url" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="wins" />
+    <Property Type="Int32" Name="losses" />
+    <Property Type="Int32" Name="draws" />
+    <Property Type="Int32" Name="total_score" />
+    <Property Type="Int32" Name="security_level" />
+    <Property Type="String" Name="active" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="t_user_titles">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="id_user_league" />
+    <Property Type="Int32" Name="id_league_title" />
+    <Property Type="DateTime" Name="unlock_date" Precision="3" />
+  </EntityType>
+  <EntityType Name="t_users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="Int32" Name="numero_socio" />
+    <Property Type="String" Name="login" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="pass" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="name" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="surname" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="email" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="avatar_url" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="info" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Type="Int32" Name="login_errors" />
+    <Property Type="Int32" Name="security_level" Nullable="false" />
+    <Property Type="String" Name="active" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="merc_regions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="color_hexcode" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="mercs_missions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="reward" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="map_url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

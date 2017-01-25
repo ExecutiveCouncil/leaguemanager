@@ -110,6 +110,7 @@
     <Content Include="images\t_dices\mercs\a5s.png" />
     <Content Include="images\t_dices\mercs\a6.png" />
     <Content Include="images\t_dices\mercs\a6s.png" />
+    <Content Include="images\t_dices\mercs\add.png" />
     <Content Include="images\t_dices\mercs\c.png" />
     <Content Include="images\t_dices\mercs\c1.png" />
     <Content Include="images\t_dices\mercs\c1m.png" />
@@ -211,6 +212,9 @@
     <Content Include="images\t_leagues\whfantasy2017.jpg" />
     <Content Include="images\t_user_leagues\manumercs2017.jpg" />
     <Content Include="images\webapp\back.png" />
+    <Content Include="images\webapp\banned.png" />
+    <Content Include="images\webapp\error_black.png" />
+    <Content Include="images\webapp\error_red.png" />
     <Content Include="images\webapp\LAGUARIDA.png" />
     <Content Include="images\webapp\menu_icon.png" />
     <Content Include="images\webapp\user.png" />
