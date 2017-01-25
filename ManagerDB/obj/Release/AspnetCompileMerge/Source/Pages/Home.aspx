@@ -64,8 +64,8 @@
                         <asp:TemplateColumn HeaderText="Usuario" ItemStyle-HorizontalAlign="Center" ItemStyle-Width="75px" ItemStyle-VerticalAlign="Top">
                             <ItemTemplate>
                                 <asp:ImageButton runat="server" id="_imgUsuario" ImageUrl='<%# Eval("user_from_avatar_url") %>' Width="75px" 
-                                                 CommandArgument='<%# Eval("user_from_id") %>'
-                                                 CommandName="VerUsuario" />
+                                                 CommandArgument='<%# Eval("message_id") %>'
+                                                 CommandName="VerJugador" />
                                 <br />
                                 <strong><asp:Label runat="server" ID="_lbUsuarioNombre" Text='<%# Eval("user_from_name") %>' Font-Size="X-Small"></asp:Label></strong>
                                 <br />

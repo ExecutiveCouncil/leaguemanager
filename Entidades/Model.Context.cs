@@ -25,11 +25,9 @@ namespace Entidades
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<merc_regions> merc_regions { get; set; }
         public DbSet<mercs_die_faces> mercs_die_faces { get; set; }
         public DbSet<mercs_die_types> mercs_die_types { get; set; }
         public DbSet<mercs_faction_dice> mercs_faction_dice { get; set; }
-        public DbSet<mercs_missions> mercs_missions { get; set; }
         public DbSet<mercs_skirmish_user_troops> mercs_skirmish_user_troops { get; set; }
         public DbSet<mercs_skirmish_users> mercs_skirmish_users { get; set; }
         public DbSet<mercs_skirmishes> mercs_skirmishes { get; set; }
@@ -50,5 +48,7 @@ namespace Entidades
         public DbSet<t_user_leagues> t_user_leagues { get; set; }
         public DbSet<t_user_titles> t_user_titles { get; set; }
         public DbSet<t_users> t_users { get; set; }
+        public DbSet<merc_regions> merc_regions { get; set; }
+        public DbSet<mercs_missions> mercs_missions { get; set; }
     }
 }

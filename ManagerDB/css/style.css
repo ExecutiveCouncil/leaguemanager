@@ -196,6 +196,7 @@ h3{
   letter-spacing:0.125em;
   text-align:center;
   text-transform:uppercase;
+  cursor: pointer;
 }
  
 .btn:hover{

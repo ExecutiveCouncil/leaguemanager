@@ -10,7 +10,7 @@
                                      ImageUrl="~/images/webapp/back.png" OnClientClick="goBack();" 
                                      CssClass="image_button" Width="45px" 
                                      style="vertical-align:text-top;"/>
-                    <asp:Label runat="server" ID="_LbTitle" Text="DADOS DE INFLUENCIA"></asp:Label>
+                    <asp:Label runat="server" ID="_LbTitle" Text="PANEL DE CONTROL"></asp:Label>
                 </h1>
                 <hr />
             </div>

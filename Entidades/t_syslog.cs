@@ -17,5 +17,9 @@ namespace Entidades
         public int id { get; set; }
         public string message { get; set; }
         public Nullable<System.DateTime> creation_date { get; set; }
+        public string stack_trace { get; set; }
+        public string url { get; set; }
+        public string logged_user { get; set; }
+        public string client_ip { get; set; }
     }
 }
