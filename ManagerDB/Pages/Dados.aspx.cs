@@ -286,6 +286,12 @@ namespace ManagerDB.Pages
                 case 4:
                     imagen = "c";
                     break;
+                case 5:
+                    imagen = "b";
+                    break;
+                case 6:
+                    imagen = "m";
+                    break;
             }
 
             if (fechaTirada != null)

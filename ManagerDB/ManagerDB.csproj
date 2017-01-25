@@ -110,6 +110,13 @@
     <Content Include="images\t_dices\mercs\a5s.png" />
     <Content Include="images\t_dices\mercs\a6.png" />
     <Content Include="images\t_dices\mercs\a6s.png" />
+    <Content Include="images\t_dices\mercs\add.png" />
+    <Content Include="images\t_dices\mercs\b1.png" />
+    <Content Include="images\t_dices\mercs\b2.png" />
+    <Content Include="images\t_dices\mercs\b3.png" />
+    <Content Include="images\t_dices\mercs\b4.png" />
+    <Content Include="images\t_dices\mercs\b5.png" />
+    <Content Include="images\t_dices\mercs\b6.png" />
     <Content Include="images\t_dices\mercs\c.png" />
     <Content Include="images\t_dices\mercs\c1.png" />
     <Content Include="images\t_dices\mercs\c1m.png" />
@@ -158,6 +165,9 @@
     <Content Include="images\t_dices\mercs\m1.png" />
     <Content Include="images\t_dices\mercs\m2.png" />
     <Content Include="images\t_dices\mercs\m3.png" />
+    <Content Include="images\t_dices\mercs\m4.png" />
+    <Content Include="images\t_dices\mercs\m5.png" />
+    <Content Include="images\t_dices\mercs\m6.png" />
     <Content Include="images\t_dices\mercs\n.png" />
     <Content Include="images\t_dices\mercs\n1p.png" />
     <Content Include="images\t_dices\mercs\n2r.png" />

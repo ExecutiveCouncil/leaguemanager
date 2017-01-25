@@ -212,6 +212,12 @@ namespace ManagerDB.Pages
                 case 4:
                     imagen = "c";
                     break;
+                case 5:
+                    imagen = "b";
+                    break;
+                case 6:
+                    imagen = "m";
+                    break;
             }
 
             if (fechaTirada != null)
@@ -484,25 +490,86 @@ namespace ManagerDB.Pages
 
         protected void ImgAddDados_Command(object sender, CommandEventArgs e)
         {
+            mercs_user_dice dado = new mercs_user_dice();
+            var nombreDado = string.Empty;
+
+            //datos genéricos del nuevo dado
+            dado.id = ObtenerIdNuevoDado();
+            dado.status = 0;
+            dado.id_user_league = this.idUsuarioLigaSeleccionado;
+            dado.round = this.liga.current_round;
+
             switch (e.CommandName)
             {
                 case "AddDado":
                     {
                         int tipoDado = Convert.ToInt32(e.CommandArgument);
-                        var nombreDado = this.manager.mercs_die_types.Where(a => a.id == tipoDado).FirstOrDefault().name;
-                        mercs_user_dice dado = new mercs_user_dice();
-                        dado.id = ObtenerIdNuevoDado();
-                        dado.id_user_league = this.idUsuarioLigaSeleccionado;
-                        dado.round = this.liga.current_round;
+                        nombreDado = this.manager.mercs_die_types.Where(a => a.id == tipoDado).FirstOrDefault().name;  
                         dado.id_die_type = tipoDado;
-                        dado.status = 0;
-                        this.manager.mercs_user_dice.Add(dado);
-                        this.manager.SaveChanges();
-
-                        GuardarMensaje("Añadido dado", "Se ha añadido un dado de '" + nombreDado + "'", this.usuario.id, idUsuarioLigaSeleccionado);
+                        break;
+                    }
+                case "AddRecursos":
+                    {
+                        nombreDado = this.manager.mercs_die_types.Where(a => a.id == 5).FirstOrDefault().name;
+                        dado.id_die_type = 5;
+                        dado.id_die_face = Convert.ToInt32(e.CommandArgument);
+                        dado.rolled_date = DateTime.Now;
+                        break;
+                    }
+                case "AddMateriales":
+                    {
+                        nombreDado = this.manager.mercs_die_types.Where(a => a.id == 6).FirstOrDefault().name;
+                        dado.id_die_type = 6;
+                        dado.id_die_face = Convert.ToInt32(e.CommandArgument);
+                        dado.rolled_date = DateTime.Now;
+                        break;
+                    }
+                case "AddDadoRecursos":
+                    {
+                        int cara = Convert.ToInt32(e.CommandArgument);
+                        nombreDado = this.manager.mercs_die_types.Where(a => a.id == 1).FirstOrDefault().name;
+                        dado.id_die_type = 1;
+                        dado.id_die_face = cara;
+                        dado.rolled_date = DateTime.Now;
+                        dado.cost = this.manager.mercs_die_faces.Where(a => a.id_die_type == 1 && a.die_face == cara).FirstOrDefault().cost_credits;
+                        break;
+                    }
+                case "AddDadoEconomia":
+                    {
+                        int cara = Convert.ToInt32(e.CommandArgument);
+                        nombreDado = this.manager.mercs_die_types.Where(a => a.id == 2).FirstOrDefault().name;
+                        dado.id_die_type = 2;
+                        dado.id_die_face = cara;
+                        dado.rolled_date = DateTime.Now;
+                        dado.cost = this.manager.mercs_die_faces.Where(a => a.id_die_type == 2 && a.die_face == cara).FirstOrDefault().cost_credits;
+                        break;
+                    }
+                case "AddDadoPolitica":
+                    {
+                        int cara = Convert.ToInt32(e.CommandArgument);
+                        nombreDado = this.manager.mercs_die_types.Where(a => a.id == 3).FirstOrDefault().name;
+                        dado.id_die_type = 3;
+                        dado.id_die_face = cara;
+                        dado.rolled_date = DateTime.Now;
+                        dado.cost = this.manager.mercs_die_faces.Where(a => a.id_die_type == 3 && a.die_face == cara).FirstOrDefault().cost_credits;
+                        break;
+                    }
+                case "AddDadoEspionaje":
+                    {
+                        int cara = Convert.ToInt32(e.CommandArgument);
+                        nombreDado = this.manager.mercs_die_types.Where(a => a.id == 4).FirstOrDefault().name;
+                        dado.id_die_type = 4;
+                        dado.id_die_face = cara;
+                        dado.rolled_date = DateTime.Now;
+                        dado.cost = this.manager.mercs_die_faces.Where(a => a.id_die_type == 4 && a.die_face == cara).FirstOrDefault().cost_credits;
                         break;
                     }
             }
+
+            GuardarMensaje("Añadido dado", "Se ha añadido un dado de '" + nombreDado + "'", this.usuario.id, idUsuarioLigaSeleccionado);
+            //Añadir el dado y guardar los cambios
+            this.manager.mercs_user_dice.Add(dado);
+            this.manager.SaveChanges();
 
             this.MostrarDadosUsuarios();
         }
