@@ -20,6 +20,12 @@
         <div class="row">
             <h3>DATOS DE USUARIO</h3>
             <div class="div_box">
+
+                <p class="row">
+                    <asp:Label runat="server" ID="Label7" Text="Nº de socio"></asp:Label>
+                    <asp:TextBox runat="server" ID="TxNroSocio" Width="25%" ></asp:TextBox>
+                </p>
+
                 <p class="row">
                     <asp:Label runat="server" ID="Label3" Text="Nombre"></asp:Label>
                     <asp:TextBox runat="server" ID="TxNombre" Width="25%"></asp:TextBox>
@@ -34,6 +40,7 @@
                     <asp:Label runat="server" ID="Label5" Text="Correo electrónico"></asp:Label>
                     <asp:TextBox runat="server" ID="TxEmail" Width="80%" ></asp:TextBox>
                 </p>
+
                 <div style="text-align:right">
                     <asp:Button CssClass="btn" id="BtDatosUsuario" runat="server" text="MODIFICAR" style="width:145px" OnClick="BtDatosUsuario_Click"></asp:Button>
                 </div>

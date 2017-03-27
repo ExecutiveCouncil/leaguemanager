@@ -135,6 +135,8 @@ namespace ManagerDB.Pages
                                     losses = ul.losses,
                                     draws = ul.draws,
                                     score = ul.total_score,
+                                    kills = ul.total_kills,
+                                    vp = ul.total_vp,
                                     league_name = l.name,
                                     league_avatar_url = l.avatar_url,
                                     game_name = g.name,
@@ -145,7 +147,7 @@ namespace ManagerDB.Pages
 
             if (ligasUsuario.Count > 0)
             {
-                this.GrJugadores.DataSource = ligasUsuario;
+                this.GrJugadores.DataSource = ligasUsuario.OrderByDescending(o=>o.score).ThenByDescending(t=>t.vp).ThenByDescending(tt=>tt.kills);
                 this._LbNoJugadores.Visible = false;
             }
             else

@@ -20,5 +20,6 @@ namespace Entidades
         public string info { get; set; }
         public string reward { get; set; }
         public string map_url { get; set; }
+        public string rules { get; set; }
     }
 }

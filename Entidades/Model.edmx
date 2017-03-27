@@ -13,6 +13,7 @@
           <Property Name="name" Type="varchar" MaxLength="500" />
           <Property Name="info" Type="varchar(max)" />
           <Property Name="color_hexcode" Type="varchar" MaxLength="7" />
+          <Property Name="reward" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="mercs_die_faces">
           <Key>
@@ -53,6 +54,7 @@
           <Property Name="type" Type="varchar" MaxLength="50" />
           <Property Name="name" Type="varchar" MaxLength="500" />
           <Property Name="info" Type="varchar(max)" />
+          <Property Name="rules" Type="varchar(max)" />
           <Property Name="reward" Type="varchar(max)" />
           <Property Name="map_url" Type="varchar" MaxLength="500" />
         </EntityType>
@@ -218,6 +220,7 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="id_game" Type="int" />
+          <Property Name="type" Type="int" />
           <Property Name="name" Type="varchar" MaxLength="100" />
           <Property Name="info" Type="varchar(max)" />
           <Property Name="current_round" Type="int" />
@@ -269,14 +272,16 @@
           <Property Name="id" Type="int" Nullable="false" />
           <Property Name="id_user" Type="int" />
           <Property Name="id_league" Type="int" />
+          <Property Name="security_level" Type="int" />
           <Property Name="id_faction" Type="int" />
           <Property Name="team_name" Type="varchar" MaxLength="200" />
           <Property Name="team_avatar_url" Type="varchar" MaxLength="500" />
           <Property Name="wins" Type="int" />
           <Property Name="losses" Type="int" />
           <Property Name="draws" Type="int" />
+          <Property Name="total_kills" Type="int" />
+          <Property Name="total_vp" Type="int" />
           <Property Name="total_score" Type="int" />
-          <Property Name="security_level" Type="int" />
           <Property Name="active" Type="varchar" MaxLength="1" />
         </EntityType>
         <EntityType Name="t_user_titles">
@@ -564,6 +569,7 @@
           <Property Type="DateTime" Name="end_date" Precision="3" />
           <Property Type="String" Name="avatar_url" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="active" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="type" Type="Int32" />
         </EntityType>
         <EntityType Name="t_messages">
           <Key>
@@ -616,6 +622,8 @@
           <Property Type="Int32" Name="total_score" />
           <Property Type="Int32" Name="security_level" />
           <Property Type="String" Name="active" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="total_kills" Type="Int32" />
+          <Property Name="total_vp" Type="Int32" />
         </EntityType>
         <EntityType Name="t_user_titles">
           <Key>
@@ -651,6 +659,7 @@
           <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="color_hexcode" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="reward" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="mercs_missions">
           <Key>
@@ -662,6 +671,7 @@
           <Property Name="info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="reward" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="map_url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="rules" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -875,6 +885,7 @@
           <EntitySetMapping Name="t_leagues">
             <EntityTypeMapping TypeName="MANAGERDBModel.t_leagues">
               <MappingFragment StoreEntitySet="t_leagues">
+                <ScalarProperty Name="type" ColumnName="type" />
                 <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="avatar_url" ColumnName="avatar_url" />
                 <ScalarProperty Name="end_date" ColumnName="end_date" />
@@ -929,6 +940,8 @@
           <EntitySetMapping Name="t_user_leagues">
             <EntityTypeMapping TypeName="MANAGERDBModel.t_user_leagues">
               <MappingFragment StoreEntitySet="t_user_leagues">
+                <ScalarProperty Name="total_vp" ColumnName="total_vp" />
+                <ScalarProperty Name="total_kills" ColumnName="total_kills" />
                 <ScalarProperty Name="active" ColumnName="active" />
                 <ScalarProperty Name="security_level" ColumnName="security_level" />
                 <ScalarProperty Name="total_score" ColumnName="total_score" />
@@ -975,6 +988,7 @@
           <EntitySetMapping Name="merc_regions">
             <EntityTypeMapping TypeName="MANAGERDBModel.merc_regions">
               <MappingFragment StoreEntitySet="merc_regions">
+                <ScalarProperty Name="reward" ColumnName="reward" />
                 <ScalarProperty Name="color_hexcode" ColumnName="color_hexcode" />
                 <ScalarProperty Name="info" ColumnName="info" />
                 <ScalarProperty Name="name" ColumnName="name" />
@@ -985,6 +999,7 @@
           <EntitySetMapping Name="mercs_missions">
             <EntityTypeMapping TypeName="MANAGERDBModel.mercs_missions">
               <MappingFragment StoreEntitySet="mercs_missions">
+                <ScalarProperty Name="rules" ColumnName="rules" />
                 <ScalarProperty Name="map_url" ColumnName="map_url" />
                 <ScalarProperty Name="reward" ColumnName="reward" />
                 <ScalarProperty Name="info" ColumnName="info" />

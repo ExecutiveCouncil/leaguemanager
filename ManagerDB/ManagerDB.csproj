@@ -111,15 +111,12 @@
     <Content Include="images\t_dices\mercs\a6.png" />
     <Content Include="images\t_dices\mercs\a6s.png" />
     <Content Include="images\t_dices\mercs\add.png" />
-<<<<<<< HEAD
     <Content Include="images\t_dices\mercs\b1.png" />
     <Content Include="images\t_dices\mercs\b2.png" />
     <Content Include="images\t_dices\mercs\b3.png" />
     <Content Include="images\t_dices\mercs\b4.png" />
     <Content Include="images\t_dices\mercs\b5.png" />
     <Content Include="images\t_dices\mercs\b6.png" />
-=======
->>>>>>> origin/master
     <Content Include="images\t_dices\mercs\c.png" />
     <Content Include="images\t_dices\mercs\c1.png" />
     <Content Include="images\t_dices\mercs\c1m.png" />

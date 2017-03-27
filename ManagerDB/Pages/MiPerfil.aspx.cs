@@ -23,6 +23,7 @@ namespace ManagerDB.Pages
                     this.TxApellidos.Text = this.usuario.surname;
                     this.TxEmail.Text = this.usuario.email;
                     this.TxUserLogin.Text = this.usuario.login;
+                    this.TxNroSocio.Text = this.usuario.numero_socio.ToString();
                 }
             }
         }
@@ -35,6 +36,19 @@ namespace ManagerDB.Pages
                 this.usuario.name = this.TxNombre.Text;
                 this.usuario.surname = this.TxApellidos.Text;
                 this.usuario.email = this.TxEmail.Text;
+                try
+                {
+                    if (string.IsNullOrEmpty(this.TxNroSocio.Text) == false)
+                    {
+                        int _nroUsuario = Convert.ToInt32(this.TxNroSocio.Text);
+                        this.usuario.numero_socio = _nroUsuario;
+                    }
+                    else
+                    {
+                        this.usuario.numero_socio = null;
+                    }
+                }
+                catch { }
                 this.manager.SaveChanges();
                 this.LbPopMensaje.Text = "Datos guardados correctamente.";
                 this.PopUpMensaje.Show();

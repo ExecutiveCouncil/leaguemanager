@@ -24,5 +24,6 @@ namespace Entidades
         public Nullable<System.DateTime> end_date { get; set; }
         public string avatar_url { get; set; }
         public string active { get; set; }
+        public Nullable<int> type { get; set; }
     }
 }

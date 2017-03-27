@@ -178,6 +178,8 @@ namespace ManagerDB.Pages
                                         losses = ul.losses,
                                         draws = ul.draws,
                                         score = ul.total_score,
+                                        vp = ul.total_vp,
+                                        kills = ul.total_kills,
                                         league_name = l.name,
                                         league_avatar_url = l.avatar_url,
                                         game_id = l.id_game,

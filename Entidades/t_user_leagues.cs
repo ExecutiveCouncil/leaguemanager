@@ -26,5 +26,7 @@ namespace Entidades
         public Nullable<int> total_score { get; set; }
         public Nullable<int> security_level { get; set; }
         public string active { get; set; }
+        public Nullable<int> total_kills { get; set; }
+        public Nullable<int> total_vp { get; set; }
     }
 }
