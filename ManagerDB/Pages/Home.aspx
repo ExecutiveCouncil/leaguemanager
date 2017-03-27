@@ -33,11 +33,12 @@
                         <asp:ButtonColumn DataTextField="league_name" HeaderText="Liga" CommandName="VerLiga"></asp:ButtonColumn>
                         <asp:ButtonColumn DataTextField="team_name" HeaderText="Nombre equipo" CommandName="VerUsuarioLiga"></asp:ButtonColumn>
                         <asp:BoundColumn DataField="faction_name" HeaderText="Facción"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="wins" HeaderText="Victorias" ItemStyle-Width="50px"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="losses" HeaderText="Derrotas" ItemStyle-Width="50px"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="draws" HeaderText="Empates" ItemStyle-Width="50px"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="score" HeaderText="Puntos" ItemStyle-Width="50px"></asp:BoundColumn>
-                        <asp:BoundColumn DataField="current_round" HeaderText="Ronda" ItemStyle-Width="50px"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="kills" HeaderText="Asesinatos" ItemStyle-Width="70px"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="vp" HeaderText="P.Misión" ItemStyle-Width="70px"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="losses" HeaderText="Derrotas" ItemStyle-Width="70px"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="draws" HeaderText="Empates" ItemStyle-Width="70px"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="wins" HeaderText="Victorias" ItemStyle-Width="70px"></asp:BoundColumn>
+                        <asp:BoundColumn DataField="score" HeaderText="Puntuación" ItemStyle-Width="70px"></asp:BoundColumn>
                     </Columns>
                 </asp:DataGrid>
                 <asp:Label runat="server" style="color:#ffd800;" Text="No participa en ninguna liga" ID="_LbNoLiga" Visible="false"></asp:Label>

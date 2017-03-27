@@ -42,6 +42,8 @@ namespace ManagerDB.Pages
                                   losses = ul.losses,
                                   draws = ul.draws,
                                   score = ul.total_score,
+                                  vp = ul.total_vp,
+                                  kills = ul.total_kills,
                                   league_name = l.name,
                                   league_avatar_url = this.PATH_IMAGES + l.avatar_url,
                                   current_round = l.current_round,

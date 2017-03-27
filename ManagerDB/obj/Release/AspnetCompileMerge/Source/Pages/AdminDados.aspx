@@ -85,19 +85,10 @@
                                 <asp:TableCell style="padding-left:5px" VerticalAlign="Middle" Width="100px">
                                     <asp:Label id="Label1" Text='Victorias: ' runat="server" ForeColor="#a47c05"></asp:Label>
                                     <asp:Label id="lblVictorias" Text='<%# Eval("wins") %>' runat="server" ForeColor="#a47c05"></asp:Label>
-                                    <asp:ImageButton CssClass="dado2" id="AddVictorias" runat="server" 
-                                        OnCommand="AddVictorias_Command"  ImageUrl="../images/t_dices/mercs/add.png" 
-                                        ToolTip="Añadir un dado" Width="15px" CommandArgument='<%# Eval("id_user_league") %>'></asp:ImageButton> 
                                     <asp:Label id="Label2" Text='Empates: ' runat="server" ForeColor="#a47c05"></asp:Label>
                                     <asp:Label id="lblEmpates" Text='<%# Eval("draws") %>' runat="server" ForeColor="#a47c05"></asp:Label>    
-                                    <asp:ImageButton CssClass="dado2" id="AddEmpates" runat="server" 
-                                        OnCommand="AddEmpates_Command"  ImageUrl="../images/t_dices/mercs/add.png" 
-                                        ToolTip="Añadir un dado" Width="15px" CommandArgument='<%# Eval("id_user_league") %>'></asp:ImageButton>
                                     <asp:Label id="Label3" Text='Derrotas: ' runat="server" ForeColor="#a47c05"></asp:Label>
                                     <asp:Label id="lblDerrotas" Text='<%# Eval("losses") %>' runat="server" ForeColor="#a47c05"></asp:Label> 
-                                    <asp:ImageButton CssClass="dado2" id="AddPerdidas" runat="server" 
-                                        OnCommand="AddPerdidas_Command"  ImageUrl="../images/t_dices/mercs/add.png" 
-                                        ToolTip="Añadir un dado" Width="15px" CommandArgument='<%# Eval("id_user_league") %>'></asp:ImageButton> 
                                     <asp:Label id="Label4" Text='Puntos: ' runat="server" ForeColor="#a47c05"></asp:Label>
                                     <asp:Label id="lblPuntos" Text='<%# Eval("total_score") %>' runat="server" ForeColor="#a47c05"></asp:Label> 
                                 </asp:TableCell>
@@ -147,7 +138,7 @@
     <ajax:ModalPopupExtender ID="PopUpAddDados" runat="server" PopupControlID="PnlPopUpAddDados" TargetControlID="btnShowAddDados"
         CancelControlID="btnClose2" BackgroundCssClass="modalBackground">
     </ajax:ModalPopupExtender>
-    <asp:Panel ID="PnlPopUpAddDados" runat="server" CssClass="PopUp" style="display:none">
+    <asp:Panel ID="PnlPopUpAddDados" runat="server" CssClass="PopUp" style="width:600px;max-width:600px;">
         <asp:Button ID="btnClose2" CssClass="ClosePopUp" runat="server" Text="X" />
         <div class="box" style="width:80%; max-width:100%; padding: 10px; margin-top:25px;">            
             <div style="padding-left: 30px">
@@ -195,108 +186,342 @@
                     <asp:ImageButton runat="server" ID="ImgDice5"
                                                 Width="60px"
                                                 CssClass="dado"
-                                                ToolTip=''
-                                                AlternateText=''
-                                                ImageUrl= "../images/t_dices/mercs/r1.png"
-                                                CommandName="AdministrarDado"
-                                                CommandArgument=''/>
+                                                ToolTip='+1 recurso'
+                                                AlternateText='+1 recurso'
+                                                ImageUrl= "../images/t_dices/mercs/b1.png"                        
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddRecursos"
+                                                CommandArgument='1'/>
                     <asp:ImageButton runat="server" ID="ImgDice6"
                                                 Width="60px"
                                                 CssClass="dado"
-                                                ToolTip=''
-                                                AlternateText=''
-                                                ImageUrl= "../images/t_dices/mercs/r2.png"
+                                                ToolTip='+2 recursos'
+                                                AlternateText='+2 recursos'
+                                                ImageUrl= "../images/t_dices/mercs/b2.png"
+                                                OnCommand="ImgAddDados_Command"
                                                 CommandName="AdministrarDado"
-                                                CommandArgument=''/>
+                                                CommandArgument='2'/>
                     <asp:ImageButton runat="server" ID="ImgDice7"
                                                 Width="60px"
                                                 CssClass="dado"
-                                                ToolTip=''
-                                                AlternateText=''
-                                                ImageUrl= "../images/t_dices/mercs/r3.png"
-                                                CommandName="AdministrarDado"
-                                                CommandArgument=''/>
-                </div>
-                <div class="row">QUitar recursos:</div>
-                <div class="row">                    
+                                                ToolTip='+3 recursos'
+                                                AlternateText='+3 recursos'
+                                                ImageUrl= "../images/t_dices/mercs/b3.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddRecursos"
+                                                CommandArgument='3'/>                   
                     <asp:ImageButton runat="server" ID="ImgDice8"
                                                 Width="60px"
                                                 CssClass="dado"
-                                                ToolTip=''
-                                                AlternateText=''
-                                                ImageUrl= "../images/t_dices/mercs/r-1.png"
-                                                CommandName="AdministrarDado"
-                                                CommandArgument=''/>
+                                                ToolTip='-1 recurso'
+                                                AlternateText='-1 recurso'
+                                                ImageUrl= "../images/t_dices/mercs/b4.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddRecursos"
+                                                CommandArgument='4'/>
                     <asp:ImageButton runat="server" ID="ImgDice9"
                                                 Width="60px"
                                                 CssClass="dado"
-                                                ToolTip=''
-                                                AlternateText=''
-                                                ImageUrl= "../images/t_dices/mercs/r-2.png"
-                                                CommandName="AdministrarDado"
-                                                CommandArgument=''/>
+                                                ToolTip='-2 recursos'
+                                                AlternateText='-2 recursos'
+                                                ImageUrl= "../images/t_dices/mercs/b5.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddRecursos"
+                                                CommandArgument='5'/>
                     <asp:ImageButton runat="server" ID="ImgDice10"
                                                 Width="60px"
                                                 CssClass="dado"
-                                                ToolTip=''
-                                                AlternateText=''
-                                                ImageUrl= "../images/t_dices/mercs/r-3.png"
-                                                CommandName="AdministrarDado"
-                                                CommandArgument=''/>
+                                                ToolTip='-3 recursos'
+                                                AlternateText='-3 recursos'
+                                                ImageUrl= "../images/t_dices/mercs/b6.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddRecursos"
+                                                CommandArgument='6'/>
                 </div>
                 <div class="row">Añadir materiales:</div>
                 <div class="row">                    
                     <asp:ImageButton runat="server" ID="ImgDice11"
                                                 Width="60px"
                                                 CssClass="dado"
-                                                ToolTip=''
-                                                AlternateText=''
+                                                ToolTip='+1 material'
+                                                AlternateText='+1 material'
                                                 ImageUrl= "../images/t_dices/mercs/m1.png"
-                                                CommandName="AdministrarDado"
-                                                CommandArgument=''/>
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddMateriales"
+                                                CommandArgument='1'/>
                     <asp:ImageButton runat="server" ID="ImgDice12"
                                                 Width="60px"
                                                 CssClass="dado"
-                                                ToolTip=''
-                                                AlternateText=''
+                                                ToolTip='+2 materiales'
+                                                AlternateText='+2 materiales'
                                                 ImageUrl= "../images/t_dices/mercs/m2.png"
-                                                CommandName="AdministrarDado"
-                                                CommandArgument=''/>
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddMateriales"
+                                                CommandArgument='2'/>
                     <asp:ImageButton runat="server" ID="ImgDice13"
                                                 Width="60px"
                                                 CssClass="dado"
-                                                ToolTip=''
-                                                AlternateText=''
+                                                ToolTip='+3 materiales'
+                                                AlternateText='+3 materiales'
                                                 ImageUrl= "../images/t_dices/mercs/m3.png"
-                                                CommandName="AdministrarDado"
-                                                CommandArgument=''/>
-                </div>
-                <div class="row">Quitar recursos:</div>
-                <div class="row">                    
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddMateriales"
+                                                CommandArgument='3'/>                   
                     <asp:ImageButton runat="server" ID="ImgDice14"
                                                 Width="60px"
                                                 CssClass="dado"
-                                                ToolTip=''
-                                                AlternateText=''
-                                                ImageUrl= "../images/t_dices/mercs/m-1.png"
-                                                CommandName="AdministrarDado"
-                                                CommandArgument=''/>
+                                                ToolTip='-1 material'
+                                                AlternateText='-1 material'
+                                                ImageUrl= "../images/t_dices/mercs/m4.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddMateriales"
+                                                CommandArgument='4'/>
                     <asp:ImageButton runat="server" ID="ImgDice15"
                                                 Width="60px"
                                                 CssClass="dado"
-                                                ToolTip=''
-                                                AlternateText=''
-                                                ImageUrl= "../images/t_dices/mercs/m-2.png"
-                                                CommandName="AdministrarDado"
-                                                CommandArgument=''/>
+                                                ToolTip='-2 materiales'
+                                                AlternateText='-2 materiales'
+                                                ImageUrl= "../images/t_dices/mercs/m5.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddMateriales"
+                                                CommandArgument='5'/>
                     <asp:ImageButton runat="server" ID="ImgDice16"
                                                 Width="60px"
                                                 CssClass="dado"
-                                                ToolTip=''
-                                                AlternateText=''
-                                                ImageUrl= "../images/t_dices/mercs/m-3.png"
-                                                CommandName="AdministrarDado"
-                                                CommandArgument=''/>
+                                                ToolTip='-3 materiales'
+                                                AlternateText='-3 materiales'
+                                                ImageUrl= "../images/t_dices/mercs/m6.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddMateriales"
+                                                CommandArgument='6'/>
+                </div>
+                <div class="row">Añadir dado de recursos:</div>
+                <div class="row">                    
+                    <asp:ImageButton runat="server" ID="ImageButton1"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='créditos'
+                                                AlternateText='créditos'
+                                                ImageUrl= "../images/t_dices/mercs/a1.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoRecursos"
+                                                CommandArgument='1'/>
+                    <asp:ImageButton runat="server" ID="ImageButton2"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='créditos'
+                                                AlternateText='créditos'
+                                                ImageUrl= "../images/t_dices/mercs/a2.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoRecursos"
+                                                CommandArgument='2'/>
+                    <asp:ImageButton runat="server" ID="ImageButton3"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='créditos'
+                                                AlternateText='créditos'
+                                                ImageUrl= "../images/t_dices/mercs/a3.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoRecursos"
+                                                CommandArgument='3'/>                   
+                    <asp:ImageButton runat="server" ID="ImageButton4"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='créditos'
+                                                AlternateText='créditos'
+                                                ImageUrl= "../images/t_dices/mercs/a4.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoRecursos"
+                                                CommandArgument='4'/>
+                    <asp:ImageButton runat="server" ID="ImageButton5"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='créditos'
+                                                AlternateText='créditos'
+                                                ImageUrl= "../images/t_dices/mercs/a5.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoRecursos"
+                                                CommandArgument='5'/>
+                    <asp:ImageButton runat="server" ID="ImageButton6"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='créditos'
+                                                AlternateText='créditos'
+                                                ImageUrl= "../images/t_dices/mercs/a6.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoRecursos"
+                                                CommandArgument='6'/>
+                </div>
+                <div class="row">Añadir dado de economía:</div>
+                <div class="row">                    
+                    <asp:ImageButton runat="server" ID="ImageButton7"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='Buyout (Compra)'
+                                                AlternateText='Buyout (Compra)'
+                                                ImageUrl= "../images/t_dices/mercs/g1.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoEconomia"
+                                                CommandArgument='1'/>
+                    <asp:ImageButton runat="server" ID="ImageButton8"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='Blackmail (Chantaje)'
+                                                AlternateText='Blackmail (Chantaje)'
+                                                ImageUrl= "../images/t_dices/mercs/g2.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoEconomia"
+                                                CommandArgument='2'/>
+                    <asp:ImageButton runat="server" ID="ImageButton9"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='Leverage (Apalancamiento)'
+                                                AlternateText='Leverage (Apalancamiento)'
+                                                ImageUrl= "../images/t_dices/mercs/g3.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoEconomia"
+                                                CommandArgument='3'/>                   
+                    <asp:ImageButton runat="server" ID="ImageButton10"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='créditos'
+                                                AlternateText='créditos'
+                                                ImageUrl= "../images/t_dices/mercs/g4.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoEconomia"
+                                                CommandArgument='4'/>
+                    <asp:ImageButton runat="server" ID="ImageButton11"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='créditos'
+                                                AlternateText='créditos'
+                                                ImageUrl= "../images/t_dices/mercs/g5.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoEconomia"
+                                                CommandArgument='5'/>
+                    <asp:ImageButton runat="server" ID="ImageButton12"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='créditos'
+                                                AlternateText='créditos'
+                                                ImageUrl= "../images/t_dices/mercs/g6.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoEconomia"
+                                                CommandArgument='6'/>
+                </div>
+                <div class="row">Añadir dado de política:</div>
+                <div class="row">                    
+                    <asp:ImageButton runat="server" ID="ImageButton13"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='Reparations (Indemnización)'
+                                                AlternateText='Reparations (Indemnización)'
+                                                ImageUrl= "../images/t_dices/mercs/v1.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoPolitica"
+                                                CommandArgument='1'/>
+                    <asp:ImageButton runat="server" ID="ImageButton14"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='Legislation (Legislación)'
+                                                AlternateText='Legislation (Legislación)'
+                                                ImageUrl= "../images/t_dices/mercs/v2.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoPolitica"
+                                                CommandArgument='2'/>
+                    <asp:ImageButton runat="server" ID="ImageButton15"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='Influence (Influenciar)'
+                                                AlternateText='Influence (Influenciar)'
+                                                ImageUrl= "../images/t_dices/mercs/v3.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoPolitica"
+                                                CommandArgument='3'/>                   
+                    <asp:ImageButton runat="server" ID="ImageButton16"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='Red Tape (formalidades burocráticas)'
+                                                AlternateText='Red Tape (formalidades burocráticas)'
+                                                ImageUrl= "../images/t_dices/mercs/v4.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoPolitica"
+                                                CommandArgument='4'/>
+                    <asp:ImageButton runat="server" ID="ImageButton17"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='Reparations (Indemnización)'
+                                                AlternateText='Reparations (Indemnización)'
+                                                ImageUrl= "../images/t_dices/mercs/v5.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoPolitica"
+                                                CommandArgument='5'/>
+                    <asp:ImageButton runat="server" ID="ImageButton18"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='créditos'
+                                                AlternateText='créditos'
+                                                ImageUrl= "../images/t_dices/mercs/v6.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoPolitica"
+                                                CommandArgument='6'/>
+                </div>
+                <div class="row">Añadir dado de espionaje:</div>
+                <div class="row">                    
+                    <asp:ImageButton runat="server" ID="ImageButton19"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='Subvert (Subvertir)'
+                                                AlternateText='Subvert (Subvertir)'
+                                                ImageUrl= "../images/t_dices/mercs/c1.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoEspionaje"
+                                                CommandArgument='1'/>
+                    <asp:ImageButton runat="server" ID="ImageButton20"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='Subterfuge (Subterfugio)'
+                                                AlternateText='Subterfuge (Subterfugio)'
+                                                ImageUrl= "../images/t_dices/mercs/c2.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoEspionaje"
+                                                CommandArgument='2'/>
+                    <asp:ImageButton runat="server" ID="ImageButton21"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='Assassinate (asesinato)'
+                                                AlternateText='Assassinate (asesinato)'
+                                                ImageUrl= "../images/t_dices/mercs/c3.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoEspionaje"
+                                                CommandArgument='3'/>                   
+                    <asp:ImageButton runat="server" ID="ImageButton22"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='Incite (Incitar)'
+                                                AlternateText='Incite (Incitar)'
+                                                ImageUrl= "../images/t_dices/mercs/c4.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoEspionaje"
+                                                CommandArgument='4'/>
+                    <asp:ImageButton runat="server" ID="ImageButton23"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='Subvert (Subvertir)'
+                                                AlternateText='Subvert (Subvertir)'
+                                                ImageUrl= "../images/t_dices/mercs/c5.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoEspionaje"
+                                                CommandArgument='5'/>
+                    <asp:ImageButton runat="server" ID="ImageButton24"
+                                                Width="60px"
+                                                CssClass="dado"
+                                                ToolTip='créditos'
+                                                AlternateText='créditos'
+                                                ImageUrl= "../images/t_dices/mercs/c6.png"
+                                                OnCommand="ImgAddDados_Command"
+                                                CommandName="AddDadoEspionaje"
+                                                CommandArgument='6'/>
                 </div>
             </div>
         </div>

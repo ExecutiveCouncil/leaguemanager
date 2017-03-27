@@ -167,6 +167,7 @@ namespace ManagerDB.Pages
                                     select new JugadorLiga
                                     {
                                         league_id = l.id,
+                                        tipo_liga = l.type,
                                         userleague_sec_level = ul.security_level,
                                         user_id = ul.id_user,
                                         user_name = u.name,
@@ -219,7 +220,8 @@ namespace ManagerDB.Pages
                 if (_ligaActual != null) //mercs
                 {
                     if (_ligaActual.game_id == 1 &&
-                        _ligaActual.user_id == this.usuario.id)
+                        _ligaActual.user_id == this.usuario.id &&
+                        _ligaActual.tipo_liga != 0)
                     {
                         this.PnlUsuarioLigaMERCS.Visible = true;
                     }

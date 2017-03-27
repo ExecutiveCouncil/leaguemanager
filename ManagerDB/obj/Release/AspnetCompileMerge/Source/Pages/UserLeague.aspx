@@ -76,10 +76,12 @@
             <Columns>
                 <asp:BoundColumn DataField="user_id" HeaderText="user_id" Visible="false"></asp:BoundColumn>
                 <asp:BoundColumn DataField="league_id" HeaderText="league_id" Visible="false"></asp:BoundColumn>
-                <asp:BoundColumn DataField="wins" HeaderText="Victorias"></asp:BoundColumn>
+                <asp:BoundColumn DataField="kills" HeaderText="Asesinatos"></asp:BoundColumn>
+                <asp:BoundColumn DataField="vp" HeaderText="Puntos Misión"></asp:BoundColumn>
                 <asp:BoundColumn DataField="losses" HeaderText="Derrotas"></asp:BoundColumn>
                 <asp:BoundColumn DataField="draws" HeaderText="Empates"></asp:BoundColumn>
-                <asp:BoundColumn DataField="score" HeaderText="Puntos"></asp:BoundColumn>
+                <asp:BoundColumn DataField="wins" HeaderText="Victorias"></asp:BoundColumn>
+                <asp:BoundColumn DataField="score" HeaderText="Puntuación"></asp:BoundColumn>
             </Columns>
         </asp:DataGrid>
         <br />

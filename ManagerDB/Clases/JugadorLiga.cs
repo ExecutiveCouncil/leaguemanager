@@ -30,5 +30,6 @@ namespace ManagerDB.Pages
         public string faction_info { get; set; }
         public int? kills { get; set; }
         public int? vp { get; set; }
+        public int? tipo_liga { get; set; }
     }
 }
