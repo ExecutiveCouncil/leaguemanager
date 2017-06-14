@@ -22,26 +22,86 @@
                     <asp:Label ID="lblLiga" runat="server" ></asp:Label>
                     -
                     <asp:Label ID="lblRonda" runat="server"></asp:Label>
+                    <asp:DropDownList runat="server" ID="DrpRondaActual"></asp:DropDownList>
                 </h3>
                 <br />
                 <div style="text-align:right" class="div_box">
                     <asp:Button CssClass="btn" id="btnAddTurno" runat="server" 
                                             OnCommand="btnAddTurno_Command" text="Asignar dados" 
                                             style="width:150px;"
-                                            ToolTip="Asigna los dados a los euqipos para la siguiente ronda" Width="150px"></asp:Button> 
+                                            ToolTip="Asigna los dados a los equipos para la siguiente ronda" Width="150px"></asp:Button> 
                     <asp:Button CssClass="btn" id="btnActivarTurno" runat="server" 
-                                            OnCommand="btnActivarTurno_Command" text="Activar ronda" 
+                                            OnCommand="btnActivarTurno_Command" text="Nueva ronda" 
                                             style="width:150px;"
                                             ToolTip="Pasa la liga a la siguiente ronda" Width="150px"></asp:Button> 
                 </div>
             </div>
         </div>
         <br />
+
+        <asp:Panel runat="server" id="Panel1">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>RONDA ACTUAL (RESULTADOS)</h3>
+                </div>
+            </div>
+            <br />
+            <asp:DataGrid ID="GrRondas" runat="server" AutoGenerateColumns="false" Width="100%" 
+                        ShowHeader="true" 
+                        CssClass="grid"
+                        HeaderStyle-CssClass="grid_header" 
+                        ItemStyle-CssClass="grid_row" 
+                        AlternatingItemStyle-CssClass="grid_alternate_row">
+                <Columns>
+                    <asp:BoundColumn DataField="id" HeaderText="id" Visible="false"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="id_league" HeaderText="id_league" Visible="false"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="p1_name" HeaderText="Jugador 1"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="p1_score" HeaderText="Puntos"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="p1_kills" HeaderText="Kills"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="p2_name" HeaderText="Jugador 2"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="p2_score" HeaderText="Puntos"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="p2_kills" HeaderText="Kills"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="match_date" HeaderText="Fecha"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="winner_name" HeaderText="Ganador"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="match_notes" HeaderText="Notas"></asp:BoundColumn>
+                </Columns>
+            </asp:DataGrid>
+            <asp:Label runat="server" style="color:#ffd800;" Text="No hay datos de rondas" ID="_LbNoRondas" Visible="false"></asp:Label>
+        </asp:Panel>
+
+        <br />
+        <h3><asp:Label runat="server" ID="LbClasif" Text="CLASIFICACION GENERAL"></asp:Label></h3>
+        <br />
+        <asp:DataGrid ID="GrJugadores" runat="server" AutoGenerateColumns="false" Width="100%" 
+                    ShowHeader="true" 
+                    CssClass="grid"
+                    HeaderStyle-CssClass="grid_header" 
+                    ItemStyle-CssClass="grid_row" 
+                    AlternatingItemStyle-CssClass="grid_alternate_row"
+                    >
+            <Columns>
+                <asp:BoundColumn DataField="user_id" HeaderText="user_id" Visible="false"></asp:BoundColumn>
+                <asp:BoundColumn DataField="league_id" HeaderText="league_id" Visible="false"></asp:BoundColumn>
+                <asp:BoundColumn DataField="user_name" HeaderText="Jugador"></asp:BoundColumn>
+                <asp:BoundColumn DataField="team_name" HeaderText="Equipo"></asp:BoundColumn>
+                <asp:BoundColumn DataField="faction_name" HeaderText="Facción"></asp:BoundColumn>
+                <asp:BoundColumn DataField="kills" HeaderText="Asesinatos" ItemStyle-Width="70px"></asp:BoundColumn>
+                <asp:BoundColumn DataField="vp" HeaderText="P.Misión" ItemStyle-Width="70px"></asp:BoundColumn>
+                <asp:BoundColumn DataField="losses" HeaderText="Derrotas" ItemStyle-Width="70px"></asp:BoundColumn>
+                <asp:BoundColumn DataField="draws" HeaderText="Empates" ItemStyle-Width="70px"></asp:BoundColumn>
+                <asp:BoundColumn DataField="wins" HeaderText="Victorias" ItemStyle-Width="70px"></asp:BoundColumn>
+                <asp:BoundColumn DataField="score" HeaderText="Puntuación" ItemStyle-Width="70px"></asp:BoundColumn>
+            </Columns>
+        </asp:DataGrid>
+        <asp:Label runat="server" style="color:#ffd800;" Text="No hay jugadores" ID="_LbNoJugadores" Visible="false"></asp:Label>
+        <br />
+
         <div class="row">
             <div class="col-md-12">
                 <h3>
-                    <label id="tituloUsuarios">PARTICIPANTES</label>            
+                    <label id="tituloUsuarios">DATOS DE CAMPAÑA</label>            
                 </h3>
+                <asp:Label runat="server" style="color:#ffd800;" Text="No hay datos de campaña adicionales" ID="_LbNoCampaña" Visible="false"></asp:Label>
                 <asp:Repeater runat="server" ID="RptDatosUsuarios" OnItemDataBound="RptDatosUsuarios_ItemDataBound">
                     <ItemTemplate>
                         <div class="div_box">

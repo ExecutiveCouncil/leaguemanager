@@ -50,6 +50,6 @@ C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\bin\ManagerDB.pdb
 C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\bin\Entidades.dll
 C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\bin\EntityFramework.dll
 C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\bin\Entidades.pdb
-C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\obj\Debug\ManagerDB.csprojResolveAssemblyReference.cache
 C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\obj\Debug\ManagerDB.dll
 C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\obj\Debug\ManagerDB.pdb
+C:\Users\manu\Documents\GitHub\leaguemanager\ManagerDB\obj\Debug\ManagerDB.csprojResolveAssemblyReference.cache

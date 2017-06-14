@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MANAGERDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="MANAGERDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityType Name="merc_regions">
           <Key>
             <PropertyRef Name="id" />
@@ -204,6 +204,26 @@
           <Property Name="info" Type="varchar(max)" />
           <Property Name="avatar_url" Type="varchar" MaxLength="500" />
         </EntityType>
+        <EntityType Name="t_league_matchs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id_league" Type="int" />
+          <Property Name="round" Type="int" />
+          <Property Name="p1_id_user" Type="int" />
+          <Property Name="p1_score" Type="int" />
+          <Property Name="p1_kills" Type="int" />
+          <Property Name="p1_notes" Type="varchar(max)" />
+          <Property Name="p2_id_user" Type="int" />
+          <Property Name="p2_score" Type="int" />
+          <Property Name="p2_kills" Type="int" />
+          <Property Name="p2_notes" Type="varchar(max)" />
+          <Property Name="match_date" Type="datetime" />
+          <Property Name="winner_id_user" Type="int" />
+          <Property Name="isdraw" Type="varchar" MaxLength="1" />
+          <Property Name="match_notes" Type="varchar(max)" />
+        </EntityType>
         <EntityType Name="t_league_titles">
           <Key>
             <PropertyRef Name="id" />
@@ -279,8 +299,8 @@
           <Property Name="wins" Type="int" />
           <Property Name="losses" Type="int" />
           <Property Name="draws" Type="int" />
-          <Property Name="total_kills" Type="int" />
           <Property Name="total_vp" Type="int" />
+          <Property Name="total_kills" Type="int" />
           <Property Name="total_score" Type="int" />
           <Property Name="active" Type="varchar" MaxLength="1" />
         </EntityType>
@@ -328,6 +348,7 @@
           <EntitySet Name="t_badges" EntityType="Self.t_badges" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="t_game_factions" EntityType="Self.t_game_factions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="t_games" EntityType="Self.t_games" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_league_matchs" EntityType="Self.t_league_matchs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="t_league_titles" EntityType="Self.t_league_titles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="t_leagues" EntityType="Self.t_leagues" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="t_messages" EntityType="Self.t_messages" Schema="dbo" store:Type="Tables" />
@@ -367,6 +388,7 @@
           <EntitySet Name="t_users" EntityType="MANAGERDBModel.t_users" />
           <EntitySet Name="merc_regions" EntityType="MANAGERDBModel.merc_regions" />
           <EntitySet Name="mercs_missions" EntityType="MANAGERDBModel.mercs_missions" />
+          <EntitySet Name="t_league_matchs" EntityType="MANAGERDBModel.t_league_matchs" />
         </EntityContainer>
         <EntityType Name="mercs_die_faces">
           <Key>
@@ -672,6 +694,26 @@
           <Property Name="reward" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="map_url" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="rules" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="t_league_matchs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id_league" Type="Int32" />
+          <Property Name="round" Type="Int32" />
+          <Property Name="p1_id_user" Type="Int32" />
+          <Property Name="p1_score" Type="Int32" />
+          <Property Name="p1_kills" Type="Int32" />
+          <Property Name="p1_notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="p2_id_user" Type="Int32" />
+          <Property Name="p2_score" Type="Int32" />
+          <Property Name="p2_kills" Type="Int32" />
+          <Property Name="p2_notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="match_date" Type="DateTime" Precision="3" />
+          <Property Name="winner_id_user" Type="Int32" />
+          <Property Name="isdraw" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="match_notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -1005,6 +1047,27 @@
                 <ScalarProperty Name="info" ColumnName="info" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_league_matchs">
+            <EntityTypeMapping TypeName="MANAGERDBModel.t_league_matchs">
+              <MappingFragment StoreEntitySet="t_league_matchs">
+                <ScalarProperty Name="match_notes" ColumnName="match_notes" />
+                <ScalarProperty Name="isdraw" ColumnName="isdraw" />
+                <ScalarProperty Name="winner_id_user" ColumnName="winner_id_user" />
+                <ScalarProperty Name="match_date" ColumnName="match_date" />
+                <ScalarProperty Name="p2_notes" ColumnName="p2_notes" />
+                <ScalarProperty Name="p2_kills" ColumnName="p2_kills" />
+                <ScalarProperty Name="p2_score" ColumnName="p2_score" />
+                <ScalarProperty Name="p2_id_user" ColumnName="p2_id_user" />
+                <ScalarProperty Name="p1_notes" ColumnName="p1_notes" />
+                <ScalarProperty Name="p1_kills" ColumnName="p1_kills" />
+                <ScalarProperty Name="p1_score" ColumnName="p1_score" />
+                <ScalarProperty Name="p1_id_user" ColumnName="p1_id_user" />
+                <ScalarProperty Name="round" ColumnName="round" />
+                <ScalarProperty Name="id_league" ColumnName="id_league" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

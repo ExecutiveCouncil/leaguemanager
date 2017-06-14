@@ -92,6 +92,38 @@
         </asp:Panel>
         <br />
 
+
+        <asp:Panel runat="server" id="Panel1">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>RESULTADOS RONDA A RONDA</h3>
+                </div>
+            </div>
+            <br />
+            <asp:DataGrid ID="GrRondas" runat="server" AutoGenerateColumns="false" Width="100%" 
+                        ShowHeader="true" 
+                        CssClass="grid"
+                        HeaderStyle-CssClass="grid_header" 
+                        ItemStyle-CssClass="grid_row" 
+                        AlternatingItemStyle-CssClass="grid_alternate_row">
+                <Columns>
+                    <asp:BoundColumn DataField="id" HeaderText="id" Visible="false"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="id_league" HeaderText="id_league" Visible="false"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="round" HeaderText="Ronda"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="p1_name" HeaderText="Jugador 1"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="p1_score" HeaderText="Puntos"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="p1_kills" HeaderText="Kills"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="p2_name" HeaderText="Jugador 2"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="p2_score" HeaderText="Puntos"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="p2_kills" HeaderText="Kills"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="match_date" HeaderText="Fecha"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="winner_name" HeaderText="Ganador"></asp:BoundColumn>
+                </Columns>
+            </asp:DataGrid>
+            <asp:Label runat="server" style="color:#ffd800;" Text="No hay datos de rondas" ID="_LbNoRondas" Visible="false"></asp:Label>
+        </asp:Panel>
+        <br />
+
         <asp:Panel runat="server" id="PnlMejoras">
             <div class="row">
                 <div class="col-md-12">

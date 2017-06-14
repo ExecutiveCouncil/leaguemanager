@@ -53,10 +53,52 @@ namespace ManagerDB.Pages
                     CargarMensajes();
                     CargarInsignias();
                     CargarTropas();
+                    CargarRondas();
                     CargarMejoras();
                 }
             }
         }
+
+
+        private void CargarRondas()
+        {
+            var _rondas = (from lm in this.manager.t_league_matchs
+                           join u1 in this.manager.t_users on lm.p1_id_user equals u1.id into tmpu1
+                           join u2 in this.manager.t_users on lm.p2_id_user equals u2.id into tmpu2
+                           join wnr in this.manager.t_users on lm.winner_id_user equals wnr.id into tmpwnr
+                           where ((lm.p1_id_user == this.idUsuario || lm.p2_id_user == this.idUsuario)
+                                && lm.id_league == this.idLiga)
+                           from u1 in tmpu1.DefaultIfEmpty()
+                           from u2 in tmpu2.DefaultIfEmpty()
+                           from wnr in tmpwnr.DefaultIfEmpty()
+                           select new
+                           {
+                               id = lm.id,
+                               id_league = lm.id_league,
+                               round = lm.round,
+                               p1_name = u1.name,
+                               p1_score = lm.p1_score,
+                               p1_kills = lm.p1_kills,
+                               p2_name = u2.name,
+                               p2_score = lm.p2_score,
+                               p2_kills = lm.p2_kills,
+                               match_date = lm.match_date,
+                               winner_name = wnr.name,
+                           }).OrderBy(a => a.round).ToList();
+
+            if (_rondas.Count > 0)
+            {
+                this.GrRondas.DataSource = _rondas;
+                this._LbNoRondas.Visible = false;
+            }
+            else
+            {
+                this.GrRondas.DataSource = null;
+                this._LbNoRondas.Visible = true;
+            }
+            this.GrRondas.DataBind();
+        }
+
 
         private void CargarTropas()
         {

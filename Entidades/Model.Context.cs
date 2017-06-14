@@ -50,5 +50,6 @@ namespace Entidades
         public DbSet<t_users> t_users { get; set; }
         public DbSet<merc_regions> merc_regions { get; set; }
         public DbSet<mercs_missions> mercs_missions { get; set; }
+        public DbSet<t_league_matchs> t_league_matchs { get; set; }
     }
 }

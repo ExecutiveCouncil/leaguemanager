@@ -47,7 +47,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="mercs_die_faces.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -116,6 +115,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="t_leagues.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="t_league_matchs.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="t_league_titles.cs">

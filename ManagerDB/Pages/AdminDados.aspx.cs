@@ -11,6 +11,15 @@ namespace ManagerDB.Pages
 {
     public partial class AdminDadosAspx : BasicPage
     {
+
+        public int RondaActiva
+        {
+            get
+            {
+                return Convert.ToInt32(this.DrpRondaActual.SelectedValue);
+            }
+        }
+        
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack == false)
@@ -28,6 +37,14 @@ namespace ManagerDB.Pages
                             admin = true;
                         }
                     }
+                    else
+                    {
+                        if (this.usuario.security_level == 1)
+                        {
+                            admin = true;
+                        }
+                    }
+
                 }
 
                 if (this.ValidateSession() == false || !admin)
@@ -37,10 +54,19 @@ namespace ManagerDB.Pages
                 else
                 {
                     //Ponemos la ronda actual y el nombre de la liga
-                    this.lblRonda.Text = "RONDA ACTUAL: <span style='color:#e3e3e3;'>" + this.liga.current_round.ToString() + "</span>";                    
+                    this.lblRonda.Text = "RONDA ACTUAL:";                    
                     this.lblLiga.Text += this.liga.name;
 
+                    this.DrpRondaActual.Items.Clear();
+                    for (int i=1; i <= this.RondaActiva; i++)
+                    {
+                        this.DrpRondaActual.Items.Add(new ListItem(i.ToString(), i.ToString()));
+                    }
+                    this.DrpRondaActual.SelectedValue = this.liga.current_round.ToString();
+
                     this.MostrarDadosUsuarios();
+                    this.CargarPartidasRonda();
+                    this.CargarJugadoresLiga();
                 }
             }
         }
@@ -89,12 +115,21 @@ namespace ManagerDB.Pages
 
         private void MostrarDadosUsuarios()
         {
+            if (this.liga.type == 0)
+            {
+                this._LbNoCampaña.Visible = true;
+                this.btnAddTurno.Visible = false;
+                this.RptDatosUsuarios.DataSource = null;
+                this.RptDatosUsuarios.DataBind();
+                return;
+            }
+            
             List<UserDice> usuarios = (from ul in this.manager.t_user_leagues
                         join l in this.manager.t_leagues on ul.id_league equals l.id
                         join ud in this.manager.mercs_user_dice on ul.id equals ud.id_user_league
                         join dt in this.manager.mercs_die_types on ud.id_die_type equals dt.id
                         join u in this.manager.t_users on ul.id_user equals u.id
-                        where l.current_round == this.liga.current_round
+                        where l.current_round == this.RondaActiva
                                  && l.id == this.liga.id
                         select new UserDice
                         {
@@ -291,6 +326,22 @@ namespace ManagerDB.Pages
             }
         }
 
+        private int ObtenerIdMatch()
+        {
+            var _ultimoID = (from m in this.manager.t_league_matchs
+                              select m).OrderByDescending(a => a.id).FirstOrDefault();
+            var _id = 0;
+            if (_ultimoID == null)
+            {
+                _id = 1;
+            }
+            else
+            {
+                _id = _ultimoID.id + 1;
+            }
+            return _id;
+        }
+
         private int ObtenerIdMensaje()
         {
             var ultimoMsg = (from m in this.manager.t_messages
@@ -317,7 +368,7 @@ namespace ManagerDB.Pages
             msg.id_user_from = from;
             msg.id_user_to = to;
             msg.message = mensaje;
-            msg.round = this.liga.current_round;
+            msg.round = this.RondaActiva;
             msg.sent_date = DateTime.Now;
             msg.subject = asunto;
 
@@ -374,7 +425,7 @@ namespace ManagerDB.Pages
         {
             var nuevoTurno = this.liga.current_round + 1;
             //Actualizamos el turno en la liga            
-            this.lblRonda.Text = "RONDA ACTUAL: <span style='color:#e3e3e3;'>" + nuevoTurno + "</span>";                    
+            this.lblRonda.Text = "RONDA ACTUAL:";                    
             this.liga.current_round = nuevoTurno;
 
             //Insertamos los dados por usuario y facción
@@ -446,17 +497,116 @@ namespace ManagerDB.Pages
         protected void btnActivarTurno_Command(object sender, CommandEventArgs e)
         {
             //Actualizamos el turno en la liga
-            var nuevoTurno = this.liga.current_round + 1;
             var ligaActualizar = this.manager.t_leagues.Where(a => a.id == this.liga.id).FirstOrDefault();
-            if (ligaActualizar.current_round + 1 != nuevoTurno)
+            if (ligaActualizar != null)
             {
-                ligaActualizar.current_round = nuevoTurno;
-                this.lblRonda.Text = "RONDA ACTUAL: <span style='color:#e3e3e3;'>" + nuevoTurno + "</span>";
-                this.liga.current_round = nuevoTurno;
-            }
+                ligaActualizar.current_round = ligaActualizar.current_round + 1;
+                this.lblRonda.Text = "RONDA ACTUAL:";
+                this.DrpRondaActual.SelectedValue = ligaActualizar.current_round.ToString();
 
-            this.manager.SaveChanges();
-            this.MostrarDadosUsuarios();
+                var ligasUsuario = (from ul in this.manager.t_user_leagues
+                                    join l in this.manager.t_leagues on ul.id_league equals l.id
+                                    join g in this.manager.t_games on l.id_game equals g.id
+                                    join u in this.manager.t_users on ul.id_user equals u.id
+                                    join gf in this.manager.t_game_factions on ul.id_faction equals gf.id
+                                    where ul.id_league == this.liga.id
+                                    select new JugadorLiga
+                                    {
+                                        league_id = l.id,
+                                        user_id = ul.id_user,
+                                        user_name = u.name,
+                                        user_avatar = u.avatar_url,
+                                        team_name = ul.team_name,
+                                        team_avatar_url = ul.team_avatar_url,
+                                        wins = ul.wins,
+                                        losses = ul.losses,
+                                        draws = ul.draws,
+                                        score = ul.total_score,
+                                        kills = ul.total_kills,
+                                        vp = ul.total_vp,
+                                        league_name = l.name,
+                                        league_avatar_url = l.avatar_url,
+                                        game_name = g.name,
+                                        game_avatar_url = g.avatar_url,
+                                        faction_name = gf.name,
+                                        faction_avatar_url = gf.avatar_url
+                                    }).OrderByDescending(o => o.score)
+                                        .ThenByDescending(t => t.vp)
+                                        .ThenByDescending(tt => tt.kills).ToList();
+
+                List<JugadorLiga> _listaJ1 = new List<JugadorLiga>(0);
+                List<JugadorLiga> _listaJ2 = new List<JugadorLiga>(0);
+
+                int _mitad = ligasUsuario.Count / 2;
+                int i = 0;
+                foreach (JugadorLiga _jl in ligasUsuario)
+                {
+                    _listaJ2.Add(_jl);
+                    _listaJ1.Add(_jl);
+                }
+
+                int _lastID = this.ObtenerIdMatch();
+                foreach (JugadorLiga _jl in _listaJ1)
+                {
+                    i++;
+                    if (i <= _mitad) { continue; }
+                    t_league_matchs _newMatch = new t_league_matchs();
+                    _newMatch.id = _lastID;
+                    _newMatch.id_league = this.liga.id;
+                    _newMatch.p1_id_user = _jl.user_id;
+                    _newMatch.p2_id_user = 0;
+                    _newMatch.round = this.RondaActiva;
+
+                    foreach (JugadorLiga _op in _listaJ2)
+                    {
+                        //VERIFICA: jugador contra si mismo
+                        if (_op.user_id == _jl.user_id) { continue; } 
+
+                        //VERIFICA: ya han jugado antes
+                        var _validar = this.manager.t_league_matchs
+                            .Where(a => 
+                                   (a.id_league == _newMatch.id_league) &&
+                                   ((a.p1_id_user == _jl.user_id && a.p2_id_user == _op.user_id) ||
+                                   (a.p1_id_user == _op.user_id && a.p2_id_user == _jl.user_id))
+                                   ).FirstOrDefault();
+                        if (_validar == null)
+                        {
+                            _newMatch.p2_id_user = _op.user_id;
+                            _listaJ2.RemoveAll(p=>p.user_id == _op.user_id);
+                            _listaJ2.RemoveAll(p=>p.user_id == _jl.user_id);
+                            break;
+                        }
+                    }
+
+                    //Emparejamiento forzado (REPETIDO)
+                    if (_newMatch.p2_id_user == 0)
+                    {
+                        foreach (JugadorLiga _op in _listaJ2)
+                        {
+                            _newMatch.p2_id_user = _op.user_id;
+                            _listaJ2.RemoveAll(p => p.user_id == _op.user_id);
+                            _listaJ2.RemoveAll(p => p.user_id == _jl.user_id);
+                            _newMatch.match_notes = "REPITEN";
+                            break;
+                        }
+                    }
+
+                    //Guardamos
+                    if (_newMatch.p1_id_user > 0 && _newMatch.p2_id_user > 0)
+                    {
+                        this.manager.t_league_matchs.Add(_newMatch);
+                        this.manager.SaveChanges();
+                    }
+                    _lastID++;
+                }
+
+
+
+
+                this.manager.SaveChanges();
+                this.CargarPartidasRonda();
+                this.MostrarDadosUsuarios();
+            }
         }
 
         protected void AddVictorias_Command(object sender, CommandEventArgs e)
@@ -497,7 +647,7 @@ namespace ManagerDB.Pages
             dado.id = ObtenerIdNuevoDado();
             dado.status = 0;
             dado.id_user_league = this.idUsuarioLigaSeleccionado;
-            dado.round = this.liga.current_round;
+            dado.round = this.RondaActiva;
 
             switch (e.CommandName)
             {
@@ -573,5 +723,91 @@ namespace ManagerDB.Pages
 
             this.MostrarDadosUsuarios();
         }
+
+        private void CargarPartidasRonda()
+        {
+            var _rondas = (from lm in this.manager.t_league_matchs
+                           join u1 in this.manager.t_users on lm.p1_id_user equals u1.id into tmpu1
+                           join u2 in this.manager.t_users on lm.p2_id_user equals u2.id into tmpu2
+                           join wnr in this.manager.t_users on lm.winner_id_user equals wnr.id into tmpwnr
+                           where lm.round == this.RondaActiva && lm.id_league == this.liga.id
+                           from u1 in tmpu1.DefaultIfEmpty()
+                           from u2 in tmpu2.DefaultIfEmpty()
+                           from wnr in tmpwnr.DefaultIfEmpty()
+                           select new
+                           {
+                               id = lm.id,
+                               id_league = lm.id_league,
+                               round = lm.round,
+                               p1_name = u1.name,
+                               p1_score = lm.p1_score,
+                               p1_kills = lm.p1_kills,
+                               p2_name = u2.name,
+                               p2_score = lm.p2_score,
+                               p2_kills = lm.p2_kills,
+                               match_date = lm.match_date,
+                               winner_name = wnr.name,
+                               match_notes = lm.match_notes,
+                           }).OrderByDescending(a => a.id).ToList();
+
+            if (_rondas.Count > 0)
+            {
+                this.GrRondas.DataSource = _rondas;
+                this._LbNoRondas.Visible = false;
+            }
+            else
+            {
+                this.GrRondas.DataSource = null;
+                this._LbNoRondas.Visible = true;
+            }
+            this.GrRondas.DataBind();
+        }
+
+        private void CargarJugadoresLiga()
+{
+            var ligasUsuario = (from ul in this.manager.t_user_leagues
+                                join l in this.manager.t_leagues on ul.id_league equals l.id
+                                join g in this.manager.t_games on l.id_game equals g.id
+                                join u in this.manager.t_users on ul.id_user equals u.id
+                                join gf in this.manager.t_game_factions on ul.id_faction equals gf.id
+                                where ul.id_league == this.liga.id
+                                select new JugadorLiga
+                                {
+                                    league_id = l.id,
+                                    user_id = ul.id_user,
+                                    user_name = u.name,
+                                    user_avatar = u.avatar_url,
+                                    team_name = ul.team_name,
+                                    team_avatar_url = ul.team_avatar_url,
+                                    wins = ul.wins,
+                                    losses = ul.losses,
+                                    draws = ul.draws,
+                                    score = ul.total_score,
+                                    kills = ul.total_kills,
+                                    vp = ul.total_vp,
+                                    league_name = l.name,
+                                    league_avatar_url = l.avatar_url,
+                                    game_name = g.name,
+                                    game_avatar_url = g.avatar_url,
+                                    faction_name = gf.name,
+                                    faction_avatar_url = gf.avatar_url
+                                }).OrderByDescending(o => o.score)
+                                        .ThenByDescending(t => t.vp)
+                                        .ThenByDescending(tt => tt.kills).ToList();
+
+
+            if (ligasUsuario.Count > 0)
+            {
+                this.GrJugadores.DataSource = ligasUsuario;
+                this._LbNoJugadores.Visible = false;
+            }
+            else
+            {
+                this.GrJugadores.DataSource = null;
+                this._LbNoJugadores.Visible = true;
+            }
+            this.GrJugadores.DataBind();
+        }
+
     }
 }

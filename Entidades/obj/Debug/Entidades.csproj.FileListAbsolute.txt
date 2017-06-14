@@ -30,6 +30,6 @@ C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\bin\Debug\Entidades.dll.c
 C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\bin\Debug\Entidades.dll
 C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\bin\Debug\Entidades.pdb
 C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\bin\Debug\EntityFramework.dll
+C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\obj\Debug\Entidades.csprojResolveAssemblyReference.cache
 C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\obj\Debug\Entidades.dll
 C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\obj\Debug\Entidades.pdb
-C:\Users\manu\Documents\GitHub\leaguemanager\Entidades\obj\Debug\Entidades.csprojResolveAssemblyReference.cache

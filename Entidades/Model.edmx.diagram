@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="MANAGERDBModel.mercs_die_faces" Width="1.5" PointX="0.625" PointY="2" />
         <EntityTypeShape EntityType="MANAGERDBModel.mercs_die_types" Width="1.5" PointX="2.5" PointY="1" />
         <EntityTypeShape EntityType="MANAGERDBModel.mercs_faction_dice" Width="1.5" PointX="4.25" PointY="1.125" />
-        <EntityTypeShape EntityType="MANAGERDBModel.mercs_skirmish_user_troops" Width="1.5" PointX="10.125" PointY="3.5" />
+        <EntityTypeShape EntityType="MANAGERDBModel.mercs_skirmish_user_troops" Width="1.5" PointX="9.75" PointY="1.25" />
         <EntityTypeShape EntityType="MANAGERDBModel.mercs_skirmish_users" Width="1.5" PointX="9.75" PointY="7.625" />
         <EntityTypeShape EntityType="MANAGERDBModel.mercs_skirmishes" Width="1.5" PointX="12.75" PointY="9.125" />
         <EntityTypeShape EntityType="MANAGERDBModel.mercs_troops" Width="1.5" PointX="0.625" PointY="12.5" />
@@ -30,6 +30,7 @@
         <EntityTypeShape EntityType="MANAGERDBModel.t_users" Width="1.5" PointX="8.125" PointY="19.375" />
         <EntityTypeShape EntityType="MANAGERDBModel.merc_regions" Width="1.5" PointX="3.75" PointY="3.75" />
         <EntityTypeShape EntityType="MANAGERDBModel.mercs_missions" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="MANAGERDBModel.t_league_matchs" Width="1.5" PointX="6.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

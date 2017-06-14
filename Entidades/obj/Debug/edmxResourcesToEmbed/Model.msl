@@ -331,5 +331,26 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="t_league_matchs">
+      <EntityTypeMapping TypeName="MANAGERDBModel.t_league_matchs">
+        <MappingFragment StoreEntitySet="t_league_matchs">
+          <ScalarProperty Name="match_notes" ColumnName="match_notes" />
+          <ScalarProperty Name="isdraw" ColumnName="isdraw" />
+          <ScalarProperty Name="winner_id_user" ColumnName="winner_id_user" />
+          <ScalarProperty Name="match_date" ColumnName="match_date" />
+          <ScalarProperty Name="p2_notes" ColumnName="p2_notes" />
+          <ScalarProperty Name="p2_kills" ColumnName="p2_kills" />
+          <ScalarProperty Name="p2_score" ColumnName="p2_score" />
+          <ScalarProperty Name="p2_id_user" ColumnName="p2_id_user" />
+          <ScalarProperty Name="p1_notes" ColumnName="p1_notes" />
+          <ScalarProperty Name="p1_kills" ColumnName="p1_kills" />
+          <ScalarProperty Name="p1_score" ColumnName="p1_score" />
+          <ScalarProperty Name="p1_id_user" ColumnName="p1_id_user" />
+          <ScalarProperty Name="round" ColumnName="round" />
+          <ScalarProperty Name="id_league" ColumnName="id_league" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

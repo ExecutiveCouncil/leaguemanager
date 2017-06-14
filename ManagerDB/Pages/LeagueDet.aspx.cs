@@ -97,18 +97,26 @@ namespace ManagerDB.Pages
 
                 if (_ligaSeleccionada.active == "Y")
                 {
+                    this.BtLiga.Visible = false;
+                    this.PnlUsuarioLiga.Visible = false;
+                    this.BtAdministrar.Visible = false;
+
                     var _ligaUsuario = this.manager.t_user_leagues
                         .Where(a => a.id_user == this.usuario.id &&
                                     a.id_league == _ligaSeleccionada.id).FirstOrDefault();
                     if (_ligaUsuario != null)
                     {
                         this.PnlUsuarioLiga.Visible = true;
-
+                        this.BtLiga.Visible = true;
                         if (_ligaUsuario.security_level == 1)
                         {
                             this.BtAdministrar.Visible = true;
                         }
-
+                    }
+                    if (this.usuario.security_level == 1)
+                    {
+                        this.PnlUsuarioLiga.Visible = true;
+                        this.BtAdministrar.Visible = true;
                     }
                 }
             }
@@ -222,10 +230,6 @@ namespace ManagerDB.Pages
                     e.Item.Style.Add("color", "#ffffff");
                 }
             }
-
-
-
-
 
         }
 
