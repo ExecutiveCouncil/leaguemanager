@@ -65,7 +65,7 @@ namespace ManagerDB.Pages
             }
         }
 
-        private EnvironmentVariableTarget _jugador;
+        //private EnvironmentVariableTarget _jugador;
 
         private void CargarJugadores()
         {
@@ -133,6 +133,7 @@ namespace ManagerDB.Pages
                                 where ul.id_league == _idLiga
                                 select new JugadorLiga
                                 {
+                                    id = ul.id,
                                     league_id = l.id,
                                     user_id = ul.id_user,
                                     user_name = u.name,

@@ -44,7 +44,6 @@ namespace ManagerDB.Pages
                             admin = true;
                         }
                     }
-
                 }
 
                 if (this.ValidateSession() == false || !admin)
@@ -58,9 +57,16 @@ namespace ManagerDB.Pages
                     this.lblLiga.Text += this.liga.name;
 
                     this.DrpRondaActual.Items.Clear();
-                    for (int i=1; i <= this.RondaActiva; i++)
+                    if (this.liga.current_round == 0)
                     {
-                        this.DrpRondaActual.Items.Add(new ListItem(i.ToString(), i.ToString()));
+                        this.DrpRondaActual.Items.Add(new ListItem("0", "0"));
+                    }
+                    else
+                    {
+                        for (int i = 1; i <= this.liga.current_round; i++)
+                        {
+                            this.DrpRondaActual.Items.Add(new ListItem(i.ToString(), i.ToString()));
+                        }
                     }
                     this.DrpRondaActual.SelectedValue = this.liga.current_round.ToString();
 
@@ -115,7 +121,7 @@ namespace ManagerDB.Pages
 
         private void MostrarDadosUsuarios()
         {
-            if (this.liga.type == 0)
+            if (this.RondaActiva == 0 || this.liga.type == 0)
             {
                 this._LbNoCampaña.Visible = true;
                 this.btnAddTurno.Visible = false;
@@ -502,6 +508,7 @@ namespace ManagerDB.Pages
             {
                 ligaActualizar.current_round = ligaActualizar.current_round + 1;
                 this.lblRonda.Text = "RONDA ACTUAL:";
+                this.DrpRondaActual.Items.Add(new ListItem(ligaActualizar.current_round.ToString(), ligaActualizar.current_round.ToString()));
                 this.DrpRondaActual.SelectedValue = ligaActualizar.current_round.ToString();
 
                 var ligasUsuario = (from ul in this.manager.t_user_leagues
@@ -546,10 +553,30 @@ namespace ManagerDB.Pages
                 }
 
                 int _lastID = this.ObtenerIdMatch();
-                foreach (JugadorLiga _jl in _listaJ1)
+
+
+                int _vuelta = 0;
+
+                while (_listaJ1.Count > 0 && _vuelta < 10)
                 {
-                    i++;
-                    if (i <= _mitad) { continue; }
+                    _vuelta++;
+                    JugadorLiga _jl = null;
+                    for (int _idx = 0; _idx < _listaJ1.Count; _idx++)
+                    {
+                        _jl = _listaJ1.ElementAt(_idx);
+                        var _validarJugador1 = this.manager.t_league_matchs
+                            .Where(a => (a.id_league == this.liga.id && a.round == this.RondaActiva) &&
+                                        (a.p1_id_user == _jl.user_id || a.p2_id_user == _jl.user_id)
+                                   ).FirstOrDefault();
+                        if (_validarJugador1 != null) 
+                        {
+                            continue; 
+                        }
+                        break;
+                    }
+
+                    if (_jl == null) { continue;  }
+
                     t_league_matchs _newMatch = new t_league_matchs();
                     _newMatch.id = _lastID;
                     _newMatch.id_league = this.liga.id;
@@ -557,36 +584,25 @@ namespace ManagerDB.Pages
                     _newMatch.p2_id_user = 0;
                     _newMatch.round = this.RondaActiva;
 
-                    foreach (JugadorLiga _op in _listaJ2)
+                    foreach (JugadorLiga _op in _listaJ2.OrderBy(o => o.score).ToList())
                     {
                         //VERIFICA: jugador contra si mismo
-                        if (_op.user_id == _jl.user_id) { continue; } 
+                        if (_op.user_id == _jl.user_id) { continue; }
 
                         //VERIFICA: ya han jugado antes
-                        var _validar = this.manager.t_league_matchs
-                            .Where(a => 
+                        var _validarJugador2 = this.manager.t_league_matchs
+                            .Where(a =>
                                    (a.id_league == _newMatch.id_league) &&
                                    ((a.p1_id_user == _jl.user_id && a.p2_id_user == _op.user_id) ||
                                    (a.p1_id_user == _op.user_id && a.p2_id_user == _jl.user_id))
                                    ).FirstOrDefault();
-                        if (_validar == null)
+                        if (_validarJugador2 == null)
                         {
                             _newMatch.p2_id_user = _op.user_id;
-                            _listaJ2.RemoveAll(p=>p.user_id == _op.user_id);
-                            _listaJ2.RemoveAll(p=>p.user_id == _jl.user_id);
-                            break;
-                        }
-                    }
-
-                    //Emparejamiento forzado (REPETIDO)
-                    if (_newMatch.p2_id_user == 0)
-                    {
-                        foreach (JugadorLiga _op in _listaJ2)
-                        {
-                            _newMatch.p2_id_user = _op.user_id;
-                            _listaJ2.RemoveAll(p => p.user_id == _op.user_id);
+                            _listaJ1.RemoveAll(p => p.user_id == _jl.user_id);
+                            _listaJ1.RemoveAll(p => p.user_id == _op.user_id);
                             _listaJ2.RemoveAll(p => p.user_id == _jl.user_id);
-                            _newMatch.match_notes = "REPITEN";
+                            _listaJ2.RemoveAll(p => p.user_id == _op.user_id);
                             break;
                         }
                     }
@@ -594,18 +610,71 @@ namespace ManagerDB.Pages
                     //Guardamos
                     if (_newMatch.p1_id_user > 0 && _newMatch.p2_id_user > 0)
                     {
+                        i++;
                         this.manager.t_league_matchs.Add(_newMatch);
                         this.manager.SaveChanges();
+                        if (i > _mitad) { break; }
+                    }
+                    _lastID++;
+
+                }
+
+
+                foreach (JugadorLiga _jl in _listaJ1)
+                {
+
+                    var _validarJugador1 = this.manager.t_league_matchs
+                        .Where(a => (a.id_league == this.liga.id && a.round == this.RondaActiva) &&
+                                    (a.p1_id_user == _jl.user_id || a.p2_id_user == _jl.user_id)
+                               ).FirstOrDefault();
+                    if (_validarJugador1 != null) { continue; }
+
+                    t_league_matchs _newMatch = new t_league_matchs();
+                    _newMatch.id = _lastID;
+                    _newMatch.id_league = this.liga.id;
+                    _newMatch.p1_id_user = _jl.user_id;
+                    _newMatch.p2_id_user = 0;
+                    _newMatch.round = this.RondaActiva;
+
+                    foreach (JugadorLiga _op in _listaJ2.OrderBy(o => o.score).ToList())
+                    {
+                        //VERIFICA: jugador contra si mismo
+                        if (_op.user_id == _jl.user_id) { continue; }
+
+                        //VERIFICA: ya han jugado antes
+                        var _validarJugador2 = this.manager.t_league_matchs
+                            .Where(a =>
+                                   (a.id_league == _newMatch.id_league) &&
+                                   ((a.p1_id_user == _jl.user_id && a.p2_id_user == _op.user_id) ||
+                                   (a.p1_id_user == _op.user_id && a.p2_id_user == _jl.user_id))
+                                   ).FirstOrDefault();
+                        
+                        if (_validarJugador2 != null)
+                        {
+                            _newMatch.match_notes = "REPITEN";
+                        }
+                        _newMatch.p2_id_user = _op.user_id;
+                        _listaJ2.RemoveAll(p => p.user_id == _op.user_id);
+                        _listaJ2.RemoveAll(p => p.user_id == _jl.user_id);
+                        break;
+
+                    }
+
+                    //Guardamos
+                    if (_newMatch.p1_id_user > 0 && _newMatch.p2_id_user > 0)
+                    {
+                        i++;
+                        this.manager.t_league_matchs.Add(_newMatch);
+                        this.manager.SaveChanges();
+                        if (i > _mitad) { break; }
                     }
                     _lastID++;
                 }
 
-
-
-
                 this.manager.SaveChanges();
                 this.CargarPartidasRonda();
                 this.MostrarDadosUsuarios();
+
             }
         }
 
@@ -748,7 +817,7 @@ namespace ManagerDB.Pages
                                match_date = lm.match_date,
                                winner_name = wnr.name,
                                match_notes = lm.match_notes,
-                           }).OrderByDescending(a => a.id).ToList();
+                           }).OrderBy(a => a.id).ToList();
 
             if (_rondas.Count > 0)
             {
@@ -773,6 +842,7 @@ namespace ManagerDB.Pages
                                 where ul.id_league == this.liga.id
                                 select new JugadorLiga
                                 {
+                                    id = ul.id,
                                     league_id = l.id,
                                     user_id = ul.id_user,
                                     user_name = u.name,
@@ -807,6 +877,13 @@ namespace ManagerDB.Pages
                 this._LbNoJugadores.Visible = true;
             }
             this.GrJugadores.DataBind();
+        }
+
+        protected void DrpRondaActual_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.MostrarDadosUsuarios();
+            this.CargarPartidasRonda();
+            this.CargarJugadoresLiga();
         }
 
     }

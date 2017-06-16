@@ -7,6 +7,7 @@ namespace ManagerDB.Pages
 {
     public class JugadorLiga
     {
+        public int id { get; set; }
         public int league_id { get; set; }
         public int? user_id { get; set; }
         public int? userleague_sec_level { get; set; }

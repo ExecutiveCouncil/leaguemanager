@@ -22,7 +22,7 @@
                     <asp:Label ID="lblLiga" runat="server" ></asp:Label>
                     -
                     <asp:Label ID="lblRonda" runat="server"></asp:Label>
-                    <asp:DropDownList runat="server" ID="DrpRondaActual"></asp:DropDownList>
+                    <asp:DropDownList runat="server" ID="DrpRondaActual" AutoPostBack="true" OnSelectedIndexChanged="DrpRondaActual_SelectedIndexChanged"></asp:DropDownList>
                 </h3>
                 <br />
                 <div style="text-align:right" class="div_box">
@@ -53,8 +53,8 @@
                         ItemStyle-CssClass="grid_row" 
                         AlternatingItemStyle-CssClass="grid_alternate_row">
                 <Columns>
-                    <asp:BoundColumn DataField="id" HeaderText="id" Visible="false"></asp:BoundColumn>
                     <asp:BoundColumn DataField="id_league" HeaderText="id_league" Visible="false"></asp:BoundColumn>
+                    <asp:BoundColumn DataField="id" HeaderText="ID"></asp:BoundColumn>
                     <asp:BoundColumn DataField="p1_name" HeaderText="Jugador 1"></asp:BoundColumn>
                     <asp:BoundColumn DataField="p1_score" HeaderText="Puntos"></asp:BoundColumn>
                     <asp:BoundColumn DataField="p1_kills" HeaderText="Kills"></asp:BoundColumn>
@@ -81,7 +81,8 @@
                     >
             <Columns>
                 <asp:BoundColumn DataField="user_id" HeaderText="user_id" Visible="false"></asp:BoundColumn>
-                <asp:BoundColumn DataField="league_id" HeaderText="league_id" Visible="false"></asp:BoundColumn>
+                <asp:BoundColumn DataField="league_id" HeaderText="ID Liga" Visible="false"></asp:BoundColumn>
+                <asp:BoundColumn DataField="id" HeaderText="ID"></asp:BoundColumn>
                 <asp:BoundColumn DataField="user_name" HeaderText="Jugador"></asp:BoundColumn>
                 <asp:BoundColumn DataField="team_name" HeaderText="Equipo"></asp:BoundColumn>
                 <asp:BoundColumn DataField="faction_name" HeaderText="Facción"></asp:BoundColumn>
